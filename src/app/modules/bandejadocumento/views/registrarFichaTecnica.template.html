@@ -1,0 +1,336 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  
+    <div *ngIf="indicadorLectura" class="col-lg-12">
+      <h4 style="margin-top: 10px;">Inicio / Documentos / Consulta por Jerarquía /
+        <strong>Ficha Técnica</strong>
+      </h4>
+    </div>
+    <div *ngIf="!indicadorLectura" class="col-lg-12">
+      <h4 style="margin-top: 10px;">Inicio / Información Documentada / Jerarquía /
+        <strong>Ficha Técnica</strong>
+      </h4>
+    </div>
+
+
+  </div>
+<div class="wrapper wrapper-content animated  border-bottom  white-bg page-heading" style="padding-top: 0px;">
+  
+
+  <br>
+  <div class="row m-b-md">
+    <div class="col-lg-12">
+      <a *ngIf="!indicadorLectura" class="btn btn-primary m-r" (click)="OnGuardar()">
+        <i class="fa fa-check"></i> Guardar</a>
+      <a *ngIf="!indicadorLectura" class="btn btn-outline btn-primary m-r" (click)="OnExportarXls()">
+        <i class="fa fa-file-o"></i> Generar Reporte</a>
+      <a *ngIf="!indicadorLectura" class="btn btn-warning m-r" (click)="OnLimpiar()">
+        <i class="fa fa-eraser"></i> Limpiar</a>
+      <a class="btn btn-default m-r" (click)="OnRegresar()">
+        <i class="fa fa-arrow-left"></i> Regresar</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox-content">
+        <form class="form-horizontal">
+          <h3>
+            <p class="text-success">Identificación de Proceso</p>
+          </h3>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Tipo de Proceso(*) :</label>
+            <div class="col-sm-4">
+              <select [disabled]="indicadorLectura" name="idTipoProceso" id="idTipoProceso" class="form-control"
+                #idTipoProceso="ngModel" [(ngModel)]="v_idTipoProceso"
+                [ngClass]="{'ng-dirty ng-invalid':errors?.idTipoProceso}" [tooltip]="errors?.idTipoProceso"
+                placement="top" (ngModelChange)="OnValidaElemento()">
+                <option value="0" disabled selected hidden>Seleccione</option>
+                <option *ngFor="let parametro of listaTipoProceso" value="{{parametro.idconstante}}">
+                  {{parametro.v_valcons}}</option>
+              </select>
+            </div>
+            <label class="col-sm-2 control-label">Nivel(*) :</label>
+            <div class="col-sm-4">
+              <select [disabled]="indicadorLectura" name="idNivel" id="idNivel" class="form-control" #idNivel="ngModel"
+                [(ngModel)]="v_idNivel" [ngClass]="{'ng-dirty ng-invalid':errors?.idNivel}" [tooltip]="errors?.idNivel"
+                placement="top" (ngModelChange)="OnValidaElemento()">
+                <option value="0" disabled selected hidden>Seleccione</option>
+                <option *ngFor="let parametro of listaNivelProceso" value="{{parametro.idconstante}}">
+                  {{parametro.v_valcons}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Nombre del Proceso(*):</label>
+            <div class="col-sm-4">
+              <textarea [disabled]="indicadorLectura" class="form-control" rows="3" name="proceso" #proceso="ngModel"
+                [(ngModel)]="item.proceso" [ngClass]="{'ng-dirty ng-invalid':errors?.proceso}"
+                [tooltip]="errors?.proceso" placement="top" (ngModelChange)="OnValidaElemento()"></textarea>
+            </div>
+            <label class="col-sm-2 control-label">Responsable del Proceso(*) :</label>
+            <div class="col-sm-4">
+              <div class="input-group">
+                <input [disabled]="indicadorLectura" type="text" name="responsable" #responsable="ngModel"
+                  [(ngModel)]="item.responsable" placeholder="Buscar" class="form-control" disabled
+                  [ngClass]="{'ng-dirty ng-invalid':errors?.idResponsable}" [tooltip]="errors?.idResponsable"
+                  placement="top">
+                <span class="input-group-btn" dropdown>
+                  <button [disabled]="indicadorLectura" type="button" class="btn btn-info"
+                    (click)="OnBuscarColaborador('RESPONSABLE')">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Objetivo(*) :</label>
+            <div class="col-sm-4">
+              <textarea [disabled]="indicadorLectura" class="form-control" rows="3" name="objetivo" #objetivo="ngModel"
+                [(ngModel)]="item.objetivo" [ngClass]="{'ng-dirty ng-invalid':errors?.objetivo}"
+                [tooltip]="errors?.objetivo" placement="top" (ngModelChange)="OnValidaElemento()"></textarea>
+            </div>
+            <label class="col-sm-2 control-label">Alcance(*) :</label>
+            <div class="col-sm-4">
+              <textarea [disabled]="indicadorLectura" class="form-control" rows="3" name="alcance" #alcance="ngModel"
+                [(ngModel)]="item.alcance" [ngClass]="{'ng-dirty ng-invalid':errors?.alcance}"
+                [tooltip]="errors?.alcance" placement="top" (ngModelChange)="OnValidaElemento()"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Requisitos Legales y Reglamentos(*) :</label>
+            <div class="col-sm-4">
+              <textarea [disabled]="indicadorLectura" class="form-control" rows="3" name="requisitos"
+                #requisitos="ngModel" [(ngModel)]="item.requisitos"
+                [ngClass]="{'ng-dirty ng-invalid':errors?.requisitos}" [tooltip]="errors?.requisitos" placement="top"
+                (ngModelChange)="OnValidaElemento()"></textarea>
+            </div>
+            <label class="col-sm-2 control-label">Gráfico de Proceso:</label>
+            <div class="col-sm-4">
+
+
+
+              <div class="input-group" style="padding-top: 8px;">                
+                <label class="input-group-btn">
+                  <span *ngIf="!indicadorLectura" class="btn btn-success margen">
+                    <i class="fa fa-upload"></i> 
+                    <input  accept=".pdf"  #file class="ocultar" type="file" id="file" name="file" (change)="adjuntarArchivo($event)">
+                  </span>
+                </label>
+
+
+               <!-- <a *ngIf="indicadorLectura" type="text" class="input text m-r"
+                  (click)="OnAbrirGrafico()">{{item.nombreGrafico}}</a>-->
+                <input placeholder="Ingresar archivo" *ngIf="!indicadorLectura" type="text" class="form-control margen" id="file-name" name="file-name"
+                  placeholder="Ingresar archivo" [ngClass]="{'ng-dirty ng-invalid':ValidarAdjuntar}"
+                  [(ngModel)]="nombreArchivo" readonly>
+
+              </div>
+
+              <button *ngIf="indicadorLectura" (click)="OnValidaRuta(item.rutaGrafico,visorPdfSwal)"
+              class="btn btn-success m-r" style="margin-right:5px;">
+              <i class="fa fa-file-o"></i> Ver Documento</button>
+
+
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox-content">
+        <form class="form-horizontal">
+          <h3>
+            <p class="text-success">Componentes del Proceso</p>
+          </h3>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Proveedores:</label>
+            <div class="col-sm-4">
+              <textarea [disabled]="indicadorLectura" class="form-control" rows="3" name="proveedores"
+                [(ngModel)]="item.proveedores"></textarea>
+            </div>
+            <label class="col-sm-2 control-label">Entradas:</label>
+            <div class="col-sm-4">
+              <textarea [disabled]="indicadorLectura" class="form-control" rows="3" name="entradas"
+                [(ngModel)]="item.entradas"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">SubProceso / Actividades:</label>
+            <div class="col-sm-4">
+              <textarea [disabled]="indicadorLectura" class="form-control" rows="3" name="subProceso"
+                [(ngModel)]="item.subProceso"></textarea>
+            </div>
+            <label class="col-sm-2 control-label">Salidas:</label>
+            <div class="col-sm-4">
+              <textarea [disabled]="indicadorLectura" class="form-control" rows="3" name="salidas"
+                [(ngModel)]="item.salidas"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Cliente / Usuario:</label>
+            <div class="col-sm-4">
+              <textarea [disabled]="indicadorLectura" class="form-control" rows="3" name="clientes"
+                [(ngModel)]="item.clientes"></textarea>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox-content">
+        <form class="form-horizontal">
+          <h3>
+            <p class="text-success">Identificación de Recursos Críticos para la Ejecución y Control del Proceso</p>
+          </h3>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Personal:</label>
+            <div class="col-sm-4">
+              <textarea [disabled]="indicadorLectura" class="form-control" rows="3" name="personal"
+                [(ngModel)]="item.personal"></textarea>
+            </div>
+            <label class="col-sm-2 control-label">Equipos y Herramientas:</label>
+            <div class="col-sm-4">
+              <textarea [disabled]="indicadorLectura" class="form-control" rows="3" name="equipos"
+                [(ngModel)]="item.equipos"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Materiales y Suministro de Oficina:</label>
+            <div class="col-sm-4">
+              <textarea [disabled]="indicadorLectura" class="form-control" rows="3" name="materiales"
+                [(ngModel)]="item.materiales"></textarea>
+            </div>
+            <label class="col-sm-2 control-label">Ambiente de Trabajo:</label>
+            <div class="col-sm-4">
+              <textarea [disabled]="indicadorLectura" class="form-control" rows="3" name="ambientes"
+                [(ngModel)]="item.ambientes"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Documentos Aplicados:</label>
+            <div class="col-sm-3 table-wrapper-scroll-y my-custom-scrollbar"
+              style="width: 295px;padding-right: 0px;padding-left: 15px;">
+              <table class="table table-condensed table-bordered table-stripped table-hover issue-tracker">
+                <thead>
+                  <tr>
+                    <th class="col-sm-3 text-center">Código</th>
+                    <th class="col-sm-9 text-center">Titulo</th>
+                    <th class="col-sm-9 text-center">Acción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of item.fichaTecnicaDocumento; let i = index" (click)="OnRowClick(i, item)"
+                    [class.info]="i == selectedRow">
+                    <td class="text-center" data-col="codigo">{{item.codDocu}}</td>
+                    <td data-col="titulo">{{item.desDocu}}</td>
+                    <td data-col="titulo"><button *ngIf="!indicadorLectura" class="btn btn-danger btn-r"
+                        style="margin-right:0px;" (click)="OnEliminarDocumento(item)">
+                        <i class="fa fa-trash"></i></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-sm-1" style="padding-right: 101px;padding-left: 0px;width: 40px;">
+              <a *ngIf="!indicadorLectura" style="margin-right: 0px;" class="btn btn-primary m-r"
+                (click)="onBuscarDocumento()">
+                <i class="fa fa-plus"></i></a>
+            </div>
+
+            <label class="col-sm-2 control-label" style="width: 132px;">Controles e Inspecciones:</label>
+            <div class="col-sm-4">
+              <textarea [disabled]="indicadorLectura" class="form-control" rows="3" name="controles"
+                [(ngModel)]="item.controles"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Registros a Controlar:</label>
+            <div class="col-sm-4">
+              <textarea [disabled]="indicadorLectura" class="form-control" rows="3" name="registros"
+                [(ngModel)]="item.registros"></textarea>
+            </div>
+            <label class="col-sm-2 control-label">Indicadores Desempeño:</label>
+            <div class="col-sm-4">
+              <textarea [disabled]="indicadorLectura" class="form-control" rows="3" name="indicadores"
+                [(ngModel)]="item.indicadores"></textarea>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox-content">
+        <form class="form-horizontal">
+          <h3>
+            <p class="text-success">Aprobación</p>
+          </h3>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Elaborado por:</label>
+            <div class="col-sm-4">
+              <div class="input-group">
+                <input type="text" name="elaborado" [(ngModel)]="item.elaborado" placeholder="Buscar"
+                  class="form-control" disabled>
+                <span class="input-group-btn" dropdown>
+                  <button [disabled]="indicadorLectura" type="button" class="btn btn-info"
+                    (click)="OnBuscarColaborador('ELABORADO')">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Consensado por:</label>
+              <div class="col-sm-4">
+                <div class="input-group">
+                  <input type="text" name="consensado" [(ngModel)]="item.consensado" placeholder="Buscar"
+                    class="form-control" disabled>
+                  <span class="input-group-btn" dropdown>
+                    <button [disabled]="indicadorLectura" type="button" class="btn btn-info"
+                      (click)="OnBuscarColaborador('CONSENSADO')">
+                      <i class="fa fa-search"></i>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <label class="col-sm-2 control-label">Aprobado por:</label>
+            <div class="col-sm-4">
+              <div class="input-group">
+                <input type="text" name="aprobado" [(ngModel)]="item.aprobado" placeholder="Buscar" class="form-control"
+                  disabled>
+                <span class="input-group-btn" dropdown>
+                  <button [disabled]="indicadorLectura" type="button" class="btn btn-info"
+                    (click)="OnBuscarColaborador('APROBADO')">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<swal #visorPdfSwal [showConfirmButton]="false" [showCloseButton]="true" customClass="pdf-swal">
+    <form *swalPartial class="ajuste">
+        
+        <div *ngIf="urlPDF">
+            <visor-pdf id="02" [url]="urlPDF" download="true" ></visor-pdf>
+        </div>        
+ <!--CGUERRA
+        <div *ngIf="urlPDF2">
+                <visor-pdf id="02" [url]="urlPDF1" download="true" ></visor-pdf>
+            </div>-->
+<!--CGUERRA FIN-->
+
+    </form>
+</swal>

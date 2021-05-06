@@ -1,0 +1,53 @@
+{
+    "listaPlanAuditoria": [
+      {
+        "idAuditoria":"1",
+        "idPrograma":"1",
+        "tipoAuditoria":"1",
+        "descripcionTipoAuditoria":"Auditoria Interna",
+        "descripcionAuditoria":"Auditoría de Gestion Ambiental",
+        "descripcionEstadoAuditoria": "Pendiente"
+      },
+      {
+        "idAuditoria":"2",
+        "idPrograma":"1",
+        "tipoAuditoria":"2",
+        "descripcionTipoAuditoria":"Auditoria Externa",
+        "descripcionAuditoria":"Auditoría de Sistemas Seguridad",
+        "descripcionEstadoAuditoria": "Cerrado"
+      },
+      {
+        "idAuditoria":"3",
+        "idPrograma":"2",
+        "tipoAuditoria":"1",
+        "descripcionTipoAuditoria":"Auditoria Interna",
+        "descripcionAuditoria":"Auditoría de Gestion Ambiental",
+        "descripcionEstadoAuditoria": "Pendiente"
+      },
+      {
+        "idAuditoria":"4",
+        "idPrograma":"2",
+        "tipoAuditoria":"2",
+        "descripcionTipoAuditoria":"Auditoria Externa",
+        "descripcionAuditoria":"Auditoría de Sistemas Seguridad",
+        "descripcionEstadoAuditoria": "Cerrado"
+      },
+      {
+        "idAuditoria":"5",
+        "idPrograma":"3",
+        "tipoAuditoria":"1",
+        "descripcionTipoAuditoria":"Auditoria Interna",
+        "descripcionAuditoria":"Auditoría de Gestion Ambiental",
+        "descripcionEstadoAuditoria": "Pendiente"
+      },
+      {
+        "idAuditoria":"6",
+        "idPrograma":"3",
+        "tipoAuditoria":"2",
+        "descripcionTipoAuditoria":"Auditoria Externa",
+        "descripcionAuditoria":"Auditoría de Sistemas Seguridad",
+        "descripcionEstadoAuditoria": "Cerrado"
+      }
+  
+    ]
+  }

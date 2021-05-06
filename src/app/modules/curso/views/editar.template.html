@@ -1,0 +1,285 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-2">
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row m-b-md">
+        <div class="col-lg-12">
+            <a class="btn btn-primary m-r" (click)="grabar()">
+                <i class="fa fa-check"></i> Guardar</a>
+            <a class="btn btn-default m-r" (click)="cancelar()">
+                <i class="fa fa-arrow-left"></i> Regresar</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                            <label class="col-sm-5 control-label">Código :</label>
+                            <div class="col-sm-6">
+                                <input type="text" maxlength="25" class="form-control" name="codigoCurso" id="codigoCurso" #codigoCurso="ngModel" [(ngModel)]="datoCurso.codigoCurso" [tooltip]="errors?.codigoCurso" [ngClass]="{'ng-dirty ng-invalid':errors?.codigoCurso}">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="col-sm-5 control-label">Nombre :</label>
+                            <div class="col-sm-6">
+                                <input type="text" maxlength="50" class="form-control" name="nombreCurso" id="nombreCurso" #nombreCurso="ngModel" [(ngModel)]="datoCurso.nombreCurso" [tooltip]="errors?.nombreCurso" [ngClass]="{'ng-dirty ng-invalid':errors?.nombreCurso}">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="col-sm-5 control-label">Tipo :</label>
+                            <div class="col-sm-6">
+
+                                <select class="form-control" [(ngModel)]="datoCurso.tipoCurso" name="tipoCurso" (change)="abrir()" [ngClass]="{'ng-dirty ng-invalid':errors?.tipoCurso}" (ngModelChange)="Validar(tipoCurso)"
+                                [tooltip]="errors?.tipoCurso">
+                                    <option value="0" selected>Seleccione</option>
+                                    <option *ngFor="let item of tipoCurso" [value]="item.idconstante">{{item.v_valcons}}</option>
+                                </select>
+                                <!-- <select class="form-control" name="tipoCurso" id="tipoCurso" #tipoCurso="ngModel" (change)="abrir()" [(ngModel)]="datoCurso.tipoCurso">
+                                    <option value="0" selected>Seleccione</option>
+                                    <option value="59">Curso</option>
+                                    <option value="60">Taller</option>
+                                    <option value="61">Sensibilización</option>
+                                </select> -->
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <div *ngIf="mostrarDivEquipos">
+            <div class=" wrapper wrapper-content col-lg-12">
+                <div class="ibox-content">
+                    <div class="col-lg-12">
+                        <h3 class="pull-left">
+                            <b>Lista de Equipos</b>
+                        </h3>
+                    </div>
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-lg-1">
+                                <a (click)="agreagarEquipo()" class="btn btn-primary">
+                                    <i class="fa fa-plus"></i> Agregar </a>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="input-group">
+                                    <input type="text" placeholder="Buscar" class="form-control" name="textoBusquedaEquipo" [(ngModel)]="textoBusquedaEquipo">
+                                    <span class="input-group-btn" dropdown>
+                                        <button type="button" class="btn btn-info" (click)="buscarEquipo()">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                        <button dropdownToggle type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split">
+                                            <i class="fa fa-caret-down"></i>
+                                        </button>
+                                        <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
+                                            <li role="menuitem" [class.active]="parametroBusqueda == 'descr'">
+                                                <a (click)="parametroBusqueda = 'descr'">Descripcion</a>
+                                            </li>
+                                            <li role="menuitem" [class.active]="parametroBusqueda == 'abrv'">
+                                                <a (click)="parametroBusqueda = 'abrv'">Abreviatura</a>
+                                            </li>
+                                        </ul>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <form class="form-horizontal">
+                        <div class="form-group">
+
+                            <div class="col-lg-12">
+                                <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+                                    <div class="nuevo" style="height:auto; overflow-x: hidden; overflow-y: auto">
+                                            <sk-three-bounce></sk-three-bounce>
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered table-stripped table-hover issue-tracker">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-center">Descripcion</th>
+                                                            <th class="text-center">Abreviatura</th>
+                                                            <th class="text-center">Acción</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let item of lstCursEqui; let i=index" (click)="seleccionarEquipo(i, item)" [class.info]="i==selectedEquipoRow">
+                                                            <td class="text-center">{{item.descripcion}}</td>
+                                                            <td class="text-center">{{item.abreviatura}}</td>
+                                                            <td class="text-center">
+                                                                <button class="btn btn-danger" [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                                                                    (confirm)="eliminarAuditado(i,item)">
+                                                                    <i class="fa fa-trash"></i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-12 col-xs-12">
+                                            <pagination [(ngModel)]="paginacion.pagina" name="pagina" (pageChanged)="OnPageChanged($event)" [totalItems]="paginacion.totalRegistros"
+                                                [itemsPerPage]="paginacion.registros" [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;"
+                                                nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                                        </div>
+                                        <div class="col-md-4 col-sm-6 col-xs-12">
+                                            <div class="text-center m-a-sm">
+                                                <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-6 col-xs-12">
+                                            <div class="text-right m-a-sm">
+                                                <pagination-set (optionChanged)="OnPageOptionChanged($event)"></pagination-set>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="mostrarDiv">
+            <div class=" wrapper wrapper-content col-lg-12">
+                <div class="ibox-content">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label class="col-sm-5 control-label">Duración :</label>
+                                <div class="col-sm-3">
+                                    <input type="number" UpperCase class="form-control" name="duracion" id="duracion" #duracion="ngModel" [(ngModel)]="datoCurso.duracion" [tooltip]="errors?.duracion" [ngClass]="{'ng-dirty ng-invalid':errors?.duracion}">
+                                </div>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" disabled="disabled" value="Horas" style="font-size: 12px">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <label class="col-sm-5 control-label">Indicador SGI :</label>
+                                <div class="col-sm-6">
+                                    <select class="form-control" name="indicadorSGI" id="indicadorSGI" #indicadorSGI="ngModel" [(ngModel)]="datoCurso.indicadorSGI" [ngClass]="{'ng-dirty ng-invalid':errors?.indicadorSGI}" (ngModelChange)="Validar(indicadorSGI)"
+                                    [tooltip]="errors?.indicadorSGI">
+                                        <option value="3" selected>Seleccione</option>
+                                        <option value="1">Si</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="col-sm-5 control-label">Disponible :</label>
+                                <div class="col-sm-6">
+                                    <select class="form-control" name="disponibilidad" id="disponibilidad" #disponibilidad="ngModel" [(ngModel)]="datoCurso.disponibilidad" [ngClass]="{'ng-dirty ng-invalid':errors?.disponibilidad}" (ngModelChange)="Validar(disponibilidad)"
+                                    [tooltip]="errors?.disponibilidad">
+                                        <option value="3" selected>Seleccione</option>
+                                        <option value="1">Si</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="col-lg-12">
+                        <h3 class="pull-left">
+                            <b>Lista de Sesiones</b>
+                        </h3>
+                    </div>
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-lg-1">
+                                <a (click)="nuevaSesion()" class="btn btn-primary">
+                                    <i class="fa fa-plus"></i> Nuevo</a>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="input-group">
+                                    <input type="text" placeholder="Buscar" class="form-control" name="textoBusquedaSesion" [(ngModel)]="textoBusquedaSesion">
+                                    <span class="input-group-btn" dropdown>
+                                        <button type="button" class="btn btn-info" (click)="buscarSesion()">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                        <button dropdownToggle type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split">
+                                            <i class="fa fa-caret-down"></i>
+                                        </button>
+                                        <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
+                                            <li role="menuitem" [class.active]="parametroBusquedaSesion == 'itemColumna'">
+                                                <a (click)="parametroBusquedaSesion = 'itemColumna'">Código</a>
+                                            </li>
+                                            <li role="menuitem" [class.active]="parametroBusquedaSesion == 'nombre'">
+                                                <a (click)="parametroBusquedaSesion = 'nombre'">Nombre</a>
+                                            </li>
+                                        </ul>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+                                        <div class="nuevo" style="height:auto; overflow-x: hidden; overflow-y: auto">
+                                                <sk-three-bounce></sk-three-bounce>
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered table-stripped table-hover issue-tracker">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="text-center">Codigo</th>
+                                                                <th class="text-center">Nombre</th>
+                                                                <th class="text-center">Duración(Horas)</th>
+                                                                <th class="text-center">Disponible</th>
+                                                                <th class="text-center">Acción</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let item of listaSes; let i=index" (click)="seleccionarSesion(i, item)" [class.info]="i==selectedSesionRow">
+                                                                <td class="text-center">{{item.itemColumna}}</td>
+                                                                <td class="text-center">{{item.nombreSesion}}</td>
+                                                                <td class="text-center">{{item.duracion}}</td>
+                                                                <td class="text-center">{{item.descDisp}}</td>
+                                                                <td class="text-center" data-col="accion">
+                                                                    <button title="Actualizar" class="btn btn-success btn-sm m-r" (click)="editarCursoSesion(i, item)">
+                                                                        <i class="fa fa-edit"></i>
+                                                                    </button>
+            
+                                                                    <button title="Eliminar" class="btn btn-danger btn-sm m-r" [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                                                                        (confirm)="eliminarSesion(i,item)">
+                                                                        <i class="fa fa-trash"></i>
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                        </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-12 col-xs-12">
+                                            <pagination [(ngModel)]="paginacion.pagina" name="pagina" (pageChanged)="OnPageChanged($event)" [totalItems]="paginacion.totalRegistros"
+                                                [itemsPerPage]="paginacion.registros" [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;"
+                                                nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                                        </div>
+                                        <div class="col-md-4 col-sm-6 col-xs-12">
+                                            <div class="text-center m-a-sm">
+                                                <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-6 col-xs-12">
+                                            <div class="text-right m-a-sm">
+                                                <pagination-set (optionChanged)="OnPageOptionChanged($event)"></pagination-set>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

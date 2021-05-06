@@ -1,0 +1,28 @@
+{
+    "parametrosAgrupacion":{
+        "listaTipoNoConformidad":[
+            {
+                "valor":"1",
+                "descripcion":"SAP"
+            },
+            {
+                "valor":"2",
+                "descripcion":"SAC"
+            }
+        ],
+        "listaEquipos":[
+            {
+                "idEquipo":"1",
+                "descripcionEquipo":"ESAC"
+            },
+            {
+                "idEquipo":"2",
+                "descripcionEquipo":"EGI"
+            },
+            {
+                "idEquipo":"3",
+                "descripcionEquipo":"ETIC"
+            }
+        ]
+    }
+}

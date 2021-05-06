@@ -1,0 +1,56 @@
+<div class="row border-bottom">
+  <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+      <a class="minimalize-styl-2 btn btn-primary " (click)="toggleNavigation()"><i class="fa fa-bars"></i> </a>
+    </div>
+    <ul class="nav navbar-top-links navbar-left">
+      <li>
+        <span class="m-r-sm text-muted welcome-message">{{nombre}}</span>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle count-info">
+          <i class="fa fa-cog fa-spin"></i>
+        </a>
+      </li>
+      <li class="container-fluid" style="top: 6px;" >    
+        <!--CGUERRA INICIAL-->
+        <button [disabled]="prendeapaga" (click)="OnID(1)" title="Bandeja Documentos" class="btn btn-primary dim" style="background-color: #7e57c2; border-color: white; box-shadow: inset 0 0 0 #b3b3b3, 0 5px 0 0 #b3b3b3, 0 10px 5px #999; padding-top:3px; padding-bottom:3px; padding-left:8px; padding-right:8px;" title="Información Documentada" class="btn btn-primary dim" type="button"><i class="fa fa-file-text-o fa-2x" ></i>        </button>         
+        <button  [disabled]="prendeapagaAuditoria" (click)="OnID(2)" title="Auditoria" class="btn btn-primary dim" style="background-color: #3f51b5; border-color: white; box-shadow: inset 0 0 0 #b3b3b3, 0 5px 0 0 #b3b3b3, 0 10px 5px #999; padding-top:3px; padding-bottom:3px; padding-left:8px; padding-right:8px;" type="button"><i class="fa fa-search-plus fa-2x"></i></button>
+        <button [disabled]="prendeapagaNoConformidad"  (click)="OnID(5)" title="No Conformidad" class="btn btn-primary dim" style="background-color: #1565c0; border-color: white; box-shadow: inset 0 0 0 #b3b3b3, 0 5px 0 0 #b3b3b3, 0 10px 5px #999; padding-top:3px; padding-bottom:3px; padding-left:8px; padding-right:8px;" type="button"><i class="fa fa-signal fa-2x"></i> </button>
+        <button [disabled]="prendeapagaCapacitacion"  (click)="OnID(4)" title="Capacitación" class="btn btn-primary  dim" style="background-color: #039be5; border-color: white; box-shadow: inset 0 0 0 #b3b3b3, 0 5px 0 0 #b3b3b3, 0 10px 5px #999; padding-top:3px; padding-bottom:3px; padding-left:8px; padding-right:8px;" type="button"><i class="fa fa-desktop fa-2x"></i></button>        
+        <button [disabled]="prendeapagaMantenimiento"   (click)="OnID(3)" title="Mantenimiento" class="btn btn-primary dim" style="background-color: #00acc1; border-color: white; box-shadow: inset 0 0 0 #b3b3b3, 0 5px 0 0 #b3b3b3, 0 10px 5px #999; padding-top:3px; padding-bottom:3px; padding-left:8px; padding-right:8px;" type="button"><i class="fa fa-wrench fa-2x"></i></button>
+        <button title="Proceso" title="No tiene acceso al Módulo" class="btn btn-default dim" type="button" style="background-color: #00897b; padding-top:3px; padding-bottom:3px; padding-left:8px; padding-right:8px;" disabled><i class="fa fa-sitemap fa-2x"></i></button>
+        <button title="Riesgo" title="No tiene acceso al Módulo" class="btn btn-default dim" type="button" style="background-color: #43a047; padding-top:3px; padding-bottom:3px; padding-left:8px; padding-right:8px;" disabled><i class="fa fa-tachometer fa-2x"></i></button>        
+      </li>
+    </ul>
+
+    <ul class="nav navbar-top-links navbar-right">
+      <li>
+        <mensaje-sistema></mensaje-sistema>
+      </li>
+      <li class="dropdown" dropdown>
+        <a dropdownToggle>
+          <i class="fa fa-user"></i>
+        </a>
+        <ul class="dropdown-menu animated fadeInRight" *dropdownMenu>
+          <li>
+            <div class="text-center p-m">
+              <img alt="image" class="img-circle" src="assets/images/sedapal-gota.png" />
+              <span class="clear">
+                <span class="block m-t-xs">
+                  <strong class="font-bold">{{session.User.nombUsuario}}</strong>
+                </span>
+                <span *ngIf="indicador" class="text-muted text-xs block">{{namemultiperfil}}</span>
+                <span *ngIf="indicador2"  class="text-muted text-xs block">{{session.User.perfilNombre}}</span>
+              </span>
+            </div>
+          </li>
+          <!--<li><a routerLink="opciones"><i class="fa fa-arrows-alt"></i> Pantalla completa</a></li>
+          <li><a routerLink="opciones"><i class="fa fa-gear"></i> Configuración</a></li>
+          <li></li>-->
+          <li><a (click)="OnLogout()"><i class="fa fa-sign-out"></i> Cerrar sesión</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</div>

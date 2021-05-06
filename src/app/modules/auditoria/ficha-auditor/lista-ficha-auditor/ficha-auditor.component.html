@@ -1,0 +1,96 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <h2>Ficha de Auditor</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a routerLink="starterview">Inicio</a>
+            </li>
+            <li>
+                <a>Auditoría</a>
+            </li>
+            <li class="active">
+                <strong>Ficha de Auditor</strong>
+            </li>
+        </ol>
+    </div>
+  </div>
+  <div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row m-b-sm">
+        <div class="col-lg-1">
+            <a [routerLink]="['nuevo']" class="btn btn-primary" ><i class="fa fa-plus"></i>Nuevo</a>
+        </div>
+        <div class="col-lg-3">
+            <div class="input-group">           
+                      <input type="text" placeholder="Buscar" class="form-control" [(ngModel)]="textoBusqueda">                             
+                      <span class="input-group-btn" dropdown>
+                          <button type="button" class="btn btn-info" (click)="OnBuscar()"><i class="fa fa-search"></i></button>
+                          <button dropdownToggle type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split"><i class="fa fa-caret-down"></i></button>
+                              <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
+                              <li role="menuitem" [class.active]="parametroBusqueda == 'usuario'"><a (click)="parametroBusqueda = 'usuario'">Usuario</a></li>
+                              <li role="menuitem" [class.active]="parametroBusqueda == 'fecha'"><a (click)="parametroBusqueda = 'fecha'">Fecha</a></li>
+                              </ul>
+                      </span>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="btn-group">
+                <button class="btn btn-warning" [disabled]="selectedRow<0" (click)="OnModificar()"><i class="fa fa-edit"></i> Actualizar</button>
+                <button class="btn btn-danger" [disabled]="selectedRow<0"
+                        [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                        (confirm)="onEliminar()" >
+                    <i class="fa fa-trash"></i> Eliminar
+                </button>
+            </div>
+            <button class="btn btn-default m-l-sm" (click)="OnBuscar()"><i class="fa fa-refresh"></i> Refrescar</button>           
+            <button class="btn btn-default m-l-sm" (click)="OnBuscar()"><i class="fa fa-refresh"></i> Limpiar</button>
+            <button class="btn btn-default m-l-sm" (click)="OnBuscar()"><i class="fa fa-refresh"></i> Imprimir</button>
+      
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+                <sk-three-bounce></sk-three-bounce>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-stripped table-hover issue-tracker">
+                        <thead>
+                        <tr>
+                            <th class="text-center">Codigo</th>
+                            <th class="text-center">Tipo</th>
+                            <th class="text-center">Nombre del Auditor</th>
+                            <th class="text-center">Rol</th>
+                        </tr>
+                        </thead>
+                       
+                        <tbody>
+                          <tr *ngFor="let item of items;  let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow">
+                              <td class="text-center"  data-col="idFichaAuditor">{{item.idFichaAuditor}}</td>
+                              <td class="text-center"  data-col="tipo">{{item.tipo}}</td>
+                              <td class="text-center"  data-col="nombreAuditor">{{item.nombreAuditor}}</td>
+                              <td class="text-center"  data-col="rol">{{item.rol}}</td>
+                           
+                          </tr>
+                          </tbody>
+  
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <pagination [(ngModel)]="paginacion.pagina" (pageChanged)="OnPageChanged($event)" [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-center m-a-sm">
+                            <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-right m-a-sm">
+                            <pagination-set (optionChanged)="OnPageOptionChanged($event)"></pagination-set>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  

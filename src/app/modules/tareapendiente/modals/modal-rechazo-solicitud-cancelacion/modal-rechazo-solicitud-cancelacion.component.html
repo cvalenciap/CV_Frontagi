@@ -1,0 +1,22 @@
+<div class="modal-header modal-cabecera-color">
+    <h4 class="modal-title pull-left">Rechazar Solicitud de Cancelación</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="cerrar">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-lg-12">
+            <label class="col-sm-12">Crítica:</label>
+            <div class="col-sm-12">
+                <textarea name="descripcionRechazo" class="form-control" [(ngModel)]="descripcionRechazo" rows="5"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-success" [swal]="{ title: '¿Está seguro que desea rechazar la Solicitud de Cancelación?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, rechazar', cancelButtonText: 'No gracias' }"
+    (confirm)="rechazar()" style="margin-right: 10px;padding-right: 15px;padding-left: 15px;">Aceptar</button>
+    <button type="button" class="btn btn-default" (click)="cancelar()">Cancelar</button>
+</div>

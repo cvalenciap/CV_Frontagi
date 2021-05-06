@@ -1,0 +1,72 @@
+import { Sesion } from "src/app/models/sesion";
+import { Curso } from "src/app/models/curso";
+import { Instructor } from "src/app/models/instructor";
+import { Aula } from "src/app/models/aula";
+import { Colaborador } from "src/app/models/colaborador";
+import { BandejaDocumento } from "src/app/models/bandejadocumento";
+import { Documento, PreguntaCurso } from "src/app/models";
+import { DocumentoInternoCap } from "src/app/models/documentoInternoCap";
+import { CapacitacionDocumentos } from "src/app/models/capacitacionDocumentos";
+
+export class ProgramarCapacitacion{
+    codigo:string;
+    capacitacion:string;
+    fechaInicio:Date;
+    fechaFin:Date;
+    instructor:string;
+    equipoContratista:string;
+    cantidadParticipantes:number;
+    anioPlanificacion:string;
+    trimestre:string;
+    estado:string;
+
+    idCapacitacion: number;
+    idCurso: string;
+    nombreCurso: string;
+    duracion: string;
+    n_idinst: number;
+    v_nominst: string;
+    listaSesiones: Array<Sesion>;
+    evaluacion: string;
+    nombreInstructor: string;
+    sesion: Sesion;
+    aula: Aula;
+    curso: Curso;
+    instructorr: Instructor; 
+    lstSesiones: Array<Sesion>;
+    indEvaluacion: number;
+    lstColaborador: Array<Colaborador>;
+    estadoCapacitacion: string;
+    disponibilidad: number;
+    itemColumnaPart:number;
+    idInstructor: number;
+    lstDocumentos : Array<DocumentoInternoCap>;
+    listaDocumentos : Array<DocumentoInternoCap>;
+    listaDocuCapa : Array<CapacitacionDocumentos>;
+    lstPregCurso : Array<PreguntaCurso>;
+    lstPreguntas : Array<PreguntaCurso>;
+    puntaje : number;
+    constructor(){
+        this.itemColumnaPart = 0;
+        this.idCurso = "";
+        this.nombreCurso = "";
+        this.duracion = "";
+        this.n_idinst = 0;
+        this.v_nominst = "";
+        this.listaSesiones = [];
+        this.lstSesiones = [];
+        this.evaluacion = "";
+        this.nombreInstructor = "";
+        this.indEvaluacion = 2;
+        this.lstColaborador = [];
+        this.idCapacitacion = 0;
+        this.idInstructor = 0;
+        this.estadoCapacitacion = "";
+        this.lstDocumentos = [];
+        this.listaDocumentos = [];
+        this.listaDocuCapa = [];
+        this.lstPregCurso = [];
+        this.lstPreguntas = [];
+        this.puntaje = 0;
+    }
+}

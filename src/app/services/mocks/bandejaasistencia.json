@@ -1,0 +1,54 @@
+{
+    "listaBandejaAsistencia": [
+      {
+        "codigoCapacitacion":"C001",
+        "capacitacion":"SGI-Módulo Ambiental",
+        "codigoSesion": "S001",
+        "sesion": "Introducción",
+        "fecha": "28/08/2018",
+        "instructor" : "Lutecio Argon",
+        "cantidadParticipantes" : "15",
+        "estado" : "Programado"
+      },
+      {
+        "codigoCapacitacion":"C001",
+        "capacitacion":"SGI-Módulo Ambiental",
+        "codigoSesion": "S002",
+        "sesion": "Conceptos",
+        "fecha": "28/08/2018",
+        "instructor" : "Luis Hidrilio",
+        "cantidadParticipantes" : "20",
+        "estado" : "Programado"
+      },
+      {
+        "codigoCapacitacion":"C002",
+        "capacitacion":"SGI-Continuidad del Negocio",
+        "codigoSesion": "S003",
+        "sesion": "Negocio",
+        "fecha": "28/08/2018",
+        "instructor" : "Aldo Galli",
+        "cantidadParticipantes" : "20",
+        "estado" : "Ejecutado"
+      },
+      {
+        "codigoCapacitacion":"C003",
+        "capacitacion":"SGI-Seguridad y Salud en el Trabajo",
+        "codigoSesion": "S004",
+        "sesion": "Prevención",
+        "fecha": "28/08/2018",
+        "instructor" : "Cesio Bromo",
+        "cantidadParticipantes" : "10",
+        "estado" : "Programado"
+      },
+      {
+        "codigoCapacitacion":"C003",
+        "capacitacion":"SGI-Seguridad y Salud en el Trabajo",
+        "codigoSesion": "S005",
+        "sesion": "Seguridad",
+        "fecha": "28/08/2018",
+        "instructor" : "Gian Asbesto",
+        "cantidadParticipantes" : "5",
+        "estado" : "Programado"
+      }
+    ]
+}

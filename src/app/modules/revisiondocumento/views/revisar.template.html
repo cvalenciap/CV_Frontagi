@@ -1,0 +1,137 @@
+<div class="row wrapper border-bottom white-bg page-heading" style="padding-bottom:5px;">
+<div class="col-lg-12">
+<!--<h2><strong>Solicitud de Revisión de Documento</strong></h2>-->    
+    <h4 style="margin-top: 10px;">Solicitudes / <strong>Solicitud de Revisión de Documentos</strong></h4>
+</div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+                                
+    <div class="row m-b-sm">
+        <div *authIf="session.ACL.ID_SOL_SolicitudRevision_CREAR" class="col-lg-1">
+            <button (click)="onNuevo()" style="padding-right:8px;padding-left:8px;" class="btn btn-success"><i
+                    class="fa fa-plus"></i> Nuevo</button>
+        </div>
+        <div class="col-lg-4" style="margin-left:12px;margin-right:-12px">
+            <div class="input-group">
+                <div>
+                    <input type="text" placeholder="Buscar" class="form-control" [(ngModel)]="textoBusqueda">
+                </div>
+                <ng-template [authIf]="session.ACL.ID_SOL_SolicitudRevision_BUSCAR">
+                    <span class="input-group-btn" dropdown>
+                        <button type="button" class="btn btn-info" (click)="busquedaSimple()"><i class="fa fa-search"></i></button>
+                        <button dropdownToggle type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split"><i class="fa fa-caret-down"></i></button>
+                        <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
+                            <li role="menuitem" [class.active]="parametroBusqueda == 'codigoDoc'">
+                                <a (click)="parametroBusqueda = 'codigoDoc';this.textoBusqueda = ''">Código de Documento</a>
+                            </li>
+                            <li role="menuitem" [class.active]="parametroBusqueda == 'tituloDoc'">
+                                <a (click)="parametroBusqueda = 'tituloDoc';this.textoBusqueda = ''">Título de Documento</a>
+                            </li>
+                            <li role="menuitem" [class.active]="parametroBusqueda == '-'">
+                                <a (click)="abrirBusquedaAvanzada()">Busqueda Avanzada</a>
+                            </li>                       
+                        </ul>
+                    </span>
+                </ng-template>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="btn-group">
+                <button class="btn btn-light" (click)="limpiar()"><i class="fa fa-eraser"></i> Limpiar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row m-b-sm">
+    <div class="col-lg-12">
+    <div *ngIf="mostrarAlerta">
+        <alert type="info">
+            <span [innerHtml]="mensajeAlerta"></span>
+        </alert>
+    </div>
+    <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+        <sk-three-bounce></sk-three-bounce>
+        <div class="table-responsive">
+            <table class="table table-bordered table-stripped table-hover issue-tracker">
+                <thead>
+                <tr>                         
+                    <th class="text-center">Código</th>   
+                    <th class="text-center">Título</th>
+                    <th class="text-center">Revisión Actual</th>   
+                    <th class="text-center">Fecha Revisión Actual</th>    
+                    <th class="text-center">Estado Solicitud</th>
+                    <th class="text-center">Estado Documento</th>
+                    <th class="text-center">Solicitante</th>
+                    <th class="text-center">Fecha Registro</th>
+                    <th class="text-center" >Acción</th>
+                </tr>
+                </thead>
+                <tbody> 
+                <tr *ngFor="let item of itemsAll; let i = index;"  >                                        
+                    <td class="text-center" data-col="codigo">{{item.documento.codigo}}</td>
+                    <td class="text-left" data-col="titulo">{{item.documento.descripcion}}</td>
+                    <td class="text-center" data-col="tipodoc">{{item.numero}}</td>
+                    <td class="text-center" data-col="codigo">{{item.fechaAprobacion | date:'dd/MM/yyyy'}}</td>
+                    <td class="text-center" data-col="estadocumento" [ngSwitch]="item.estado.v_descons">
+                        <h3><span *ngSwitchCase="'Aprobado'"  class="label label-primary">&nbsp;Aprobado&nbsp;&nbsp;</span></h3>
+                        <h3><span *ngSwitchCase="'Emitido'"     class="label label-warning">&nbsp;&nbsp;&nbsp;Emitido&nbsp;&nbsp;&nbsp;</span></h3>
+                        <h3><span *ngSwitchCase="'Rechazado'"   class="label label-danger" >&nbsp;Rechazado&nbsp;</span></h3>
+                    </td>
+                    <td class="text-center" data-col="estadocumento" [ngSwitch]="item.documento.estado.v_descons">
+                        <h3><span *ngSwitchCase="'Aprobado'"  class="label label-primary">&nbsp;Aprobado&nbsp;&nbsp;</span></h3>
+                        <h3><span *ngSwitchCase="'Emision'"     class="label label-default">&nbsp;&nbsp;&nbsp;Emision&nbsp;&nbsp;&nbsp;</span></h3>
+                        <h3><span *ngSwitchCase="'Cancelado'"   class="label label-danger" >&nbsp;Cancelado&nbsp;</span></h3>
+                        <h3><span *ngSwitchCase="'En Revision'" class="label label-warning">En Revisión</span></h3>
+                        <!--<h3><span *ngSwitchCase="'Rechazado'" class="label label-warning">Rechazado</span></h3>-->
+                    </td> 
+                    <!--<td class="text-center" data-col="verdocumento">ver</td>-->
+                    <td class="text-left" data-col="solicitud">{{item.colaborador.nombre + ' '+item.colaborador.apellidoPaterno+ ' '+ item.colaborador.apellidoMaterno}}</td>
+                    <td class="text-center" data-col="fecrevision">{{item.fecha | date:'dd/MM/yyyy'}}</td>
+                    <td class="text-center" data-col="accion" style="width:140px;padding-left:0px;padding-right:0px;">
+                        <div class="col-md-12 text-center">
+                        <div class="btn-group">
+                            <button *authIf="session.ACL.ID_SOL_SolicitudRevision_MODIFICAR" title="Ver Detalle"  class="btn btn-success btn-sm" (click)="OnModificar(item.documento.id)" style="margin-right:3px" [disabled]="item.estado.v_descons != 'Rechazado'" ><i class="fa fa-edit"></i></button>
+                            <button *authIf="session.ACL.ID_SOL_SolicitudRevision_VISUALIZAR" title="Ver Documento" class="btn btn-primary btn-sm " (click)="urlPDF=item.rutaDocumentoCopiaObso; visorPdfSwal.show(); $event.stopPropagation()" style="margin-right:3px">
+                                <i class="fa fa-file-o"></i>
+                            </button>                                                                                                        
+                            <button *authIf="session.ACL.ID_SOL_SolicitudRevision_ELIMINAR" title="Eliminar" class="btn btn-danger btn-sm" style="margin-right:0px;" [disabled]="item.estado.v_descons != 'Emitido'" [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                            (confirm)="onEliminar(item.id)" ><i class="fa fa-trash"></i></button>
+                        </div>
+                        </div>
+                    </td>                                                                 
+                </tr>                                   
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-12 col-xs-12">
+                <pagination [(ngModel)]="paginacion.pagina" (pageChanged)="OnPageChanged($event)" [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="text-center m-a-sm">
+                    <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="text-right m-a-sm">
+                    <pagination-set (optionChanged)="OnPageOptionChanged($event)" #pageOption></pagination-set>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+          
+</div>
+</div>
+
+<swal
+#visorPdfSwal
+[showCloseButton]="true"
+[showConfirmButton]="false"
+customClass="pdf-swal">
+<form *swalPartial class="ajuste">
+    <visor-pdf id="02" [url]="urlPDF"></visor-pdf>
+</form>
+</swal>

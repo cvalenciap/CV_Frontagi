@@ -1,0 +1,63 @@
+<form (ngSubmit)="guardar()" [formGroup]="detalleProgramacionForm" #formDir="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Añadir Detalle Programa</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-1">
+                <div><label>Área:</label></div>
+            </div>
+            <div class="col-md-8">
+                <div><input type="text" name="descripcion" placeholder="GERENCIA DE DESARROLLO E INVESTIGACIÓN"
+                        class="form-control tx-cajas" disabled></div>
+            </div>
+            <div class="col-md-3"></div>
+
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-5">
+                <div>
+                    <label>Normas</label>
+                </div>
+                <select class="lista" name="mesesSeleccionados" formControlName="mesesSeleccionados" multiple="multiple"
+                    size="12">
+                    <option *ngFor="let item of listaMeses" [ngValue]="item">{{item.v_valcons}}</option>
+                </select>
+            </div>
+            <div class="col-md-2" style="margin-top: 33px;">
+                <div class="col-centered text-center">
+                    <input type="button" (click)="seleccionarMeses()" class="botonSeleccion circulo" value="> "><br />
+                    <input type="button" (click)="quitarNormasMeses()" class="botonSeleccion circulo" value="< "><br />
+                    <input type="button" (click)="seleccionarTodosMeses()" class="botonSeleccion circulo"
+                        value=">>"><br />
+                    <input type="button" (click)="quitarTodosMeses()" class="botonSeleccion circulo" value="<<">
+                </div>
+            </div>
+            <div class="col-md-5" style="padding-left: 0px;">
+                <div>
+                    <label>Normas Asignadas</label>
+                </div>
+                <select name="listaMesesDestino" formControlName="listaMesesDestino" class="lista" multiple="multiple"
+                    size="12">
+                    <option *ngFor="let item of detalleProgramacionRegistro.listaMeses" [ngValue]="item">
+                        {{item.v_valcons}}</option>
+                </select>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success bt-superior"><i class="fa fa-plus"></i> Agregar</button>
+    </div>
+
+</form>

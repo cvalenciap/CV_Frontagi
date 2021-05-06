@@ -1,0 +1,99 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <h2>Bandeja de Preguntas</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a routerLink="starterview">Inicio</a>
+            </li>
+
+            <li class="active">
+                <strong>Bandeja Preguntas por Curso</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">       
+    
+    <div class="row form-group">
+        <div class="col-lg-1">
+                <div class="col-sm-2 center">
+                <a [routerLink]="['registrar-pregunta']" class="btn btn-primary"><i class="fa fa-plus"></i> Nuevo</a>
+                </div>  
+        </div>
+        <div class="col-lg-1"></div>
+        <div class="col-lg-3">
+            <div class="input-group">
+            <input type="text" placeholder="Buscar" class="form-control" [(ngModel)]="textoBusqueda">
+              <span class="input-group-btn" dropdown>
+                  <button type="button" class="btn btn-info" (click)="OnBuscar()"><i class="fa fa-search"></i></button>
+                  <button dropdownToggle type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split"><i class="fa fa-caret-down"></i></button>
+                      <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
+                      <li role="menuitem" [class.active]="parametroBusqueda == 'codCurso'"><a (click)="parametroBusqueda = 'codCurso'">Codigo del Curso</a></li>
+                      <li role="menuitem" [class.active]="parametroBusqueda == 'nomCurso'"><a (click)="parametroBusqueda = 'nomCurso'">Nombre del Curso</a></li>                                                                
+                  </ul>
+              </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row ibox-content">
+        <div class="col-lg-12"> 
+            <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+           <sk-three-bounce></sk-three-bounce>                  
+            <div class="table-responsive">
+                <table class="table table-bordered table-stripped table-hover issue-tracker">
+                    <thead>
+                    <tr>
+                        <th class="text-center">Cód. Curso</th>
+                        <th class="text-center">Nombre Curso</th>
+                        <th class="text-center">Tipo de Pregunta</th>
+                       <!--  <th class="text-center">Cód. Pregunta</th> -->
+                        <th class="text-center">Pregunta</th>            
+                        <th class="text-center">Puntaje</th>
+                       <!--  <th class="text-center">Disponible</th> -->
+                        <th class="text-center">Acción</th>                            
+                    </tr>
+                    </thead>
+                    <tbody>                        
+                        <tr *ngFor="let item of items; let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow">
+                             <!-- *ngFor="let item of items; let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow"> -->
+                            <td class="text-center" >{{item.codCurso}}</td>
+                            <td class="text-center">{{item.nomCurso}}</td>
+                            <td class="text-center" >{{item.nomTipo}}</td>
+                            <!-- <td class="text-center" >{{item.codPregunta}}</td>   -->                              
+                            <td class="text-center" >{{item.pregunta}}</td>
+                            <td class="text-center" >00{{item.puntaje}}</td>
+                            <!-- <td class="text-center" data-col="Disponible">Activo</td> -->
+                            <td class="text-center" data-col="Accion" style="width:130px;padding-left:0px;padding-right:0px;">
+                                <button title="Actualizar" class="btn btn-success btn-sm m-r" (click)="OnModificar(item)" ><i class="fa fa-edit"></i></button>
+                                <div style="display: inline-block;width: 3%;"></div>
+                                <button title="Eliminar" class="btn btn-danger btn-sm m-r"
+                                [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                                (confirm)="onEliminar(item)">
+                                   <i class="fa fa-trash"></i> 
+                               </button>
+                            </td>
+                        </tr>                                 
+
+                    </tbody>
+                </table>   
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                  <pagination [(ngModel)]="paginacion.pagina" (pageChanged)="OnPageChanged($event)" [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                  <div class="text-center m-a-sm">
+                    <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                  </div>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                  <div class="text-right m-a-sm">
+                    <pagination-set (optionChanged)="OnPageOptionChanged($event)"></pagination-set>
+                  </div>
+                </div>
+              </div>         
+        </div>
+    </div>
+</div>    
+</div>

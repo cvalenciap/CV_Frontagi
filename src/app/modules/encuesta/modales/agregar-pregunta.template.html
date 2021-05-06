@@ -1,0 +1,45 @@
+
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Añadir Pregunta</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+            <span aria-hidden="true" class="cerrar">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body ">
+            <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox-content ">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Código :</label>
+                                    <div class="col-sm-4"><input type="text" class="form-control" disabled="true" name="codigoSesion"  [(ngModel)]="datoSesion.vcodetaencu"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Pregunta :</label>
+                                    <div class="col-sm-4"><textarea class="form-control" name="nombreSesion" [(ngModel)]="datoSesion.vdespre" style="margin: 0px -163.672px 0px 0px; width: 310px; height: 96px;"
+                                        [ngClass]="{'ng-dirty ng-invalid':errors?.vdespre}"
+                                        [tooltip]="errors?.vdespre"
+                                        placement="bottom"></textarea></div>
+                                    <!-- <div class="col-sm-4"><input type="text" class="form-control" name="nombreSesion" [(ngModel)]="datoSesion.nombreSesion"></div> -->
+                                </div>                               
+                                <div class="form-group">
+                                        <label class="col-sm-3 control-label">Disponible :</label>
+                                        <div class="col-sm-4">
+                                            <select  class="form-control" name="disponibilidad"  [(ngModel)]="datoSesion.ndisdetenc" [disabled]= "hdisponible">
+                                                <option value="null" disabled>Seleccione</option>
+                                                <option value="1">Si</option>
+                                                <option value="0">No</option>                                           
+                                            </select>
+                                        </div>
+                                    </div>                               
+                            </form>
+                        </div>
+                    </div>
+                </div>  
+        
+    </div>  
+    <div class="modal-footer">        
+            <button type="button" class="btn btn-default" (click)="cancelar()">Cancelar</button>
+            <a class="btn btn-success m-r" (click)="almacenarSesion()"><i class="fa fa-check"></i> Guardar</a>
+    </div>
+          

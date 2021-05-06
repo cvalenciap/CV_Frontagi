@@ -1,0 +1,47 @@
+<form class="form-horizontal">
+  <div class="form-group">
+    <div class="col-md-6">
+      <label class="control-label">Tipo Solicitud(*):</label>
+      <select name="numTipoCancelacion" id="numTipoCancelacion" class="form-control" #numTipoCancelacion="ngModel" [(ngModel)]="item.numTipoCancelacion" 
+      [ngClass]="{'ng-dirty ng-invalid':errors?.numTipoCancelacion}" (ngModelChange)="Valida(numTipoCancelacion)" [disabled]="indCancelacion != '1'" [tooltip]="errors?.numTipoCancelacion">
+        <option value="">Seleccione</option>
+        <option *ngFor="let tipo of listaTiposSolicitud" [value]="tipo.idconstante">{{tipo.v_valcons}}</option>
+      </select>
+    </div>
+    <div class="col-md-6">
+      <label class="control-label">Buscar Código Documento:</label>
+      <div class="input-group">
+        <input type="codigoDocumento" placeholder="Buscar documento" class="form-control" 
+        name="codigoDocumento" id="codigoDocumento" (ngModelChange)="Validar(item.codigoDocumento)" [ngClass]="{'ng-dirty ng-invalid':errors?.codigoDocumento}"
+        #codigoDocumento="ngModel" [(ngModel)]="item.codigoDocumento" [ngModelOptions]="{standalone: true}" [tooltip]="errors?.codigoDocumento" readonly/>
+        <span class="input-group-btn" dropdown>
+          <button type="button" class="btn btn-info" [disabled]="indCancelacion != '1' || !estadoEditable" (click)="abrirModelBusquedaDocumento()"><i class="fa fa-search"></i></button>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-6">
+      <label class="control-label">Gerencia(*):</label>
+      <input name="descripcionGerencia" id="descripcionGerencia" type="text" class="form-control" readonly 
+      #descripcionGerencia="ngModel"  [(ngModel)]="item.descripcionGerencia" [ngClass]="{'ng-dirty ng-invalid':errors?.descripcionGerencia}"
+        [ngModelOptions]="{standalone: true}" [tooltip]="errors?.descripcionGerencia"/>
+    </div>
+    <div class="col-sm-6">
+      <label class="control-label">Alcance:</label>
+      <input name="descripcionAlcance" id="descripcionAlcance" type="text" class="form-control" readonly 
+      #descripcionAlcance="ngModel" [(ngModel)]="item.descripcionAlcance" [ngClass]="{'ng-dirty ng-invalid':errors?.descripcionAlcance}" 
+       [ngModelOptions]="{standalone: true}"/>
+    </div>
+    <div class="col-sm-6">
+      <label class="control-label">Proceso:</label>
+      <input name="descripcionProceso" id="descripcionProceso" type="text" class="form-control" readonly 
+      #descripcionProceso="ngModel" [(ngModel)]="item.descripcionProceso" [ngClass]="{'ng-dirty ng-invalid':errors?.descripcionProceso}" 
+      [ngModelOptions]="{standalone: true}"/>
+    </div>
+    
+    <div class="col-sm-6">
+      
+    </div>
+  </div>
+</form>

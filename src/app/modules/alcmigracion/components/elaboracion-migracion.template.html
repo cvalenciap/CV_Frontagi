@@ -1,0 +1,52 @@
+<br>
+<!-- <div class="btn-group"> -->
+<div >
+    <a (click)="OnNuevo()" class="btn btn-primary">
+        <i class="fa fa-plus"></i> Añadir</a>
+</div>
+<hr style="margin-bottom: 0px;">
+<div>
+    <table class="table table-bordered table-stripped table-hover issue-tracker">
+        <thead>
+            <tr>
+                <!--<th class="text-center">Item</th>-->
+                <th style="width: 40px" class="text-center">Prioridad</th>
+                <!-- th class="text-center">Equipo</th -->
+                <!-- th class="text-center">Función</th -->
+                <th class="text-center">Responsable</th>             
+                <th class="text-center">Equipo</th>   
+                <th class="text-center">Fecha Liberación</th>
+                <th style="width: 40px" class="text-center" >Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let participante of item.listaElaboracion; let i=index" (click)="OnRowClick(i,participante)" [class.info]="i==selectedRow">
+                <!-- <td class="text-center" data-col="items">{{participante.idColaborador}}</td>      -->
+                <td class="text-center" data-col="prioridad">{{participante.prioridad}}</td>               
+                <!--<td class="text-center" data-col="función">{{participante.funcion}}</td>-->
+                <td class="text-center" data-col="responsable">{{participante.nombreCompleto}}</td>
+                <td class="text-center" data-col="equipo">{{participante.equipoColaborador}}</td> 
+                <!--<td class="text-center" data-col="responsable">{{participante.comentario}}</td>-->
+                <!-- td class="text-center" data-col="plazo">{{participante.plazo}}</td -->
+                <!-- td class="text-center" data-col="fechaPlazo">{{participante.fechaPlazo|date:'dd/MM/yyyy'}}</td -->
+                <td class="text-center" data-col="fechaLiberacion">{{participante.fechaLiberacion|date:'dd/MM/yyyy'}}</td>
+                <td data-col="accion" style="width:75px;padding-left:0px;padding-right:0px;">
+                    <div class="btn-group" style="width:75px;">
+                    <button title="Detalle" class="btn btn-success btn-sm m-r" (click)="OnActualizar(i,participante)"
+                        style="margin-left:5px;margin-right:3px;">
+                        <i class="fa fa-edit"></i>
+                    </button>
+                    <button class="btn btn-danger  btn-sm" [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                    (confirm)="onEliminar(i,item)" title="Eliminar">
+                    <i class="fa fa-trash"></i>
+                    </button>
+                    </div>
+                </td>              
+            </tr>         
+        </tbody>        
+    </table>    
+    <div class="text-center" *ngIf="item.listaElaboracion.length == 0">
+        <br>
+        <h4  style="color:red">No se han añadido participantes</h4>
+    </div>
+</div>

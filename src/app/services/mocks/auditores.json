@@ -1,0 +1,55 @@
+{
+    "listaAuditores": [
+      {
+        "idAuditor":"1",
+        "nroFicha":"1",
+        "nombreAuditor": "Juan Lopez",
+        "cargoAuditor": "AL"
+      },
+      {
+        "idAuditor":"2",
+        "nroFicha":"2",
+        "nombreAuditor": "Maria Pastor",
+        "cargoAuditor": "ALG"
+      },
+      {
+        "idAuditor":"3",
+        "nroFicha":"3",
+        "nombreAuditor": "Jose Torres",
+        "cargoAuditor": "ALG"
+      },
+      {
+        "idAuditor":"4",
+        "nroFicha":"4",
+        "nombreAuditor": "Karen Silva",
+        "cargoAuditor": "AL"
+      }
+  
+    ],
+    "listaBusquedaAuditores":[
+        {
+            "idAuditor":"434",
+            "nroFicha":"043423",
+            "nombreAuditor": "Carlos Perez",
+            "cargoAuditor": "AL"
+        },
+        {
+            "idAuditor":"1323",
+            "nroFicha":"03242",
+            "nombreAuditor": "Cristobal Marquez",
+            "cargoAuditor": "ALG"
+        },
+        {
+            "idAuditor":"430",
+            "nroFicha":"03242",
+            "nombreAuditor": "Marta Gonzalez",
+            "cargoAuditor": "AL"
+        },
+        {
+            "idAuditor":"953",
+            "nroFicha":"32021",
+            "nombreAuditor": "Mariana Alfaro",
+            "cargoAuditor": "ALG"
+        }
+    ]
+}

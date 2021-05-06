@@ -1,0 +1,46 @@
+{
+  "listaVerificacionInforme": [
+    {  
+      "idVerificarInforme" :"01",
+      "norma":"ISO 14001:2004",
+      "requisitoDocumento":"Requisito: 4.3.1 Aspectos ambientales",
+      "descripcionHallazgo":"descripcion Hallazgo 1",
+      "itemLV":"23",
+      "categoria": "SAC",   
+      "observacion": "Actualizar el procedimiento"    
+
+    },
+
+    {
+      "idVerificarInforme" :"02",
+      "norma":"ISO 22000:2015",
+      "requisitoDocumento":"Requisito: 4.3.1 Aspectos ambientales",
+      "descripcionHallazgo":"descripcion Hallazgo 2",
+      "itemLV":"34",
+      "categoria": "SAC",
+      "observacion": "Actualizar el procedimiento"    
+
+    },
+    {
+      "idVerificarInforme" :"03",
+      "norma":"ISO 22000:2015",
+      "requisitoDocumento":"Requisito: 4.3.1 Aspectos ambientales",
+      "descripcionHallazgo":"descripcion Hallazgo 3",
+      "itemLV":"23",
+      "categoria": "SAC",
+      "observacion": "Deberá crearse un procedimiento"    
+
+    },
+    {
+      "idVerificarInforme" :"01",
+      "norma":"ISO 22000:2015",
+      "requisitoDocumento":"Requisito: 4.3.1 Aspectos ambientales",
+      "descripcionHallazgo":"descripcion Hallazgo 4",
+      "itemLV":"23",
+      "categoria": "SAC",
+      "observacion": "Deberá crearse un procedimiento"    
+
+    }
+
+  ]
+}

@@ -1,0 +1,115 @@
+<div class="row wrapper border-bottom white-bg page-heading" style="padding-top: 3px; padding-bottom: 0;padding-left: 10px;border-bottom-width: 0;border-bottom-width: 0;">
+    <div class="col-lg-12">
+        <h4>Revisión Actualización de Documentos /
+            <strong>Distribución y Ejecución de Documentos</strong>
+        </h4>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row m-b-sm">
+        <div class="col-lg-3">
+            <ng-template [authIf]="session.ACL.ID_REV_DistribucionEjecucion_BUSCAR">
+                <div class="input-group">
+                    <input type="text" placeholder="Buscar" class="form-control" [(ngModel)]="textoBusqueda" (keypress)="ingresoTexto($event)">
+                    <span class="input-group-btn" dropdown>
+                            <button type="button" class="btn btn-info" (click)="busquedaSimple()"><i class="fa fa-search"></i></button>
+                            <button dropdownToggle type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split"><i class="fa fa-caret-down"></i></button>
+                            <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
+                                <li role="menuitem" [class.active]="parametroBusqueda=='codigo'">
+                                    <a (click)="parametroBusqueda = 'codigo';this.textoBusqueda = ''">Número de Programación</a>
+                                </li>
+                                <li role="menuitem" [class.active]="parametroBusqueda=='avanzada'">
+                                    <a (click)="abrirBusquedaAvanzada()">Busqueda Avanzada</a>
+                                </li>
+                            </ul>
+                    </span>
+                </div>
+            </ng-template>
+        </div>
+        <div class="col-lg-6">
+            <div class="btn-group">
+                <button class="btn btn-light" (click)="OnLimpiar()"><i class="fa fa-eraser"></i> Limpiar</button>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="mostrarAlerta">
+        <alert type="info">
+            <span [innerHtml]="mensajeAlerta"></span>
+        </alert>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+                <sk-three-bounce></sk-three-bounce>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-stripped table-hover issue-tracker">
+                        <thead>
+                            <tr>
+                                <th class="text-center">N° de Programación</th>
+                                <th class="text-center">Fecha Distribución</th>
+                                <th class="text-center">Fase Programación</th>
+                                <th class="text-center">Equipo Ejecutante</th>
+                                <th class="text-center">Documentos Revisar</th>
+                                <th class="text-center">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of listadoFinal; let i=index;" (click)="OnRowClick(i,item)" [class.info]="i==selectedRow">
+                                <td class="text-center" data-col="año">{{item.idProg}}</td>
+                                <td class="text-center" data-col="fechaProgramacion">{{item.fechDistribucion}}</td>
+
+                                <td class="text-center" data-col="estado" [ngSwitch]="item.estProg">
+                                    <h3>
+                                        <span *ngSwitchCase="'Programado'" class="label label-default">&nbsp;&nbsp;&nbsp;Programado&nbsp;&nbsp;&nbsp;</span>
+                                    </h3>
+                                    <h3>
+                                        <span *ngSwitchCase="'Distribuido'" class="label label-warning">&nbsp;&nbsp;&nbsp;&nbsp;Distribuido&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    </h3>
+                                    <h3>
+                                        <span *ngSwitchCase="'Ejecutado'" class="label label-primary">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ejecutado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    </h3>
+                                    <h3>
+                                        <span *ngSwitchCase="'Cancelado'" class="label label-danger">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cancelado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    </h3>
+                                </td>
+                                <td class="text-left" data-col="tipoDocumento">{{item.nombreEquipo}}</td>
+                                <td class="text-center" data-col="fechaModificacion">{{item.cantDocRevisar}}</td>
+                                <td class="text-center" data-col="accion" style="width:130px;padding-left:0px;padding-right:0px;">
+                                    <ng-template [authIf]="session.ACL.ID_REV_DistribucionEjecucion_MODIFICAR">
+                                        <button *ngIf="item.estProg == 'Distribuido'" title="Distribuir" class="btn btn-warning btn-sm" (click)="OnDistribuir(item.idProg)">
+                                            <i class="fa fa-users"></i>
+                                        </button>
+                                    </ng-template>
+                                    <ng-template [authIf]="session.ACL.ID_REV_DistribucionEjecucion_MODIFICAR">
+                                        <button *ngIf="item.estProg == 'Ejecutado'" title="Ejecutar" class="btn btn-primary btn-sm" (click)="OnEjecutar(item.idProg)">
+                                            <i class="fa fa-folder-open-o"></i>
+                                        </button>
+                                    </ng-template>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <pagination [(ngModel)]="paginacion.pagina" (pageChanged)="OnPageChanged($event)" [totalItems]="paginacion.totalRegistros"
+                            [itemsPerPage]="paginacion.registros" [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;"
+                            nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-center m-a-sm">
+                            <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-right m-a-sm">
+                            <pagination-set (optionChanged)="OnPageOptionChanged($event)" #pageOption></pagination-set>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

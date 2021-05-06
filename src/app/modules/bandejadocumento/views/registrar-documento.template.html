@@ -1,0 +1,90 @@
+<div class="row wrapper border-bottom white-bg page-heading" style="padding-bottom: 0px;padding-left: 0px;">
+    <div class="col-lg-12">
+        <h4 *ngIf="textoAccion">Documentos / Consulta por Jerarquía / {{textoAccion}} / Búsqueda de Documento /
+            <strong>Registro de Documento</strong>
+        </h4>
+        <h4 *ngIf="!textoAccion">Documentos / Consulta General /
+            <strong>Consulta de Documento</strong>
+        </h4>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row m-b-sm">
+        <div class="col-lg-8">
+            <div class="btn-group">
+                <ng-template [ngIf]="session.Ruta.RegistroBusquedaDocumento == rutaActual" [ngIfElse]="otrasPaginas">
+                    <ng-template
+                        [buttonConsultaIf]="[session.ACL.ID_DOC_ConsultaGeneral_Detalle_CREAR,session.ACL.ID_DETALLE_CREAR,session.ACL.ID_DOC_ConsultaJerarquia_Detalle_CREAR]"
+                        [rutaAnterior]="rutaAnterior" [rutaAnteriorAnterior]="rutaAnteriorAnterior">
+                        <button *ngIf="habilitarGrabar" class="btn btn-primary"
+                            [swal]="{ title:'¿Está seguro que desea Guardar el registro?',type:'question',showCancelButton:true,confirmButtonText:'Sí, Grabar',cancelButtonText:'No gracias'}"
+                            (confirm)="OnGuardar()" style="margin-right:5px;">
+                            <i class="fa fa-save"></i> Guardar</button>
+                    </ng-template>
+                </ng-template>
+                <ng-template #otrasPaginas>
+                    <ng-template [authButtonComplexIf]="[session.ACL.ID_SOL_SolicitudRevision_Detalle_CREAR ]"
+                        [ruta]="rutaActual" valorComponente="registrodocumento" valorBoton="CREAR">
+                        <button *ngIf="habilitarGrabar" class="btn btn-primary"
+                            [swal]="{ title:'¿Está seguro que desea Guardar el registro?',type:'question',showCancelButton:true,confirmButtonText:'Sí, Grabar',cancelButtonText:'No gracias'}"
+                            (confirm)="OnGuardar()" style="margin-right:5px;">
+                            <i class="fa fa-save"></i> Guardar</button>
+                    </ng-template>
+                </ng-template>
+                <ng-template [ngIf]="session.Ruta.RegistroBusquedaDocumento == rutaActual" [ngIfElse]="otrasPaginas">
+                    <ng-template
+                        [buttonConsultaIf]="[session.ACL.ID_DOC_ConsultaGeneral_Detalle_VISUALIZAR,session.ACL.ID_DETALLE_VISUALIZAR,session.ACL.ID_DOC_ConsultaJerarquia_Detalle_VISUALIZAR]"
+                        [rutaAnterior]="rutaAnterior" [rutaAnteriorAnterior]="rutaAnteriorAnterior">
+                        <button *ngIf="habiliarVerDocumento" (click)="OnValidaRuta(rutaDocumentoObsoleto,visorPdfSwal)"
+                            class="btn btn-success m-r" style="margin-right:5px;">
+                            <i class="fa fa-file-o"></i> Ver Documentos</button>
+                    </ng-template>
+                </ng-template>
+                <ng-template #otrasPaginas>
+                    <ng-template [authButtonComplexIf]="[session.ACL.ID_SOL_SolicitudRevision_Detalle_VISUALIZAR]"
+                        [ruta]="rutaActual" valorComponente="registrodocumento" valorBoton="CREAR">
+                        <button *ngIf="habiliarVerDocumento" (click)="OnValidaRuta(rutaDocumentoObsoleto,visorPdfSwal)"
+                            class="btn btn-success m-r" style="margin-right:5px;">
+                            <i class="fa fa-file-o"></i> Ver Documentos</button>
+                    </ng-template>
+                </ng-template>
+<!--CGUERRA
+                   <div class="btn-group" *ngIf="desctiDescarPdf">
+                <button class="btn btn-danger m-r"   style="margin-right: 9px;" (click)="OnValidaRutaOrigin(rutaDocumentoOrigin,visorPdfSwal)"[disabled]="deshabilitaNuevo">
+                        <i class="fa fa-file-pdf-o"></i> Exportar PDF</button>
+                    </div>-->
+<!--CGUERRA-->
+
+                <a class="btn btn-default m-r" (click)="OnRegresar()">
+                    <i class="fa fa-arrow-left"></i> Regresar</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+                <sk-three-bounce></sk-three-bounce>
+                <tab-group-animations-example #tab [activar]="activar" [consulta]="consulta"
+                   (verDocumentoOring)="OnValidarDocumentoOrigin($event)"  (verDocumento)="OnValidarDocumento($event)"></tab-group-animations-example>
+            </div>
+        </div>
+    </div>
+</div>
+<swal #visorPdfSwal [showConfirmButton]="false" [showCloseButton]="true" customClass="pdf-swal">
+    <form *swalPartial class="ajuste">
+        
+        <div *ngIf="urlPDF">
+            <visor-pdf id="02" [url]="urlPDF" ></visor-pdf>
+        </div>
+
+        <div *ngIf="objetoBlob">
+            <visor-pdf id="02" [file]="objetoBlob"  ></visor-pdf>
+        </div>
+ <!--CGUERRA
+        <div *ngIf="urlPDF2">
+                <visor-pdf id="02" [url]="urlPDF1" download="true" ></visor-pdf>
+            </div>-->
+<!--CGUERRA FIN-->
+
+    </form>
+</swal>

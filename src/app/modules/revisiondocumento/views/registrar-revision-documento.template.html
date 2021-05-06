@@ -1,0 +1,42 @@
+<div class="row wrapper border-bottom white-bg page-heading" style="padding-bottom: 0px;padding-left: 0px;">
+    <div class="col-lg-12">
+        <!--<h2><strong>Registro Revisión de Documento</strong></h2>-->
+        <h4>Solicitudes / Solicitud de Revisión de Documentos / <strong>Registro Revisión de Documentos</strong>   
+        </h4>
+    </div> 
+</div> 
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row m-b-sm">             
+            <div class="col-lg-12 pull-left ">                
+                        <div class="col-lg-8">
+            <div class="btn-group">
+                <ng-template [authIf]="session.ACL.ID_SOL_SolicitudRevision_Detalle_CREAR">
+                    <button type="button" [swal]="{title:'¿Está seguro que desea Enviar el registro?',type:'question',showCancelButton:true,confirmButtonText:'Sí, Grabar',cancelButtonText:'No gracias'}"
+                    class="btn btn-primary m-r" (confirm)="onGuardar()" [disabled]="envioActivo">
+                    <i class="fa fa-check"></i> Enviar</button>
+                </ng-template>
+                
+                <ng-template [authIf]="session.ACL.ID_SOL_SolicitudRevision_Detalle_BUSCAR">
+                        <div *ngIf="ocultarSeleccionDoc" class="btn-group"> 
+                            <a class="btn btn-success m-r" (click)="onBuscarDocumento()">
+                                <i class="fa fa-search"></i> Seleccionar Documento</a>  
+                        </div>  
+                </ng-template>
+                      
+                <a class="btn btn-default m-r" (click)="OnRegresar()">
+                    <i class="fa fa-arrow-left"></i> Regresar</a>
+            </div>
+            </div>            
+                </div>
+                      
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content">
+                <tab-group-animations-example #tab [consulta]="consulta" [activar]="activar"></tab-group-animations-example>               
+            </div>
+        </div>
+    </div>
+
+
+</div>

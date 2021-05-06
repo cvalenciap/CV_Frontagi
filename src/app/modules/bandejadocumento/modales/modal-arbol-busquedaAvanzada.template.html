@@ -1,0 +1,15 @@
+<div class="modal-header modal-cabecera-color">
+    <h4 class="modal-title pull-left">Seleccionar {{tipoBusqueda}}</h4>
+    <!--Button Cerra Modal-->
+    <button type="button" class="close pull-right" aria-label="Close" (click)="cancelar()">
+        <span aria-hidden="true" class="cerrar">&times;</span>
+    </button>
+</div>
+            
+<div class="modal-body" style="padding-bottom: 0px;padding-top: 0px;">   
+    <arbol-busquedaAvanzada [activarBotonArbol]="activarBotonArbol"></arbol-busquedaAvanzada>
+    <br>
+    <div class="modal-footer">
+    <button type="button" class="btn btn-success" [disabled]="activarSeleccionar" (click)="seleccionar()">Seleccionar</button>      
+    </div>
+</div>

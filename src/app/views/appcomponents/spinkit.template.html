@@ -1,0 +1,83 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2>Spinkit</h2>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a [routerLink]="['/']">Home</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a>Componentes</a>
+      </li>
+      <li class="breadcrumb-item active">
+        <strong>Spinkit</strong>
+      </li>
+    </ol>
+  </div>
+  <div class="col-lg-2">
+
+  </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox ">
+        <div class="ibox-content text-center p-md">
+
+          <h2><span class="text-navy">Spinkit</span>
+            es un componente que muestra animiaciones de espera mientras carga un contenido.</h2>
+
+          <p>
+            Los spinners se deben colocar en lugar de un panel o bloqueando su contenido utilizando la clase <code>sk-loading</code>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="ibox">
+        <div class="ibox-title">
+          <h5>Animaciones disponibles</h5>
+        </div>
+        <div class="ibox-content float-e-margins">
+          <button *ngFor="let a of animations" type="button" class="btn btn-w-m m-r-sm btn-default" (click)="selectedAnimation = a">{{a}}</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <sk-chasing-dots *ngIf="selectedAnimation == 'chasing-dots'"></sk-chasing-dots>
+      <sk-circle *ngIf="selectedAnimation == 'circle'"></sk-circle>
+      <sk-cube-grid *ngIf="selectedAnimation == 'cube-grid'"></sk-cube-grid>
+      <sk-double-bounce *ngIf="selectedAnimation == 'doublce-bounce'"></sk-double-bounce>
+      <sk-fading-circle *ngIf="selectedAnimation == 'fading-circle'"></sk-fading-circle>
+      <sk-pulse *ngIf="selectedAnimation == 'pulse'"></sk-pulse>
+      <sk-rotating-plane *ngIf="selectedAnimation == 'rotating-plane'"></sk-rotating-plane>
+      <sk-three-bounce *ngIf="selectedAnimation == 'three-bounce'"></sk-three-bounce>
+      <sk-wandering-cubes *ngIf="selectedAnimation == 'wandering-cubes'"></sk-wandering-cubes>
+      <sk-wave *ngIf="selectedAnimation == 'wave'"></sk-wave>
+      <sk-word-press *ngIf="selectedAnimation == 'word-press'"></sk-word-press>
+      <br>
+      <code>&lt;sk-{{selectedAnimation}}&gt;&lt;/sk-{{selectedAnimation}}&gt;</code>
+    </div>
+    <div class="col-lg-12">
+      <div class="ibox ">
+        <div class="ibox-title">
+          <h5>Bloquear Panel</h5>
+          <div class="ibox-tools">
+            <a class="collapse-link" (click)="lockPanel = !lockPanel">
+              <i class="fa fa-lock"></i> {{lockPanel ? 'Desbloquear' : 'Bloquear'}}
+            </a>
+          </div>
+        </div>
+        <div class="ibox-content" [ngClass]="{'sk-loading': lockPanel}">
+          <sk-three-bounce></sk-three-bounce>
+          <p>
+            Para bloquear un panel con una animación incluir el atributo <code>[ngClass]</code> con la clase <code>sk-loading</code>.
+          </p>
+          <h3 class="font-bold">Utilice el enlace Bloquear / Desbloquear</h3>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Registrar Evaluación Manual</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="cerrar">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-lg-12">
+            <label class="col-sm-3 control-label">Curso:</label>
+            <div class="col-sm-9">
+                <input type="text" placeholder="Curso" class="form-control" name="curso" disabled="deshabilitarCaja" [(ngModel)]="valorCurso">
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-lg-12">
+            <label class="col-sm-3 control-label">Participante:</label>
+            <div class="col-sm-9">
+                <input type="text" placeholder="Participante" class="form-control" name="participante" disabled="deshabilitarCaja" [(ngModel)]="valorParticipante">
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-lg-12">
+            <label class="col-sm-3 control-label">Nota:</label>
+            <div class="col-sm-2">
+                <input type="text" placeholder="Nota" (keypress)="permitirNumero($event)"  class="form-control" name="nota" [(ngModel)]="valorNota" maxlength="2">
+            </div>
+        </div>
+    </div>
+    <br/>
+   
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="OnGrabar()" >Grabar</button>
+    <button type="button" class="btn btn-default" (click)="OnCancelar()">Cancelar</button>
+</div>

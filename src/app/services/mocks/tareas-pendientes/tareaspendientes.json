@@ -1,0 +1,31 @@
+{
+    "listaTareasPendientes":[{
+    "tipoDoc":"Manual",
+    "codigo":"GARMAO15",
+    "titulo":"Tratamientos de Aguas",
+    "estadoDoc":"ok",
+    "revisionActual":"02",
+    "fechaRevActual":"17/01/2019",
+    "descripcion":"docuemnto pendiente"
+    },
+    {
+        "tipoDoc":"Manual",
+        "codigo":"GARMAO15",
+        "titulo":"Tratamientos de Aguas",
+        "estadoDoc":"ok",
+        "revisionActual":"02",
+        "fechaRevActual":"17/01/2019",
+        "descripcion":"docuemnto pendiente"
+        },
+        {
+            "tipoDoc":"Manual",
+            "codigo":"GARMAO15",
+            "titulo":"Tratamientos de Aguas",
+            "estadoDoc":"ok",
+            "revisionActual":"02",
+            "fechaRevActual":"17/01/2019",
+            "descripcion":"docuemnto pendiente"
+            }
+        
+]
+}

@@ -1,0 +1,71 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h4>Inicio / Auditoría / Preguntas para Evaluación del Auditor / <strong>Detalle de Preguntas para Evaluación del Auditor</strong></h4>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">        
+    <div class="row m-b-md">
+        <div class="col-lg-12">
+            <a class="btn btn-success m-r" (click)="OnGuardar()"><i class="fa fa-check"></i> Guardar</a>              
+            <a class="btn btn-default m-r" (click)="OnRegresar()"><i class="fa fa-arrow-left"></i> Regresar</a>
+        </div>
+    </div>
+</div>  
+<form class="form-horizontal">
+    <div>
+        <h3>PREGUNTAS PARA EVALUACION DE AUDITOR</h3>
+    </div>    
+    <div class="row ibox-content">
+        <div class="row form-group">
+            <div class="col-lg-12">
+                <label class="col-sm-2 control-label">Descripción de Pregunta :</label>                       
+                <div class="col-sm-4">
+                    <textarea class="form-control" rows="3" [(ngModel)]="item.pregunta" name="cargo"></textarea>                    
+                </div>                  
+                <div class="col-sm-6">   
+                    <div class="col-auto my-1">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="gridRadios" id="gridRadios1" value="1"  checked>
+                            <label class="form-check-label" for="gridRadios1">Utilizada en Examen Actual</label>                                                                                                      
+                        </div>
+                    </div>                 
+                </div>                   
+            </div>                    
+        </div>
+        <div class="row form-group">
+            <div class="col-lg-12">
+                <div Class="col-sm-2 right" >                
+                    <label class="control-label">Seleccione Rol :</label>                       
+            </div>                 
+                <div class="col-sm-4">                
+                        <div class="row">
+                                <div class="form-check">
+                                        <label class="form-check-label" for="radio1">
+                                        <input  type="checkbox" class="form-check-input" id="radio1" name="optradio1" [(ngModel)]="banderaLider">
+                                         Auditor Lider
+                                        </label>
+                                </div>
+                                                              
+                                <div class="form-check">
+                                    <label class="form-check-label" for="radio3" >
+                                    <input   type="checkbox"  class="form-check-input" id="radio3" name="optradio3" [(ngModel)]="banderaInterno">                                                
+                                    Lider Interno
+                                    </label>    
+                                </div> 
+                                
+                                <div class="form-check">
+                                    <label class="form-check-label" for="radio2">
+                                    <input type="checkbox"  class="form-check-input" id="radio2" name="optradio2" [(ngModel)]="banderaLiderInterno">
+                                    Auditor Lider del Grupo
+                                    </label>
+                            </div> 
+                        </div>                                        
+                </div>  
+                <div class="col-sm-6">                                                                                                               
+                </div>                                   
+            </div>                    
+        </div>
+    </div>        
+</form> 

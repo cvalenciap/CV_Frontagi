@@ -1,0 +1,232 @@
+<!-- <form (ngSubmit)="guardar()" [formGroup]="registroRequisitosForm" #formDir="ngForm" novalidate> -->
+<div class="modal-header">
+    <h4 class="modal-title pull-left"> Registro de Requisitos de Auditoría</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRefRequisitos.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+
+    <div class="row">
+        <div class="col-lg-12">
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">Descripción Auditoría :</label>
+                    <div class="col-sm-3">
+                        <input  type="text" class="form-control" name="descripcionAuditoria" formControlName="descripcionAuditoria"  >
+                    </div>
+                    <label class="col-sm-1 control-label">
+                        Fecha Y Hora:
+                    </label>
+                    <div class="col-sm-3">
+                        <div class="input-group date">
+                                <input bsDatepicker #dp1="bsDatepicker" type="text" class="form-control" [(ngModel)]="requisito.fechaHora" formControlName="fechaRequisito" name="fechaRequisito" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY hh:mm:ss', containerClass: 'theme-dark-blue' }">
+                                <span class="input-group-addon"><i class="fa fa-calendar" (click)="dp1.toggle()" [attr.aria-expanded]="dp1.isOpen" ></i></span>
+                        </div>
+                    </div>
+                    <label class="col-sm-1 control-label">Norma:</label>
+                    <div class="col-sm-3">
+                        <select class="form-control" name="normaRequisito" formControlName="normaRequisito" [(ngModel)]="requisito.norma">
+                            <option value="" selected>Seleccionar</option>
+                            <option value="1">ISO-9001:2014</option>
+                            <option value="2">ISO-14001:2014</option>
+                        </select>
+                    </div>
+                </div>
+                <br/>
+                <br/>
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">Alcance: 
+                    </label>
+                    <div class="col-sm-3">
+                        <select class="form-control" name="alcanceRequisito" formControlName="alcanceRequisito" [(ngModel)]="requisito.alcance">
+                            <option value="" selected>Seleccionar</option>
+                        </select>
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+
+    <br/>
+    <br/>
+
+    <div class="panel panel-success">
+      <div class="panel-heading">Seleccione Gerencia/Equipo/Cargo/Comité/SubComité por Requisito</div>
+      <div class="panel-body">
+          <div class="row">
+              <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label>
+                            <input name="radioFormato" (click)="obtenerClick($event)" type="radio" value="1" >Gerencia (Áreas)</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="valorGerencia" formControlName="valorGerencia" [(ngModel)] = "requisito.valorEntidadGerencia">
+                            <option value="" selected>Seleccionar</option>
+                            <option *ngFor="let item of listaGerencias" [ngValue]="item">{{item.descripcionGerencia}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label>
+                            <input name="radioFormato" (click)="obtenerClick($event)" type="radio" value="2" >Equipo</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="valorEquipo" formControlName="valorEquipo" [(ngModel)] = "requisito.valorEntidadEquipo">
+                            <option value="" selected>Seleccionar</option>
+                            <option *ngFor="let item of listaEquipos" [ngValue]="item">{{item.descripcionEquipo}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label>
+                            <input name="radioFormato" (click)="obtenerClick($event)" type="radio" value="3" >Cargo</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="valorCargo" formControlName="valorCargo" [(ngModel)] = "requisito.valorEntidadCargo">
+                            <option value="" selected>Seleccionar</option>
+                            <option *ngFor="let item of listaCargos" [ngValue]="item">{{item.descripcionCargo}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="wrapper wrapper-content animated fadeInRight">
+                            <div class="row m-b-sm">
+                                <div class="col-lg-4">
+                                    <label>Participantes(Auditores por requisito):</label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <a (click)="buscarAuditor()" class="btn btn-primary m-r"><i class="fa fa-plus"></i> Participante</a>
+                                    <button class="btn btn-danger m-r" [disabled]="selectedRow<0"
+                                            (click)="onEliminar()">
+                                    <i class="fa fa-trash"></i> Quitar Participante
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+                                    <sk-three-bounce></sk-three-bounce>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-stripped table-hover issue-tracker">
+                                            <thead>
+                                            <tr>
+                                                <th class="text-center">Cargo</th>
+                                                <th class="text-center">Participantes</th>
+                                                <th class="text-center">Responsable</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr *ngFor="let item of participantes; let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow">
+                                                <td class="text-center" >{{item.cargoAuditor}}</td>
+                                                <td class="text-center" >{{item.nombreAuditor}}</td>
+                                                <td class="text-center" ><input type="checkbox" /></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>      
+                            </div>
+                        </div>
+                    </div>
+              </div>
+
+              <div class="col-lg-6">
+                  <div class="row">
+                        <div class="col-sm-4">
+                            <label>
+                            <input name="radioFormato" (click)="obtenerClick($event)" type="radio" value="4" >Comité/Subcomité</label>
+                        </div>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="valorComite" formControlName="valorComite" [(ngModel)] = "requisito.valorEntidadComite">
+                            <option value="" selected>Seleccionar</option>
+                            <option *ngFor="let item of listaComites" [ngValue]="item">{{item.descripcionComite}}</option>
+                            </select>
+                        </div>
+                  </div>
+
+                  <div class="row">
+                        <div class="wrapper wrapper-content animated fadeInRight">
+                            <div class="row m-b-sm">
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-10">
+                                    <a (click)="agregarComite()" class="btn btn-primary m-r"><i class="fa fa-plus"></i> Agregar Comité/SubComité</a>
+                                    <button class="btn btn-danger m-r" [disabled]="selectedRowComite<0"
+                                            (click)="eliminarComite()">
+                                    <i class="fa fa-trash"></i> Quitar Comité/SubComité
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-10">
+                                        <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+                                                <sk-three-bounce></sk-three-bounce>
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered table-stripped table-hover issue-tracker">
+                                                        <thead>
+                                                        <tr>
+                                                            <th class="text-center">Comité / Sub Comité por Requisito</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr *ngFor="let item of comites; let i = index" (click)="seleccionComite(i, item)" [class.info]="i == selectedRowComite">
+                                                            <td class="text-center" >{{item.descripcionComite}}</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                        </div>
+                                </div>
+                                      
+                            </div>
+                        </div>
+                    </div>
+              </div>
+      
+          </div>
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div>
+                <label>Requisitos</label>
+            </div>
+            <div class="panel panel-success">
+                <div class="panel-body panel-select">
+                    <tree-root #tree [nodes]="listaRequisitos" [options]="treeOptions" ></tree-root>
+                </div>
+            </div>
+            
+        </div>
+        <div class="col-md-4" >
+            <div class="col-centered text-center">
+                <input type="button" (click)="seleccionarRequisitos()" class="botonSeleccion circulo"  value="> "><br/><input type="button" (click)="quitarRequisitos()" class="botonSeleccion circulo" value="< "><br />
+                <input type="button" (click)="seleccionarTodos()" class="botonSeleccion circulo" value=">>"><br/><input type="button" (click)="quitarTodos()" class="botonSeleccion circulo" value="<<">
+            </div>
+                
+        </div>
+        <div class="col-md-4">
+            <div>
+                <label>Requisitos Asignados</label>
+            </div>
+            <select name="listaDestino" formControlName="listaDestino" class="lista" multiple="multiple" size="8">
+                  <option *ngFor="let item of listaDestino" [ngValue]="item">{{item.nombre}}</option>
+            </select>
+            
+        </div>
+      </div>
+
+
+    
+</div>
+<div class="modal-footer">
+    <button type="submit" class="btn btn-success" >Grabar</button>
+    <button type="button" class="btn btn-default" (click)="cancelar()">Cancelar</button>
+</div>
+<!-- </form> -->

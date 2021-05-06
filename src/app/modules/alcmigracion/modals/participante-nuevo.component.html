@@ -1,0 +1,103 @@
+<div class="modal-header modal-cabecera-color">
+    <h4 class="modal-title pull-left">Añadir {{constanteRevision['Titulo_Participante_'+tipoParticipante]}}</h4>
+    <!--Button Cerra Modal-->
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="cerrar">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <h3>Buscar por:</h3>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-lg-12">
+            <label class="col-sm-2 control-label">Nro Ficha:</label>
+            <div class="col-sm-4">
+                   <input  type="text" class="form-control" placeholder="Ingrese ficha" name="nroFicha" maxlength="1" >
+            </div>
+            <label class="col-sm-2 control-label">Responsable:</label>
+            <div class="col-sm-4">
+                <input  type="text" placeholder="Ingrese responsable" class="form-control" name="responsable" >
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-lg-12">
+            <label class="col-sm-2 control-label">Area:</label>
+            <div class="col-sm-4">
+                <input  type="text" placeholder="Ingrese Area" class="form-control" name="area" >
+            </div>
+            <label class="col-sm-2 control-label">Función:</label>
+            <div class="col-sm-4">
+                <input  type="text" class="form-control" placeholder="Ingrese Función" name="funcion" >
+            </div>
+        </div>
+    </div>
+    <br>   
+
+        <br> 
+    <div class="row">
+        <div class="col-lg-12">
+            <a  class="btn btn-primary m-r"><i class="fa fa-search-plus"></i> Buscar</a>
+            <a  class="btn btn-default m-r"><i class="fa fa-paint-brush"></i> Limpiar</a>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content" >
+                <sk-three-bounce></sk-three-bounce>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-stripped table-hover issue-tracker">
+                        <thead>
+                        <tr>
+                                <th class="text-center">Nro Ficha</th>
+                            <th class="text-center">Responsable</th>
+                            <th class="text-center">Area</th>
+                            <th class="text-center">Función</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>01</td>
+                                <td>hugo salazar martinez</td>
+                                <td>Gestion</td>
+                                <td>funcion uno</td>
+                            </tr>
+                       <!-- <tr *ngFor="let item of participantes; let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow">
+                            <td class="text-center" >{{item.nroFicha}}</td>
+                            <td class="text-center" >{{item.nombreAuditor}}</td>
+                            <td class="text-center" >{{item.cargoAuditor}}</td>
+                        </tr>-->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+                            <pagination [(ngModel)]="paginacion.pagina"  [itemsPerPage]="paginacion.registros" [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="text-center m-a-sm">
+                                <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="text-right m-a-sm">
+                                <pagination-set ></pagination-set>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+          
+        
+</div>
+
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-success" >Aceptar</button>
+    <button type="button" class="btn btn-default" >Cancelar</button>
+</div>

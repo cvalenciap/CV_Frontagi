@@ -1,0 +1,73 @@
+<br>
+<!--segurity -->
+<ng-template [ngIf]="session.Ruta.RegistroBusquedaDocumento == rutaActual" [ngIfElse]="otrasPaginas">
+    <ng-template [buttonConsultaIf]="[session.ACL.ID_DOC_ConsultaGeneral_Equipo_Usuario_CREAR,session.ACL.ID_DETALLE_Equipo_Usuario_CREAR, session.ACL.ID_DOC_ConsultaJerarquia_Equipo_Usuario_CREAR ]"
+        [rutaAnterior]="rutaAnterior" [rutaAnteriorAnterior]="rutaAnteriorAnterior">
+        <div class="btn-group">
+            <a *ngIf="habilitar" (click)="OnAgregar()" class="btn btn-primary">
+                <i class="fa fa-plus"></i> Añadir</a>
+        </div>
+    </ng-template>
+</ng-template>
+<ng-template #otrasPaginas>
+    <ng-template [authButtonComplexIf]="[session.ACL.ID_TAR_AprobacionSolicitudRevision_Detalle_Equipo_Usuario_CREAR,session.ACL.ID_TAR_Homologacion_Equipo_Usuario_Detalle_CREAR,session.ACL.ID_TAR_Aprobacion_Equipo_Usuario_Detalle_CREAR,session.ACL.ID_TAR_Elaboracion_Detalle_Equipo_Usuario_CREAR,session.ACL.ID_TAR_Concenso_Equipo_Usuario_Detalle_CREAR,session.ACL.ID_SOL_SolicitudRevision_Detalle_EquipoUsuario_CREAR,session.ACL.ID_CON_SeguimientoDocumento_Detalle_EquipoUsuario_CREAR]"
+        [ruta]="rutaActual" valorComponente="equipo-usuario" valorBoton="CREAR">
+        <div class="btn-group">
+            <a (click)="OnAgregar()" class="btn btn-primary">
+                <i class="fa fa-plus"></i> Añadir</a>
+        </div>
+    </ng-template>
+</ng-template>
+
+
+<!-- segurity-->
+
+
+<hr style="margin-bottom: 0px;margin-top: 8px;">
+<div>
+    <table class="table table-bordered table-stripped table-hover issue-tracker">
+        <thead>
+            <tr>
+                <th style="width:40px" class="text-center">Responsable</th>
+                <th class="text-center">Equipo</th>
+                <th style="width:40px" class="text-center">Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let equipo of listaEquipo; let i=index" [class.info]="i==selectedRow" (click)="seleccionarFila(i)">
+                <td class="text-center" style="width:40px">
+                    <input type="radio" name="check{{equipo.indicadorResponsable}}" [disabled]="!permisos?.clAcciones" [checked]="equipo.indicadorResponsable==1"
+                        (click)="seleccionarCheck(equipo)" [disabled] =" equipo.descripcion =='TODOS SEDAPAL'">
+                </td>
+                <td class="text-center" data-col="equipo">{{equipo.descripcion}}</td>
+                <td  class="text-center" style="width:40px">
+                    <!--segurity -->
+                    <ng-template [ngIf]="session.Ruta.RegistroBusquedaDocumento == rutaActual" [ngIfElse]="otrasPaginas">
+                        <ng-template [buttonConsultaIf]="[session.ACL.ID_DOC_ConsultaGeneral_Equipo_Usuario_ELIMINAR,session.ACL.ID_DETALLE_Equipo_Usuario_ELIMINAR, session.ACL.ID_DOC_ConsultaJerarquia_Equipo_Usuario_ELIMINAR ]"
+                            [rutaAnterior]="rutaAnterior" [rutaAnteriorAnterior]="rutaAnteriorAnterior">
+                            <div class="btn-group">
+                                <button *ngIf="habilitar" title="Eliminar" class="btn btn-danger btn-sm m-r" (confirm)="eliminarEquipo(i)" [disabled]="equipo.indicadorEliminar"
+                                    [swal]="{ title:'¿Está seguro que desea eliminar el registro?', type:'question', showCancelButton:true, confirmButtonText:'Sí, eliminar', cancelButtonText:'No gracias'}">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </div>
+                        </ng-template>
+                    </ng-template>
+                    <ng-template #otrasPaginas>
+                        <ng-template [authButtonComplexIf]="[session.ACL.ID_TAR_AprobacionSolicitudRevision_Detalle_Equipo_Usuario_ELIMINAR,session.ACL.ID_TAR_Homologacion_Equipo_Usuario_Detalle_ELIMINAR,session.ACL.ID_TAR_Aprobacion_Equipo_Usuario_Detalle_ELIMINAR,session.ACL.ID_TAR_Concenso_Equipo_Usuario_Detalle_Eliminar,session.ACL.ID_TAR_Elaboracion_Detalle_EquipoUsua_ELIMINAR, session.ACL.ID_SOL_SolicitudRevision_Detalle_EquipoUsuario_ELIMINAR,session.ACL.ID_CON_SeguimientoDocumento_Detalle_EquipoUsuario_ELIMINAR]"
+                            [ruta]="rutaActual" valorComponente="equipo-usuario" valorBoton="ELIMINAR">
+                            <!--<div *ngIf="permisos?.btnAgregar" class="btn-group">-->
+                            <div class="btn-group">
+                                <button title="Eliminar" class="btn btn-danger btn-sm m-r" (confirm)="eliminarEquipo(i)" [disabled]="equipo.indicadorEliminar"
+                                    [swal]="{ title:'¿Está seguro que desea eliminar el registro?', type:'question', showCancelButton:true, confirmButtonText:'Sí, eliminar', cancelButtonText:'No gracias'}">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </div>
+                        </ng-template>
+                    </ng-template>                  
+                    <!-- segurity-->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

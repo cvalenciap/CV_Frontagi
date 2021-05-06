@@ -1,0 +1,168 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <h4 style="margin-top:15px;">Solicitudes /
+            <strong>Solicitud de Copia</strong>
+        </h4>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+        <div class="fh-breadcrumb">
+            <div class="full-height">
+                <div class="full-height-scroll white-bg">
+                    <div class="element-detail-box"
+                        style="padding-top:0px;padding-bottom:0px;padding-left:0px;padding-right:0px;">
+                        <div class="row">
+                            <ng-template [authIf]="session.ACL.ID_SOL_SolicitudCopiasImpresas_CREAR">
+                                <div class="col-lg-1">
+                                    <a (click)="OnAgregar()" class="btn btn-success">
+                                        <i class="fa fa-plus"></i> Nuevo</a>
+                                </div>
+                            </ng-template>
+                            <div class="col-lg-3">
+                                <div class="input-group">
+                                    <ng-select *ngIf="parametroBusqueda == 'tipo'" [items]="listaTipo"
+                                        bindLabel="n_idcons" bindValue="n_idcons" [clearable]="true" [searchable]="true"
+                                        name="tipo" placeholder="Seleccione"
+                                        notFoundText="Texto no encontrado en el menu" [(ngModel)]="Tipo"
+                                        (change)="habilitarBuscar()">
+                                    </ng-select>
+                                    <input type="text" *ngIf="parametroBusqueda != 'tipo'" placeholder="Buscar"
+                                        class="form-control" [(ngModel)]="textoBusqueda">
+                                    <ng-template [authIf]="session.ACL.ID_SOL_SolicitudCopiasImpresas_BUSCAR">
+                                        <span class="input-group-btn" dropdown>
+                                            <button type="button" class="btn btn-info" (click)="busquedaSimple()"><i
+                                                    class="fa fa-search"></i></button>
+                                            <button dropdownToggle type="button"
+                                                class="btn btn-info dropdown-toggle dropdown-toggle-split"><i
+                                                    class="fa fa-caret-down"></i></button>
+                                            <ul *dropdownMenu class="dropdown-menu" role="menu"
+                                                aria-labelledby="button-split">
+                                                <li role="menuitem" [class.active]="parametroBusqueda == 'codigo'">
+                                                    <a
+                                                        (click)="parametroBusqueda = 'codigo';textoBusqueda = ''; Tipo=null">Código
+                                                        de
+                                                        Documento</a>
+                                                <li role="menuitem" [class.active]="parametroBusqueda == 'titulo'">
+                                                    <a
+                                                        (click)="parametroBusqueda = 'titulo';textoBusqueda = ''; Tipo=null">Título
+                                                        de
+                                                        Documento</a>
+                                                <li role="menuitem" [class.active]="parametroBusqueda == 'tipo'">
+                                                    <a
+                                                        (click)="parametroBusqueda = 'tipo';textoBusqueda = ''; Tipo=null">Tipo
+                                                        de
+                                                        Copia</a>
+                                            </ul>
+                                        </span>
+                                    </ng-template>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <button class="btn btn-light" (click)="limpiar()"><i class="fa fa-eraser"></i> Limpiar
+                                </button>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row m-b-sm">
+                            <div class="col-lg-12">
+                                <div *ngIf="mostrarAlerta">
+                                    <alert type="info">
+                                        <span [innerHtml]="mensajeAlerta"></span>
+                                    </alert>
+                                </div>
+                                <div class="ibox-content" [ngClass]="{'sk-loading': loading}"
+                                    style="padding-right:10px;padding-left:10px;">
+                                    <sk-three-bounce></sk-three-bounce>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-stripped table-hover issue-tracker">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">Código</th>
+                                                    <th class="text-center">Título</th>
+                                                    <th class="text-center">Revisión Actual</th>
+                                                    <th class="text-center">Número de Solicitud</th>
+                                                    <th class="text-center">Tipo de Copia</th>
+                                                    <th class="text-center">Motivo de Solicitud</th>
+                                                    <th class="text-center">Fecha Solicitud</th>
+                                                    <th class="text-center">Estado de Solicitud</th>
+                                                    <th class="text-center">Acción</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let item of items; let i=index" (click)="OnRowClick(i,item)"
+                                                    [class.info]="i==selectedRow">
+                                                    <td class="text-center" data-col="codigo">{{item.documento.codigo}}
+                                                    </td>
+                                                    <td class="text-left" data-col="descripcion">
+                                                        {{item.documento.descripcion}}</td>
+                                                    <td class="text-center" data-col="numero1">{{item.numero}}</td>
+                                                    <td class="text-center" data-col="numero">{{item.numerosol}}</td>
+                                                    <td class="text-left" data-col="tipocopia">{{item.tipocopia}}</td>
+                                                    <td class="text-left" data-col="motivoR">{{item.motivoR}}</td>
+                                                    <td class="text-center" data-col="fechaSolicitud">
+                                                        {{item.fechaSolicitud | date:'dd/MM/yyyy'}}</td>
+                                                    <td class="text-center" style="vertical-align: middle;"
+                                                        [ngSwitch]="item.estadoSoli">
+                                                        <h3>
+                                                            <span *ngSwitchCase="'Aprobado'"
+                                                                class="label label-primary">&nbsp;Aprobado&nbsp;&nbsp;</span>
+                                                        </h3>
+                                                        <h3>
+                                                            <span *ngSwitchCase="'Rechazado'"
+                                                                class="label label-danger">&nbsp;Rechazado&nbsp;</span>
+                                                        </h3>
+                                                        <h3>
+                                                            <span *ngSwitchCase="'En Revision'"
+                                                                class="label label-warning">Pendiente</span>
+                                                        </h3>
+                                                    </td>
+                                                    <td>
+                                                        <ng-template
+                                                            [authIf]="session.ACL.ID_SOL_SolicitudCopiasImpresas_MODIFICAR">
+                                                            <button title="Detalle" class="btn btn-success btn-sm"
+                                                                (click)="OnModificar(item)"
+                                                                [disabled]="item.estadoSoli != 'Rechazado'">
+                                                                <i class="fa fa-edit"></i>
+                                                            </button>
+                                                        </ng-template>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-12 col-xs-12">
+                                            <pagination [(ngModel)]="paginacion.pagina"
+                                                (pageChanged)="OnPageChanged($event)"
+                                                [totalItems]="paginacion.totalRegistros"
+                                                [itemsPerPage]="paginacion.registros" [boundaryLinks]="true"
+                                                [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;"
+                                                firstText="&laquo;" lastText="&raquo;" #page></pagination>
+                                        </div>
+                                        <div class="col-md-4 col-sm-6 col-xs-12">
+                                            <div class="text-center m-a-sm">
+                                                <pagination-info [totalItems]="paginacion.totalRegistros"
+                                                    [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina">
+                                                </pagination-info>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-6 col-xs-12">
+                                            <div class="text-right m-a-sm">
+                                                <pagination-set (optionChanged)="OnPageOptionChanged($event)"
+                                                    #pageOption></pagination-set>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

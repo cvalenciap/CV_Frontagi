@@ -1,0 +1,73 @@
+<div class="modal-header modal-cabecera-color modal-cab">
+    <h4 class="modal-title pull-left" style="font-size: 12px;">Busqueda Avanzada - Lista de Auditores</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="cerrar">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <div class="row">
+        <label class="col-sm-6 control-label titulos-texto">N° Ficha:</label>
+        <label class="col-sm-6 control-label titulos-texto">Nombres:</label>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+          <input type="text"
+                 placeholder="N° Ficha"
+                 class="form-control cajas-texto"
+                 name="numFicha"
+                 [(ngModel)]="request.ficha"
+                 (ngModelChange)="onChangeFiltro(1, 'N° Ficha', $event)">
+              </div>
+        <div class="col-sm-6">
+          <input type="text"
+                 placeholder="Nombre auditor."
+                 class="form-control cajas-texto"
+                 name="nombre"
+                 [(ngModel)]="request.nombre"
+                 (ngModelChange)="onChangeFiltro(2, 'Nombre', $event)">
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-sm-6 control-label titulos-texto">Apellido Paterno:</label>
+        <label class="col-sm-6 control-label titulos-texto">Apellido Materno:</label>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+          <input type="text"
+                 placeholder="Apellido paterno auditor."
+                 class="form-control cajas-texto"
+                 name="apePaternoAuditor"
+                 [(ngModel)]="request.apePaterno"
+                 (ngModelChange)="onChangeFiltro(3, 'Ape. Paterno', $event)">
+        </div>
+        <div class="col-sm-6">
+          <input type="text"
+                 placeholder="Apellido materno auditor."
+                 class="form-control cajas-texto"
+                 name="apeMaternoAuditor"
+                 [(ngModel)]="request.apeMaterno"
+                 (ngModelChange)="onChangeFiltro(4, 'Ape. Materno', $event)">
+        </div>
+    </div>
+    <div class="row">
+            <label class="col-sm-6 control-label titulos-texto">Rol:</label>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+              <ng-select placeholder="Seleccione"
+                         [items]="roles"
+                         bindLabel="descripcion"
+                         [clearable]="true"
+                         [(ngModel)]="request.rol"
+                         (ngModelChange)="onChangeFiltro(5, 'Rol', $event)"></ng-select>
+            </div>
+        </div>
+</div>
+
+<div class="modal-footer modal-pie">
+    <button type="button"
+            class="btn btn-success botones-superiores"
+            (click)="enviarBusqueda()">
+            <i class="fa fa-search"></i> Buscar</button>
+</div>

@@ -1,0 +1,21 @@
+{
+    "listaCriterioResultado": [
+      {
+        "id":"1",
+        "descripcionCriterio":"No conforme"
+      },
+      {
+        "id":"2",
+        "descripcionCriterio":"Conforme"
+      },
+      {
+        "id":"3",
+        "descripcionCriterio":"Oportunidad de Mejora"
+      },
+      {
+        "id":"4",
+        "descripcionCriterio":"Fortaleza"
+      }
+  
+    ]
+  }

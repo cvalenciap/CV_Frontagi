@@ -1,0 +1,173 @@
+<div class="row wrapper border-bottom white-bg page-heading" style="padding-bottom: 0px;padding-left: 0px;">
+    <!-- Titulo -->
+    <div class="col-lg-12">
+        <h4>Tareas / Aprobación de Solicitud de Revisión /
+            <strong>Registro Aprobación de Solicitud de Revisión</strong>
+        </h4>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row m-b-sm">
+        <div class="col-lg-12">
+            <ng-template [authIf]="session.ACL.ID_TAR_AprobacionSolicitudRevision_Detalle_CREAR">
+                <a class="btn btn-primary m-r" [swal]="{title:'¿Está seguro que desea Aprobar el registro?',type:'question',showCancelButton:true,confirmButtonText:'Sí, Grabar',cancelButtonText:'No gracias'}"
+                    (confirm)="OnAprobar()">
+                    <i class="fa fa-check"></i> Aprobar</a>
+            </ng-template>
+            <ng-template [authIf]="session.ACL.ID_TAR_AprobacionSolicitudRevision_Detalle_MODIFICAR">
+                <a class="btn btn-danger m-r" [swal]="{title:'¿Está seguro que desea Rechazar el registro?',type:'question',showCancelButton:true,confirmButtonText:'Sí, Grabar',cancelButtonText:'No gracias'}"
+                    (confirm)="OnRechazar()">
+                    <i class="fa fa-close"></i> Rechazar</a>
+            </ng-template>
+            <a class="btn btn-default m-r" (click)="OnRegresar()">
+                <i class="fa fa-arrow-left"></i> Regresar</a>
+        </div>
+    </div>
+    <!--<div class="row">
+     
+        <div class="col-sm-2">
+            <div class="form-group">
+                <label class="control-label" for="product_name">Código:</label>
+                <input type="text" id="product_name" name="product_name" value="" placeholder="08" class="form-control"disabled="disabled">
+            </div>
+        </div>
+
+        
+        <div class="col-sm-2">
+            <div class="form-group">
+                <label class="control-label" for="product_name">G. Categoría:</label>
+                <input type="text" id="product_name" name="product_name" value="" placeholder="08" class="form-control"disabled="disabled">
+            </div>
+        </div>
+
+      
+        <div class="col-sm-2">
+            <div class="form-group">
+            <label class="control-label" for="quantity">Tipo Documento:</label>
+            <select name="status" id="status" class="form-control">
+                <option value="1" selected="">Seleccionar</option>
+                <option value="0">G-Gerencia</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-6"></div>
+    </div>
+
+    <div class="row">
+      
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label class="control-label" for="product_name">Titulo(*):</label>
+                <input type="text" id="product_name" name="product_name" value="" placeholder="Titulo" class="form-control">
+            </div>
+        </div>
+
+        
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label class="control-label" for="product_name">Retención de Revisiones Obsoletas (Años):</label>
+                <input type="text" id="product_name" name="product_name" value="" placeholder="08" class="form-control"disabled="disabled">
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        
+        <div class="col-sm-2">
+            <div class="form-group">
+                <label class="control-label" for="product_name">Revisión:</label>
+                <input type="text" id="product_name" name="product_name" value="" placeholder="08" class="form-control"disabled="disabled">
+            </div>
+        </div>
+
+       
+        <div class="col-sm-2">              
+            <div class="form-group">
+                <label class="control-label" for="product_name">Fec Revisión:</label>
+                <input type="text" id="product_name" name="product_name" value="" placeholder="10/10/2018" class="form-control"disabled="disabled">
+            </div>
+        </div>
+
+       
+        <div class="col-sm-2">              
+            <div class="form-group">
+                <label class="control-label" for="product_name">Estado:</label>
+                <input type="text" id="product_name" name="product_name" value="" placeholder="Emisión" class="form-control"disabled="disabled">
+            </div>
+        </div>
+
+        
+        <div class="col-sm-1">
+            <div class="form-group">
+                <label class="control-label" for="status">Rev.Ref.:</label>
+                <input type="text" id="product_name" name="product_name" value="" placeholder="09" class="form-control"disabled="disabled">
+            </div>
+        </div>
+
+       
+        <div class="col-sm-1">
+            <div class="form-group">
+                <label class="control-label" for="status">Fecha.Ref:</label>
+                <input type="text" id="product_name" name="product_name" value="" placeholder="09" class="form-control"disabled="disabled">
+            </div>
+        </div>
+
+        
+        <div class="col-sm-2">
+            <div class="form-group">
+                <label class="control-label" for="status">Fase:</label>
+                <input type="text" id="product_name" name="product_name" value="" placeholder="09" class="form-control"disabled="disabled">
+            </div>
+        </div>
+
+       
+        <div class="col-sm-2">
+            <div class="form-group">
+                <label class="control-label" for="status">Ciclo Actual:</label>
+                <input type="text" id="product_name" name="product_name" value="" placeholder="09" class="form-control"disabled="disabled">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+       
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label class="control-label" for="price">Proceso(*):</label>
+                <input type="text" id="price" name="price" value="" placeholder="Proceso" class="form-control">
+            </div>
+        </div>
+
+       
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label class="control-label" for="quantity">Alcance SGI(*):</label>
+                <select name="status" id="status" class="form-control">
+                    <option value="1" selected="">Seleccionar</option>
+                    <option value="0">G-Gerencia</option>
+                </select>
+            </div>
+        </div>
+
+        
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label class="control-label" for="status">Gerencia(*):</label>
+                <select name="status" id="status" class="form-control">
+                    <option value="1" selected="">GC-Gerencia Comercial</option>
+                    <option value="0">G-Gerencia</option>
+                </select>
+            </div>
+        </div>
+    </div>-->
+
+    <!-- Tabs -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content" >
+                <tab-group-animations-example #tab [activar]="activar" [consulta]="consulta"></tab-group-animations-example>
+            </div>
+        </div>
+    </div>
+</div>

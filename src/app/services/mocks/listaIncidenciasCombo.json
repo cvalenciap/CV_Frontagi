@@ -1,0 +1,25 @@
+{
+  "listaIncidenciasCombo": [
+    {
+      "idIncidencia":"1",
+      "descripcionIncidencia":"Hallazgo Personal"
+    },
+    {
+      "idIncidencia":"2",
+      "descripcionIncidencia":"Incumplimiento Legal"
+    },
+    {
+      "idIncidencia":"3",
+      "descripcionIncidencia":"Queja del Cliente"
+    },
+    {
+      "idIncidencia":"4",
+      "descripcionIncidencia":"Producto no Conforme"
+    },
+    {
+      "idIncidencia":"5",
+      "descripcionIncidencia":"Trabajo de Ensayo no conforme"
+    }
+
+  ]
+}

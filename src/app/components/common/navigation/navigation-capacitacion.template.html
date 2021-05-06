@@ -1,0 +1,29 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+      <ul class="nav metismenu" id="side-menu-auditoria">
+        <li class="nav-header">
+          <div class="profile-element text-center">
+            <img src="assets/images/sedapal-logo-2.png">
+          </div>
+          <div class="logo-element">
+            <img src="assets/images/sedapal-gota.png">
+          </div>
+        </li>
+        <li [ngClass]="{active: activeRoute('inicial')}">
+          <a [routerLink]="['/start-capacitacion']"><i class="fa fa fa-home"></i> <span class="nav-label">Inicio</span></a>
+        </li>
+  <!--Auditoria-->
+        <li [ngClass]="{active: activeRoute('components')}">
+          <a href="#"><i class="fa fa-map"></i> <span class="nav-label">Capacitación</span> <span class="fa arrow"></span> </a>
+          <ul class="nav nav-second-level collapse" [ngClass]="{in: activeRoute('capacitacion')}">
+            <li [ngClass]="{active: activeRoute('programarcapacitacion')}"><a [routerLink]="['/capacitacion/programarcapacitacion']">Programar Capacitacion<span class="label label-danger pull-right"></span></a></li>
+            <li [ngClass]="{active: activeRoute('bandejaexamenes')}"><a [routerLink]="['/capacitacion/bandejaexamenes']">Bandeja Examenes<span class="label label-danger pull-right"></span></a></li>
+            <li [ngClass]="{active: activeRoute('bandejaasistencia')}"><a [routerLink]="['/capacitacion/bandejaasistencia']">Bandeja Asistencia<span class="label label-danger pull-right"></span></a></li>
+            <li [ngClass]="{active: activeRoute('bandejaevaluaciones')}"><a [routerLink]="['/capacitacion/bandejaevaluaciones']">Bandeja Evaluaciones<span class="label label-danger pull-right"></span></a></li>
+            <li [ngClass]="{active: activeRoute('descarga')}"><a (click)="OnClickCapacitacion()" [routerLink]="['/consulta/descarga/bajarVideosPlantillas']">Descarga de Videos y Plantillas del Sistema<span class="label label-danger pull-right"></span></a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  

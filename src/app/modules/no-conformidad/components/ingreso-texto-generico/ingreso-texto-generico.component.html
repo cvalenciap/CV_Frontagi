@@ -1,0 +1,24 @@
+<div class="modal-header" style="padding-top: 0px;margin-top:0px">
+  <h4 class="modal-title pull-left"> <strong>{{configuracion.title}}</strong></h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="cancelar()">
+    <span aria-hidden="true" class="cerrar">&times;</span>
+  </button>
+</div>
+<div class="modal-body" style="padding-bottom: 0px;">
+  <!-- Fila 1 -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <!-- <label class="control-label" for="numero">N°:</label> -->
+        <textarea rows="8" maxlength="250" class="form-control"
+          [placeholder]="configuracion.placeholder"></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer" style="padding-top: 10px;">
+  <button type="button" class="btn btn-primary btn-sm" style="margin-right: 1rem;" (click)="aceptar()">
+    <i class="fas fa fa-check"></i> {{configuracion.buttonName}}</button>
+  <button type="button" class="btn-sm btn-default" style="background: #eee" (click)="limpiar()"><i class="fa fa-eraser"
+      title="Buscar"></i> Limpiar</button>
+</div>

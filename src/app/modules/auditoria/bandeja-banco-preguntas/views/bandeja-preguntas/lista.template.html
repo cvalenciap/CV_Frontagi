@@ -1,0 +1,266 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <!--Columna para el titulo-->
+    <div class="col-lg-12">
+        <h4>Inicio / Auditoría / <strong>Preguntas para Evaluación del Auditor</strong></h4>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight div-principal">
+    <div class="row m-b-md div-botones-superiores">
+        <div class="col-md-1 col-lg-1 boton">
+            <a [routerLink]="['registrar']" class="btn btn-primary botones-superiores"><i class="fa fa-plus"></i> Nuevo</a>
+        </div>
+        <div class="col-md-6 col-lg-5">
+            <div class="row input-group">
+                <div class="col-6">
+                        <input type="text" placeholder="Ingrese Pregunta" class="form-control cajas-texto" [(ngModel)]="textoBusqueda">
+                </div>
+                <span class="col-6 input-group-btn" dropdown>
+                    <button type="button" class="btn btn-info botones-buscador" (click)="OnBuscar()"><i class="fa fa-search"></i></button>
+                </span>
+
+            </div> 
+        </div>
+
+        <div class="col-md-2 col-lg-2">
+                <button class="btn btn-light btn-colores botones-superiores" (click)="limpiar()"><i class="fa fa-eraser"></i> Limpiar</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+                <div *ngIf="mostrarAlerta">
+                    <alert type="info">
+                        <span [innerHtml]="mensajeAlerta"></span>
+                    </alert>
+                </div>
+              <div *ngIf="mostrarAlerta">
+                        <div class="ibox-content div-secundario" [ngClass]="{'sk-loading': loading}">
+                                <sk-three-bounce></sk-three-bounce>
+                                <div class="table-responsive" style="height: 30rem;">
+                                    <table class="table table-bordered table-stripped table-hover issue-tracker">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center" data-col="item">Ítem</th>
+                                            <th class="text-center" data-col="tipo">Descripción Pregunta</th>
+                                            <th class="text-center" data-col="rol">Rol Auditor</th>
+                                            <th class="text-center" data-col="accion">Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of listaPregunta; let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow">
+                                            <td class="text-center" data-col="item">{{item.iD}}</td>
+                                            <td class="text-center" data-col="tipo">{{item.pregunta}}</td>
+                                            <td class="text-center" data-col="rol">
+            
+                                                <div *ngFor="let res of item.listaRoles">
+                                                    <span class="label label-default">{{res}}</span>
+                                                </div>
+                                            </td>
+                                            <td class="text-center" data-col="accion">
+                                                <button title="Actualizar" class="btn btn-success btn-sm m-r botones-detalle"
+                                                    (click)="OnModificar(item)"><i class="fa fa-edit"></i></button>
+            
+            
+                                                <button title="Eliminar" class="btn btn-danger btn-sm m-r botones-detalle"
+                                                    [swal]="{ title: '¿Está seguro que desea eliminar la pregunta?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                                                    (confirm)="onEliminar(item)"><i class="fa fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+            
+            
+            
+                            <div class="row" style="margin-top: 10px;">
+                                <div class="col-md-4 col-sm-12 col-xs-12">
+                                    <pagination [(ngModel)]="paginacion.pagina" (pageChanged)="OnPageChanged($event)"
+                                        [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros"
+                                        [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;"
+                                        firstText="&laquo;" lastText="&raquo;"></pagination>
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <div class="text-center m-a-sm">
+                                        <pagination-info [totalItems]="paginacion.totalRegistros"
+                                            [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <div class="text-right m-a-sm">
+                                        <pagination-set class="texto-pie-pag" (optionChanged)="OnPageOptionChanged($event)" #pageOption>
+                                        </pagination-set>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+
+                <div *ngIf="!mostrarAlerta">
+                        <div class="ibox-content div-secundario" [ngClass]="{'sk-loading': loading}" style="height:100%;">
+                                <sk-three-bounce></sk-three-bounce>
+                                <div class="table-responsive" style="height: 38rem;">
+                                    <table class="table table-bordered table-stripped table-hover issue-tracker">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center" data-col="item">Ítem</th>
+                                            <th class="text-center" data-col="tipo">Descripción Pregunta</th>
+                                            <th class="text-center" data-col="rol">Rol Auditor</th>
+                                            <th class="text-center" data-col="accion">Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of listaPregunta; let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow">
+                                            <td class="text-center" data-col="item">{{item.iD}}</td>
+                                            <td class="text-center" data-col="tipo">{{item.pregunta}}</td>
+                                            <td class="text-center" data-col="rol">
+            
+                                                <div *ngFor="let res of item.listaRoles">
+                                                    <span class="label label-default">{{res}}</span>
+                                                </div>
+                                            </td>
+                                            <td class="text-center" data-col="accion">
+                                                <button title="Actualizar" class="btn btn-success btn-sm m-r botones-detalle"
+                                                    (click)="OnModificar(item)"><i class="fa fa-edit"></i></button>
+            
+            
+                                                <button title="Eliminar" class="btn btn-danger btn-sm m-r botones-detalle"
+                                                    [swal]="{ title: '¿Está seguro que desea eliminar la pregunta?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                                                    (confirm)="onEliminar(item)"><i class="fa fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+            
+            
+            
+                            <div class="row" style="margin-top: 10px;">
+                                <div class="col-md-4 col-sm-12 col-xs-12">
+                                    <pagination [(ngModel)]="paginacion.pagina" (pageChanged)="OnPageChanged($event)"
+                                        [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros"
+                                        [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;"
+                                        firstText="&laquo;" lastText="&raquo;"></pagination>
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <div class="text-center m-a-sm">
+                                        <pagination-info [totalItems]="paginacion.totalRegistros"
+                                            [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <div class="text-right m-a-sm">
+                                        <pagination-set class="texto-pie-pag" (optionChanged)="OnPageOptionChanged($event)" #pageOption>
+                                        </pagination-set>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+       
+       
+        </div>
+    </div>
+</div>
+
+
+<!--
+    <div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <h4>Inicio / Auditoría / <strong>Banco de Preguntas</strong>
+        </h4>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight div-principal">
+    <div class="row m-b-md div-botones-superiores">
+        <div class="col-lg-1">
+            <a [routerLink]="['registrar']" class="btn btn-primary botones-superiores"><i class="fa fa-plus"></i> Nuevo</a>
+        </div>
+        <div class="col-lg-4" style="margin-left: 5px;">
+            <div class="input-group">
+                <input type="text" placeholder="Ingrese Pregunta" class="form-control cajas-texto" [(ngModel)]="textoBusqueda">
+                <span class="input-group-btn" dropdown>
+                    <button type="button" class="btn btn-info botones-buscador" (click)="OnBuscar()"><i
+                            class="fa fa-search"></i></button>
+                </span>
+
+                <div class="col-lg-8">
+                    <button class="btn btn-light"  [swal]="{title:'¿Está seguro que desea Eliminar la pregunta',type:'question',showCancelButton:true,confirmButtonText:'Sí, Grabar',cancelButtonText:'No gracias'}" (confirm)="limpiar()"><i class="fa fa-eraser"></i> Limpiar</button>
+    
+                </div>
+
+            </div>
+        </div>
+        <div class="col-lg-7"></div>
+    </div>
+    <div class="row">
+            <div class="col-lg-12">
+                <div *ngIf="mostrarAlerta">
+                    <alert type="info">
+                        <span [innerHtml]="mensajeAlerta"></span>
+                    </alert>
+                </div>
+                <div class="ibox-content div-secundario" style="height:550px;" [ngClass]="{'sk-loading': loading}">
+                    <sk-three-bounce></sk-three-bounce>
+                    <div class="table-responsive" style="height: 450px;">
+                        <table class="table table-bordered table-stripped table-hover issue-tracker">
+                        <thead>
+                            <tr>
+                                <th class="text-center" data-col="item">Ítem</th>
+                                <th class="text-center" data-col="tipo">Descripción Pregunta</th>
+                                <th class="text-center" data-col="rol">Rol Auditor</th>
+                                <th class="text-center" data-col="accion">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of listaPregunta; let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow">
+                                <td class="text-center" data-col="item">{{item.iD}}</td>
+                                <td class="text-center" data-col="tipo">{{item.pregunta}}</td>
+                                <td class="text-center" data-col="rol">
+
+                                    <div *ngFor="let res of item.listaRoles">
+                                        <span class="label label-default">{{res}}</span>
+                                    </div>
+                                </td>
+                                <td class="text-center" data-col="accion">
+                                    <button title="Actualizar" class="btn btn-success btn-sm m-r botones-detalle"
+                                        (click)="OnModificar(item)"><i class="fa fa-edit"></i></button>
+
+
+                                    <button title="Eliminar" class="btn btn-danger btn-sm m-r botones-detalle"
+                                        [swal]="{ title: '¿Está seguro que desea eliminar la pregunta?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                                        (confirm)="onEliminar(item)"><i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <pagination [(ngModel)]="paginacion.pagina" (pageChanged)="OnPageChanged($event)"
+                            [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros"
+                            [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;"
+                            firstText="&laquo;" lastText="&raquo;"></pagination>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-center m-a-sm">
+                            <pagination-info [totalItems]="paginacion.totalRegistros"
+                                [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-right m-a-sm">
+                            <pagination-set class="texto-pie-pag" (optionChanged)="OnPageOptionChanged($event)" #pageOption>
+                            </pagination-set>
+                        </div>ss
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+
+
+

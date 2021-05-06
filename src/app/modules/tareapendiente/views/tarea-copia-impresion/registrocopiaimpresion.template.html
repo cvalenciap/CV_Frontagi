@@ -1,0 +1,31 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <h4 style="margin-top:15px;">Tareas / Copias Impresas /
+            <strong>Detalle</strong>
+        </h4>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row m-b-sm">
+        <div class="btn-group">
+            <ng-template [authIf]="session.ACL.ID_TAR_Aprobacion_Copia_Impresa_Detalle_CREAR">
+                <button [disabled]="habilitaenviar" class="btn btn-primary m-r" [swal]="{ title: '¿Está seguro que desea Aprobar la Solicitud?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, Aprobar', cancelButtonText: 'No gracias'} "
+                    (confirm)="OnAprobar()">
+                    <i class="fa fa-check"></i> Aprobar</button>
+            </ng-template>
+            <ng-template [authIf]="session.ACL.ID_TAR_Aprobacion_Copia_Impresa_Detalle_VISUALIZAR">
+                <button [disabled]="habilitaenviar" class="btn btn-danger m-r" [swal]="{ title: '¿Está seguro que desea Rechazar la Solicitud?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, Rechazar', cancelButtonText: 'No gracias'} "
+                    (confirm)="OnRechazar()">
+                    <i class="fa fa-arrow-left"></i> Rechazar</button>
+            </ng-template>
+            <a class="btn btn-default m-r" (click)="OnRegresar()">
+                <i class="fa fa-arrow-left"></i> Regresar</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <tab-group-animations-copiaImpresa #tab  (estaSolicitud)="OnValidarSiEsAprobado($event)"></tab-group-animations-copiaImpresa>
+
+        </div>
+    </div>
+</div>

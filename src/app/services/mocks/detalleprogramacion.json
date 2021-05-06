@@ -1,0 +1,30 @@
+{
+    "listaAuditorias": [
+      {
+        "gerencia":"GPO - GERENCIA DE PROYECTOS Y OBRAS",
+        "idNorma":"1",
+        "descripcionMes": "Agosto"
+      },
+      {
+        "equipo":"ETIC - Equipo Tecnologías de la Información y Comunicaciones",
+        "idNorma":"1",
+        "descripcionMes": "Agosto"
+      },
+      {
+        "gerencia":"GF - GERENCIA DE FINANZAS",
+        "idNorma":"4",
+        "descripcionMes": "Octubre"
+      },
+      {
+        "cargo":"CC-PTA",
+        "idNorma":"4",
+        "descripcionMes": "Octubre"
+      },
+      {
+        "equipo":"EPEC- Equipo Programación y Ejecución Contractual",
+        "idNorma":"4",
+        "descripcionMes": "Octubre"
+      }
+  
+    ]
+  }

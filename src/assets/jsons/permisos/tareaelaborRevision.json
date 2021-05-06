@@ -1,0 +1,46 @@
+{
+    "responseCode": "0",
+    "responseData": 
+      { "btnEditar":true,
+        "Editar":{
+        "tabs":{
+          "general":{
+            "btnBuscarDoc":false
+          },
+          "participante":{
+            "esVisible":true,
+            "tabElaboracion":{
+              "esVisible":true,
+              "clAcciones":true
+            },"tabConsenso":{
+              "esVisible":true,
+              "clAcciones":true
+            },
+            "tabAprobacion":{
+              "esVisible":true,
+              "clAcciones":true
+            },
+            "tabHomologacion":{
+              "esVisible":true,
+              "clAcciones":true
+            },
+             "btnAgregar":true
+             
+          },
+          "fase":{
+            "esVisible":true
+          },
+          "usuario":{
+            "btnAgregar":false
+           },
+          "revision":{
+            "esVisible":true
+          },
+          "docComplementario":{
+            "clAcciones":false
+          }
+        }
+      }
+       }
+    
+  }

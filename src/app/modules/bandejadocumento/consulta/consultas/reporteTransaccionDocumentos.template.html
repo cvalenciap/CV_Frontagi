@@ -1,0 +1,167 @@
+<div class="row wrapper border-bottom white-bg page-heading" style="padding-bottom: 5px;">
+    <div class="col-lg-12" style="margin-top: 8px">
+        <h4>Consultas / <strong>Reporte de Transacción de Documentos</strong></h4>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row m-b-sm">                
+        <div class="col-lg-3">
+            <div class="input-group">
+                <input type="text" placeholder="Buscar" class="form-control" [(ngModel)]="textoBusqueda">
+                <span class="input-group-btn" dropdown>
+                <button type="button" class="btn btn-info" (click)="OnBuscar()"><i class="fa fa-search"></i></button>
+                <button dropdownToggle type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split"><i class="fa fa-caret-down"></i></button>
+                    <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
+                        <li role="menuitem" [class.active]="selectedFilter == 'codigo'"><a (click)="setFilter('codigo')">Código</a></li>
+                        <li class="divider dropdown-divider"></li>
+                        <li role="menuitem"><a (click)="abrirBusqueda()">Búsqueda Avanzada</a></li>
+                    </ul>
+                </span>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <!--<a class="btn btn-default m-r" (click)="limpiar()"><i class="fa fa-paint-brush"></i> Limpiar </a>-->
+            <a class="btn btn-primary" ><i class="fa fa-file-o"></i> Exportar </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-stripped table-hover issue-tracker">
+                        <thead>
+                        <tr>
+                            <th class="text-center">Código</th>
+                            <th class="text-center">Título</th>
+                            <th class="text-center">Estado Documento</th>
+                            <th class="text-center">Revisión</th>
+                            <th class="text-center">Fecha Revisión</th>
+                            <th class="text-center">Alcance</th>
+                            <th class="text-center">Equipo Responsable</th>
+                            <th class="text-center">Nro Solicitud Actual</th>
+                            <th class="text-center">Fase Actual</th>
+                            <th class="text-center">Estado</th>
+                            <th class="text-center">Acción</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr><!-- *ngFor="let item of items; let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow">-->                                                
+                                <td class="text-center" data-col="nomconstante">GGARMA015</td>
+                                <td class="text-center" data-col="n_discons">Tratamiento de aguas</td>
+                                <td class="text-center" ngSwitch="Emision">
+                                    <h3><span *ngSwitchCase="'Aprobado'"  class="label label-primary">&nbsp;Aprobado&nbsp;&nbsp;</span></h3>
+                                    <h3><span *ngSwitchCase="'Emision'"     class="label label-default">&nbsp;&nbsp;&nbsp;Emision&nbsp;&nbsp;&nbsp;</span></h3>
+                                    <h3><span *ngSwitchCase="'Cancelado'"   class="label label-danger" >&nbsp;Cancelado&nbsp;</span></h3>
+                                    <h3><span *ngSwitchCase="'En Revision'" class="label label-warning">En Revisión</span></h3>
+                                </td>
+                                <td class="text-center" data-col="idconstante">02</td>
+                                <td class="text-center" data-col="nomconstante">30/05/2018</td>
+                                <td class="text-center" data-col="v_descons">9001/GGAR</td>
+                                <td class="text-center" data-col="n_discons">ECGe</td>
+                                <td class="text-center" data-col="idconstante">123</td>
+                                <td class="text-center" data-col="idconstante">Elaboración</td>
+                                <td class="text-center" data-col="idconstante">Emitido</td>
+                                <td class="text-center" data-col="n_discons">
+                                    <button title="Ver Documento" class="btn btn-primary btn-sm m-r"  style="margin-right:0px;">
+                                        <i class="fa fa-file-o"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr><!-- *ngFor="let item of items; let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow">-->                                                
+                                <td class="text-center" data-col="nomconstante">GPINO14</td>
+                                <td class="text-center" data-col="n_discons">Políticas de personal</td>
+                                <td class="text-center" ngSwitch="Aprobado">
+                                    <h3><span *ngSwitchCase="'Aprobado'"  class="label label-primary">&nbsp;Aprobado&nbsp;&nbsp;</span></h3>
+                                    <h3><span *ngSwitchCase="'Emision'"     class="label label-default">&nbsp;&nbsp;&nbsp;Emision&nbsp;&nbsp;&nbsp;</span></h3>
+                                    <h3><span *ngSwitchCase="'Cancelado'"   class="label label-danger" >&nbsp;Cancelado&nbsp;</span></h3>
+                                    <h3><span *ngSwitchCase="'En Revision'" class="label label-warning">En Revisión</span></h3>
+                                </td>
+                                <td class="text-center" data-col="idconstante">11</td>
+                                <td class="text-center" data-col="nomconstante">30/05/2017</td>
+                                <td class="text-center" data-col="v_descons">17025/GP</td>
+                                <td class="text-center" data-col="n_discons">EMF</td>
+                                <td class="text-center" data-col="idconstante">-</td>
+                                <td class="text-center" data-col="idconstante">Homologado</td>
+                                <td class="text-center" data-col="idconstante">Cerrado</td>
+                                <td class="text-center" data-col="n_discons">
+                                    <button title="Ver Documento" class="btn btn-primary btn-sm m-r"  style="margin-right:0px;">
+                                        <i class="fa fa-file-o"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr><!-- *ngFor="let item of items; let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow">-->                                                
+                                <td class="text-center" data-col="nomconstante">GPOMA005</td>
+                                <td class="text-center" data-col="n_discons">Políticas de Seguridad</td>
+                                <td class="text-center" ngSwitch="Aprobado">
+                                    <h3><span *ngSwitchCase="'Aprobado'"  class="label label-primary">&nbsp;Aprobado&nbsp;&nbsp;</span></h3>
+                                    <h3><span *ngSwitchCase="'Emision'"     class="label label-default">&nbsp;&nbsp;&nbsp;Emision&nbsp;&nbsp;&nbsp;</span></h3>
+                                    <h3><span *ngSwitchCase="'Cancelado'"   class="label label-danger" >&nbsp;Cancelado&nbsp;</span></h3>
+                                    <h3><span *ngSwitchCase="'En Revision'" class="label label-warning">En Revisión</span></h3>
+                                </td>
+                                <td class="text-center" data-col="idconstante">09</td>
+                                <td class="text-center" data-col="nomconstante">30/05/2016</td>
+                                <td class="text-center" data-col="v_descons">9001/GPO</td>
+                                <td class="text-center" data-col="n_discons">ERCP</td>
+                                <td class="text-center" data-col="idconstante">127</td>
+                                <td class="text-center" data-col="idconstante">Solicitado</td>
+                                <td class="text-center" data-col="idconstante">Emitido</td>
+                                <td class="text-center" data-col="n_discons">
+                                    <button title="Ver Documento" class="btn btn-primary btn-sm m-r"  style="margin-right:0px;">
+                                        <i class="fa fa-file-o"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr><!-- *ngFor="let item of items; let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow">-->                                                
+                                <td class="text-center" data-col="nomconstante">GGARRE025</td>
+                                <td class="text-center" data-col="n_discons">Filtros de agua</td>
+                                <td class="text-center" ngSwitch="Cancelado">
+                                    <h3><span *ngSwitchCase="'Aprobado'"  class="label label-primary">&nbsp;Aprobado&nbsp;&nbsp;</span></h3>
+                                    <h3><span *ngSwitchCase="'Emision'"     class="label label-default">&nbsp;&nbsp;&nbsp;Emision&nbsp;&nbsp;&nbsp;</span></h3>
+                                    <h3><span *ngSwitchCase="'Cancelado'"   class="label label-danger" >&nbsp;Cancelado&nbsp;</span></h3>
+                                    <h3><span *ngSwitchCase="'En Revision'" class="label label-warning">En Revisión</span></h3>
+                                </td>
+                                <td class="text-center" data-col="idconstante">12</td>
+                                <td class="text-center" data-col="nomconstante">30/05/2015</td>
+                                <td class="text-center" data-col="v_descons">17025/GGAR</td>
+                                <td class="text-center" data-col="n_discons">EOF</td>
+                                <td class="text-center" data-col="idconstante">237</td>
+                                <td class="text-center" data-col="idconstante">Aprobación</td>
+                                <td class="text-center" data-col="idconstante">Rechazado</td>
+                                <td class="text-center" data-col="n_discons">
+                                    <button title="Ver Documento" class="btn btn-primary btn-sm m-r"  style="margin-right:0px;">
+                                        <i class="fa fa-file-o"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+                        <pagination [(ngModel)]="paginacion.pagina"  [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-center m-a-sm">
+                            <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                        </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-right m-a-sm">
+                            <pagination-set ></pagination-set>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<swal
+#visorPdfSwal
+[showConfirmButton]="false"
+customClass="pdf-swal">
+<form *swalPartial class="ajuste">
+    <visor-pdf id="02" [url]="urlPDF"></visor-pdf>
+</form>
+</swal>

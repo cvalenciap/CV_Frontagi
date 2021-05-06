@@ -1,0 +1,94 @@
+<div class="modal-header modal-cabecera-color">
+        <h4 class="modal-title pull-left">
+                Distribución del Proceso de Revisión y Actualización de Documentos - {{txtFechaActual|date:'yyyy'}}</h4>
+        <!--Button Cerra Modal-->
+        <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+            <span aria-hidden="true" class="cerrar">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+        <div class="row">
+                <div class="col-lg-12">
+                <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+                    <sk-three-bounce></sk-three-bounce>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-stripped table-hover issue-tracker">
+                        <thead>
+                        <tr>
+                        <!--<th class="text-center">Gerencias</th>-->
+                        <!--<th *ngFor="ocultarColumna" class="text-center">Id Programacion</th>
+                        <th *ngFor="ocultarColumna" class="text-center">Id Documento</th>
+                        <th *ngFor="ocultarColumna" class="text-center">Id Equipos</th>-->
+                        <th class="text-center">Equipos</th>
+                        <th class="text-center">I-Trim</th>
+                        <th class="text-center">II-Trim</th>
+                        <th class="text-center">III-Trim</th>
+                        <th class="text-center">IV-Trim</th>
+                        <!--<th class="text-center">Total Equipos</th>-->
+                        <th class="text-center">Detalle</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of items; let i=index;" (click)="OnRowClick(i,item)" [class.info]="i==selectedRow">
+                                <!--<td *ngFor="ocultarColumna" class="text-center" data-col="idResponsableEquipo">{{item.idProg}}</td>
+                                <td *ngFor="ocultarColumna" class="text-center" data-col="idResponsableEquipo">{{item.idDocu}}</td>
+                                <td *ngFor="ocultarColumna" class="text-center" data-col="idResponsableEquipo">{{item.idResponsableEquipo}}</td>-->
+                                <td class="text-center" data-col="responsableEquipo">{{item.responsableEquipo}}</td>
+                                <td class="text-center" data-col="primerTrim">{{item.primerTrim}}</td>
+                                <td class="text-center" data-col="segundoTrim">{{item.segundoTrim}}</td>
+                                <td class="text-center" data-col="tercerTrim">{{item.tercerTrim}}</td>
+                                <td class="text-center" data-col="cuartoTrim">{{item.cuartoTrim}}</td>
+                                <!--<td class="text-center" data-col="responsableEquipo">{{item.totalEquipos}}</td>-->
+                                <td class="text-center" data-col="responsableEquipo">
+                                    <!--<button class="btn btn-link" (click)="verDetalle(item.idDocu)"><i class="fa fa-search"></i></button>-->
+                                    <button class="btn btn-link" (click)="verDetalle(item.idProg)"><i class="fa fa-search"></i></button>
+                                </td>                                
+                            </tr>
+                                    
+                        <!--
+                        <tr  (click)="OnRowClick(1,item)" [class.info]="1==selectedRow">
+                                <td class="text-center">GG</td>
+                                <td class="text-center" >EBS</td>
+                                <td class="text-center" >2</td>
+                                <td class="text-center" >3</td>
+                                <td class="text-center" >1</td>
+                                <td class="text-center" >0</td>
+                                <td class="text-center" >1</td>
+                                <td class="text-center" ><button class="btn btn-link" (click)="verDetalle()"><i class="fa fa-search"></i></button></td>
+                        </tr>
+                        <tr  (click)="OnRowClick(2,item)" [class.info]="2==selectedRow">
+                            <td class="text-center">GG</td>
+                            <td class="text-center" >ECI</td>
+                            <td class="text-center" >1</td>
+                            <td class="text-center" >0</td>
+                            <td class="text-center" >0</td>
+                            <td class="text-center" >0</td>
+                            <td class="text-center" >1</td>
+                            <td class="text-center" ><button class="btn btn-link" (click)="verDetalle()"><i class="fa fa-search"></i></button></td>
+                            </tr>
+                        -->
+                        </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+                            <pagination [(ngModel)]="paginacion.pagina" (pageChanged)="OnPageChanged($event)" [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="text-center m-a-sm">
+                            <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="text-right m-a-sm">
+                            <pagination-set (optionChanged)="OnPageOptionChanged($event)"></pagination-set>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+    
+    </div>
+    

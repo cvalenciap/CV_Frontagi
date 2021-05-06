@@ -1,0 +1,119 @@
+<div class="row wrapper border-bottom white-bg page-heading" style="padding-bottom:5px;">
+    <div class="col-lg-12" style="margin-top: 8px">
+        <h4>Seguimiento / <strong>Reporte de Documentos de Altas y Cancelados</strong></h4>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row m-b-sm">
+        <div class="col-lg-4">
+            <div class="input-group">
+                <input type="text" placeholder="Buscar" class="form-control" [(ngModel)]="textoBusqueda">
+                <span class="input-group-btn" dropdown>
+                    <button type="button" class="btn btn-info" (click)="busquedaSimple()"><i
+                            class="fa fa-search"></i></button>
+                    <button dropdownToggle type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split"><i
+                            class="fa fa-caret-down"></i></button>
+
+                    <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
+                        <li role="menuitem" [class.active]="parametroBusqueda == 'codigoDocumento'">
+                            <a (click)="parametroBusqueda = 'codigoDocumento';this.textoBusqueda = ''">Código de
+                                Documento</a>
+                        </li>
+                        <li role="menuitem" [class.active]="parametroBusqueda == 'tituloDocumento'">
+                            <a (click)="parametroBusqueda = 'tituloDocumento';this.textoBusqueda = ''">Título de
+                                Documento</a>
+                        </li>
+                        <li role="menuitem" [class.active]="parametroBusqueda == '-'">
+                            <a (click)="abrirBusquedaAvanzada()">Busqueda Avanzada</a>
+                        </li>
+                    </ul>
+                </span>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <div class="btn-group">
+                <button class="btn btn-light" (click)="limpiar()" style="margin-right: 7px;"><i
+                        class="fa fa-eraser"></i> Limpiar</button>
+                <button class="btn btn-primary" (click)="OnExportarXls()"><i class="fa fa-file-excel-o"></i> Exportar
+                    Excel</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div *ngIf="mostrarAlerta">
+                <alert type="info">
+                    <span [innerHtml]="mensajeAlerta"></span>
+                </alert>
+            </div>
+            <div class="form-group">
+                <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+                    <sk-three-bounce></sk-three-bounce>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-stripped table-hover issue-tracker">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" data-col="codigo">Código</th>
+                                    <th class="text-center" data-col="titulo">Título</th>
+                                    <th class="text-center" data-col="revision">N° Revisión</th>
+                                    <th class="text-center" data-col="tipo">Tipo de Solicitud</th>
+                                    <th class="text-center" data-col="motivo">Motivo Cancelación</th>
+                                    <th class="text-center" data-col="descripcion">Descripción Cancelación</th>
+                                    <th class="text-center" data-col="solicitado">Solicitado por</th>
+                                    <th class="text-center" data-col="fechas">Fecha de Solicitud</th>
+                                    <th class="text-center" data-col="aprobado">Aprobado Por</th>
+                                    <th class="text-center" data-col="fechaa">Fecha Aprobación</th>
+                                    <th class="text-center" data-col="cancelado">Ejecutado Por</th>
+                                    <th class="text-center" data-col="fechac">Fecha Ejecución</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let cancelacion of solicitudesCancelacion; let i = index"
+                                    (click)="OnRowClick(i, item)" [class.info]="i == selectedRow">
+                                    <td class="text-center" data-col="codigo">{{cancelacion.codigoDocumento}}</td>
+                                    <td class="text-left" data-col="titulo">{{cancelacion.tituloDocumento}}</td>
+                                    <td class="text-center" data-col="revision">{{cancelacion.numeroRevision}}</td>
+                                    <td class="text-center" data-col="tipo">{{cancelacion.tipoCancelacion}}</td>
+                                    <td class="text-left" data-col="motivo">{{cancelacion.motivoCancelacion}}</td>
+                                    <td class="text-left" data-col="descripcion">
+                                        <div>{{cancelacion.sustentoSolicitud }}</div>
+                                    </td>
+                                    <td class="text-left" data-col="solicitado">
+                                        {{cancelacion.nombreColaborador + ' ' + cancelacion.apePatColaborador + ' ' + cancelacion.apeMatColaborador}}
+                                    </td>
+                                    <td class="text-center" data-col="fechas">
+                                        {{cancelacion.fechaSolicitud | date:'dd/MM/yyyy'}}</td>
+                                    <td class="text-left" data-col="aprobado">{{cancelacion.aprobador}}</td>
+                                    <td class="text-center" data-col="fechaa">
+                                        {{cancelacion.fechaAprobacion | date:'dd/MM/yyyy'}}</td>
+                                    <td class="text-left" data-col="cancelado">{{cancelacion.cancelador}}</td>
+                                    <td class="text-center" data-col="fechac">
+                                        {{cancelacion.fechaCancelacion | date:'dd/MM/yyyy'}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+                            <pagination [(ngModel)]="paginacion.pagina" (pageChanged)="onPageChanged($event)"
+                                [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros"
+                                [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;"
+                                firstText="&laquo;" lastText="&raquo;"></pagination>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="text-center m-a-sm">
+                                <pagination-info [totalItems]="paginacion.totalRegistros"
+                                    [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="text-right m-a-sm">
+                                <pagination-set (optionChanged)="onPageOptionChanged($event)"></pagination-set>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

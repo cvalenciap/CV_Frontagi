@@ -1,0 +1,336 @@
+<div class="row wrapper border-bottom white-bg page-heading" style="padding-bottom: 5px;">
+    <div class="col-lg-12" style="margin-top: 8px">
+        <h4>Inicio / Auditoría / Área y Norma /
+            <strong>Detalle Área y Requisito</strong>
+        </h4>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight div-principal">
+    <div class="row m-b-md bt-div-superior">
+        <div class="col-lg-12">
+            <a class="btn btn-primary m-r bt-superior" >
+                <i class="fa fa-check"></i> Guardar</a>
+            <a class="btn btn-default btn-colores m-r bt-superior" (click)="OnRegresar()">
+                <i class="fa fa-arrow-left"></i> Regresar</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content" style="height: 467px;">
+                <form class="form-horizontal">
+                        <div class="form-group">
+                            <div class="ibox-content" style="height: 80px; margin-left:20px; margin-right:20px;">
+                                <div class="row">
+                                    <label class="col-sm-2 control-label titulos-texto" style="padding-left: 0px;width: 105px;padding-top: 4px;">Tipo de Área:</label>
+                                    <fieldset class="col-sm-4"> 
+                                        <label class="titulos-texto" style="padding-right: 20px;"><input type="radio" name="tipoarea" value="gerencia" [checked]="true" (change)="valorRadio=1;"> Gerencia / Equipo </label>
+                                        <label class="titulos-texto" style="padding-right: 20px;"><input type="radio" name="tipoarea" value="comite" (change)="valorRadio=2;"> Comité </label>
+                                    </fieldset>
+                                </div>
+                                <div class="row" *ngIf="valorRadio==1">
+                                    <label class="col-sm-1"
+                                    style="padding-left: 8px; padding-top: 5px;width: 80px;padding-right: 15px;">Gerencia:</label>
+                                    <div class="col-sm-2" style="padding-left: 0px;">
+                                        <select name="dispo" id="dispo" class="form-control tx-cajas" style="width: 400px;">
+                                            <option value="null" disabled>SELECIONE</option>
+                                            <option value="1">GERENCIA RECURSOS HUMANOS</option>
+                                            <option value="0">GERENCIA DE DESARROLLO E INVESTIGACIÓN</option>
+                                            <option value="1">GERENCIA AUDITORIA INTERNA</option>
+                                            <option value="0">GERENCIA FINANZAS</option>
+                                            <option value="1">GERENCIA DE PRODUCC.Y DISTRIBUC.PRIMARIA</option>
+                                            <option value="0">GERENCIA DE DESARROLLO E INVESTIGACION</option>
+                                            <option value="1">GERENCIA DE PRODUCC.Y DISTRIBUC.PRIMARIA</option>
+                                            <option value="0">GERENCIA DE GESTION DE AGUAS RESIDUALES</option>
+                                            <option value="1">GERENCIA LOGISTICA Y SERVICIOS</option>
+                                            <option value="0">GERENCIA SERVICIOS NORTE</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row" *ngIf="valorRadio==2">
+                                    <label class="col-sm-1"
+                                        style="padding-left: 8px; padding-top: 5px;width: 80px;padding-right: 15px;">Comité:</label>
+                                    <div class="col-sm-2" style="padding-left: 0px;">
+                                        <select name="comite" id="dispo" class="form-control tx-cajas" style="width: 400px;">
+                                            <option value="null" disabled>SELECCIONE</option>
+                                            <option value="1">COMITE RECURSOS HUMANOS</option>
+                                            <option value="0">COMITE DE DESARROLLO E INVESTIGACIÓN</option>
+                                            <option value="1">COMITE AUDITORIA INTERNA</option>
+                                            <option value="0">COMITE FINANZAS</option>
+                                            <option value="1">COMITE DE PRODUCC.Y DISTRIBUC.PRIMARIA</option>
+                                            <option value="0">COMITE DE DESARROLLO E INVESTIGACION</option>
+                                            <option value="1">COMITE DE PRODUCC.Y DISTRIBUC.PRIMARIA</option>
+                                            <option value="0">COMITE DE GESTION DE AGUAS RESIDUALES</option>
+                                            <option value="1">COMITE LOGISTICA Y SERVICIOS</option>
+                                            <option value="0">COMITE SERVICIOS NORTE</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-sm control-label"
+                                style="padding-top: 5px;padding-right: 75px;padding-left: 31px;">Detalle de Área por
+                                Requisito :</label>
+                        </div>
+                    </div>
+                </form>
+
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-lg-12">
+                            <div class="ibox-content" style="padding-top: 5px; padding-right: 5px; padding-bottom: 5px;padding-left: 5px;height: 312px;">
+                                <div class="table-responsive" style="height: 297px;">
+
+                                    <table *ngIf="valorRadio==1" class="table table-bordered table-stripped table-hover">
+                                            <thead>
+                                                    <tr>
+                                                        <th class="text-center" data-col="descripcionEntidad">Gerencia/Equipo/Cargo</th>
+                                                        <th class="text-center" data-col="norma">Norma</th>
+                                                        <th class="text-center" data-col="requisito">Requisito</th>
+                                                        <th class="text-center" data-col="accion">Acción</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="text-center" data-col="descripcionEntidad" rowspan="3"
+                                                            >
+                                                            <b> GERENCIA DE DESARROLLO E INVESTIGACIÓN</b></td>
+                                                        <td class="text-center" data-col="norma">ISO 9001</td>
+                                                        <td class="text-center" data-col="requisito">4, 4.1, 4.2, 4.3, 4.4</td>
+                                                        <td class="text-center" data-col="accion" rowspan="3">
+                                                            <button title="Agregar Requisito" class="btn btn-success btn-sm m-r"
+                                                                (click)="agregarRequisitos()">
+                                                                <i class="fa fa-plus"></i>
+                                                            </button>
+                                                            <button title="Agregar Cuestionario" class="btn btn-success-revisar btn-sm m-r"
+                                                                (click)="agregarCuestionario()">
+                                                                <i class="fa fa-question"></i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center" data-col="norma">ISO 14001</td>
+                                                        <td class="text-center" data-col="requisito">4, 4.1, 4.2, 4.3, 4.4</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center" data-col="norma">OHSAS 18001</td>
+                                                        <td class="text-center" data-col="requisito">4, 4.1, 4.2, 4.3, 4.3.1, 4.3.2</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center" data-col="descripcionEntidad" rowspan="3"
+                                                            >
+                                                            EQUIPO PLANEAMIENTO FÍSICO Y PRE INVERSIÓN</td>
+                                                        <td class="text-center" data-col="norma">ISO 9001</td>
+                                                        <td class="text-center" data-col="requisito">5 , 5.1 , 5.2</td>
+                                                        <td class="text-center" data-col="accion" rowspan="3">
+                                                            <button title="Agregar Norma" class="btn btn-success btn-sm m-r"
+                                                                (click)="agregarRequisitos()">
+                                                                <i class="fa fa-plus"></i>
+                                                            </button>
+                                                            <button title="Agregar Cuestionario" class="btn btn-success-revisar btn-sm m-r"
+                                                            (click)="agregarCuestionario()">
+                                                            <i class="fa fa-question"></i>
+                                                        </button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center" data-col="norma">ISO 14001</td>
+                                                        <td class="text-center" data-col="requisito">1 , 1.3</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center" data-col="norma">ISO/IEC 17025</td>
+                                                        <td class="text-center" data-col="requisito"> 1, 5.1 , 1.3</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center" data-col="descripcionEntidad" rowspan="3"
+                                                            >
+                                                            EQUIPO PLANEAMIENTO OPERATIVO FINANCIERO</td>
+                                                        <td class="text-center" data-col="norma">ISO 9001</td>
+                                                        <td class="text-center" data-col="requisito">1.1 , 1.2</td>
+                                                        <td class="text-center" data-col="accion" rowspan="3">
+                                                            <button title="Agregar Norma" class="btn btn-success btn-sm m-r"
+                                                                (click)="agregarRequisitos()">
+                                                                <i class="fa fa-plus"></i>
+                                                            </button>
+                                                            <button title="Agregar Cuestionario" class="btn btn-success-revisar btn-sm m-r"
+                                                            (click)="agregarCuestionario()">
+                                                            <i class="fa fa-question"></i>
+                                                        </button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center" data-col="norma">ISO 14001</td>
+                                                        <td class="text-center" data-col="requisito">1, 1.2, 1.3, 5.1, 5.2 , 1.3</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center" data-col="norma">OHSAS 18001</td>
+                                                        <td class="text-center" data-col="requisito">1, 1.2, 1.3, 5.1, 5.2 , 1.3</td>
+                                                    </tr>
+        
+                                                    <tr>
+                                                        <td class="text-center" data-col="descripcionEntidad" rowspan="3"
+                                                            >
+                                                            <b>
+                                                                GERENCIA COMERCIAL</b></td>
+                                                        <td class="text-center" data-col="norma">ISO 9001</td>
+                                                        <td class="text-center" data-col="requisito">1, 1.2, 1.3, 5.1, 5.2 , 1.3</td>
+                                                        <td class="text-center" data-col="accion" rowspan="3">
+                                                            <button title="Agregar Norma" class="btn btn-success btn-sm m-r"
+                                                                (click)="agregarRequisitos()">
+                                                                <i class="fa fa-plus"></i>
+                                                            </button>
+                                                            <button title="Agregar Cuestionario" class="btn btn-success-revisar btn-sm m-r"
+                                                            (click)="agregarCuestionario()">
+                                                            <i class="fa fa-question"></i>
+                                                        </button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center" data-col="norma">ISO 14001</td>
+                                                        <td class="text-center" data-col="requisito">1, 1.2, 1.3, 5.1, 5.2 , 1.3</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center" data-col="norma">OHSAS 18001</td>
+                                                        <td class="text-center" data-col="requisito">1, 1.2, 1.3, 5.1, 5.2 , 1.3</td>
+                                                    </tr>
+        
+                                                    <tr>
+                                                        <td class="text-center" data-col="descripcionEntidad" rowspan="3"
+                                                            >
+                                                            EQUIPO GESTIÓN COMERCIAL Y MICROMEDICIÓN / CC-GC / CC-EGCM
+                                                        </td>
+                                                        <td class="text-center" data-col="norma">ISO 9001</td>
+                                                        <td class="text-center" data-col="requisito">1, 1.2, 1.3, 5.1, 5.2 , 1.3</td>
+                                                        <td class="text-center" data-col="accion" rowspan="3">
+                                                            <button title="Agregar Norma" class="btn btn-success btn-sm m-r"
+                                                                (click)="agregarRequisitos()">
+                                                                <i class="fa fa-plus"></i>
+                                                            </button>
+                                                            <button title="Agregar Cuestionario" class="btn btn-success-revisar btn-sm m-r"
+                                                            (click)="agregarCuestionario()">
+                                                            <i class="fa fa-question"></i>
+                                                        </button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center" data-col="norma">ISO 14001</td>
+                                                        <td class="text-center" data-col="requisito"> 1, 1.2, 1.3, 5.1, 5.2 , 1.3</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center" data-col="norma">ISO/IEC 17020</td>
+                                                        <td class="text-center" data-col="requisito"> 1, 1.2, 1.3, 5.1, 5.2</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center" data-col="descripcionEntidad" rowspan="3"
+                                                            >
+                                                            EQUIPO SERVICIOS Y CLIENTES ESPECIALES</td>
+                                                        <td class="text-center" data-col="norma">ISO 14001</td>
+                                                        <td class="text-center" data-col="requisito">1 , 1, 1.2, 1.3, 5.1, 5.2 , 1.3</td>
+                                                        <td class="text-center" data-col="accion" rowspan="3">
+                                                            <button title="Agregar Norma" class="btn btn-success btn-sm m-r"
+                                                                (click)="agregarRequisitos()">
+                                                                <i class="fa fa-plus"></i>
+                                                            </button>
+                                                            <button title="Agregar Cuestionario" class="btn btn-success-revisar btn-sm m-r"
+                                                            (click)="agregarCuestionario()">
+                                                            <i class="fa fa-question"></i>
+                                                        </button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center" data-col="norma">ISO 9001</td>
+                                                        <td class="text-center" data-col="requisito">1 , 1.3</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center" data-col="norma">ISO 14001</td>
+                                                        <td class="text-center" data-col="requisito">1 , 4.1 , 4.2 , 4.3</td>
+                                                    </tr>
+                                                </tbody>
+                                    </table>
+                                    
+                                    <table *ngIf="valorRadio==2" class="table table-bordered table-stripped table-hover">
+                                        <thead>
+                                                <tr>
+                                                    <th class="text-center" data-col="descripcionEntidad">Comité</th>
+                                                    <th class="text-center" data-col="norma">Norma</th>
+                                                    <th class="text-center" data-col="requisito">Requisito</th>
+                                                    <th class="text-center" data-col="accion">Acción</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-center" data-col="descripcionEntidad">
+                                                        Comité Norte
+                                                    </td>
+                                                    <td class="text-center" data-col="norma">ISO 9001</td>
+                                                    <td class="text-center" data-col="requisito">4, 4.1, 4.2, 4.3, 4.4</td>
+                                                    <td class="text-center" data-col="accion">
+                                                        <button title="Agregar Requisito" class="btn btn-success btn-sm m-r"
+                                                            (click)="agregarRequisitos()">
+                                                            <i class="fa fa-plus"></i>
+                                                        </button>
+                                                        <button title="Eliminar" class="btn btn-danger btn-sm m-r"
+                                                            [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }">
+                                                            <i class="fa fa-minus"></i>
+                                                        </button>                                                        
+                                                        <button title="Agregar Cuestionario" class="btn btn-success-revisar btn-sm m-r"
+                                                            (click)="agregarCuestionario()">
+                                                            <i class="fa fa-question"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center" data-col="descripcionEntidad">
+                                                        Comité Sur
+                                                    </td>
+                                                    <td class="text-center" data-col="norma">ISO 14001</td>
+                                                    <td class="text-center" data-col="requisito">4, 4.1, 4.2, 4.3, 4.4</td>
+                                                    <td class="text-center" data-col="accion">
+                                                        <button title="Agregar Requisito" class="btn btn-success btn-sm m-r"
+                                                            (click)="agregarRequisitos()">
+                                                            <i class="fa fa-plus"></i>
+                                                        </button>
+                                                        <button title="Eliminar" class="btn btn-danger btn-sm m-r"
+                                                            [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }">
+                                                            <i class="fa fa-minus"></i>
+                                                        </button>                                                        
+                                                        <button title="Agregar Cuestionario" class="btn btn-success-revisar btn-sm m-r"
+                                                            (click)="agregarCuestionario()">
+                                                            <i class="fa fa-question"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center" data-col="descripcionEntidad">
+                                                        Comité Este
+                                                    </td>
+                                                    <td class="text-center" data-col="norma">OHSAS 18001</td>
+                                                    <td class="text-center" data-col="requisito">4, 4.1, 4.2, 4.3, 4.3.1, 4.3.2</td>
+                                                    <td class="text-center" data-col="accion">
+                                                        <button title="Agregar Requisito" class="btn btn-success btn-sm m-r"
+                                                            (click)="agregarRequisitos()">
+                                                            <i class="fa fa-plus"></i>
+                                                        </button>
+                                                        <button title="Eliminar" class="btn btn-danger btn-sm m-r"
+                                                            [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }">
+                                                            <i class="fa fa-minus"></i>
+                                                        </button>                                                        
+                                                        <button title="Agregar Cuestionario" class="btn btn-success-revisar btn-sm m-r"
+                                                            (click)="agregarCuestionario()">
+                                                            <i class="fa fa-question"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

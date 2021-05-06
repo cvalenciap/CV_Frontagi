@@ -1,0 +1,37 @@
+{
+  "listaInstructores": [
+    {
+      "tipo":"Interno",
+      "nroficha": "0050",
+      "nombreapellido": "Cristian Guerra",
+      "tipodocumento": "DNI",
+      "nrodocumento": "47549954",
+      "disponible": "Si"
+    },
+    {
+      "tipo":"Externo",
+      "nroficha": "100",
+      "nombreapellido": "Carlos Quintana",
+      "tipodocumento": "LE",
+      "nrodocumento": "001522",
+      "disponible": "No"
+    },
+    {
+      "tipo":"Interno",
+      "nroficha": "0048",
+      "nombreapellido": "Victor Quispe",
+      "tipodocumento": "DNI",
+      "nrodocumento": "1456870",
+      "disponible": "Si"
+    },
+    {
+      "tipo":"Interno",
+      "nroficha": "0200",
+      "nombreapellido": "Marco Villano",
+      "tipodocumento": "RUC",
+      "nrodocumento": "14124774995",
+      "disponible": "Si"
+    }
+
+  ]
+}

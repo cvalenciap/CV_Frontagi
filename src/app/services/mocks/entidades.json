@@ -1,0 +1,126 @@
+{
+    "entidades": {
+        "listaGerencias": [
+            {
+                "valorGerencia":"1",
+                "descripcionGerencia":"Gerencia General"
+            },
+            {
+                "valorGerencia":"2",
+                "descripcionGerencia":"Gerencia de Auditoría Interna"
+            },
+            {
+                "valorGerencia":"3",
+                "descripcionGerencia":"Gerencia de Recursos Humanos"
+            },
+            {
+                "valorGerencia":"4",
+                "descripcionGerencia":"Gerencia de Logistica y Servicios"
+            },
+            {
+                "valorGerencia":"5",
+                "descripcionGerencia":"Gerencia de Asuntos Legales y Regulación"
+            }
+        ],
+        "listaEquipos": [
+            {
+                "valorEquipo":"1",
+                "descripcionEquipo":"ETIC"
+            },
+            {
+                "valorEquipo":"2",
+                "descripcionEquipo":"ESAC"
+            },
+            {
+                "valorEquipo":"3",
+                "descripcionEquipo":"EGI"
+            }
+        ],
+        "listaCargos": [
+            {
+                "valorCargo":"1",
+                "descripcionCargo":"Representante de Alta Dirección - RAD"
+            },
+            {
+                "valorCargo":"2",
+                "descripcionCargo":"CC-PTA"
+            },
+            {
+                "valorCargo":"3",
+                "descripcionCargo":"CC-GPO"
+            },
+            {
+                "valorCargo":"4",
+                "descripcionCargo":"C-GOAS"
+            },
+            {
+                "valorCargo":"5",
+                "descripcionCargo":"CC-EPD"
+            },
+            {
+                "valorCargo":"6",
+                "descripcionCargo":"CC-GC"
+            },
+            {
+                "valorCargo":"7",
+                "descripcionCargo":"CC-EOMR"
+            },
+            {
+                "valorCargo":"8",
+                "descripcionCargo":"C-AMB"
+            },
+            {
+                "valorCargo":"9",
+                "descripcionCargo":"C-OHSAS"
+            },
+            {
+                "valorCargo":"10",
+                "descripcionCargo":"CCL-EEC"
+            },
+            {
+                "valorCargo":"11",
+                "descripcionCargo":"Comite Central"
+            },
+            {
+                "valorCargo":"12",
+                "descripcionCargo":"Sub Comités SST"
+            },
+            {
+                "valorCargo":"13",
+                "descripcionCargo":"Sub Comités Ambientales del SGI"
+            }
+            
+        ],
+        "listaComites":[
+            {
+                "valorComite":"1",
+                "descripcionComite":"Comité Central SST"
+            },
+            {
+                "valorComite":"2",
+                "descripcionComite":"Sub Comité SST COP La Atarjea - Sede Central"
+            },
+            {
+                "valorComite":"3",
+                "descripcionComite":"Sub Comité SST COP La Atarjea - Alrededores"
+            },
+            {
+                "valorComite":"4",
+                "descripcionComite":"Sub Comité SST Redes"
+            },
+            {
+                "valorComite":"5",
+                "descripcionComite":"Sub Comité SST Medidores"
+            },
+            {
+                "valorComite":"6",
+                "descripcionComite":"Sub Comité SST Planta"
+            },
+            {
+                "valorComite":"7",
+                "descripcionComite":"Sub Comité SST Planta"
+            }
+        ]
+
+    }
+  }

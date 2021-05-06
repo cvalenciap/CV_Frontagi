@@ -1,0 +1,135 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <h2>Bandeja de Capacitaciones</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a routerLink="starterview">Inicio</a>
+            </li>
+            <li>
+                <a>Capacitación</a>
+            </li>
+            <li class="active">
+                <strong>Bandeja de Capacitaciones</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row m-b-sm">
+        <div class="col-lg-1">
+            <a [routerLink]="['registrar']" class="btn btn-primary"><i class="fa fa-plus"></i> Nuevo</a>
+        </div>
+        <div class="col-lg-3">
+            <div class="input-group">
+                <input type="text" placeholder="Buscar" class="form-control" [(ngModel)]="textoBusqueda">
+                <span class="input-group-btn" dropdown>
+                    <button type="button" class="btn btn-info" (click)="listarCapacitaciones()"><i class="fa fa-search"></i></button>
+                    <button dropdownToggle type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split"><i class="fa fa-caret-down"></i></button>
+                    <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
+                        <li role="menuitem" [class.active]="parametroBusqueda == 'capacitacion'"><a (click)="parametroBusqueda = 'capacitacion'">Capacitación</a></li>
+                        <li role="menuitem" [class.active]="parametroBusqueda == 'instructor'"><a (click)="parametroBusqueda = 'instructor'">Instructor</a></li>
+                        <li role="menuitem" [class.active]="parametroBusqueda == 'anioPlanificacion'"><a (click)="parametroBusqueda = 'anioPlanificacion'">Año Planificación</a></li>
+                        <li role="menuitem" [class.active]="parametroBusqueda == 'estado'"><a (click)="parametroBusqueda = 'estado'">Estado</a></li>
+                        <li role="menuitem"><a (click)="abrirBusqueda()">Busqueda Avanzada</a></li>
+                    </ul>
+                </span>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <!-- <div class="btn-group">
+                <a [routerLink]="['editar']" class="btn btn-warning"><i class="fa fa-edit"></i> Actualizar</a>
+                <button class="btn btn-danger m-r" [disabled]="selectedRow<0"
+                        [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                        (confirm)="onEliminar()" >
+                    <i class="fa fa-trash"></i> Eliminar
+                </button>
+            </div> -->
+            <div class="btn-group">
+                <button class="btn btn-success" [disabled]="selectedRow<0" ><i class="fa fa-list-alt"></i> Rep. Resultado</button>
+                <button class="btn btn-primary m-r" [disabled]="selectedRow<0" ><i class="fa fa-list-alt"></i> Rep. Avance</button>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-default m-r" ><i class="fa fa-eraser"></i> Limpiar</button>
+                <button class="btn btn-primary m-r" [disabled]="selectedRow<0" ><i class="fa fa-file-o"></i> Exportar</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div *ngIf="mostrarAlerta">
+                <alert type="info" ><span [innerHtml]="mensajeAlerta"></span></alert>
+            </div>
+            <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+                <sk-three-bounce></sk-three-bounce>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-stripped table-hover issue-tracker">
+                        <thead>
+                        <tr>
+                            <th class="text-center">Código</th>
+                            <th class="text-center">Capacitacion</th>
+                            <th class="text-center">Fecha Inicio</th>
+                            <th class="text-center">Fecha Fin</th>
+                            <th class="text-center">Instructor</th>
+                            <!-- <th class="text-center">Equipo</th> -->
+                            <th class="text-center">Cant. Participantes</th>
+                            <!-- <th class="text-center">Año Planificación</th> -->
+                            <!-- <th class="text-center">Trimestre</th> -->
+                            <th class="text-center">Estado</th>
+                            <th class="text-center">Acción</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                       <tr *ngFor="let item of items; let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow">
+                            <td class="text-center">{{item.codigoCurso}}</td>                            
+                            <td class="text-center">{{item.nombreCurso}}</td>
+                            <td class="text-center">{{item.fechaInicio  | date:'dd/MM/yyyy' }} </td>
+                            <td class="text-center">{{item.fechaFin  | date:'dd/MM/yyyy' }} </td>
+                            <td class="text-center" style="width: 200px;">{{item.nombreInstructor}} </td>
+                            <!-- <td class="text-center" style="width: 10px;">{{item.equipoContratista}} </td> -->
+                            <td class="text-center" style="width: 100px;">{{item.cantParticipantes}}</td>
+                            <!-- <td class="text-center" data-col="disponible">{{item.anioPlanificacion}}</td> -->
+                            <!-- <td class="text-center" data-col="disponible">{{item.trimestre}}</td> -->
+                            <td class="text-center">{{item.estadoCapacitacion}}</td>
+                            <!-- <td class="text-center" data-col="Accion" style="width:130px;padding-left:0px;padding-right:0px;">
+                                <button title="Actualizar" class="btn btn-success btn-sm m-r" (click)="OnModificar(item)" ><i class="fa fa-edit"></i></button>
+                                <div style="display: inline-block;width: 3%;"></div>
+                                <button title="Eliminar" class="btn btn-danger btn-sm m-r"
+                                [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                                (confirm)="onEliminar(item)">
+                                <i class="fa fa-trash"></i> 
+                                </button>
+                            </td>  -->
+                            <td class="text-center" data-col="accion">
+                                    <button title="Actualizar" class="btn btn-success btn-sm m-r" (click)="editarCapacitacion(item)" ><i class="fa fa-edit"></i></button>
+                                    
+                                    <button title="Eliminar" class="btn btn-danger btn-sm m-r"
+                                    [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                                    (confirm)="eliminarCapacitacion(item)" [disabled]="item.estadoCapacitacion != 'R'">
+                                        <i class="fa fa-trash"></i> 
+                                    </button>
+
+                                    <!-- <button title="Exportar" class="btn btn-primary m-r" (click)="exportar" ><i class="fa fa-edit"></i></button> -->
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <pagination [(ngModel)]="paginacion.pagina" (pageChanged)="OnPageChanged($event)" [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-center m-a-sm">
+                            <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-right m-a-sm">
+                            <pagination-set (optionChanged)="OnPageOptionChanged($event)"></pagination-set>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

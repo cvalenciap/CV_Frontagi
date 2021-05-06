@@ -1,0 +1,9 @@
+{
+    "responseCode": "0",
+    "responseData": [
+      { "titulo": "Solicitud de Cancelación", "cantidad": "","ruta":"./SolicitudCancel","backgroundColor":"lazur-bg"},
+      { "titulo": "Aprobación de Cancelación", "cantidad": "","ruta":"./AprobacionCancel","backgroundColor":"lazur-bg"},
+      { "titulo": "Cancelación de Solicitud", "cantidad": "","ruta":"./CancelaSolicitud","backgroundColor":"lazur-bg"}
+      
+    ]
+  }

@@ -1,0 +1,106 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <h4>Inicio / Seguimiento / <strong>Programa Anual de Auditoría Interna</strong>
+        </h4>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight div-principal">
+    <div class="row m-b-md div-botones-superiores">
+        <div class="col-lg-4">
+            <div class="input-group">
+                <div *ngIf="selectedFilter == 'apellidoPat' || selectedFilter == 'avanzada'"><input #buscar type="text" placeholder="Buscar" class="form-control cajas-texto" name="valorApellidoPat" [(ngModel)]="valorApellidoPat"></div>
+                <div *ngIf="selectedFilter == 'apellidoMat'"><input #buscar type="text" placeholder="Buscar" class="form-control cajas-texto" name="valorApellidoMat" [(ngModel)]="valorApellidoMat"></div>
+                <div *ngIf="selectedFilter == 'nombre'"><input #buscar type="text" placeholder="Buscar" class="form-control cajas-texto" name="valorNombre" [(ngModel)]="valorNombre"></div>
+                    <select *ngIf="selectedFilter == 'equipo'" class="form-control cajas-texto" name="valorEquipo"
+                        [(ngModel)]="valorEquipo">
+                        <option value="" selected>Seleccionar</option>
+                        <option *ngFor="let item of listaEquipos" [value]="item.valorEquipo">{{ item.descripcionEquipo }}
+                        </option>
+                    </select>
+                <div *ngIf="selectedFilter == 'numeroAuditoria'"><input #buscar type="text" placeholder="Buscar" class="form-control cajas-texto" name="numeroAuditoria" [(ngModel)]="numeroAuditoria"></div>
+                <div *ngIf="selectedFilter == 'numeroLV'"><input #buscar type="text" placeholder="Buscar" class="form-control cajas-texto" name="valorNumeroLV" [(ngModel)]="valorNumeroLV"></div>
+                <div *ngIf="selectedFilter == 'numeroInformeAuditoria'"><input #buscar type="text" placeholder="Buscar" class="form-control cajas-texto" name="valorNumeroInformeAuditoria" [(ngModel)]="valorNumeroInformeAuditoria"></div>
+                <span class="input-group-btn" dropdown>
+                    <button type="button" class="btn btn-info botones-buscador" (click)="OnBuscar()"><i class="fa fa-search"></i></button>
+                    <button dropdownToggle type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split botones-buscador"><i class="fa fa-caret-down"></i></button>                    
+                    <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
+                        <li role="menuitem" [class.active]="selectedFilter == 'apellidoPat'"><a (click)="setFilter('apellidoPat')">Programa</a></li>
+                    </ul>
+                </span>
+            </div>
+        </div>
+   
+        <div class="col-lg-8">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content div-secundario" style=" height: 480px;" [ngClass]="{'sk-loading': loading}">
+                <div class="table-responsive" style="height: 344px;">
+                    <table class="table table-bordered table-stripped table-hover issue-tracker">
+                        <thead>
+                            <tr>
+                                <th class="text-center" data-col="programa">Programa</th>
+                                <th class="text-center" data-col="estadoP">Estado</th>
+                                <th class="text-center" data-col="accion">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center" data-col="programa">Auditoria Interna XXI</td>
+                                <td class="text-center" data-col="estadoP">En Revisión</td>
+                                <td class="text-center" data-col="accion">
+                                    <button title="Ver Detalle" class="btn btn-success botones-detalle btn-sm m-r"
+                                        (click)= "OnRevisionListaVer()"><i class="fa fa-pencil-square-o"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center" data-col="programa">Auditoria Interna XIII</td>
+                                <td class="text-center" data-col="estadoP">Aprobado</td>
+                                <td class="text-center" data-col="accion">
+                                    <button title="Ver Detalle" class="btn btn-success botones-detalle btn-sm m-r"
+                                    (click)= "OnRevisionListaVer()"><i class="fa fa-pencil-square-o"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center" data-col="programa">Auditoria Interna XV</td>
+                                <td class="text-center" data-col="estadoP">Aprobado</td>
+                                <td class="text-center" data-col="accion">
+                                    <button title="Ver Detalle" class="btn btn-success botones-detalle btn-sm m-r"
+                                    (click)= "OnRevisionListaVer()"><i class="fa fa-pencil-square-o"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+    
+                    </table>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <pagination class="texto-pie-pag" [(ngModel)]="paginacion.pagina"
+                            (pageChanged)="OnPageChanged($event)" [totalItems]="paginacion.totalRegistros"
+                            [itemsPerPage]="paginacion.registros" [boundaryLinks]="true" [maxSize]="5"
+                            previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+                        </pagination>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-center m-a-sm">
+                            <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros"
+                                [page]="paginacion.pagina"></pagination-info>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-right m-a-sm">
+                            <pagination-set class="texto-pie-pag" (optionChanged)="OnPageOptionChanged($event)">
+                            </pagination-set>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<mat-tab-group animationDuration="0ms">
+    <mat-tab label="Información General">
+                <!--components Documento -->
+ <bandeja-registro-documento #general [activar]="activar" (extrametododepadre)="extrametododepadre($event)" [permisos]="permisos?.general"></bandeja-registro-documento>
+    </mat-tab>
+    <mat-tab label="Participantes" >
+        <mat-tab-group animationDuration="0ms">
+        <mat-tab label="Elaboración"> 
+        <!--components de elaboración -->
+            <bandeja-documento-elaboracion #participantes [activar]="activar" [permisos]="permisos?.participantes.tabElaboracion"></bandeja-documento-elaboracion>
+        </mat-tab>
+        <mat-tab label="Consenso">
+            <bandeja-documento-consenso #concenso [activar]="activar" [permisos]="permisos?.participantes.tabConsenso"></bandeja-documento-consenso>
+        </mat-tab>
+        <mat-tab [label]="permisos?.participantes.tabAprobacion.esVisible?'Aprobación':''" [disabled]="!permisos?.participantes.tabAprobacion.esVisible">
+                <bandeja-documento-aprobacion #aprobacion [activar]="activar"  [permisos]="permisos.participantes.tabAprobacion"></bandeja-documento-aprobacion>
+        </mat-tab>
+        <mat-tab [label]="permisos?.participantes.tabHomologacion.esVisible?'Homologación':''" [disabled]="!permisos?.participantes.tabHomologacion.esVisible" >
+            <bandeja-documento-homologacion #homologacion [activar]="activar" [permisos]="permisos.participantes.tabHomologacion"></bandeja-documento-homologacion>
+        </mat-tab>
+        </mat-tab-group>
+    </mat-tab>  
+    <mat-tab label="Documento Relacionado"> 
+      <!--components Complementario -->
+      <bandeja-documento-complementario #complementario [activar]="activar" [permisos]="permisos?.docComplementario"></bandeja-documento-complementario>
+    </mat-tab>
+    <mat-tab label="Equipo Usuario">
+      <bandeja-documento-equipo-usuario #equipousuario [activar]="activar" [permisos]="permisos?.usuario"></bandeja-documento-equipo-usuario>
+    </mat-tab>
+    <mat-tab label="Revisiones">
+        <bandeja-documento-revision #revision [activar]="activar" [permisos]="permisos?.revision"></bandeja-documento-revision>
+    </mat-tab>
+    <mat-tab label="Bitácora" *ngIf="permisos?.fase.esVisible">
+        <fase-registro #bitacora [permisos]="permisos?.fase"></fase-registro>
+    </mat-tab>
+</mat-tab-group>

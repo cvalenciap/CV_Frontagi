@@ -1,0 +1,25 @@
+{
+  "listaTipos": [
+    {
+      "valorTipo":"1",
+      "descripcionTipo":"Norma"
+    },
+    {
+      "valorTipo":"2",
+      "descripcionTipo":"Incidencia"
+    },
+    {
+      "valorTipo":"3",
+      "descripcionTipo":"Tipo 3"
+    },
+    {
+      "valorTipo":"4",
+      "descripcionTipo":"Tipo 4"
+    },
+    { 
+      "valorTipo":"5",
+      "descripcionTipo":"Tipo 5"
+    }
+
+  ]
+}

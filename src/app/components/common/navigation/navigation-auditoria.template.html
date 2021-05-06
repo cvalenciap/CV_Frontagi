@@ -1,0 +1,47 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+  <div class="sidebar-collapse">
+    <ul class="nav metismenu" id="side-menu-auditoria">
+      
+      <li class="nav-header">
+        <div class="profile-element text-center">
+          <img src="assets/images/sedapal-logo-2.png">
+        </div>
+        <div class="logo-element">
+          <img src="assets/images/sedapal-gota.png">
+        </div>
+      </li>
+      
+      <li [ngClass]="{active: activeRoute('inicial')}">
+        <a [routerLink]="['/start-auditoria']"><i class="fa fa fa-home"></i> <span class="nav-label">Inicio</span></a>
+      </li>
+
+      <li [ngClass]="{active: activeRoute('components')}">
+        <a href="#"><i class="fa fa-map"></i> <span class="nav-label">Auditoría</span> <span class="fa arrow"></span>
+        </a>
+        <ul class="nav nav-second-level collapse" [ngClass]="{in: activeRoute('auditoria')}">
+          <li [ngClass]="{active: activeRoute('programacion')}"><a [routerLink]="['/auditoria/programacion']">Programa<span class="label label-danger pull-right"></span></a></li>
+          <li [ngClass]="{active: activeRoute('plan-auditoria')}"><a [routerLink]="['/auditoria/plan-auditoria']">Plan Auditoría<span class="label label-danger pull-right"></span></a></li>
+          <li [ngClass]="{active: activeRoute('lista-verificacion')}"><a [routerLink]="['/auditoria/lista-verificacion']">Lista de Verificación<span class="label label-danger pull-right"></span></a></li>
+          <li [ngClass]="{active: activeRoute('revision-hallazgos')}"><a [routerLink]="['/auditoria/revision-hallazgos']">Revisión de Hallazgos<span class="label label-danger pull-right"></span></a></li>
+          <li><a href="#">Informes de Auditoría<span class="nav-label"></span> <span class="fa arrow"></span> </a>
+            <ul class="nav nav-third-level collapse">
+              <li [ngClass]="{active: activeRoute('bandeja-revision-auditoria')}"><a [routerLink]="['/auditoria/bandeja-revision-auditoria']">Informe Parcial<span class="label label-danger pull-right"></span></a></li>
+              <li [ngClass]="{active: activeRoute('bandeja-revision-informe')}"><a [routerLink]="['/auditoria/bandeja-revision-informe']">Informe Final<span class="label label-danger pull-right"></span></a></li>
+            </ul>
+          </li>
+          <li [ngClass]="{active: activeRoute('evaluacion-editor')}"><a [routerLink]="['/auditoria/evaluacion-editor']">Evaluación del Auditor<span class="label label-danger pull-right"></span></a></li>
+        </ul>
+      </li>
+
+      <li [ngClass]="{active: activeRoute('components')}">
+        <a href="#"><i class="fa fa-pencil-square"></i> <span class="nav-label">Seguimiento</span><span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level collapse" [ngClass]="{in: activeRoute('consultaAuditoria')}">
+          <li [ngClass]="{active: activeRoute('seguimiento-programacion')}"><a [routerLink]="['/consultaAuditoria/seguimiento-programacion']">Programa Anual de Auditoría Interna<span class="label label-danger pull-right"></span></a></li>
+          <li [ngClass]="{active: activeRoute('seguimiento-programacion')}"><a [routerLink]="['/consultaAuditoria/seguimiento-programacion']">Plan de Auditoría Interna<span class="label label-danger pull-right"></span></a></li>
+          <li [ngClass]="{active: activeRoute('seguimiento-plan-auditoria')}"><a [routerLink]="['/consultaAuditoria/seguimiento-plan-auditoria']">Fases de Auditoría Interna<span class="label label-danger pull-right"></span></a></li>
+        </ul>
+      </li>
+
+    </ul>
+  </div>
+</nav>

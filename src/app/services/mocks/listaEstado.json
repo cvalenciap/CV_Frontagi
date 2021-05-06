@@ -1,0 +1,25 @@
+{
+    "listaEstado": [
+      {
+        "valorEstado":"1",
+        "descripcionEstado":"Estado 1"
+      },
+      {
+        "valorEstado":"2",
+        "descripcionEstado":"Estado 2"
+      },
+      {
+        "valorEstado":"3",
+        "descripcionEstado":"Estado 3"
+      },
+      {
+        "valorEstado":"4",
+        "descripcionEstado":"Estado 4"
+      },
+      {
+        "valorEstado":"5",
+        "descripcionDEstado":"Estado 5"
+      }
+  
+    ]
+  }

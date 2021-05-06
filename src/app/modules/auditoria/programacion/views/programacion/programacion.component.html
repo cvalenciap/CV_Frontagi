@@ -1,0 +1,300 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <h4>
+            <ol class="breadcrumb">
+                <li>
+                    <a routerLink="starterview">Inicio</a>
+                </li>
+                <li>
+                    <a>Auditoría</a>
+                </li>
+                <li class="active">
+                    <strong>Programa</strong>
+                </li>
+            </ol>
+        </h4>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight div-principal">
+    <div class="row m-b-sm bt-div-superior">
+        <div class="col-lg-1" *ngIf="mostrarB">
+            <a [routerLink]="['registrar']" class="btn btn-primary bt-superior"><i class="fa fa-plus"></i> Nuevo</a>
+        </div>
+        <div class="col-lg-4">
+            <div class="input-group">
+                <div *ngIf="selectedFilter != 'fecha'">
+                    <input #buscar type="text" placeholder="ej: Auditoria Interna de Finanzas"
+                        class="form-control tx-cajas" [(ngModel)]="textoBusqueda">
+                </div>
+                <div *ngIf="selectedFilter == 'fecha'">
+                    <input class="form-control" placeholder="ej: 01/01/2019" #dp1="bsDatepicker"
+                        [(ngModel)]="fechaBusqueda" bsDatepicker placement="bottom" [isOpen]="isOpen"
+                        [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue' }">
+                </div>
+
+                <span class="input-group-btn" dropdown>
+                    <button type="button" class="btn btn-info"><i class="fa fa-search"></i></button>
+                    <button dropdownToggle type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split"><i
+                            class="fa fa-caret-down"></i></button>
+                    <!--
+                    <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
+                        <li role="menuitem" [class.active]="selectedFilter == 'usuario'"><a
+                                (click)="setFilter('usuario')">Descripción Programa</a></li>
+                    </ul>
+                    -->
+                </span>
+            </div>
+        </div>
+        <div class="col-md-2 col-lg-2">
+            <button class="btn btn-md btn-light" ><i class="fa fa-eraser"></i> Limpiar</button>
+        </div>
+        <!--
+        <div class="col-lg-4">
+            <a (click)="OnHabilitarAL()" class="btn btn-primary bt-superior" style="width: 47px;"> C-SGI </a>
+            <a (click)="OnHabilitarCO()" class="btn btn-primary bt-superior" style="width: 47px;"> CO </a>
+            <a (click)="OnHabilitarRAD()" class="btn btn-primary bt-superior" style="width: 47px;"> RAD </a>
+        </div>
+        -->
+
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div *ngIf="mostrarAlerta">
+                <alert type="info"><span [innerHtml]="mensajeAlerta"></span></alert>
+            </div>
+            <div class="ibox-content"
+                style="height: 480px;padding-top: 5px;padding-left: 5px;padding-right: 5px;padding-bottom: 5px;"
+                [ngClass]="{'sk-loading': loading}">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-stripped table-hover">
+                        <thead style="padding-right: 17px;">
+                            <tr>
+                                <!-- <th class="text-center" data-col="codigo">Ítem</th> -->
+                                <!-- <th class="text-center" data-col="fechaprograma">Fecha de Programa</th> -->
+                                <th class="text-center" data-col="descripcion">Nombre Programa</th>
+                                <!-- <th class="text-center" data-col="usuariocreacion">Usuario</th> -->
+                                <th class="text-center" data-col="año">Año</th>
+                                <th class="text-center" data-col="estado">Estado</th>
+                                <th class="text-center" data-col="accion">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody style="height: 311px;">
+                            <tr *ngFor="let item of datoGrilla">
+                                <!-- <td class="text-center" data-col="codigo">1</td> -->
+                                <td class="text-center" data-col="descripcion">{{item.descripcion}}</td>
+                                    <td class="text-center" data-col="año">{{item.year}}</td>
+                                    <td class="text-center" data-col="estado">
+                                        <span *ngIf="item.estado=='Aprobado'" class="btn btn-primary">{{item.estado}}</span>
+                                        <span *ngIf="item.estado=='En Revisión'" class="btn btn-warning">{{item.estado}}</span>
+                                    </td>
+                                    <td class="text-center" data-col="accion">
+                                    <button *ngIf="mostrarA" title="Actualizar" class="btn btn-success btn-sm m-r"
+                                        [routerLink]="['registrar']">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button *ngIf="mostrarC" title="Revisar"
+                                        class="btn btn-success btn-success-revisar btn-sm m-r"
+                                        [routerLink]="['registrar']"><i class="fa fa-file-o"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!--
+                            <tr>
+                                <td class="text-center" data-col="descripcion">Auditoria Interna de la Gerencia de
+                                    Finanzas II</td>
+                                <td class="text-center" data-col="accion">
+                                    <button *ngIf="mostrarA" title="Actualizar" class="btn btn-success btn-sm m-r"
+                                        [routerLink]="['registrar']">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button *ngIf="mostrarC" title="Revisar"
+                                        class="btn btn-success btn-success-revisar btn-sm m-r"
+                                        [routerLink]="['registrar']"><i class="fa fa-pencil-square-o"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center" data-col="descripcion">Auditoria Interna de la Gerencia de
+                                    Finanzas III</td>
+                                <td class="text-center" data-col="accion">
+                                    <button *ngIf="mostrarA" title="Actualizar" class="btn btn-success btn-sm m-r"
+                                        [routerLink]="['registrar']">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button *ngIf="mostrarC" title="Revisar"
+                                        class="btn btn-success btn-success-revisar btn-sm m-r"
+                                        [routerLink]="['registrar']"><i class="fa fa-pencil-square-o"></i>
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center" data-col="descripcion">Auditoria Interna de la Gerencia de
+                                    Finanzas III</td>
+                                <td class="text-center" data-col="accion">
+                                    <button *ngIf="mostrarA" title="Actualizar" class="btn btn-success btn-sm m-r"
+                                        [routerLink]="['registrar']">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button *ngIf="mostrarC" title="Revisar"
+                                        class="btn btn-success btn-success-revisar btn-sm m-r"
+                                        [routerLink]="['registrar']"><i class="fa fa-pencil-square-o"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center" data-col="descripcion">Auditoria Interna de la Gerencia de
+                                    Finanzas III</td>
+                                <td class="text-center" data-col="accion">
+                                    <button *ngIf="mostrarA" title="Actualizar" class="btn btn-success btn-sm m-r"
+                                        [routerLink]="['registrar']">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button *ngIf="mostrarC" title="Revisar"
+                                        class="btn btn-success btn-success-revisar btn-sm m-r"
+                                        [routerLink]="['registrar']"><i class="fa fa-pencil-square-o"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center" data-col="descripcion">Auditoria Interna de la Gerencia de
+                                    Finanzas III</td>
+                                <td class="text-center" data-col="accion">
+                                    <button *ngIf="mostrarA" title="Actualizar" class="btn btn-success btn-sm m-r"
+                                        [routerLink]="['registrar']">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button *ngIf="mostrarC" title="Revisar"
+                                        class="btn btn-success btn-success-revisar btn-sm m-r"
+                                        [routerLink]="['registrar']"><i class="fa fa-pencil-square-o"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center" data-col="descripcion">Auditoria Interna de la Gerencia de
+                                    Finanzas III</td>
+                                <td class="text-center" data-col="accion">
+                                    <button *ngIf="mostrarA" title="Actualizar" class="btn btn-success btn-sm m-r"
+                                        [routerLink]="['registrar']">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button *ngIf="mostrarC" title="Revisar"
+                                        class="btn btn-success btn-success-revisar btn-sm m-r"
+                                        [routerLink]="['registrar']"><i class="fa fa-pencil-square-o"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center" data-col="descripcion">Auditoria Interna de la Gerencia de
+                                    Finanzas III</td>
+                                <td class="text-center" data-col="accion">
+                                    <button *ngIf="mostrarA" title="Actualizar" class="btn btn-success btn-sm m-r"
+                                        [routerLink]="['registrar']">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button *ngIf="mostrarC" title="Revisar"
+                                        class="btn btn-success btn-success-revisar btn-sm m-r"
+                                        [routerLink]="['registrar']"><i class="fa fa-pencil-square-o"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center" data-col="descripcion">Auditoria Interna de la Gerencia de
+                                    Finanzas III</td>
+                                <td class="text-center" data-col="accion">
+                                    <button *ngIf="mostrarA" title="Actualizar" class="btn btn-success btn-sm m-r"
+                                        [routerLink]="['registrar']">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button *ngIf="mostrarC" title="Revisar"
+                                        class="btn btn-success btn-success-revisar btn-sm m-r"
+                                        [routerLink]="['registrar']"><i class="fa fa-pencil-square-o"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center" data-col="descripcion">Auditoria Interna de la Gerencia de
+                                    Finanzas III</td>
+                                <td class="text-center" data-col="accion">
+                                    <button *ngIf="mostrarA" title="Actualizar" class="btn btn-success btn-sm m-r"
+                                        [routerLink]="['registrar']">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button *ngIf="mostrarC" title="Revisar"
+                                        class="btn btn-success btn-success-revisar btn-sm m-r"
+                                        [routerLink]="['registrar']"><i class="fa fa-pencil-square-o"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center" data-col="descripcion">Auditoria Interna de la Gerencia de
+                                    Finanzas III</td>
+                                <td class="text-center" data-col="accion">
+                                    <button *ngIf="mostrarA" title="Actualizar" class="btn btn-success btn-sm m-r"
+                                        [routerLink]="['registrar']">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button *ngIf="mostrarC" title="Revisar"
+                                        class="btn btn-success btn-success-revisar btn-sm m-r"
+                                        [routerLink]="['registrar']"><i class="fa fa-pencil-square-o"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center" data-col="descripcion">Auditoria Interna de la Gerencia de
+                                    Finanzas III</td>
+                                <td class="text-center" data-col="accion">
+                                    <button *ngIf="mostrarA" title="Actualizar" class="btn btn-success btn-sm m-r"
+                                        [routerLink]="['registrar']">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button *ngIf="mostrarC" title="Revisar"
+                                        class="btn btn-success btn-success-revisar btn-sm m-r"
+                                        [routerLink]="['registrar']"><i class="fa fa-pencil-square-o"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center" data-col="descripcion">Auditoria Interna de la Gerencia de
+                                    Finanzas III</td>
+                                <td class="text-center" data-col="accion">
+                                    <button *ngIf="mostrarA" title="Actualizar" class="btn btn-success btn-sm m-r"
+                                        [routerLink]="['registrar']">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button *ngIf="mostrarC" title="Revisar"
+                                        class="btn btn-success btn-success-revisar btn-sm m-r"
+                                        [routerLink]="['registrar']"><i class="fa fa-pencil-square-o"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            -->
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <pagination [(ngModel)]="paginacion.pagina" (pageChanged)="OnPageChanged($event)"
+                            [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros"
+                            [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;"
+                            firstText="&laquo;" lastText="&raquo;">
+                        </pagination>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-center m-a-sm">
+                            <pagination-info [totalItems]="paginacion.totalRegistros"
+                                [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-right m-a-sm">
+                            <pagination-set (optionChanged)="OnPageOptionChanged($event)" class="texto-pie-pag">
+                            </pagination-set>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

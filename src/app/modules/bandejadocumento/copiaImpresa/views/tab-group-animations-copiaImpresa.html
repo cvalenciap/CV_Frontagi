@@ -1,0 +1,13 @@
+<mat-tab-group animationDuration="0ms">
+    <mat-tab label="Solicitud">         
+        <copia-impresa-solicitud #solicitud [activar]="activar" (extrametododepadre)="extrametododepadre($event)"></copia-impresa-solicitud>
+    </mat-tab>
+    <mat-tab label="Bitácora">
+        <copia-impresa-bitacora #bitacora [activar]="activar"></copia-impresa-bitacora>     
+    </mat-tab>     
+    <div *ngIf="param!=1">
+    <mat-tab label="Crítica">
+      <copia-impresa-critica #critica [activar]="activar" (extrametododepadre)="extrametododepadre($event)"></copia-impresa-critica>
+    </mat-tab>
+</div>
+</mat-tab-group>

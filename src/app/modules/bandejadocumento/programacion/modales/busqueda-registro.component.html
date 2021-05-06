@@ -1,0 +1,73 @@
+<div class="modal-header modal-cabecera-color">
+    <h4 class="modal-title pull-left">Búsqueda de Documentos sin Revisión</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="cerrar">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body" style="padding-bottom: 10px; padding-top: 10px;height: 227px;">
+    <div class="col-sm-6">
+        <div class="row">
+            <label class="col-sm-12" style="padding-left: 0px;">Área:</label>
+        </div>
+        <div class="row">
+            <div class="col-sm-1" style="padding-left: 0px;">
+                <input type="text" id="gerencia" name="gerencia" [(ngModel)]="gerenparametrodesc"
+                    placeholder="Ej: Dirección Institucional" class="form-control" disabled="disabled"
+                    [ngClass]="{'ng-dirty ng-invalid':prioridadValidator}" autocomplete="off"
+                    style="width: 207px;height: 32.979166px;">
+                <input type="hidden" id="gerenparametroid" name="gerenparametroid" placeholder="Ej: Manuales"
+                    class="form-control" [(ngModel)]="gerenparametroid" disabled="disabled">
+            </div>
+            <div class="col-sm-4" style="padding-left: 0px;">
+                <span class="input-group-btn" dropdown>
+                    <button style="border-left-width: 1px; padding-left: 12px; margin-left: 185px; height: 33px;" type="button"
+                        class="btn btn-info" (click)="OnBuscarGerencia()" [disabled] = "activarBoton"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <label class="col-sm-12" style="padding-left: 0px;">Años de Antigüedad:</label>
+        </div>
+        <div class="row">
+            <div class="col-sm-4" style="padding-left: 0px;">
+                <input (keypress)="permitirNumero($event)" maxlength="3" placeholder="Ej: 7" type="text" id="anioantiguedad"
+                    name="anioantiguedad" [(ngModel)]="anioantiguedad" class="form-control" 
+                    style="padding-left: 12px;margin-left: 0px;">
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="row">
+                <div class="ibox-content" [ngClass]="{'sk-loading': loading}" style="padding-bottom: 10px; padding-left: 10px; padding-right: 10px; padding-top: 10px;">
+                    <sk-three-bounce></sk-three-bounce>
+                    <div class="table-responsive" style="height: 187px;">
+                        <table class="table table-sm table-bordered table-stripped table-hover issue-tracker" id="tabla-datos">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" data-col="check"><input type="checkbox" name="all"
+                                            [checked]="todosCheck" (click)="seleccionarTodos()" [disabled]="deshabilitaCheck"></th>
+                                    <th class="text-center" data-col="tipo">Tipos de Documento</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of listadoTipo; let i=index" id="{{item.idArea}}">
+                                    <td class="text-center" data-col="check"><input type="checkbox" name="checkTipo"
+                                            [checked]="item.seleccionado" (click)="seleccionarCheck(item)"></td>
+                                    <td class="text-center" data-col="tipo">{{item.descripcion}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary m-r" (click)="OnBuscar()"><i class="fa fa-search-plus"></i>
+        Buscar</button>
+    <button type="button" class="btn btn-default m-r" (click)="OnLimpiar()"><i class="fa fa-eraser"></i>
+        Limpiar</button>
+</div>

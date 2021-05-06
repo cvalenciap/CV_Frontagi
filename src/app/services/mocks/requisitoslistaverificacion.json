@@ -1,0 +1,22 @@
+{
+    "listaRequisitos":[
+        {
+            "id": 0,
+            "nombre": "ISO 9001:2004",
+            "children": [
+                {
+                    "id": 1,
+                    "nombre": "8.5.3 Accion preventiva"
+                },
+                {
+                    "id": 2,
+                    "nombre": "8.5.4 Requisitos legales y otros requisitos"
+                },
+                {
+                    "id": 3,
+                    "nombre": "8.5.5 Requisito XX"
+                }
+            ]
+        }
+    ]
+}

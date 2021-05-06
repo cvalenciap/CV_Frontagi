@@ -1,0 +1,33 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <h4 style="margin-top:15px;">Solicitudes /
+            <strong>Solicitud de Copia</strong>
+        </h4>
+    </div>
+</div>
+<!--   <h4 style="margin-top:15px;">Copia / <strong>Copia Impresa</strong></h4>-->
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row m-b-sm">
+        <div class="col-lg-4">
+            <div class="btn-group">                
+                <!--Segurity-->
+                <ng-template [authIf]="session.ACL.ID_SOL_SolicitudCopiasImpresas_Detalle_CREAR">                    
+                        <button class="btn btn-success m-r" [disabled]="habilitaenviar" [swal]="{ title: '¿Está seguro que desea enviar la Solicitud?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, Enviar', cancelButtonText: 'No gracias'} "
+                        (confirm)="OnEnviar()">
+                        <i class="fa fa-check"></i> Enviar</button>
+                    
+                </ng-template>
+                <!--Segurity-->
+                <button class="btn btn-default m-r" (click)="OnRegresar()">
+                    <i class="fa fa-arrow-left"></i> Regresar</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <tab-group-animations-copiaImpresa #tab [activar]="activar" [param]="param" (estaSolicitud)="OnValidarSiEsAprobado($event)"></tab-group-animations-copiaImpresa>
+
+        </div>
+    </div>
+</div>

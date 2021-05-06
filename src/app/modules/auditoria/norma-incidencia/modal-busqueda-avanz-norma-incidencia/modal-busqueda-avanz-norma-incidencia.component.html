@@ -1,0 +1,33 @@
+<div class="modal-header modal-cabecera-color">
+    <h4 class="modal-title pull-left">Busqueda Avanzada</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="cerrar">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-lg-12">
+            <label class="col-sm-2 control-label">Tipo:</label>
+            <div class="col-sm-4">
+                <select  class="form-control" name="valorTipo" [(ngModel)] = "busqueda.tipo" (change)="cargarRequisito()">
+                    <option value="" selected>Seleccionar</option>
+                    <option *ngFor="let item of listaTipos" [value]="item.v_campcons1">{{ item.v_valcons }}</option>
+              </select>
+            </div>
+            <label class="col-sm-2 control-label">Norma / Incidencia:</label>
+            <div class="col-sm-4">
+                <select  class="form-control" name="valorNorma" [(ngModel)] = "busqueda.normaRelacionada">
+                    <option value="" selected>Seleccionar</option>
+                    <option *ngFor="let item of listaNormas" [value]="item.idNorma">{{ item.descripcionNorma }}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <br/>
+ 
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="buscar()" >Buscar</button>
+    <button type="button" class="btn btn-default" (click)="cancelar()">Cancelar</button>
+</div>

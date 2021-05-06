@@ -1,0 +1,25 @@
+{
+    "listaNormas": [
+      {
+        "valorNorma":"1",
+        "descripcionNorma":"ISO 9001"
+      },
+      {
+        "valorNorma":"2",
+        "descripcionNorma":"ISO 14001"
+      },
+      {
+        "valorNorma":"3",
+        "descripcionNorma":"OSHAS 18001"
+      },
+      {
+        "valorNorma":"4",
+        "descripcionNorma":"ISO/TEC 27001"
+      },
+      {
+        "valorNorma":"5",
+        "descripcionNorma":"ISO/TEC 17025"
+      }
+  
+    ]
+  }

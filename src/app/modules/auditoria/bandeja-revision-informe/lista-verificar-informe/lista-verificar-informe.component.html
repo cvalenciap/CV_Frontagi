@@ -1,0 +1,123 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-12">
+            <h4>Inicio / Auditoría / Informes de Auditoría / Informe Final / <strong>Detalle de Informe Final</strong></h4>
+        </div>
+    </div>
+    
+    <div class="wrapper wrapper-content animated fadeInRight div-principal">
+    
+        <div class="row m-b-md div-botones-superiores">
+            <div class="col-lg-6">
+                <a class="btn btn-success m-r botones-superiores"><i class="fa fa-check"></i> Aprobar</a>
+                <a *ngIf="mostrarA" class="btn btn-danger m-r botones-superiores"><i class="fa fa-times"></i> Rechazar</a>
+                <a class="btn btn-info m-r botones-superiores"><i class="fa fa-print"></i> Imprimir</a>
+                <a class=" btn btn-primary m-r botones-superiores"><i class="fa fa-download"></i> Exportar</a>
+                <a class="btn btn-default btn-colores m-r botones-superiores" (click)="OnRegresar()"><i class="fa fa-arrow-left"></i> Regresar</a>
+            </div>
+            <div class="col-lg-6">
+                <a (click)="OnHabilitarAL()" class="btn btn-primary botones-buscador" > AL </a>
+                <a (click)="OnHabilitarRE()" class="btn btn-primary botones-buscador" style="margin-left: 10px;"> C-SGI </a>
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox-content div-secundario" style=" height: 480px;" [ngClass]="{'sk-loading': loading}">
+                    
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="ibox-content div-secundario" style="margin-bottom: 5px;" [ngClass]="{'sk-loading': loading}">
+                                <mat-tab-group style="height: 233px;">
+                                    <mat-tab label="Datos Auditoria">
+                                        <br />
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <label class="col-sm-8 control-label titulos-texto">Descripción Auditoría:</label>
+                                                <label class="col-sm-4 control-label titulos-texto">Auditor Lider:</label>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-8"><input class="form-control cajas-texto" type="text" name="numFicha" value="Auditoria Interna de la Gerencia de Finanzas I" disabled="true"></div>
+                                                <div class="col-sm-4"><input class="form-control cajas-texto" type="text" name="numFicha" value="GUILLERMO CUADROS CAPILLA" disabled="true"></div>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-sm-2 control-label titulos-texto">Fecha:</label>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-2"><input class="form-control cajas-texto" type="text" name="numFicha" value="23/09/2019" disabled="true"></div>
+                                            </div>
+                                        </div>
+                                    </mat-tab>
+                                </mat-tab-group>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="ibox-content div-secundario" [ngClass]="{'sk-loading': loading}">
+                                <div class="table-responsive" style="height: 147px;">
+                                    <table class="table table-bordered table-stripped table-hover issue-tracker">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center" data-col="norma">Norma/Requisito</th>
+                                                <th class="text-center" data-col="descripción">Descripción del Hallazgo</th>
+                                                <th class="text-center" data-col="fecha">Fecha de Hallazgo</th>
+                                                <th class="text-center" data-col="conformidad">Categoría</th>
+                                                <th class="text-center" data-col="area">Área</th>
+                                                <th class="text-center" data-col="auditor">Responsable</th>
+                                            </tr>
+                                        </thead>
+    
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-center" data-col="norma">ISO 9001-2015 / 4.2</td>
+                                                <td class="text-center" data-col="descripción">Se Indico que la Politica Integrada se aplica en la GPO a través de: El cumplimiento de los indicadores, principalmente la ampliación de la coberturas.</td>
+                                                <td class="text-center" data-col="fecha">02/07/2019</td>
+                                                <td class="text-center" data-col="conformidad">SAP</td>
+                                                <td class="text-center" data-col="area">GERENCIA DE DESARROLLO E INVESTIGACIÓN</td>
+                                                <td class="text-center" data-col="auditor">ELIAS MINAYA MENDEZ</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center" data-col="norma">ISO 9001-2015 / 4.3</td>
+                                                <td class="text-center" data-col="descripción">Se Indico que la Politica Integrada se aplica en la GPO a través de: El cumplimiento de los indicadores, principalmente la ampliación de la coberturas.</td>
+                                                <td class="text-center" data-col="fecha">02/07/2019</td>
+                                                <td class="text-center" data-col="conformidad">SAC</td>
+                                                <td class="text-center" data-col="area">GERENCIA DE DESARROLLO E INVESTIGACIÓN</td>
+                                                <td class="text-center" data-col="auditor">ELIAS MINAYA MENDEZ</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center" data-col="norma">ISO 9001-2015 / 4.4</td>
+                                                <td class="text-center" data-col="descripción">Se Indico que la Politica Integrada se aplica en la GPO a través de: El cumplimiento de los indicadores, principalmente la ampliación de la coberturas.</td>
+                                                <td class="text-center" data-col="fecha">02/07/2019</td>
+                                                <td class="text-center" data-col="conformidad">Observación</td>
+                                                <td class="text-center" data-col="area">GERENCIA DE DESARROLLO E INVESTIGACIÓN</td>
+                                                <td class="text-center" data-col="auditor">ROSSANA GABRIELA VASQUEZ SANCHEZ</td>
+                                            </tr>
+                                        </tbody>
+    
+                                    </table>
+                                </div>
+                                <div class="row" style="margin-top: 10px; height: 49px; padding-top: 0px;">
+                                    <div class="col-md-4 col-sm-12 col-xs-12">
+                                        <pagination [(ngModel)]="paginacion.pagina" (pageChanged)="OnPageChanged($event)"
+                                            [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros"
+                                            [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;"
+                                            firstText="&laquo;" lastText="&raquo;" class="texto-pie-pag"></pagination>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                        <div class="text-center m-a-sm">
+                                            <pagination-info [totalItems]="paginacion.totalRegistros" 
+                                                [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina">
+                                            </pagination-info>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                        <div class="text-right m-a-sm">
+                                            <pagination-set class="texto-pie-pag" (optionChanged)="OnPageOptionChanged($event)"></pagination-set>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 

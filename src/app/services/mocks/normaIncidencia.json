@@ -1,0 +1,113 @@
+{
+
+  "listaNormaIncidencia": [
+    {
+      "id":"0",
+      "tipo": "Norma",
+      "descripcionNormaIncidencia": "ISO 14001:2004",
+      "numeroRequisito": "1",
+      "requisitoIncidencia": "Medio Ambiente",
+      "normaRelacionada": "ISO 18001:2004",
+      "numeroRequisitoRelacionado": "3.1", 
+      "descripcionRequisitoRelacionado": "Términos relativos a la empresa y el liderazgo"
+    },
+    {
+      "id":"2",
+      "tipo": "Norma",
+      "descripcionNormaIncidencia": "ISO 14001:2004",
+      "numeroRequisito": "1",
+      "requisitoIncidencia": "Medio Ambiente",
+      "normaRelacionada": "ISO 18001:2018",
+      "numeroRequisitoRelacionado": "6.1",
+      "descripcionRequisitoRelacionado": "Términos relativos a la empresa y el liderazgo"
+    },
+    {
+      "id":"3",
+      "tipo": "Norma",
+      "descripcionNormaIncidencia": "ISO 14001:2004",
+      "numeroRequisito": "1",
+      "requisitoIncidencia": "Medio Ambiente",
+      "normaRelacionada": "ISO 18001:2002",
+      "numeroRequisitoRelacionado": "3.1",
+      "descripcionRequisitoRelacionado": "Términos relativos a la empresa y el liderazgo"
+    },
+    {
+      "id":"4",
+      "tipo": "Norma",  
+      "descripcionNormaIncidencia": "ISO 14001:2004",
+      "numeroRequisito": "1",
+      "requisitoIncidencia": "Medio Ambiente",
+      "normaRelacionada": "ISO 18001:2003",
+      "numeroRequisitoRelacionado": "5.1",
+      "descripcionRequisitoRelacionado": "Términos relativos a la empresa y el liderazgo"
+    },
+    {
+      "id":"5",
+      "tipo": "Norma",  
+      "descripcionNormaIncidencia": "ISO 14001:2004",
+      "numeroRequisito": "1",
+      "requisitoIncidencia": "Medio Ambiente",
+      "normaRelacionada": "ISO 18001:2001",
+      "numeroRequisitoRelacionado": "3.1",
+      "descripcionRequisitoRelacionado": "Términos relativos a la empresa y el liderazgo"
+    },
+    
+    {
+      "id":"6",
+      "tipo": "Norma",  
+      "descripcionNormaIncidencia": "ISO 14001:2000",
+      "numeroRequisito": "1",
+      "requisitoIncidencia": "Medio Ambiente",
+      "normaRelacionada": "ISO 18001:2004",
+      "numeroRequisitoRelacionado": "4.1",
+      "descripcionRequisitoRelacionado": "Términos relativos a la empresa y el liderazgo"
+    },
+    
+    {
+      "id":"7",
+      "tipo": "Norma",  
+      "descripcionNormaIncidencia": "ISO 14001:2004",
+      "numeroRequisito": "1",
+      "requisitoIncidencia": "Medio Ambiente",
+      "normaRelacionada": "ISO 18001:2004",
+      "numeroRequisitoRelacionado": "4.2",
+      "descripcionRequisitoRelacionado": "Términos relativos a la empresa y el liderazgo"
+    },
+    
+    
+    {
+      "id":"8",
+      "tipo": "Norma",  
+      "descripcionNormaIncidencia": "ISO 14001:2004",
+      "numeroRequisito": "1",
+      "requisitoIncidencia": "Medio Ambiente",
+      "normaRelacionada": "ISO 18001:2004",
+      "numeroRequisitoRelacionado": "3.5",
+      "descripcionRequisitoRelacionado": "Términos relativos a la empresa y el liderazgo"
+    },
+    
+    {
+      "id":"10",
+      "tipo": "Norma",  
+      "descripcionNormaIncidencia": "ISO 14001:2004",
+      "numeroRequisito": "1",
+      "requisitoIncidencia": "Medio Ambiente",
+      "normaRelacionada": "ISO 18001:2004",
+      "numeroRequisitoRelacionado": "3.2",
+      "descripcionRequisitoRelacionado": "Términos relativos a la empresa y el liderazgo"
+    },
+
+    {
+      "id":"11",
+      "tipo": "Norma",  
+      "descripcionNormaIncidencia": "ISO 14001:2004",
+      "numeroRequisito": "1",
+      "requisitoIncidencia": "Medio Ambiente",
+      "normaRelacionada": "ISO 18001:2004",
+      "numeroRequisitoRelacionado": "3.3",
+      "descripcionRequisitoRelacionado": "Términos relativos a la empresa y el liderazgo"
+    }
+ 
+
+  ]
+}

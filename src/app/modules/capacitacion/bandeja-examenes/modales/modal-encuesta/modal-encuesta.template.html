@@ -1,0 +1,155 @@
+<div class="modal-header modal-cabecera-color">
+    <div class="row ">
+        <div class="text-center">
+            <span style="color: darkblue; font-size: 2em">
+                <strong>{{ title }}</strong>
+            </span>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-2">
+            <label for="">Capacitación:</label>
+        </div>
+        <div class="col-lg-10">
+            <p>CU001 - Análisis de tratamiento de agua</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">
+            <label>Usuario:</label>
+        </div>
+        <div class="col-lg-10">
+            <p>Belgica Garagatti Castillo</p>
+        </div>
+    </div>
+</div>
+
+<div class="modal-body">
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- <div class="ibox-content" [ngClass]="{'sk-loading': loading}"> -->
+            <!-- <sk-three-bounce></sk-three-bounce> -->
+            <div class="table-responsive">
+                <table class="table table-bordered table-stripped table-hover issue-tracker">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Aspectos A Evaluar</th>
+                            <th class="text-center">1</th>
+                            <th class="text-center">2</th>
+                            <th class="text-center">3</th>
+                            <th class="text-center">4</th>
+                            <th class="text-center">5</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--<tr *ngFor="let item of items; let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow">-->
+                        <tr>
+                            <td>Desarrolla todos los contenidos del programa presentado</td>
+                            <td class="text-center">
+                                <div class="radio radio-danger">
+                                    <input type="radio" name="grupo1" />
+                                    <label></label>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <div class="radio radio-warning">
+                                    <input type="radio" name="grupo1" />
+                                    <label></label>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <div class="radio radio-info">
+                                    <input type="radio" name="grupo1" />
+                                    <label></label>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <div class="radio radio-primary">
+                                    <input type="radio" name="grupo1" />
+                                    <label></label>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <div class="radio radio-success">
+                                    <input type="radio" name="grupo1" />
+                                    <label></label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Observa puntualidad al llegar e irse</td>
+                            <td class="text-center">
+                                <div class="radio radio-danger">
+                                    <input type="radio" name="grupo2" />
+                                    <label></label>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <div class="radio radio-warning">
+                                    <input type="radio" name="grupo2" />
+                                    <label></label>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <div class="radio radio-info">
+                                    <input type="radio" name="grupo2" />
+                                    <label></label>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <div class="radio radio-primary">
+                                    <input type="radio" name="grupo2" />
+                                    <label></label>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <div class="radio radio-success">
+                                    <input type="radio" name="grupo2" />
+                                    <label></label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Explica los temas de forma clara y compensible</td>
+                            <td class="text-center">
+                                <div class="radio radio-danger">
+                                    <input type="radio" name="grupo3" />
+                                    <label></label>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <div class="radio radio-warning">
+                                    <input type="radio" name="grupo3" />
+                                    <label></label>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <div class="radio radio-info">
+                                    <input type="radio" name="grupo3" />
+                                    <label></label>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <div class="radio radio-primary">
+                                    <input type="radio" name="grupo3" />
+                                    <label></label>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <div class="radio radio-success">
+                                    <input type="radio" name="grupo3" />
+                                    <label></label>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- </div> -->
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="OnGuardarEncuesta()">Guardar</button>
+</div>

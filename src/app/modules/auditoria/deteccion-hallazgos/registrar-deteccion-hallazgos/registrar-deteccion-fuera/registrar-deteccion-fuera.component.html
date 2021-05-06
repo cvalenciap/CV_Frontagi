@@ -1,0 +1,418 @@
+<!--
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Detalle de Incidencias</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a routerLink="starterview">Inicio</a>
+            </li>
+            <li>
+                <a>Auditoría</a>
+            </li>
+            <li>
+              <a>Detalle de Incidencias</a>
+            </li>
+            <li class="active">
+                <strong>Detalle de Incidencias</strong>
+            </li>
+        </ol>  
+    </div>
+    <div class="col-lg-2">
+    </div>
+  </div>
+
+  <br/>
+<div class="row">
+        <div class="pull-left">
+                <div class="col-md-4">
+               
+                <a class="btn btn-success m-r" (click)="onProcesar()"><i class="fa fa-check"></i> Aprobar</a>
+               </div>
+               <div class="col-md-4">
+               
+                <a class="btn btn-primary m-r" (click)="OnGuardar()"><i class="fa fa-floppy-o"></i> Guardar</a>  
+               </div>
+               <div class="col-md-4">
+                <button type="button" class="btn btn-default" (click)="cancelar()"><i class="fa fa-arrow-left"></i> Cancelar</button>
+                
+                <br/>
+              
+               </div>  
+           </div> 
+</div>
+
+<br/>
+<div>
+<h4>Datos de Detalle de Incidencia </h4>
+</div>
+
+
+
+
+<form (ngSubmit)="guardar()" [formGroup]="registroRequisitosForm" #formDir="ngForm" novalidate>
+
+    <div>
+           
+<div  class="ibox-content">
+        <mat-tab-group>
+                <mat-tab label="Datos Detección">
+                    <br/>
+                        <div class="col-lg-12"> 
+             
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">
+                                        Fecha Y Hora:
+                                    </label>
+                                    <div class="col-sm-3">
+                                        <div class="input-group date">
+                                                <input bsDatepicker #dp1="bsDatepicker" type="text" class="form-control" name="fechayHora" formControlName="fechayHora"  [(ngModel)]="deteccionHallazgos.fechaDeteccion"  [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue' }">
+                                                <span class="input-group-addon"><i class="fa fa-calendar" (click)="dp1.toggle()" [attr.aria-expanded]="dp1.isOpen" ></i></span>
+                                        </div>
+                                    </div>
+                                    <label class="col-sm-1 control-label">Tipo:</label>
+                                    <div class="col-sm-3">
+                                            <input  type="text" class="form-control" name="tipo" formControlName="tipo" [(ngModel)]="deteccionHallazgos.ambito" disabled>
+                                    </div>
+                                    <label class="col-sm-1 control-label">Origen:</label>
+                                    <div class="col-sm-3">
+                                            <select class="form-control" name="origenDeteccion" formControlName="origenDeteccion" [(ngModel)]="deteccionHallazgos.idorigenDeteccion" disabled>
+                                                    <option value="" selected>Seleccionar</option>
+                                                    <option *ngFor="let item of listaIncidenciasCombo" [value]="item.idconstante">{{item.v_valcons}}</option>
+                                            </select>
+                                    </div>
+                                    
+                                            
+                                </div>
+                                <br/>
+                                <br/>
+                                
+                            
+                                <div class="form-group">
+                                        <label class="col-sm-1 control-label">Incidencia: </label>
+                                        <div class="col-sm-3">
+                                                <select class="form-control" name="normaRequisito" formControlName="normaRequisito" (change)="cambiaIncidencia()" [(ngModel)]="deteccionHallazgos.norma">
+                                                    <option value="" selected>Seleccionar</option>
+                                                    <option *ngFor="let item of listaNormas" [value]="item.idNorma">{{ item.descripcionNorma }}</option>
+                                                </select>
+                                        </div>
+                                        <label class="col-sm-1 control-label">Detector: </label>
+                                        <div class="col-sm-3">
+                                                <div class="input-group"> 
+                                                    <input type="text" class="form-control" name="detector" formControlName="detector" [(ngModel)]="deteccionHallazgos.detector.nombreTrabajador" >               
+                                                    <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-info" (click)="buscarDetector()"><i class="fa fa-search"></i></button>       
+                                                    </span>
+                                                </div>
+                                        </div>
+                                        <label class="col-sm-1 control-label">Tipo no Conformidad: </label>
+                                        <div class="col-sm-3">
+                                            <select class="form-control" name="tipoNoConformidad" formControlName="tipoNoConformidad" [(ngModel)]="deteccionHallazgos.idTipoNoConformidad">
+                                                    <option value="" selected>Seleccionar</option>
+                                                    <option *ngFor="let item of listaTipoNoConformidad" [value]="item.idconstante">{{item.v_valcons}}</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <div class="form-group">
+                                    <div class="col-sm-2">
+                                        <label>
+                                        <input name="radioFormato" (click)="obtenerClick($event)" type="radio" value="1" [checked]="deteccionHallazgos.valorTipoEntidad == 1">Gerencia (Áreas)</label>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <select class="form-control" name="valorGerencia" formControlName="valorGerencia" [(ngModel)] = "deteccionHallazgos.valorEntidadGerencia">
+                                        <option value="" selected>Seleccionar</option>
+                                        <option *ngFor="let item of listaGerencias" [value]="item.idArea">{{item.descripcion}}</option>
+                                        </select>
+                                    </div>
+                                    <label class="col-sm-2 control-label">Responsable :</label>  
+                                    <div class="col-sm-4">                      
+                                        <input class="form-control" name="txtResponsable" (click)="obtenerClick($event)" type="text" value="Maria Luisa Ormeño Solano"  disabled>                            
+                                    </div>
+                                </div>
+                                <br/>
+                                <br/>
+                                <div class="form-group">
+                                        <div class="col-sm-2">
+                                            <label>
+                                            <input name="radioFormato" (click)="obtenerClick($event)" type="radio" value="2" [checked]="deteccionHallazgos.valorTipoEntidad == 2">Equipo</label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <select class="form-control" name="valorEquipo" formControlName="valorEquipo" [(ngModel)] = "deteccionHallazgos.valorEntidadEquipo">
+                                            <option value="" selected>Seleccionar</option>
+                                            <option *ngFor="let item of listaEquipos" [value]="item.idArea">{{item.abreviatura}}</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-6"></div>
+                                </div>
+                         </div>
+                </mat-tab>
+                
+                <mat-tab label="Incidencia" [disabled]="desactivaIncidencia">
+                    <br/>
+                    <div class="col-lg-12">
+                        <div [ngClass]="{'sk-loading': loadingRequisitos}">
+                            <sk-three-bounce></sk-three-bounce>
+                                <div class="col-md-4">
+                                        <div>
+                                            <label>Incidencia</label>
+                                        </div>
+                                        <div class="panel panel-success">
+                                            <div class="panel-body panel-select">
+                                                <tree-root #tree [nodes]="listaRequisitos" [options]="treeOptions" ></tree-root>
+                                            </div>
+                                        </div>
+                                    
+                                </div>
+                                <div class="col-md-1" >
+                                        <div class="col-centered text-center">
+                                            <input type="button" (click)="seleccionarRequisitos()" class="botonSeleccion circulo"  value="> "><br/><input type="button" (click)="quitarRequisitos()" class="botonSeleccion circulo" value="< "><br />
+                                            
+                                        </div>
+                                                
+                                </div>
+                                <div class="col-md-7">
+                                    <div>
+                                        <label>Incidencias Asignadas</label>
+                                    </div>
+                                    <select name="listaDestino" formControlName="listaDestino" class="lista" multiple="multiple" size="8">
+                                            <option *ngFor="let item of listaDestino" [ngValue]="item"  >{{item.nombre}}</option>
+                                    </select>   
+                                    <div *ngIf="mostrarComentario">
+                                            <div>
+                                                <label>Identificación del Problema</label>
+                                            </div>          
+                                            <textarea class="form-control margen" rows="5" name="descripcionHallazgo" formControlName="descripcionHallazgo"
+                                            [(ngModel)]="deteccionHallazgos.descripHallazgo" > </textarea>
+                                            <br />
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </mat-tab>
+        </mat-tab-group>
+
+     
+        <div class="row">
+          <div class="col-md-4">
+           <div class="row">
+              <label class="col-sm-4 control-label">Fecha y Hora:</label>
+              <div class="col-sm-8">
+                  <input  type="text" class="form-control" name="fechayHora" formControlName="fechayHora" [(ngModel)]="deteccionHallazgos.fechaIngreso" >
+              </div>
+            </div>
+            <br/>
+  
+            <div class="row">
+              <label class="col-sm-4 control-label">Tipo de Incidencia :</label>
+              <div class="col-sm-8">
+               
+                <select class="form-control" name="normaRequisito" formControlName="normaRequisito" [(ngModel)]="deteccionHallazgos.norma">
+                      <option value="" selected>Seleccionar</option>
+                      <option value="1">Tipo de Indencia 1</option>
+                      <option value="2">Tipo de Indencia 2</option>
+                      <option value="3">Tipo de Indencia 3</option>
+                      <option value="4">Tipo de Indencia 4</option>
+                  </select>
+               
+              </div>
+              </div>
+              
+          </div>
+  
+          <div class="col-md-4">
+              <div class="row">
+                  <label class="col-sm-3 control-label">Tipo :</label>
+                  <div class="col-sm-9">
+                      <input  type="text" class="form-control" name="tipo" formControlName="tipo" [(ngModel)]="deteccionHallazgos.tipo" disabled="true">
+                  </div>
+                </div>
+                <br/> 
+
+                <div class="row">
+                  <div class="col-sm-3"> 
+                      <label class="control-label">Detector :</label>
+                  </div> 
+                   
+                  
+                      <div  class=" col-sm-9">
+                        <div class="input-group"> 
+                          
+                          <input type="text" class="form-control" name="detector" formControlName="detector" [(ngModel)]="deteccionHallazgos.detector" >               
+                          <span class="input-group-btn">
+                          <button type="button" class="btn btn-info" (click)="abrirBusqueda()"><i class="fa fa-search"></i></button>       
+                        </span>
+                        </div>
+                        </div> 
+                                   
+                    
+                </div>
+                              
+            </div>
+
+        <div class="col-md-4">
+  
+          <div class="row">
+              <label class="col-sm-4 control-label">Origen de Detección :</label>
+              <div class="col-sm-8">
+                  <select class="form-control" name="origenDeteccion" formControlName="origenDeteccion" [(ngModel)]="deteccionHallazgos.origenDeteccion" disabled>
+                        <option value="" selected>Seleccionar</option>
+                        <option *ngFor="let item of listaIncidenciasCombo" [value]="item.idconstante">{{item.v_valcons}}</option>
+                 </select>
+              </div>
+            </div>
+            <br/>
+  
+            <div class="row">
+                <label class="col-sm-4 control-label">Tipo no Conformidad :</label>
+                <div class="col-sm-8">
+                    <select class="form-control" name="tipoNoConformidad" formControlName="tipoNoConformidad" [(ngModel)]="deteccionHallazgos.tipoNoConformidad">
+                        <option value="" selected>Seleccionar</option>
+                        <option value="1">SAC</option>
+                        <option value="2">SAP</option>
+                    </select>
+                </div>
+              </div>
+             
+         </div>
+  
+          </div>
+
+        
+
+
+  <br/>
+
+    <div class="row">
+    <h4 ></h4>
+    </div>
+  
+    
+      <div class="panel panel-success">
+          <div class="panel-heading">Seleccione Gerencia/Equipo</div>
+          <div class="panel-body">
+
+           
+            <div class="ibox-content">
+              <div class="row">
+                  <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <label>
+                                <input name="radioFormato" (click)="obtenerClick($event)" type="radio" value="1" [checked]="requisito.valorTipoEntidad == 1">Gerencia (Áreas)</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <select class="form-control" name="valorGerencia" formControlName="valorGerencia" [(ngModel)] = "requisito.valorEntidadGerencia">
+                                <option value="" selected>Seleccionar</option>
+                                <option *ngFor="let item of listaGerencias" [ngValue]="item">{{item.descripcionGerencia}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <label>
+                                <input name="radioFormato" (click)="obtenerClick($event)" type="radio" value="2" [checked]="requisito.valorTipoEntidad == 2">Equipo</label>
+                            </div>
+                            <div class="col-sm-8">
+                                <select class="form-control" name="valorEquipo" formControlName="valorEquipo" [(ngModel)] = "requisito.valorEntidadEquipo">
+                                <option value="" selected>Seleccionar</option>
+                                <option *ngFor="let item of listaEquipos" [ngValue]="item">{{item.descripcionEquipo}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br/>
+  
+                      
+                  </div>
+    
+                  <div class="col-lg-6">
+                      <div class="row">
+                            <div class="col-sm-2">
+                            
+                            <label>Responsable</label>                            
+                              </div>
+                            <div class="col-sm-10">                      
+                                <input name="txtResponsable" (click)="obtenerClick($event)" type="text" value="Maria Luisa Ormeño Solano" style="width: 260px;">                            
+                            </div>
+                      </div>
+    
+                      <div class="row">
+                            <div class="wrapper wrapper-content animated fadeInRight">
+                                
+                              
+  
+                            </div>
+                        </div>
+                  </div>
+                </div>
+          
+
+            </div>
+    
+
+              </div>
+          </div>
+        </div>
+
+<br/>
+
+<h4>Seleccionar Incidencia</h4>
+ 
+        <div class="ibox-content">
+         
+                <div class="row">
+            <div class="col-md-3">
+                <div>
+                    <label>Incidencia</label>
+                </div>
+                <div class="panel panel-success">
+                    <div class="panel-body panel-select">
+                        <tree-root #tree [nodes]="listaRequisitos" [options]="treeOptions" ></tree-root>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-md-1" >
+              <br/>
+                <div class="col-centered text-center">
+                    <input type="button" (click)="seleccionarRequisitos()" class="botonSeleccion circulo"  value="> "><br/><input type="button" (click)="quitarRequisitos()" class="botonSeleccion circulo" value="< "><br />
+                    <input type="button" (click)="seleccionarTodos()" class="botonSeleccion circulo" value=">>"><br/><input type="button" (click)="quitarTodos()" class="botonSeleccion circulo" value="<<">
+                </div>
+                    
+            </div>
+            <div class="col-md-3">
+                <div>
+                    <label>Incidencias Asignadas</label>
+                </div>
+                <select name="listaDestino" formControlName="listaDestino" class="lista" multiple="multiple" size="8">
+                      <option *ngFor="let item of listaDestino" [ngValue]="item"  >{{item.nombre}}</option>
+                </select>               
+            </div>
+           <div class="col-md-3">
+                <div class="container">
+                    <label class="control-label">Identificación del Problema</label>
+                </div>  
+                       
+                 <textarea class="form-control margen" rows="5"  > </textarea>               
+                <br />                
+            </div>  
+            <div class="col-md-2">
+                <div>
+                    <label></label>
+                </div>          
+                               
+                <br />                
+            </div> 
+
+          </div>
+        </div>
+        
+    </div>
+    
+    </form>
+
+-->

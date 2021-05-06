@@ -1,0 +1,71 @@
+<div class="modal-header modal-cabecera-color">
+    <h4 class="modal-title pull-left">Busqueda avanzada Aprobación Revisión</h4>
+    <!--Button Cerra Modal-->
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="cerrar">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <h3>Buscar por:</h3>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-lg-12">
+                <label class="col-sm-3 control-label">Código de Documento:</label>
+                <div class="col-sm-6">
+                    <input  type="text" placeholder="Ejm.: 34223" class="form-control" name="codDoc" >
+                </div>
+            
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-lg-12">
+                <label class="col-sm-3 control-label">Número Solicitud:</label>
+                <div class="col-sm-6">
+                    <input  type="text" placeholder="Ejm.: 1234" class="form-control" name="numSolicitud" >
+                </div>
+            
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-lg-12">
+                <label class="col-sm-3 control-label">Titulo:</label>
+                <div class="col-sm-6">
+                    <input  type="text" placeholder="Ejm.: Manual de Politicas de Seguridad" class="form-control" name="titulo" >
+                </div>
+            
+        </div>
+    </div>
+        <br />
+    <div class="row">
+            <div class="col-lg-12">
+                   
+                <label class="col-sm-3 control-label">Estado:</label>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <select name="estado" id="estado" class="form-control" >
+                            <option value="141">Alta</option>
+                            <option value="142">Cancelada</option>
+                            <option value="143">Emisión</option>
+                            <option value="143">Todos</option>
+                        </select>
+                        
+                    </div>
+                </div>
+                
+            </div>
+    </div>
+       
+
+        <br> 
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <a (click)="onBuscar()" class="btn btn-primary m-r"><i class="fa fa-search-plus"></i> Buscar</a>
+            <a (click)="bsModalRef.hide()" class="btn btn-default m-r"><i class="fa fa-paint-brush"></i> Limpiar</a>
+        </div>
+    </div>
+
+</div>

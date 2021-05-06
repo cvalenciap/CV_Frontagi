@@ -1,0 +1,973 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <!--   <h2><strong>Programa de auditoría</strong></h2> -->
+        <h4>
+            <ol class="breadcrumb">
+                <li>
+                    <a routerLink="starterview">Inicio</a>
+                </li>
+                <li>
+                    <a>Auditoría</a>
+                </li>
+                <li>
+                    <a >Programa</a>
+                </li>
+                
+                <li class="active">
+                    <strong>Detalle de Programa</strong>
+                </li>
+            </ol>
+        </h4>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight div-principal">
+    <div class="row m-b-md bt-div-superior">
+        <div class="col-lg-12">
+            <a *ngIf="mostrarA" class="btn btn-success m-r btn-principales" (click)="OnGuardar()">
+                <i class="fa fa-check"></i> Enviar</a>
+            <a *ngIf="mostrarD" class="btn btn-primary m-r btn-principales" (click)="OnGuardar()">
+                <i class="fa fa-floppy-o"></i> Guardar</a>
+            <a *ngIf="mostrarB" class="btn btn-danger m-r btn-principales" (click)="OnGuardar()">
+                <i class="fa fa-upload"></i> Documento</a>
+            <a *ngIf="mostrarC" class="btn btn-info m-r btn-principales" (click)="OnGuardar()">
+                <i class="fa fa-print"></i> Imprimir</a>
+            <a class="btn btn-default btn-colores m-r btn-principales" (click)="OnRegresar()">
+                <i class="fa fa-arrow-left"></i> Regresar</a>
+            <!--
+            <a (click)="OnHabilitarAL()" class="btn btn-primary btn-principales" style="margin-left: 100px; width: 47px;"> C-SGI </a>
+            <a (click)="OnHabilitarCO()" class="btn btn-primary btn-principales" style="width: 47px;"> CO </a>
+            <a (click)="OnHabilitarRAD()" class="btn btn-primary btn-principales" style="width: 47px;"> RAD </a>
+            -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content" style="height: 480px;">
+                <form class="form-horizontal">
+                    <div class="row">
+                        <div class="form-group margen-cajas">
+                                <div class="col-sm-12">
+                                        <label *ngIf="mostrarA" class="control-label">Nombre de Programa:</label>
+                                        <input *ngIf="mostrarA" type="text" name="descripcion" class="tx-cajas" style="width:200px;">
+                                        <label *ngIf="mostrarB" class="control-label">Mes:</label>
+                                        <!-- <div *ngIf="mostrarD" style="padding-left: 10px;width:150px;"> -->
+
+                                        <select *ngIf="mostrarB" name="dispo" id="dispo" class="tx-cajas" style="width:100px">
+                                                <option value="null" disabled>Seleccione</option>
+                                                <option value="1">Enero</option>
+                                                <option value="2">Febrero</option>
+                                                <option value="3">Marzo</option>
+                                                <option value="4">Abril</option>
+                                                <option value="5">Mayo</option>
+                                                <option value="6">Junio</option>
+                                                <option value="7">Julio</option>
+                                                <option value="8">Agosto</option>
+                                                <option value="9">Setiembre</option>
+                                                <option value="10">Octubre</option>
+                                                <option value="11">Noviembre</option>
+                                                <option value="12">Diciembre</option>
+                        
+                                        </select>
+
+                                        <label *ngIf="mostrarC" class="control-label" >Año:</label>
+                                        <input *ngIf="mostrarC" type="text" name="año" class="tx-cajas" style="width:70px;text-align:center" value="2019" disabled>
+                                        <label *ngIf="mostrarD" class="control-label" >Auditor Líder:</label>
+                                        <input *ngIf="mostrarD" type="text" name="auditor" class="tx-cajas" style="width:200px;" disabled placeholder="Ej: Martín Barraza Ram">
+                                        <button *ngIf="mostrarD" type="button" class="btn btn-info" style="height:30px; vertical-align: top;"><i class="fa fa-search"></i></button>
+                                </div>
+                        </div>
+                        
+                    </div>
+
+                    <!-- <div class="row">
+                        <div class="form-group margen-cajas">
+                            <label class="col-sm-2 control-label"
+                                style="padding-top: 5px;width: 222px;padding-right: 15px;">Fecha de Inicio de
+                                Revisión:</label>
+                            <div class="col-sm-2" style="padding-left: 8px;padding-right: 26px;">
+                                <div class="input-group">
+                                    <input [(ngModel)]="fechaCreaDoc1" type="text" bsDatepicker 
+                                        class="form-control tx-cajas" placeholder="Ej: 01/01/2019" style="width: 142px;"
+                                        [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue'}"
+                                        [ngModelOptions]="{standalone: true}">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"
+                                            (click)="fechaCreaDoc1.toggle()" 
+                                            title="Elegir Fecha"></i></span>
+                                </div>
+                            </div>
+                            <label class="col-sm-2 control-label" 
+                                style="padding-top: 5px;width: 209px;padding-right: 15px;">Fecha de Fin de
+                                Revisión:</label>
+                            <div class="col-sm-2" style="padding-left: 8px;padding-right: 26px;">
+                                <div class="input-group">   
+                                    <input [(ngModel)]="fechaCreaDoc2" type="text" bsDatepicker 
+                                        class="form-control tx-cajas" placeholder="Ej: 01/01/2019" style="width: 142px;"
+                                        [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue'}"
+                                        [ngModelOptions]="{standalone: true}">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"
+                                            (click)="fechaCreaDoc2.toggle()" 
+                                            title="Elegir Fecha"></i></span>
+                                </div>
+                            </div>
+                            <label class="col-sm-1 control-label"
+                                style="padding-top: 5px;width: 60px;padding-right: 15px;">Año:</label>
+                            <div class="col-sm-2"><input type="text" name="descripcion" class="form-control tx-cajas"
+                                    placeholder="     2019" style="padding-left: 0px; width: 75px; padding-right: 15px;"
+                                    disabled></div>
+                        </div>
+                    </div> -->
+                    <div class="row">
+                        <div class="form-group margen-cajas">
+                            <label class="col-sm control-label"
+                                style="padding-top: 5px;padding-right: 75px;padding-left: 31px;">
+                                Detalle de Programa :</label>
+                        </div>
+                    </div>
+                </form>
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-lg-12">
+                            <div class="ibox-content" style="padding-top: 5px; padding-right: 5px; padding-bottom: 5px;padding-left: 5px;height: 312px;">
+                                <div class="table-responsive">
+                                    <table
+                                        class="table table-bordered table-stripped table-hover issue-tracker table-fixed">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center" data-col="descripcionEntidad">Gerencia/Equipo/Cargo</th>
+                                                <th class="text-center" data-col="norma">Norma</th>
+                                                <th class="text-center" data-col="ene"><input type="checkbox" name="allEne" [checked]="todosCheckEne" (click)="seleccionarTodosEne()" > Ene</th>
+                                                <th class="text-center" data-col="feb"><input type="checkbox" name="allFeb" [checked]="todosCheckFeb" (click)="seleccionarTodosFeb()" > Feb</th>
+                                                <th class="text-center" data-col="mar"><input type="checkbox" name="allMar" [checked]="todosCheckMar" (click)="seleccionarTodosMar()" > Mar</th>
+                                                <th class="text-center" data-col="abr"><input type="checkbox" name="allAbr" [checked]="todosCheckAbr" (click)="seleccionarTodosAbr()" > Abr</th>
+                                                <th class="text-center" data-col="may"><input type="checkbox" name="allMay" [checked]="todosCheckMay" (click)="seleccionarTodosMay()" > May</th>
+                                                <th class="text-center" data-col="jun"><input type="checkbox" name="allJun" [checked]="todosCheckJun" (click)="seleccionarTodosJun()" > Jun</th>
+                                                <th class="text-center" data-col="jul"><input type="checkbox" name="allJul" [checked]="todosCheckJul" (click)="seleccionarTodosJul()" > Jul</th>
+                                                <th class="text-center" data-col="ago"><input type="checkbox" name="allAgo" [checked]="todosCheckAgo" (click)="seleccionarTodosAgo()" > Ago</th>
+                                                <th class="text-center" data-col="set"><input type="checkbox" name="allSet" [checked]="todosCheckSet" (click)="seleccionarTodosSet()" > Set</th>
+                                                <th class="text-center" data-col="oct"><input type="checkbox" name="allOct" [checked]="todosCheckOct" (click)="seleccionarTodosOct()" > Oct</th>
+                                                <th class="text-center" data-col="nov"><input type="checkbox" name="allNov" [checked]="todosCheckNov" (click)="seleccionarTodosNov()" > Nov</th>
+                                                <th class="text-center" data-col="dic"><input type="checkbox" name="allDic" [checked]="todosCheckDic" (click)="seleccionarTodosDic()" > Dic</th>
+                                                <th class="text-center" data-col="obs">Acc.</th>                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-center" data-col="descripcionEntidad" rowspan="3"
+                                                    [ngStyle]="{'background':observaciones!=null?'#EDB8B8':'none'}">
+                                                    <b> GERENCIA DE DESARROLLO E INVESTIGACIÓN</b></td>
+                                                <td class="text-center" data-col="norma">ISO 9001</td>
+                                                <td class="text-center" data-col="ene"><input type="checkbox"
+                                                        name="chkEne" style="height:13px;width:13px;"
+                                                        [checked]="checkEne"></td>
+                                                <td class="text-center" data-col="feb"><input type="checkbox"
+                                                        name="chkFeb" style="height:13px;width:13px;"
+                                                        [checked]="checkFeb"></td>
+                                                <td class="text-center" data-col="mar"><input type="checkbox"
+                                                        name="chkMar" style="height:13px;width:13px;"
+                                                        [checked]="checkMar"></td>
+                                                <td class="text-center" data-col="abr"><input type="checkbox"
+                                                        name="chkAbr" style="height:13px;width:13px;"
+                                                        [checked]="checkAbr"></td>
+                                                <td class="text-center" data-col="may"><input type="checkbox"
+                                                        name="chkMay" style="height:13px;width:13px;"
+                                                        [checked]="checkMay"></td>
+                                                <td class="text-center" data-col="jun"><input type="checkbox"
+                                                        name="chkJun" style="height:13px;width:13px;"
+                                                        [checked]="checkJun"></td>
+                                                <td class="text-center" data-col="jul"><input type="checkbox"
+                                                        name="chkJul" style="height:13px;width:13px;"
+                                                        [checked]="checkJul"></td>
+                                                <td class="text-center" data-col="ago"><input type="checkbox"
+                                                        name="chkAgo" style="height:13px;width:13px;"
+                                                        [checked]="checkAgo"></td>
+                                                <td class="text-center" data-col="set"><input type="checkbox"
+                                                        name="chkSet" style="height:13px;width:13px;"
+                                                        [checked]="checkSet"></td>
+                                                <td class="text-center" data-col="oct"><input type="checkbox"
+                                                        name="chkOct" style="height:13px;width:13px;"
+                                                        [checked]="checkOct"></td>
+                                                <td class="text-center" data-col="nov"><input type="checkbox"
+                                                        name="chkNov" style="height:13px;width:13px;"
+                                                        [checked]="checkNov"></td>
+                                                <td class="text-center" data-col="dic"><input type="checkbox"
+                                                        name="chkDic" style="height:13px;width:13px;"
+                                                        [checked]="checkDic"></td>
+                                                <td class="text-center" data-col="obs" rowspan="3">
+                                                    <button title="Observar" *ngIf="mostrarBotonA" 
+                                                        class="btn btn-success btn-success-revisar btn-sm m-r" style="padding: 3px 7px; width: 25px;height: 24px;"
+                                                        (click)="abrirObservaciones()">
+                                                        <i class="fa fa-pencil-square-o"></i>
+                                                    </button>
+                                                    <button title="agregar" *ngIf="mostrarBotonB"
+                                                        class="btn btn-success btn-sm  m-r" 
+                                                        (click)="agregar()">
+                                                        <i class="fa fa-pencil-square-o"></i>
+                                                     </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center" data-col="norma">ISO 14001</td>
+                                                <td class="text-center" data-col="ene"><input type="checkbox"
+                                                        name="chkEne" style="height:13px;width:13px;"
+                                                        [checked]="checkEne"></td>
+                                                <td class="text-center" data-col="feb"><input type="checkbox"
+                                                        name="chkFeb" style="height:13px;width:13px;"
+                                                        [checked]="checkFeb"></td>
+                                                <td class="text-center" data-col="mar"><input type="checkbox"
+                                                        name="chkMar" style="height:13px;width:13px;"
+                                                        [checked]="checkMar"></td>
+                                                <td class="text-center" data-col="abr"><input type="checkbox"
+                                                        name="chkAbr" style="height:13px;width:13px;"
+                                                        [checked]="checkAbr"></td>
+                                                <td class="text-center" data-col="may"><input type="checkbox"
+                                                        name="chkMay" style="height:13px;width:13px;"
+                                                        [checked]="checkMay"></td>
+                                                <td class="text-center" data-col="jun"><input type="checkbox"
+                                                        name="chkJun" style="height:13px;width:13px;"
+                                                        [checked]="checkJun"></td>
+                                                <td class="text-center" data-col="jul"><input type="checkbox"
+                                                        name="chkJul" style="height:13px;width:13px;"
+                                                        [checked]="checkJul"></td>
+                                                <td class="text-center" data-col="ago"><input type="checkbox"
+                                                        name="chkAgo" style="height:13px;width:13px;"
+                                                        [checked]="checkAgo"></td>
+                                                <td class="text-center" data-col="set"><input type="checkbox"
+                                                        name="chkSet" style="height:13px;width:13px;"
+                                                        [checked]="checkSet"></td>
+                                                <td class="text-center" data-col="oct"><input type="checkbox"
+                                                        name="chkOct" style="height:13px;width:13px;"
+                                                        [checked]="checkOct"></td>
+                                                <td class="text-center" data-col="nov"><input type="checkbox"
+                                                        name="chkNov" style="height:13px;width:13px;"
+                                                        [checked]="checkNov"></td>
+                                                <td class="text-center" data-col="dic"><input type="checkbox"
+                                                        name="chkDic" style="height:13px;width:13px;"
+                                                        [checked]="checkDic"></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td class="text-center" data-col="norma">OHSAS 18001</td>
+                                                <td class="text-center" data-col="ene"><input type="checkbox"
+                                                        name="chkEne" style="height:13px;width:13px;"
+                                                        [checked]="checkEne"></td>
+                                                <td class="text-center" data-col="feb"><input type="checkbox"
+                                                        name="chkFeb" style="height:13px;width:13px;"
+                                                        [checked]="checkFeb"></td>
+                                                <td class="text-center" data-col="mar"><input type="checkbox"
+                                                        name="chkMar" style="height:13px;width:13px;"
+                                                        [checked]="checkMar"></td>
+                                                <td class="text-center" data-col="abr"><input type="checkbox"
+                                                        name="chkAbr" style="height:13px;width:13px;"
+                                                        [checked]="checkAbr"></td>
+                                                <td class="text-center" data-col="may"><input type="checkbox"
+                                                        name="chkMay" style="height:13px;width:13px;"
+                                                        [checked]="checkMay"></td>
+                                                <td class="text-center" data-col="jun"><input type="checkbox"
+                                                        name="chkJun" style="height:13px;width:13px;"
+                                                        [checked]="checkJun"></td>
+                                                <td class="text-center" data-col="jul"><input type="checkbox"
+                                                        name="chkJul" style="height:13px;width:13px;"
+                                                        [checked]="checkJul"></td>
+                                                <td class="text-center" data-col="ago"><input type="checkbox"
+                                                        name="chkAgo" style="height:13px;width:13px;"
+                                                        [checked]="checkAgo"></td>
+                                                <td class="text-center" data-col="set"><input type="checkbox"
+                                                        name="chkSet" style="height:13px;width:13px;"
+                                                        [checked]="checkSet"></td>
+                                                <td class="text-center" data-col="oct"><input type="checkbox"
+                                                        name="chkOct" style="height:13px;width:13px;"
+                                                        [checked]="checkOct"></td>
+                                                <td class="text-center" data-col="nov"><input type="checkbox"
+                                                        name="chkNov" style="height:13px;width:13px;"
+                                                        [checked]="checkNov"></td>
+                                                <td class="text-center" data-col="dic"><input type="checkbox"
+                                                        name="chkDic" style="height:13px;width:13px;"
+                                                        [checked]="checkDic"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center" data-col="descripcionEntidad" rowspan="3"
+                                                    [ngStyle]="{'background':observaciones1!=null?'#EDB8B8':'none'}">
+                                                    EQUIPO PLANEAMIENTO FÍSICO Y PRE INVERSIÓN</td>
+                                                <td class="text-center" data-col="norma">ISO 9001</td>
+                                                <td class="text-center" data-col="ene"><input type="checkbox"
+                                                        name="chkEne" style="height:13px;width:13px;"
+                                                        [checked]="checkEne"></td>
+                                                <td class="text-center" data-col="feb"><input type="checkbox"
+                                                        name="chkFeb" style="height:13px;width:13px;"
+                                                        [checked]="checkFeb"></td>
+                                                <td class="text-center" data-col="mar"><input type="checkbox"
+                                                        name="chkMar" style="height:13px;width:13px;"
+                                                        [checked]="checkMar"></td>
+                                                <td class="text-center" data-col="abr"><input type="checkbox"
+                                                        name="chkAbr" style="height:13px;width:13px;"
+                                                        [checked]="checkAbr"></td>
+                                                <td class="text-center" data-col="may"><input type="checkbox"
+                                                        name="chkMay" style="height:13px;width:13px;"
+                                                        [checked]="checkMay"></td>
+                                                <td class="text-center" data-col="jun"><input type="checkbox"
+                                                        name="chkJun" style="height:13px;width:13px;"
+                                                        [checked]="checkJun"></td>
+                                                <td class="text-center" data-col="jul"><input type="checkbox"
+                                                        name="chkJul" style="height:13px;width:13px;"
+                                                        [checked]="checkJul"></td>
+                                                <td class="text-center" data-col="ago"><input type="checkbox"
+                                                        name="chkAgo" style="height:13px;width:13px;"
+                                                        [checked]="checkAgo"></td>
+                                                <td class="text-center" data-col="set"><input type="checkbox"
+                                                        name="chkSet" style="height:13px;width:13px;"
+                                                        [checked]="checkSet"></td>
+                                                <td class="text-center" data-col="oct"><input type="checkbox"
+                                                        name="chkOct" style="height:13px;width:13px;"
+                                                        [checked]="checkOct"></td>
+                                                <td class="text-center" data-col="nov"><input type="checkbox"
+                                                        name="chkNov" style="height:13px;width:13px;"
+                                                        [checked]="checkNov"></td>
+                                                <td class="text-center" data-col="dic"><input type="checkbox"
+                                                        name="chkDic" style="height:13px;width:13px;"
+                                                        [checked]="checkDic"></td>
+                                                <td class="text-center" data-col="obs" rowspan="3">
+                                                    <button title="Observar" *ngIf="mostrarBotonA"
+                                                        class="btn btn-success btn-success-revisar btn-sm m-r"
+                                                        (click)="abrirObservaciones1()">
+                                                        <i class="fa fa-pencil-square-o"></i>
+                                                    </button>
+                                                    <button title="agregar" *ngIf="mostrarBotonB"
+                                                        class="btn btn-success  btn-sm m-r"                                                        
+                                                        (click)="agregar1()">
+                                                        <i class="fa fa-pencil-square-o"></i>
+                                                     </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+
+                                                <td class="text-center" data-col="norma">ISO 14001</td>
+                                                <td class="text-center" data-col="ene"><input type="checkbox"
+                                                        name="chkEne" style="height:13px;width:13px;"
+                                                        [checked]="checkEne"></td>
+                                                <td class="text-center" data-col="feb"><input type="checkbox"
+                                                        name="chkFeb" style="height:13px;width:13px;"
+                                                        [checked]="checkFeb"></td>
+                                                <td class="text-center" data-col="mar"><input type="checkbox"
+                                                        name="chkMar" style="height:13px;width:13px;"
+                                                        [checked]="checkMar"></td>
+                                                <td class="text-center" data-col="abr"><input type="checkbox"
+                                                        name="chkAbr" style="height:13px;width:13px;"
+                                                        [checked]="checkAbr"></td>
+                                                <td class="text-center" data-col="may"><input type="checkbox"
+                                                        name="chkMay" style="height:13px;width:13px;"
+                                                        [checked]="checkMay"></td>
+                                                <td class="text-center" data-col="jun"><input type="checkbox"
+                                                        name="chkJun" style="height:13px;width:13px;"
+                                                        [checked]="checkJun"></td>
+                                                <td class="text-center" data-col="jul"><input type="checkbox"
+                                                        name="chkJul" style="height:13px;width:13px;"
+                                                        [checked]="checkJul"></td>
+                                                <td class="text-center" data-col="ago"><input type="checkbox"
+                                                        name="chkAgo" style="height:13px;width:13px;"
+                                                        [checked]="checkAgo"></td>
+                                                <td class="text-center" data-col="set"><input type="checkbox"
+                                                        name="chkSet" style="height:13px;width:13px;"
+                                                        [checked]="checkSet"></td>
+                                                <td class="text-center" data-col="oct"><input type="checkbox"
+                                                        name="chkOct" style="height:13px;width:13px;"
+                                                        [checked]="checkOct"></td>
+                                                <td class="text-center" data-col="nov"><input type="checkbox"
+                                                        name="chkNov" style="height:13px;width:13px;"
+                                                        [checked]="checkNov"></td>
+                                                <td class="text-center" data-col="dic"><input type="checkbox"
+                                                        name="chkDic" style="height:13px;width:13px;"
+                                                        [checked]="checkDic"></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td class="text-center" data-col="norma">ISO/IEC 17025</td>
+                                                <td class="text-center" data-col="ene"><input type="checkbox"
+                                                        name="chkEne" style="height:13px;width:13px;"
+                                                        [checked]="checkEne"></td>
+                                                <td class="text-center" data-col="feb"><input type="checkbox"
+                                                        name="chkFeb" style="height:13px;width:13px;"
+                                                        [checked]="checkFeb"></td>
+                                                <td class="text-center" data-col="mar"><input type="checkbox"
+                                                        name="chkMar" style="height:13px;width:13px;"
+                                                        [checked]="checkMar"></td>
+                                                <td class="text-center" data-col="abr"><input type="checkbox"
+                                                        name="chkAbr" style="height:13px;width:13px;"
+                                                        [checked]="checkAbr"></td>
+                                                <td class="text-center" data-col="may"><input type="checkbox"
+                                                        name="chkMay" style="height:13px;width:13px;"
+                                                        [checked]="checkMay"></td>
+                                                <td class="text-center" data-col="jun"><input type="checkbox"
+                                                        name="chkJun" style="height:13px;width:13px;"
+                                                        [checked]="checkJun"></td>
+                                                <td class="text-center" data-col="jul"><input type="checkbox"
+                                                        name="chkJul" style="height:13px;width:13px;"
+                                                        [checked]="checkJul"></td>
+                                                <td class="text-center" data-col="ago"><input type="checkbox"
+                                                        name="chkAgo" style="height:13px;width:13px;"
+                                                        [checked]="checkAgo"></td>
+                                                <td class="text-center" data-col="set"><input type="checkbox"
+                                                        name="chkSet" style="height:13px;width:13px;"
+                                                        [checked]="checkSet"></td>
+                                                <td class="text-center" data-col="oct"><input type="checkbox"
+                                                        name="chkOct" style="height:13px;width:13px;"
+                                                        [checked]="checkOct"></td>
+                                                <td class="text-center" data-col="nov"><input type="checkbox"
+                                                        name="chkNov" style="height:13px;width:13px;"
+                                                        [checked]="checkNov"></td>
+                                                <td class="text-center" data-col="dic"><input type="checkbox"
+                                                        name="chkDic" style="height:13px;width:13px;"
+                                                        [checked]="checkDic"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center" data-col="descripcionEntidad" rowspan="3"
+                                                    [ngStyle]="{'background':observaciones2!=null?'#EDB8B8':'none'}">
+                                                    EQUIPO PLANEAMIENTO OPERATIVO FINANCIERO</td>
+                                                <td class="text-center" data-col="norma">ISO 9001</td>
+                                                <td class="text-center" data-col="ene"><input type="checkbox"
+                                                        name="chkEne" style="height:13px;width:13px;"
+                                                        [checked]="checkEne"></td>
+                                                <td class="text-center" data-col="feb"><input type="checkbox"
+                                                        name="chkFeb" style="height:13px;width:13px;"
+                                                        [checked]="checkFeb"></td>
+                                                <td class="text-center" data-col="mar"><input type="checkbox"
+                                                        name="chkMar" style="height:13px;width:13px;"
+                                                        [checked]="checkMar"></td>
+                                                <td class="text-center" data-col="abr"><input type="checkbox"
+                                                        name="chkAbr" style="height:13px;width:13px;"
+                                                        [checked]="checkAbr"></td>
+                                                <td class="text-center" data-col="may"><input type="checkbox"
+                                                        name="chkMay" style="height:13px;width:13px;"
+                                                        [checked]="checkMay"></td>
+                                                <td class="text-center" data-col="jun"><input type="checkbox"
+                                                        name="chkJun" style="height:13px;width:13px;"
+                                                        [checked]="checkJun"></td>
+                                                <td class="text-center" data-col="jul"><input type="checkbox"
+                                                        name="chkJul" style="height:13px;width:13px;"
+                                                        [checked]="checkJul"></td>
+                                                <td class="text-center" data-col="ago"><input type="checkbox"
+                                                        name="chkAgo" style="height:13px;width:13px;"
+                                                        [checked]="checkAgo"></td>
+                                                <td class="text-center" data-col="set"><input type="checkbox"
+                                                        name="chkSet" style="height:13px;width:13px;"
+                                                        [checked]="checkSet"></td>
+                                                <td class="text-center" data-col="oct"><input type="checkbox"
+                                                        name="chkOct" style="height:13px;width:13px;"
+                                                        [checked]="checkOct"></td>
+                                                <td class="text-center" data-col="nov"><input type="checkbox"
+                                                        name="chkNov" style="height:13px;width:13px;"
+                                                        [checked]="checkNov"></td>
+                                                <td class="text-center" data-col="dic"><input type="checkbox"
+                                                        name="chkDic" style="height:13px;width:13px;"
+                                                        [checked]="checkDic"></td>
+                                                <td class="text-center" data-col="obs" rowspan="3">
+                                                    <button title="Observar" *ngIf="mostrarBotonA"
+                                                        class="btn btn-success btn-success-revisar btn-sm m-r"
+                                                        (click)="abrirObservaciones2()">
+                                                        <i class="fa fa-pencil-square-o"></i>
+                                                    </button>
+                                                    <button title="agregar" *ngIf="mostrarBotonB"
+                                                        class="btn btn-success  btn-sm m-r"                                                        
+                                                        (click)="agregar2()">
+                                                        <i class="fa fa-pencil-square-o"></i>
+                                                     </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+
+                                                <td class="text-center" data-col="norma">ISO 14001</td>
+                                                <td class="text-center" data-col="ene"><input type="checkbox"
+                                                        name="chkEne" style="height:13px;width:13px;"
+                                                        [checked]="checkEne"></td>
+                                                <td class="text-center" data-col="feb"><input type="checkbox"
+                                                        name="chkFeb" style="height:13px;width:13px;"
+                                                        [checked]="checkFeb"></td>
+                                                <td class="text-center" data-col="mar"><input type="checkbox"
+                                                        name="chkMar" style="height:13px;width:13px;"
+                                                        [checked]="checkMar"></td>
+                                                <td class="text-center" data-col="abr"><input type="checkbox"
+                                                        name="chkAbr" style="height:13px;width:13px;"
+                                                        [checked]="checkAbr"></td>
+                                                <td class="text-center" data-col="may"><input type="checkbox"
+                                                        name="chkMay" style="height:13px;width:13px;"
+                                                        [checked]="checkMay"></td>
+                                                <td class="text-center" data-col="jun"><input type="checkbox"
+                                                        name="chkJun" style="height:13px;width:13px;"
+                                                        [checked]="checkJun"></td>
+                                                <td class="text-center" data-col="jul"><input type="checkbox"
+                                                        name="chkJul" style="height:13px;width:13px;"
+                                                        [checked]="checkJul"></td>
+                                                <td class="text-center" data-col="ago"><input type="checkbox"
+                                                        name="chkAgo" style="height:13px;width:13px;"
+                                                        [checked]="checkAgo"></td>
+                                                <td class="text-center" data-col="set"><input type="checkbox"
+                                                        name="chkSet" style="height:13px;width:13px;"
+                                                        [checked]="checkSet"></td>
+                                                <td class="text-center" data-col="oct"><input type="checkbox"
+                                                        name="chkOct" style="height:13px;width:13px;"
+                                                        [checked]="checkOct"></td>
+                                                <td class="text-center" data-col="nov"><input type="checkbox"
+                                                        name="chkNov" style="height:13px;width:13px;"
+                                                        [checked]="checkNov"></td>
+                                                <td class="text-center" data-col="dic"><input type="checkbox"
+                                                        name="chkDic" style="height:13px;width:13px;"
+                                                        [checked]="checkDic"></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td class="text-center" data-col="norma">OHSAS 18001</td>
+                                                <td class="text-center" data-col="ene"><input type="checkbox"
+                                                        name="chkEne" style="height:13px;width:13px;"
+                                                        [checked]="checkEne"></td>
+                                                <td class="text-center" data-col="feb"><input type="checkbox"
+                                                        name="chkFeb" style="height:13px;width:13px;"
+                                                        [checked]="checkFeb"></td>
+                                                <td class="text-center" data-col="mar"><input type="checkbox"
+                                                        name="chkMar" style="height:13px;width:13px;"
+                                                        [checked]="checkMar"></td>
+                                                <td class="text-center" data-col="abr"><input type="checkbox"
+                                                        name="chkAbr" style="height:13px;width:13px;"
+                                                        [checked]="checkAbr"></td>
+                                                <td class="text-center" data-col="may"><input type="checkbox"
+                                                        name="chkMay" style="height:13px;width:13px;"
+                                                        [checked]="checkMay"></td>
+                                                <td class="text-center" data-col="jun"><input type="checkbox"
+                                                        name="chkJun" style="height:13px;width:13px;"
+                                                        [checked]="checkJun"></td>
+                                                <td class="text-center" data-col="jul"><input type="checkbox"
+                                                        name="chkJul" style="height:13px;width:13px;"
+                                                        [checked]="checkJul"></td>
+                                                <td class="text-center" data-col="ago"><input type="checkbox"
+                                                        name="chkAgo" style="height:13px;width:13px;"
+                                                        [checked]="checkAgo"></td>
+                                                <td class="text-center" data-col="set"><input type="checkbox"
+                                                        name="chkSet" style="height:13px;width:13px;"
+                                                        [checked]="checkSet"></td>
+                                                <td class="text-center" data-col="oct"><input type="checkbox"
+                                                        name="chkOct" style="height:13px;width:13px;"
+                                                        [checked]="checkOct"></td>
+                                                <td class="text-center" data-col="nov"><input type="checkbox"
+                                                        name="chkNov" style="height:13px;width:13px;"
+                                                        [checked]="checkNov"></td>
+                                                <td class="text-center" data-col="dic"><input type="checkbox"
+                                                        name="chkDic" style="height:13px;width:13px;"
+                                                        [checked]="checkDic"></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="text-center" data-col="descripcionEntidad" rowspan="3"
+                                                    [ngStyle]="{'background':observaciones3!=null?'#EDB8B8':'none'}">
+                                                    <b>
+                                                        GERENCIA COMERCIAL</b></td>
+                                                <td class="text-center" data-col="norma">ISO 9001</td>
+                                                <td class="text-center" data-col="ene"><input type="checkbox"
+                                                        name="chkEne" style="height:13px;width:13px;"
+                                                        [checked]="checkEne"></td>
+                                                <td class="text-center" data-col="feb"><input type="checkbox"
+                                                        name="chkFeb" style="height:13px;width:13px;"
+                                                        [checked]="checkFeb"></td>
+                                                <td class="text-center" data-col="mar"><input type="checkbox"
+                                                        name="chkMar" style="height:13px;width:13px;"
+                                                        [checked]="checkMar"></td>
+                                                <td class="text-center" data-col="abr"><input type="checkbox"
+                                                        name="chkAbr" style="height:13px;width:13px;"
+                                                        [checked]="checkAbr"></td>
+                                                <td class="text-center" data-col="may"><input type="checkbox"
+                                                        name="chkMay" style="height:13px;width:13px;"
+                                                        [checked]="checkMay"></td>
+                                                <td class="text-center" data-col="jun"><input type="checkbox"
+                                                        name="chkJun" style="height:13px;width:13px;"
+                                                        [checked]="checkJun"></td>
+                                                <td class="text-center" data-col="jul"><input type="checkbox"
+                                                        name="chkJul" style="height:13px;width:13px;"
+                                                        [checked]="checkJul"></td>
+                                                <td class="text-center" data-col="ago"><input type="checkbox"
+                                                        name="chkAgo" style="height:13px;width:13px;"
+                                                        [checked]="checkAgo"></td>
+                                                <td class="text-center" data-col="set"><input type="checkbox"
+                                                        name="chkSet" style="height:13px;width:13px;"
+                                                        [checked]="checkSet"></td>
+                                                <td class="text-center" data-col="oct"><input type="checkbox"
+                                                        name="chkOct" style="height:13px;width:13px;"
+                                                        [checked]="checkOct"></td>
+                                                <td class="text-center" data-col="nov"><input type="checkbox"
+                                                        name="chkNov" style="height:13px;width:13px;"
+                                                        [checked]="checkNov"></td>
+                                                <td class="text-center" data-col="dic"><input type="checkbox"
+                                                        name="chkDic" style="height:13px;width:13px;"
+                                                        [checked]="checkDic"></td>
+                                                <td class="text-center" data-col="obs" rowspan="3">
+                                                    <button title="Observar" *ngIf="mostrarBotonA"
+                                                        class="btn btn-success btn-success-revisar btn-sm m-r"
+                                                        (click)="abrirObservaciones3()">
+                                                        <i class="fa fa-pencil-square-o"></i>
+                                                    </button>
+                                                    <button title="agregar" *ngIf="mostrarBotonB"
+                                                        class="btn btn-success  btn-sm m-r"                                                        
+                                                        (click)="agregar3()">
+                                                        <i class="fa fa-pencil-square-o"></i>
+                                                     </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+
+                                                <td class="text-center" data-col="norma">ISO 14001</td>
+                                                <td class="text-center" data-col="ene"><input type="checkbox"
+                                                        name="chkEne" style="height:13px;width:13px;"
+                                                        [checked]="checkEne"></td>
+                                                <td class="text-center" data-col="feb"><input type="checkbox"
+                                                        name="chkFeb" style="height:13px;width:13px;"
+                                                        [checked]="checkFeb"></td>
+                                                <td class="text-center" data-col="mar"><input type="checkbox"
+                                                        name="chkMar" style="height:13px;width:13px;"
+                                                        [checked]="checkMar"></td>
+                                                <td class="text-center" data-col="abr"><input type="checkbox"
+                                                        name="chkAbr" style="height:13px;width:13px;"
+                                                        [checked]="checkAbr"></td>
+                                                <td class="text-center" data-col="may"><input type="checkbox"
+                                                        name="chkMay" style="height:13px;width:13px;"
+                                                        [checked]="checkMay"></td>
+                                                <td class="text-center" data-col="jun"><input type="checkbox"
+                                                        name="chkJun" style="height:13px;width:13px;"
+                                                        [checked]="checkJun"></td>
+                                                <td class="text-center" data-col="jul"><input type="checkbox"
+                                                        name="chkJul" style="height:13px;width:13px;"
+                                                        [checked]="checkJul"></td>
+                                                <td class="text-center" data-col="ago"><input type="checkbox"
+                                                        name="chkAgo" style="height:13px;width:13px;"
+                                                        [checked]="checkAgo"></td>
+                                                <td class="text-center" data-col="set"><input type="checkbox"
+                                                        name="chkSet" style="height:13px;width:13px;"
+                                                        [checked]="checkSet"></td>
+                                                <td class="text-center" data-col="oct"><input type="checkbox"
+                                                        name="chkOct" style="height:13px;width:13px;"
+                                                        [checked]="checkOct"></td>
+                                                <td class="text-center" data-col="nov"><input type="checkbox"
+                                                        name="chkNov" style="height:13px;width:13px;"
+                                                        [checked]="checkNov"></td>
+                                                <td class="text-center" data-col="dic"><input type="checkbox"
+                                                        name="chkDic" style="height:13px;width:13px;"
+                                                        [checked]="checkDic"></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td class="text-center" data-col="norma">OHSAS 18001</td>
+                                                <td class="text-center" data-col="ene"><input type="checkbox"
+                                                        name="chkEne" style="height:13px;width:13px;"
+                                                        [checked]="checkEne"></td>
+                                                <td class="text-center" data-col="feb"><input type="checkbox"
+                                                        name="chkFeb" style="height:13px;width:13px;"
+                                                        [checked]="checkFeb"></td>
+                                                <td class="text-center" data-col="mar"><input type="checkbox"
+                                                        name="chkMar" style="height:13px;width:13px;"
+                                                        [checked]="checkMar"></td>
+                                                <td class="text-center" data-col="abr"><input type="checkbox"
+                                                        name="chkAbr" style="height:13px;width:13px;"
+                                                        [checked]="checkAbr"></td>
+                                                <td class="text-center" data-col="may"><input type="checkbox"
+                                                        name="chkMay" style="height:13px;width:13px;"
+                                                        [checked]="checkMay"></td>
+                                                <td class="text-center" data-col="jun"><input type="checkbox"
+                                                        name="chkJun" style="height:13px;width:13px;"
+                                                        [checked]="checkJun"></td>
+                                                <td class="text-center" data-col="jul"><input type="checkbox"
+                                                        name="chkJul" style="height:13px;width:13px;"
+                                                        [checked]="checkJul"></td>
+                                                <td class="text-center" data-col="ago"><input type="checkbox"
+                                                        name="chkAgo" style="height:13px;width:13px;"
+                                                        [checked]="checkAgo"></td>
+                                                <td class="text-center" data-col="set"><input type="checkbox"
+                                                        name="chkSet" style="height:13px;width:13px;"
+                                                        [checked]="checkSet"></td>
+                                                <td class="text-center" data-col="oct"><input type="checkbox"
+                                                        name="chkOct" style="height:13px;width:13px;"
+                                                        [checked]="checkOct"></td>
+                                                <td class="text-center" data-col="nov"><input type="checkbox"
+                                                        name="chkNov" style="height:13px;width:13px;"
+                                                        [checked]="checkNov"></td>
+                                                <td class="text-center" data-col="dic"><input type="checkbox"
+                                                        name="chkDic" style="height:13px;width:13px;"
+                                                        [checked]="checkDic"></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="text-center" data-col="descripcionEntidad" rowspan="3"
+                                                    [ngStyle]="{'background':observaciones4!=null?'#EDB8B8':'none'}">
+                                                    EQUIPO GESTIÓN COMERCIAL Y MICROMEDICIÓN / CC-GC / CC-EGCM
+                                                </td>
+                                                <td class="text-center" data-col="norma">ISO 9001</td>
+                                                <td class="text-center" data-col="ene"><input type="checkbox"
+                                                        name="chkEne" style="height:13px;width:13px;"
+                                                        [checked]="checkEne"></td>
+                                                <td class="text-center" data-col="feb"><input type="checkbox"
+                                                        name="chkFeb" style="height:13px;width:13px;"
+                                                        [checked]="checkFeb"></td>
+                                                <td class="text-center" data-col="mar"><input type="checkbox"
+                                                        name="chkMar" style="height:13px;width:13px;"
+                                                        [checked]="checkMar"></td>
+                                                <td class="text-center" data-col="abr"><input type="checkbox"
+                                                        name="chkAbr" style="height:13px;width:13px;"
+                                                        [checked]="checkAbr"></td>
+                                                <td class="text-center" data-col="may"><input type="checkbox"
+                                                        name="chkMay" style="height:13px;width:13px;"
+                                                        [checked]="checkMay"></td>
+                                                <td class="text-center" data-col="jun"><input type="checkbox"
+                                                        name="chkJun" style="height:13px;width:13px;"
+                                                        [checked]="checkJun"></td>
+                                                <td class="text-center" data-col="jul"><input type="checkbox"
+                                                        name="chkJul" style="height:13px;width:13px;"
+                                                        [checked]="checkJul"></td>
+                                                <td class="text-center" data-col="ago"><input type="checkbox"
+                                                        name="chkAgo" style="height:13px;width:13px;"
+                                                        [checked]="checkAgo"></td>
+                                                <td class="text-center" data-col="set"><input type="checkbox"
+                                                        name="chkSet" style="height:13px;width:13px;"
+                                                        [checked]="checkSet"></td>
+                                                <td class="text-center" data-col="oct"><input type="checkbox"
+                                                        name="chkOct" style="height:13px;width:13px;"
+                                                        [checked]="checkOct"></td>
+                                                <td class="text-center" data-col="nov"><input type="checkbox"
+                                                        name="chkNov" style="height:13px;width:13px;"
+                                                        [checked]="checkNov"></td>
+                                                <td class="text-center" data-col="dic"><input type="checkbox"
+                                                        name="chkDic" style="height:13px;width:13px;"
+                                                        [checked]="checkDic"></td>
+                                                <td class="text-center" data-col="obs" rowspan="3">
+                                                    <button title="Observar" *ngIf="mostrarBotonA"
+                                                        class="btn btn-success btn-success-revisar btn-sm m-r"
+                                                        (click)="abrirObservaciones4()">
+                                                        <i class="fa fa-pencil-square-o"></i>
+                                                    </button>
+                                                    <button title="agregar" *ngIf="mostrarBotonB"
+                                                        class="btn btn-success  btn-sm m-r"                                                        
+                                                        (click)="agregar4()">
+                                                        <i class="fa fa-pencil-square-o"></i>
+                                                     </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+
+                                                <td class="text-center" data-col="norma">ISO 14001</td>
+                                                <td class="text-center" data-col="ene"><input type="checkbox"
+                                                        name="chkEne" style="height:13px;width:13px;"
+                                                        [checked]="checkEne"></td>
+                                                <td class="text-center" data-col="feb"><input type="checkbox"
+                                                        name="chkFeb" style="height:13px;width:13px;"
+                                                        [checked]="checkFeb"></td>
+                                                <td class="text-center" data-col="mar"><input type="checkbox"
+                                                        name="chkMar" style="height:13px;width:13px;"
+                                                        [checked]="checkMar"></td>
+                                                <td class="text-center" data-col="abr"><input type="checkbox"
+                                                        name="chkAbr" style="height:13px;width:13px;"
+                                                        [checked]="checkAbr"></td>
+                                                <td class="text-center" data-col="may"><input type="checkbox"
+                                                        name="chkMay" style="height:13px;width:13px;"
+                                                        [checked]="checkMay"></td>
+                                                <td class="text-center" data-col="jun"><input type="checkbox"
+                                                        name="chkJun" style="height:13px;width:13px;"
+                                                        [checked]="checkJun"></td>
+                                                <td class="text-center" data-col="jul"><input type="checkbox"
+                                                        name="chkJul" style="height:13px;width:13px;"
+                                                        [checked]="checkJul"></td>
+                                                <td class="text-center" data-col="ago"><input type="checkbox"
+                                                        name="chkAgo" style="height:13px;width:13px;"
+                                                        [checked]="checkAgo"></td>
+                                                <td class="text-center" data-col="set"><input type="checkbox"
+                                                        name="chkSet" style="height:13px;width:13px;"
+                                                        [checked]="checkSet"></td>
+                                                <td class="text-center" data-col="oct"><input type="checkbox"
+                                                        name="chkOct" style="height:13px;width:13px;"
+                                                        [checked]="checkOct"></td>
+                                                <td class="text-center" data-col="nov"><input type="checkbox"
+                                                        name="chkNov" style="height:13px;width:13px;"
+                                                        [checked]="checkNov"></td>
+                                                <td class="text-center" data-col="dic"><input type="checkbox"
+                                                        name="chkDic" style="height:13px;width:13px;"
+                                                        [checked]="checkDic"></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td class="text-center" data-col="norma">ISO/IEC 17020</td>
+                                                <td class="text-center" data-col="ene"><input type="checkbox"
+                                                        name="chkEne" style="height:13px;width:13px;"
+                                                        [checked]="checkEne"></td>
+                                                <td class="text-center" data-col="feb"><input type="checkbox"
+                                                        name="chkFeb" style="height:13px;width:13px;"
+                                                        [checked]="checkFeb"></td>
+                                                <td class="text-center" data-col="mar"><input type="checkbox"
+                                                        name="chkMar" style="height:13px;width:13px;"
+                                                        [checked]="checkMar"></td>
+                                                <td class="text-center" data-col="abr"><input type="checkbox"
+                                                        name="chkAbr" style="height:13px;width:13px;"
+                                                        [checked]="checkAbr"></td>
+                                                <td class="text-center" data-col="may"><input type="checkbox"
+                                                        name="chkMay" style="height:13px;width:13px;"
+                                                        [checked]="checkMay"></td>
+                                                <td class="text-center" data-col="jun"><input type="checkbox"
+                                                        name="chkJun" style="height:13px;width:13px;"
+                                                        [checked]="checkJun"></td>
+                                                <td class="text-center" data-col="jul"><input type="checkbox"
+                                                        name="chkJul" style="height:13px;width:13px;"
+                                                        [checked]="checkJul"></td>
+                                                <td class="text-center" data-col="ago"><input type="checkbox"
+                                                        name="chkAgo" style="height:13px;width:13px;"
+                                                        [checked]="checkAgo"></td>
+                                                <td class="text-center" data-col="set"><input type="checkbox"
+                                                        name="chkSet" style="height:13px;width:13px;"
+                                                        [checked]="checkSet"></td>
+                                                <td class="text-center" data-col="oct"><input type="checkbox"
+                                                        name="chkOct" style="height:13px;width:13px;"
+                                                        [checked]="checkOct"></td>
+                                                <td class="text-center" data-col="nov"><input type="checkbox"
+                                                        name="chkNov" style="height:13px;width:13px;"
+                                                        [checked]="checkNov"></td>
+                                                <td class="text-center" data-col="dic"><input type="checkbox"
+                                                        name="chkDic" style="height:13px;width:13px;"
+                                                        [checked]="checkDic"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center" data-col="descripcionEntidad" rowspan="3"
+                                                    [ngStyle]="{'background':observaciones5!=null?'#EDB8B8':'none'}">
+                                                    EQUIPO SERVICIOS Y CLIENTES ESPECIALES</td>
+                                                <td class="text-center" data-col="norma">ISO 14001</td>
+                                                <td class="text-center" data-col="ene"><input type="checkbox"
+                                                        name="chkEne" style="height:13px;width:13px;"
+                                                        [checked]="checkEne"></td>
+                                                <td class="text-center" data-col="feb"><input type="checkbox"
+                                                        name="chkFeb" style="height:13px;width:13px;"
+                                                        [checked]="checkFeb"></td>
+                                                <td class="text-center" data-col="mar"><input type="checkbox"
+                                                        name="chkMar" style="height:13px;width:13px;"
+                                                        [checked]="checkMar"></td>
+                                                <td class="text-center" data-col="abr"><input type="checkbox"
+                                                        name="chkAbr" style="height:13px;width:13px;"
+                                                        [checked]="checkAbr"></td>
+                                                <td class="text-center" data-col="may"><input type="checkbox"
+                                                        name="chkMay" style="height:13px;width:13px;"
+                                                        [checked]="checkMay"></td>
+                                                <td class="text-center" data-col="jun"><input type="checkbox"
+                                                        name="chkJun" style="height:13px;width:13px;"
+                                                        [checked]="checkJun"></td>
+                                                <td class="text-center" data-col="jul"><input type="checkbox"
+                                                        name="chkJul" style="height:13px;width:13px;"
+                                                        [checked]="checkJul"></td>
+                                                <td class="text-center" data-col="ago"><input type="checkbox"
+                                                        name="chkAgo" style="height:13px;width:13px;"
+                                                        [checked]="checkAgo"></td>
+                                                <td class="text-center" data-col="set"><input type="checkbox"
+                                                        name="chkSet" style="height:13px;width:13px;"
+                                                        [checked]="checkSet"></td>
+                                                <td class="text-center" data-col="oct"><input type="checkbox"
+                                                        name="chkOct" style="height:13px;width:13px;"
+                                                        [checked]="checkOct"></td>
+                                                <td class="text-center" data-col="nov"><input type="checkbox"
+                                                        name="chkNov" style="height:13px;width:13px;"
+                                                        [checked]="checkNov"></td>
+                                                <td class="text-center" data-col="dic"><input type="checkbox"
+                                                        name="chkDic" style="height:13px;width:13px;"
+                                                        [checked]="checkDic"></td>
+                                                <td class="text-center" data-col="obs" rowspan="3">
+                                                    <button title="Observar" *ngIf="mostrarBotonA"
+                                                        class="btn btn-success btn-success-revisar btn-sm m-r"
+                                                        (click)="abrirObservaciones5()">
+                                                        <i class="fa fa-pencil-square-o"></i>
+                                                    </button>
+                                                    <button title="agregar" *ngIf="mostrarBotonB"
+                                                        class="btn btn-success  btn-sm m-r"                                                        
+                                                        (click)="agregar5()">
+                                                        <i class="fa fa-pencil-square-o"></i>
+                                                     </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+
+                                                <td class="text-center" data-col="norma">ISO 9001</td>
+                                                <td class="text-center" data-col="ene"><input type="checkbox"
+                                                        name="chkEne" style="height:13px;width:13px;"
+                                                        [checked]="checkEne"></td>
+                                                <td class="text-center" data-col="feb"><input type="checkbox"
+                                                        name="chkFeb" style="height:13px;width:13px;"
+                                                        [checked]="checkFeb"></td>
+                                                <td class="text-center" data-col="mar"><input type="checkbox"
+                                                        name="chkMar" style="height:13px;width:13px;"
+                                                        [checked]="checkMar"></td>
+                                                <td class="text-center" data-col="abr"><input type="checkbox"
+                                                        name="chkAbr" style="height:13px;width:13px;"
+                                                        [checked]="checkAbr"></td>
+                                                <td class="text-center" data-col="may"><input type="checkbox"
+                                                        name="chkMay" style="height:13px;width:13px;"
+                                                        [checked]="checkMay"></td>
+                                                <td class="text-center" data-col="jun"><input type="checkbox"
+                                                        name="chkJun" style="height:13px;width:13px;"
+                                                        [checked]="checkJun"></td>
+                                                <td class="text-center" data-col="jul"><input type="checkbox"
+                                                        name="chkJul" style="height:13px;width:13px;"
+                                                        [checked]="checkJul"></td>
+                                                <td class="text-center" data-col="ago"><input type="checkbox"
+                                                        name="chkAgo" style="height:13px;width:13px;"
+                                                        [checked]="checkAgo"></td>
+                                                <td class="text-center" data-col="set"><input type="checkbox"
+                                                        name="chkSet" style="height:13px;width:13px;"
+                                                        [checked]="checkSet"></td>
+                                                <td class="text-center" data-col="oct"><input type="checkbox"
+                                                        name="chkOct" style="height:13px;width:13px;"
+                                                        [checked]="checkOct"></td>
+                                                <td class="text-center" data-col="nov"><input type="checkbox"
+                                                        name="chkNov" style="height:13px;width:13px;"
+                                                        [checked]="checkNov"></td>
+                                                <td class="text-center" data-col="dic"><input type="checkbox"
+                                                        name="chkDic" style="height:13px;width:13px;"
+                                                        [checked]="checkDic"></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td class="text-center" data-col="norma">ISO 14001</td>
+                                                <td class="text-center" data-col="ene"><input type="checkbox"
+                                                        name="chkEne" style="height:13px;width:13px;"
+                                                        [checked]="checkEne"></td>
+                                                <td class="text-center" data-col="feb"><input type="checkbox"
+                                                        name="chkFeb" style="height:13px;width:13px;"
+                                                        [checked]="checkFeb"></td>
+                                                <td class="text-center" data-col="mar"><input type="checkbox"
+                                                        name="chkMar" style="height:13px;width:13px;"
+                                                        [checked]="checkMar"></td>
+                                                <td class="text-center" data-col="abr"><input type="checkbox"
+                                                        name="chkAbr" style="height:13px;width:13px;"
+                                                        [checked]="checkAbr"></td>
+                                                <td class="text-center" data-col="may"><input type="checkbox"
+                                                        name="chkMay" style="height:13px;width:13px;"
+                                                        [checked]="checkMay"></td>
+                                                <td class="text-center" data-col="jun"><input type="checkbox"
+                                                        name="chkJun" style="height:13px;width:13px;"
+                                                        [checked]="checkJun"></td>
+                                                <td class="text-center" data-col="jul"><input type="checkbox"
+                                                        name="chkJul" style="height:13px;width:13px;"
+                                                        [checked]="checkJul"></td>
+                                                <td class="text-center" data-col="ago"><input type="checkbox"
+                                                        name="chkAgo" style="height:13px;width:13px;"
+                                                        [checked]="checkAgo"></td>
+                                                <td class="text-center" data-col="set"><input type="checkbox"
+                                                        name="chkSet" style="height:13px;width:13px;"
+                                                        [checked]="checkSet"></td>
+                                                <td class="text-center" data-col="oct"><input type="checkbox"
+                                                        name="chkOct" style="height:13px;width:13px;"
+                                                        [checked]="checkOct"></td>
+                                                <td class="text-center" data-col="nov"><input type="checkbox"
+                                                        name="chkNov" style="height:13px;width:13px;"
+                                                        [checked]="checkNov"></td>
+                                                <td class="text-center" data-col="dic"><input type="checkbox"
+                                                        name="chkDic" style="height:13px;width:13px;"
+                                                        [checked]="checkDic"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

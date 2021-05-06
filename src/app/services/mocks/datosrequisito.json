@@ -1,0 +1,110 @@
+{
+    "listaDatosRequisito": [
+        {
+            "id":"1",
+            "documentos":[
+                {
+                    "idDocumento":"1",
+                    "descripcionDocumento":"MAMPR001"
+                },
+                {
+                    "idDocumento":"2",
+                    "descripcionDocumento":"MAMFO030"
+                }
+            ],
+            "detalleRequisito":"La Organización debe de llevar a cabo Auditorías Internas a Intervlos planificados \nB)S ha implementado y se mantiene de manera eficaz, se debe planificar un programa de Auditoría",
+            "preguntasRequisito":[
+                {
+                    "idPregunta":"1",
+                    "descripcionPregunta":"¿La politica es definida en el más alto nivel de la organización?"
+                },
+                {
+                    "idPregunta":"2",
+                    "descripcionPregunta":"La politica debe tener impacto medioambientales de sus actividades como?"
+                }
+            ],
+            "listaRequisitosRelacionados":[
+                {
+                    "idRequisitoRelacionado":"1",
+                    "descripcion":"ISO 14001-204  4.5.3 No conformidad, acción correctiva y acción preventiva"
+                },
+                {
+                    "idRequisitoRelacionado":"2",
+                    "descripcion":"ISO 14001-205  4.5.3 No conformidad, acción correctiva y acción preventiva"
+                }
+            ]
+        },
+        {
+            "id":"2",
+            "documentos":[
+                {
+                    "idDocumento":"31",
+                    "descripcionDocumento":"MAMPR012"
+                },
+                {
+                    "idDocumento":"4",
+                    "descripcionDocumento":"MAMFO045"
+                }
+            ],
+            "detalleRequisito":"La Organización debe llevar auditorias en cada entorno \nB)Se ha implementado un modelo de auditóría util para este caso",
+            "preguntasRequisito":[
+                {
+                    "idPregunta":"3",
+                    "descripcionPregunta":"¿La politica de gestión de riesgos esta definida y aplicada?"
+                },
+                {
+                    "idPregunta":"4",
+                    "descripcionPregunta":"La politica de gestión de riesgos cuenta con los modelos especificados por las normas ISO?"
+                }
+            ],
+            "listaRequisitosRelacionados":[
+                {
+                    "idRequisitoRelacionado":"1",
+                    "descripcion":"ISO 14001-204  4.5.4 No conformidad, acción correctiva y acción preventiva"
+                },
+                {
+                    "idRequisitoRelacionado":"2",
+                    "descripcion":"ISO 14001-205  4.5.4 No conformidad, acción correctiva y acción preventiva"
+                }
+            ]
+        },
+        {
+            "id":"3",
+            "documentos":[
+                {
+                    "idDocumento":"5",
+                    "descripcionDocumento":"MAMPR302"
+                },
+                {
+                    "idDocumento":"6",
+                    "descripcionDocumento":"MAMFO123"
+                }
+            ],
+            "detalleRequisito":"La Organización plantea cambios en el ordenamiento \nB)Se ha definido cualquier cosa",
+            "preguntasRequisito":[
+                {
+                    "idPregunta":"5",
+                    "descripcionPregunta":"¿La politica de mantenimiento esta definida?"
+                },
+                {
+                    "idPregunta":"6",
+                    "descripcionPregunta":"La politica de mantenimiento esta aplicada?"
+                },
+                {
+                    "idPregunta":"7",
+                    "descripcionPregunta":"La politica de mantenimiento esta basada en la norma?"
+                }
+            ],
+            "listaRequisitosRelacionados":[
+                {
+                    "idRequisitoRelacionado":"1",
+                    "descripcion":"ISO 14001-204  4.5.5 No conformidad, acción correctiva y acción preventiva"
+                },
+                {
+                    "idRequisitoRelacionado":"2",
+                    "descripcion":"ISO 14001-205  4.5.5 No conformidad, acción correctiva y acción preventiva"
+                }
+            ]
+        }
+    ]
+}

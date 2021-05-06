@@ -1,0 +1,48 @@
+<div class="modal-header modal-cabecera-color">
+    <h4 class="modal-title pull-left">Busqueda Avanzada</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="cerrar">&times;</span>
+    </button>
+</div> 
+<div class="modal-body">
+    <div class="row">                
+            <div class="col-sm-3">              
+                    <div class="form-group">
+                            <label class="control-label" for="tipo_copia">Tipo de Copia (*):</label>
+                        <select name="tipo-copia" id="tipo-copia" class="form-control" [(ngModel)]="tipoCopia" >
+                                <!--<option value="0" selected="0">Seleccione</option>-->
+                                <option *ngFor="let item of listaTiposCopia" [value]="item.idconstante">{{ item.v_abrecons }}</option>
+                        </select>
+                    </div>
+            </div>
+            <div class="col-sm-3">  
+                <div class = "form-group">
+                    <label class = "control-label">Nombres:</label>                   
+                      <input type = "text" placeholder = "Ingrese nombres" class = "form-control" name = "nombres" [(ngModel)] = "nombres" />
+                </div>
+            </div>
+            <div class = "col-md-6">
+                <div class = "form-group">
+                    <label class = " control-label">Apellido Paterno:</label>
+                    <input type = "text" placeholder = "Ingrese apellido paterno" class = "form-control" name = "apellidoPaterno"  [(ngModel)] = "apellidoPaterno" />
+                </div>
+            </div>
+            <div class = "col-md-6">
+                <div class = "form-group">
+                    <label class = "control-label">Apellido Materno:</label>                    
+                    <input type = "text" placeholder = "Ingrese apellido materno" class = "form-control" name = "apellidoMaterno"  [(ngModel)] = "apellidoMaterno" />
+                </div>
+            </div>
+            <div class="col-sm-3">
+                    <div class="form-group">
+                        <label class="control-label" for="equipo">Equipo:</label>
+                        <input type="text" id="equipo" placeholder="Ej: Gerencia General" class="form-control" name = "equipo" [(ngModel)]="equipo">
+                    </div>
+            </div>
+    </div>    
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="OnBuscar()" >Buscar</button>
+    <button type="button" class="btn btn-default" (click)="cancelar()">Cancelar</button>
+</div>

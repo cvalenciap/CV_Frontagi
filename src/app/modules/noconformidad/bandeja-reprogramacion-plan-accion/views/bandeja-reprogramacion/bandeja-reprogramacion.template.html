@@ -1,0 +1,75 @@
+<div class="row wrapper border-bottom white-bg page-heading" style="padding-bottom: 0px">
+    <div class="col-lg-12" style="margin-top: 8px">
+        <h4>No Conformidades / <strong>Bandeja de Reprogramación Plan de Acción</strong></h4>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div *ngIf="mostrarAlerta">
+                <alert type="info" ><span [innerHtml]="mensajeAlerta"></span></alert>
+            </div>
+            <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+                <sk-three-bounce></sk-three-bounce>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-stripped table-hover issue-tracker">
+                        <thead>
+                            <tr>
+                               <!--  <th class="text-center">Código</th> -->
+                                <th class="text-center">Tipo de No Conformidad</th>
+                                <th class="text-center">Gerencia o Responsable</th>
+                                <th class="text-center">Norma</th>
+                                <th class="text-center">Alcance</th>
+                                <th class="text-center">Requisito</th>
+                                <th class="text-center">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                <tr>
+                                        <!-- <td class="text-center">Código</td> -->
+                                        <td class="text-center">SAP</td>
+                                        <td class="text-center">GERENCIA DE DESARROLLO E INVESTIGACIÓN</td>
+                                        <td class="text-center">ISO 9001-2015</td>
+                                        <td class="text-center"></td>
+                                        <td class="text-center">4.2</td>
+                                        <td class="text-center" data-col="accion">
+                                                <button title="Ver detalle" class="btn btn-success btn-sm" (click)=" OnModificar()" >
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
+                                            </td>
+                                    </tr>
+                           <!--  <tr *ngFor="let item of items; let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow">
+                                <td class="text-center" data-col="idNoConformidad">{{item.idNoConformidad}}</td>
+                                <td class="text-center" data-col="descripcionTipoNoConformidad">{{item.descripcionTipoNoConformidad}}</td>
+                                <td class="text-center" data-col="descripcionGerencia">{{item.descripcionGerencia}}</td>
+                                <td class="text-center" data-col="descripcionNorma">{{item.descripcionNorma}}</td>
+                                <td class="text-center" data-col="descripcionAlcance">{{item.descripcionAlcance}}</td>
+                                <td class="text-center" data-col="descripcionRequisito">{{item.descripcionRequisito}}</td>
+                                <td class="text-center" data-col="accion">
+                                    <button title="Ver detalle" class="btn btn-success btn-sm" (click)="OnModificar(item)">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                </td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <pagination [(ngModel)]="paginacion.pagina" (pageChanged)="OnPageChanged($event)" [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-center m-a-sm">
+                            <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-right m-a-sm">
+                            <pagination-set (optionChanged)="OnPageOptionChanged($event)"></pagination-set>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

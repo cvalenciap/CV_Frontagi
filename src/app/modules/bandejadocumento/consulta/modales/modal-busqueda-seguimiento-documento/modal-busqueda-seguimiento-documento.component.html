@@ -1,0 +1,32 @@
+<div class="modal-header modal-cabecera-color">
+    <h4 class="modal-title pull-left">Búsqueda Avanzada de Seguimiento de Documentos</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="cerrar">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class = "container-fluid">
+      <form class = "form-horizontal">
+        <div class = "form-group">
+          <label class="col-sm-6 control-label text-right">Código del Documento: </label>
+          <div class="col-sm-6">
+            <input  type="text" placeholder="Ingrese código de documento" class="form-control" name="codigo-documento" (keyup) = "validarInterruptorBotones()"  [(ngModel)] = "codigoDocumento">
+          </div>
+        </div>
+        <div class = "form-group">
+          <label class = "col-md-6 text-right control-label">Título del Documento:</label>
+          <div class = "col-md-6">
+  
+            <input type = "text" placeholder = "Ingrese código de solicitud" class = "form-control" name = "codigo-solicitud" (keyup) = "validarInterruptorBotones()" [(ngModel)] = "tituloDocumento" />
+          </div>
+        </div>
+        <div class = "form-group">
+          <div class="col-lg-12 text-center">
+            <button [disabled] = "interruptorBotones" (click) = "enviarParametros()" class = "btn btn-primary m-r"><i class = "fa fa-search-plus"></i> Buscar</button>
+            <button (click) = "cancelar()" class = "btn btn-default m-r"><i class = "fa fa-close"></i> Cancelar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  

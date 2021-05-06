@@ -1,0 +1,47 @@
+<br>
+<div class="col-lg-12">
+    <!-- Comentarios -->
+    <div class="col-sm-8">
+    <div class="form-group">
+        <label class="control-label" for="product_name">Comentarios(*):</label>
+        <textarea rows="3" id="comentario" #comentario="ngModel" [(ngModel)]="fase.comentario" 
+        [ngClass]="{'ng-dirty ng-invalid':errors?.comentario}" name="comentario" 
+        (ngModelChange)="Validar(comentario)" [tooltip]="errors?.comentario" value="" placeholder="" 
+        class="form-control" placement="bottom">
+        <!-- [disabled]="!permisos?.clAcciones"-->
+    </textarea>
+    </div>
+    </div>
+
+<!-- Lista de Comentario -->
+    <div class="row m-b-sm">
+    <div class="col-lg-12">
+        <div class="ibox-content" [ngClass]="{'sk-loading': loading}" style="padding-bottom: 0px; ">
+            <sk-three-bounce></sk-three-bounce>
+            <div class="table-responsive">
+                <table class="table table-bordered table-stripped table-hover issue-tracker">
+                <!-- Cabecera -->
+                <thead>
+                <tr>
+                    <th class="text-center">Iteracion</th>
+                    <th class="text-center">Fase</th>
+                    <th class="text-center">Usuario</th>
+                    <th class="text-center">Comentarios</th>
+                    <th class="text-center">Fecha de Liberación</th>
+                </tr>
+                </thead>
+                <!-- Filas -->
+                <tbody>
+                <tr *ngFor="let participante of fase.lista; let i=index" (click)="OnRowClick(i,participante)" [class.info]="i==selectedRow">                            
+                    <td class="text-center" [ngStyle]="{'color':participante.indicadorRechazo=='0'?'black':'red'}" data-col="prioridad">{{participante.iteracion}}</td>
+                    <td class="text-center" [ngStyle]="{'color':participante.indicadorRechazo=='0'?'black':'red'}" data-col="prioridad">{{participante.nombreFase}}</td>
+                    <td class="text-center" [ngStyle]="{'color':participante.indicadorRechazo=='0'?'black':'red'}" data-col="responsable">{{participante.responsable}}</td>
+                    <td class="text-center" [ngStyle]="{'color':participante.indicadorRechazo=='0'?'black':'red'}" data-col="función">{{participante.comentario}}</td>
+                    <td class="text-center" [ngStyle]="{'color':participante.indicadorRechazo=='0'?'black':'red'}" data-col="equipo">{{participante.fechaLiberacion|date:'dd/MM/yyyy'}}</td>
+                </tr>                 
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

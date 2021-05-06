@@ -1,0 +1,355 @@
+
+<div class="row wrapper border-bottom white-bg page-heading ">
+  <div class="col-lg-10">
+        <h4>
+            <ol class="breadcrumb">
+                <li>
+                    <a routerLink="starterview">Inicio</a>
+                </li>
+                <li>
+                    <a>Auditoría</a>
+                </li>
+                <li>
+                    <a>Evaluación del Auditor</a>
+                </li>
+                <li class="active">
+                    <strong>Detalle de Evaluación del Auditor</strong>
+                </li>
+            </ol>
+        </h4>
+  </div>
+  <div class="col-lg-2">
+  </div>
+</div>
+<div class="wrapper wrapper-content div-principal1 animated fadeInRight">
+  <div class="row contenedor-botones div-botones-superiores">
+      <div class="col-lg-8">
+                <a class="btn btn-sm  botones-superiores btn-success" (click)="OnGuardar()"><i class="fa fa-floppy-o"></i> Guardar</a>  
+                <a class="btn btn-sm  botones-superiores btn-info boton-imprimir" (click)="OnImprimir()"><i class="fa fa-print"></i> Imprimir</a> 
+                <a class="btn btn-sm   botones-superiores btn-default btn-colores" (click)="OnRegresar()"><i class="fa fa-arrow-left"></i> Regresar</a>  
+      </div>    
+  </div>
+  <div class="row">
+      <div class="col-lg-12">
+          <div class="ibox-content">
+                 <form class="form-horizontal">
+            
+                <div class="row form-group">
+                    <div class="col-lg-12">
+                            <div class="row">
+                                    <div class="col-sm-4">
+                                            <label class="control-label titulo-label">Nro de Auditoría :</label>
+                                            <input type="text" class="form-control" name="idAuditoria" [(ngModel)]="item.auditoria.idAuditoria" disabled>
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <label class="control-label titulo-label">Descripción de Auditoría :</label>
+                                            <input type="text" class="form-control" name="idAuditoria" [(ngModel)]="item.auditoria.idAuditoria" disabled>        
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <label class="control-label titulo-label">Descripción de Auditoría :</label>
+                                            <input type="text" class="form-control" name="idAuditoria" [(ngModel)]="item.auditoria.idAuditoria" disabled>        
+                                    </div>
+                            </div>
+
+                            <div class="row">
+                                    <div class="col-sm-4">
+                                            <label class="control-label titulo-label">Auditor Evaluado </label>
+                                            <input type="text" class="form-control" name="nombre" [(ngModel)]="item.colaborador.apellidoPaterno" disabled>
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <label class="control-label titulo-label">Rol :</label>
+                                            <input type="text" class="form-control" name="rol" [(ngModel)]="rolConstante.v_valcons" disabled>        
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <label class="control-label titulo-label">Total de Horas de Auditoría :</label>
+                                            <input type="text" class="form-control" name="usuario" [(ngModel)]="item.totalHoras" >        
+                                    </div>
+                            </div>
+                    </div>
+                </div>
+    <h4 class="titulo-label a"><strong>Detalle Evaluación</strong> </h4>   
+    <div class="row">
+            <div class="col-lg-12">
+                <div >
+                    <sk-three-bounce></sk-three-bounce>
+                    <div class=" ibox-content  table-responsive contenedor-detalle">
+                        <table class="table tabla-audior table-bordered stable-stripped table-hover issue-tracker">
+                            <thead>
+                            <tr>
+                               <th class="text-center col-xs-1">Ítem</th>
+                                <th class="text-center">Aspectos A Evaluar</th>
+                                <th class="text-center">1</th>
+                                <th class="text-center">2</th>
+                                <th class="text-center">3</th>
+                                <th class="text-center">4</th>
+                                <th class="text-center">5</th>
+                            </tr>
+                            </thead>
+                        <!--     
+                            <tbody>
+                                <tr *ngFor="let item of items2;  let i = index" >
+        
+                                   <td class="text-center" data-col="codigo">{{item.item}}</td>
+        
+                                    <td class="text-center"  data-col="n_rol_auditor">{{item.pregunta? item.pregunta: ''}}</td>
+                  
+                                    <td class="text-center" data-col="accion">
+        
+                                      <input (click)="ingresarRespuesta(item,1)"   type="radio" value="1" name="nivel{{i}}" [(ngModel)]="item.radioNum" /> 
+        
+                                  </td>
+        
+                                  <td class="text-center"  data-col="accion">
+                                        <input type="radio"  (click)="ingresarRespuesta(item,2)" value="2" name="nivel{{i}}" [(ngModel)]="item.radioNum" /> 
+                                    </td>
+        
+                                    <td class="text-center" data-col="accion">
+                                            <input type="radio" (click)="ingresarRespuesta(item,3)"  value="3" name="nivel{{i}}" [(ngModel)]="item.radioNum" /> 
+                                    </td>
+                                    <td class="text-center" data-col="accion">
+                                            <input type="radio" (click)="ingresarRespuesta(item,4)"  value="4" name="nivel{{i}}" [(ngModel)]="item.radioNum" /> 
+                                    </td>
+                                    <td class="text-center" data-col="accion">
+                                            <input type="radio" (click)="ingresarRespuesta(item,5)"  value="5" name="nivel{{i}}" [(ngModel)]="item.radioNum" /> 
+                                    </td>
+        
+                                </tr>
+                            </tbody> -->
+
+                            <tr> 
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                            </tr>
+                            
+                            <tr> 
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                            
+                                
+                            <tr> 
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                            
+                                
+                            <tr> 
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                            
+                                
+                            <tr> 
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                            
+                                
+                            <tr> 
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                            
+                                
+                            <tr> 
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                            
+                                
+                            <tr> 
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                            
+                                
+                            <tr> 
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                                                        
+                            <tr> 
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>                               
+                            <tr> 
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>                      
+                        </table>
+                    </div>
+
+
+
+                   <!--  <div class="row">
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+                            <pagination [(ngModel)]="paginacion.pagina"  [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="text-center m-a-sm">
+                                <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="text-right m-a-sm">
+                                <pagination-set ></pagination-set>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+          </div>            
+    
+          <!--       <div class="form-group">
+                  <label class="col-sm-2 control-label">Nro de Auditoría :</label>
+                  <div class="col-sm-4"><input type="text" class="form-control" name="idAuditoria" [(ngModel)]="item.auditoria.idAuditoria" disabled></div>
+              </div>
+                 
+              <div class="form-group">
+                    <label class="col-sm-2 control-label">Descripción de Auditoría :</label>                         
+                    <div class="col-sm-4"><input type="text" class="form-control" name="descripcion" [(ngModel)]="item.auditoria.descripcionAuditoria" disabled></div>
+                  </div>
+
+  
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Auditor Evaluado :</label>
+                    <div class="col-sm-4"><input type="text" class="form-control" name="nombre" [(ngModel)]="item.colaborador.apellidoPaterno" disabled></div>
+                </div>
+
+                <div class="form-group">
+                        <label class="col-sm-2 control-label">Rol :</label>
+                        <div class="col-sm-4"><input type="text" class="form-control" name="rol" [(ngModel)]="rolConstante.v_valcons" disabled></div>
+                    </div>
+
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Total de Horas de Auditoría :</label>
+                  <div class="col-sm-4"><input type="text" class="form-control" name="usuario" [(ngModel)]="item.totalHoras" ></div>
+                </div> -->
+
+            </form>
+
+          </div>
+      </div>
+  </div>
+  <div>
+  
+  </div>
+  <!-- <div class="row">
+    <div class="col-lg-12">
+        <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+            <sk-three-bounce></sk-three-bounce>
+            <div class="table-responsive">
+                <table class="table table-bordered table-stripped table-hover issue-tracker">
+                    <thead>
+                    <tr>
+                       <th class="text-center col-xs-1">Ítem</th>
+                        <th class="text-center">Aspectos A Evaluar</th>
+                        <th class="text-center">1</th>
+                        <th class="text-center">2</th>
+                        <th class="text-center">3</th>
+                        <th class="text-center">4</th>
+                        <th class="text-center">5</th>
+                    </tr>
+                    </thead>
+                    
+                    <tbody>
+                        <tr *ngFor="let item of items2;  let i = index" >
+
+                           <td class="text-center" data-col="codigo">{{item.item}}</td>
+
+                            <td class="text-center"  data-col="n_rol_auditor">{{item.pregunta? item.pregunta: ''}}</td>
+          
+                            <td class="text-center" data-col="accion">
+
+                              <input (click)="ingresarRespuesta(item,1)"   type="radio" value="1" name="nivel{{i}}" [(ngModel)]="item.radioNum" /> 
+
+                          </td>
+
+                          <td class="text-center"  data-col="accion">
+                                <input type="radio"  (click)="ingresarRespuesta(item,2)" value="2" name="nivel{{i}}" [(ngModel)]="item.radioNum" /> 
+                            </td>
+
+                            <td class="text-center" data-col="accion">
+                                    <input type="radio" (click)="ingresarRespuesta(item,3)"  value="3" name="nivel{{i}}" [(ngModel)]="item.radioNum" /> 
+                            </td>
+                            <td class="text-center" data-col="accion">
+                                    <input type="radio" (click)="ingresarRespuesta(item,4)"  value="4" name="nivel{{i}}" [(ngModel)]="item.radioNum" /> 
+                            </td>
+                            <td class="text-center" data-col="accion">
+                                    <input type="radio" (click)="ingresarRespuesta(item,5)"  value="5" name="nivel{{i}}" [(ngModel)]="item.radioNum" /> 
+                            </td>
+
+                        </tr>
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+  </div> -->
+
+</div>
+
+
+
+
+
+
+
+
+
+

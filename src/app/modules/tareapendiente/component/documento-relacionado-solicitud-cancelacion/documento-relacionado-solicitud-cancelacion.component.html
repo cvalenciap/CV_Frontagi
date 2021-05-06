@@ -1,0 +1,138 @@
+<div class="row">
+  <div class="col-md-12 text-center" *ngIf="documento.codigo">
+  </div>
+</div>
+<div class="row m-b-sm">
+  <div class="col-lg-12">
+    <div class="ibox-content">
+      <sk-three-bounce></sk-three-bounce>
+      <h3 class="text-primary">Documentos que se complementan</h3>
+      <div class="table-responsive">
+        <table class="table table-bordered table-stripped table-hover issue-tracker">
+          <thead>
+            <tr>
+              <th class="text-center">Código</th>
+              <th class="text-center">Nombre</th>
+              <th class="text-center">Estado Documento</th>
+              <th class="text-center">Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let documento of docPadresComplementarios, index as i" (click)="OnRowClick(i, documento)"
+              [class.info]="i == selectedRow">
+              <td class="text-center" data-col="codigo">{{documento.codigo}}</td>
+              <td class="text-center" data-col="descripcion">{{documento.descripcion}}</td>
+              <td class="text-center" data-col="estadoDoc">{{documento.estado?.v_descons}}</td>
+              <td class="text-center" data-col="accion">
+
+
+                <!-- <ng-template [authIf]="session.ACL.ID_SOL_SolicitudCancelacion_Detalle_DocRela_VISUALIZAR" ,>
+                  <button title="Ver Documento" class="btn btn-primary btn-sm"
+                    (click)="buscarRutaDocumento(documento,visorPdfSwal,$event)" style="margin-right: 2px;">
+                    <i class="fa fa-file-o"></i>
+                  </button>
+                </ng-template>
+                <ng-template
+                  [authIf]="session.ACL.ID_TAR_Aprobacion_Cancelacion_Detalle_Documento_Relacionado_VISUALIZAR">
+                  <button title="Ver Documento" class="btn btn-primary btn-sm"
+                    (click)="buscarRutaDocumento(documento,visorPdfSwal,$event)" style="margin-right: 2px;">
+                    <i class="fa fa-file-o"></i>
+                  </button>
+                </ng-template>
+
+                <ng-template
+                  [authIf]="session.ACL.ID_TAR_Cancelacion_Documento_Detalle_Documento_Relacionado_VISUALIZAR">
+                  <button title="Ver Documento" class="btn btn-primary btn-sm"
+                    (click)="buscarRutaDocumento(documento,visorPdfSwal,$event)" style="margin-right: 2px;">
+                    <i class="fa fa-file-o"></i>
+                  </button>
+                </ng-template> -->
+                <ng-template [ngIf]="session.Ruta.RegistroBusquedaDocumento == rutaActual" [ngIfElse]="otrasPaginas">
+                  <ng-template
+                    [buttonConsultaIf]="[session.ACL.ID_SOL_SolicitudCancelacion_Detalle_DocRela_VISUALIZAR,session.ACL.ID_TAR_Cancelacion_Documento_Detalle_Documento_Relacionado_VISUALIZAR]"
+                    [rutaAnterior]="rutaAnterior" [rutaAnteriorAnterior]="rutaAnteriorAnterior">
+                    <button title="Ver Documento" class="btn btn-primary btn-sm"
+                      (click)="buscarRutaDocumento(documento,visorPdfSwal,$event)" style="margin-right: 2px;">
+                      <i class="fa fa-file-o"></i>
+                    </button>
+                  </ng-template>
+                </ng-template>
+                <ng-template #otrasPaginas>
+                  <ng-template
+                    [authButtonComplexIf]="[session.ACL.ID_TAR_Aprobacion_Cancelacion_Detalle_Documento_Relacionado_VISUALIZAR,session.ACL.ID_SOL_SolicitudCancelacion_Detalle_DocRela_VISUALIZAR,session.ACL.ID_TAR_Cancelacion_Documento_Detalle_Documento_Relacionado_VISUALIZAR]"
+                    [ruta]="rutaActual" valorComponente="documentos-relacionados" valorBoton="VISUALIZAR">
+                    <button title="Ver Documento" class="btn btn-primary btn-sm"
+                      (click)="buscarRutaDocumento(documento,visorPdfSwal,$event)" style="margin-right: 2px;">
+                      <i class="fa fa-file-o"></i>
+                    </button>
+                  </ng-template>
+                </ng-template>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <hr class="hr-line-solid" />
+      <h3>Documentos complementarios</h3>
+      <div class="table-responsive">
+        <table class="table table-bordered table-stripped table-hover issue-tracker">
+          <thead>
+            <tr>
+
+              <th class="text-center">Código</th>
+              <th class="text-center">Nombre</th>
+              <th class="text-center">Estado Documento</th>
+              <th class="text-center">Tipo relación</th>
+              <th class="text-center">Solicitud</th>
+              <th class="text-center">Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let solicitudComp of documentosComplementariosSolicitud, index as i"
+              (click)="OnRowClick(i, documento)" [class.info]="i == selectedRow">
+              <td class="text-center" data-col="codigo">{{solicitudComp.documento.codigo}}</td>
+              <td class="text-center" data-col="verdocumento">{{solicitudComp.documento.descripcion}}</td>
+              <td class="text-center" data-col="estadoDoc">{{solicitudComp.documento.estado?.v_descons}}</td>
+              <td class="text-center" data-col="tipoRelacion">{{solicitudComp.documento.tipoComplementario?.v_descons}}
+              </td>
+              <td class="text-center" data-col="solicitud"><input type="checkbox" (click)="darCheck(solicitudComp)"
+                  [checked]="solicitudComp.indicadorSolicitud == 1" [disabled]="indCancelacion != '1'" /></td>
+              <td class="text-center" data-col="accion">
+                <ng-template
+                  [authIf]="session.ACL.ID_TAR_Cancelacion_Documento_Detalle_Documento_Relacionado_VISUALIZAR">
+                  <button title="Ver Documento" class="btn btn-primary btn-sm"
+                    (click)="buscarRutaDocumento(solicitudComp.documento,visorPdfSwal,$event)"
+                    style="margin-right: 2px;">
+                    <i class="fa fa-file-o"></i>
+                  </button>
+                </ng-template>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--
+      <div class="row">
+        <div class="col-md-4 col-sm-12 col-xs-12">
+          <pagination [(ngModel)]="paginacion.pagina" (pageChanged)="OnPageChanged($event)" [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="text-center m-a-sm">
+            <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="text-right m-a-sm">
+            <pagination-set (optionChanged)="OnPageOptionChanged($event)"></pagination-set>
+          </div>
+        </div>
+      </div>
+    -->
+    </div>
+  </div>
+</div>
+<swal #visorPdfSwal [showConfirmButton]="false" [showCloseButton]="true" customClass="pdf-swal">
+  <form *swalPartial class="ajuste">
+    <visor-pdf id="02" [url]="urlPDF"></visor-pdf>
+  </form>
+</swal>

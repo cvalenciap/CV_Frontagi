@@ -1,0 +1,24 @@
+{
+    "listaDetallePlanAccion": [
+      {
+        "idDetallePlanAccion":"1",
+        "accionPropuesta":"Comunicar a los responsables de contrataciones menores a 8 UITs de bienes y servicios mediante memorando las consideraciones para presentación de documentación de los pedidos de bienes y servicios y la remisión vía correo electrónico de los Pedidos de Bienes y Servicios para el área usuaria (Jefe de equipo y enlace o personal encargado) para el seguimiento correspondiente",
+        "responsable": "Julio Moyano",
+        "fechaCumplimiento": "04/11/2017",
+        "justificacion": "",
+        "fechaReprogramada": "",
+        "estadoReprogramacion": "Solicitado",
+        "critica": "Comunicar a los responsables de contrataciones menores a 8 UITs de bienes y servicios."
+      },
+      {
+        "idDetallePlanAccion":"2",
+        "accionPropuesta":"Comunicar a los equipos y gerencias de la empresa mediante memorando los documentos que deben presentar al momento de realizar los requeriemientos de contrataciones menores a 8 UITS de bienes y Servicios de acuerdo a lo indicado en el punto 7.1 Elaboración Solicitud de Pedido.",
+        "responsable": "Julio Moyano",
+        "fechaCumplimiento": "04/11/2017",
+        "justificacion": "Debito a la auditoria realizada en el área se debieron postergar las labores relacionadas a este punto.",
+        "fechaReprogramada": "27/11/2017",
+        "estadoReprogramacion": "Solicitado",
+        "critica": "Comunicar a los equipos y gerencias de la empresa mediante memorando."
+      }
+    ]
+}

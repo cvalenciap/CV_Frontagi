@@ -1,0 +1,125 @@
+
+<div class="modal-header modal-cabecera-color">
+    <h4 class="modal-title pull-left">Búsqueda Avanzada</h4>
+    <!--Button Cerra Modal-->
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="cerrar">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <p>
+    <div class="row">
+        <div class="col-lg-12">
+                <label class="col-sm-2">Código:</label>
+                <div class="col-sm-4">
+                    <input  type="text" autocomplete="off" placeholder="Ej: DGMMA001" class="form-control" name="codigo" [(ngModel)]="codigo">
+                </div>
+                <label class="col-sm-2">Titulo:</label>
+                <div class="col-sm-4">
+                    <input  type="text" autocomplete="off" placeholder="Ej: Control de Flujo de Auditoría" class="form-control" name="titulo" [(ngModel)]="titulo">
+                </div>
+
+            <!-- <label class="col-sm-2 control-label">Proceso:</label>
+            <div class="col-sm-3">                
+                <input (keyup)="habilitarBusqueda()" style="width: 207.979166px;height: 32.979166px;" type="text" id="proceso" name="proceso" placeholder="Ej: Gestión Estratégica" class="form-control" [(ngModel)]="procesoparametrodesc" disabled="disabled">
+                <input type="hidden" id="procesoparametroid" name="procesoparametroid" placeholder="Ej: Manuales" class="form-control" [(ngModel)]="procesoparametroid" disabled="disabled">
+            </div>
+            <div class="col-sm-1">
+                <span class="input-group-btn" dropdown>
+                    <button  type="button"  class="btn btn-info" (click)="OnBuscarProceso()" ><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+            <label class="col-sm-2 control-label">Alcance SGI:</label>
+            <div class="col-sm-3">
+                <input (keyup)="habilitarBusqueda()" style="width: 207.979166px;height: 32.979166px;" type="text" id="alcanceSGI" name="alcanceSGI" [(ngModel)]="sgiparametrodesc" placeholder="Ej: Iso 9001" class="form-control" disabled="disabled">
+                <input type="hidden" id="sgiparametroid" name="sgiparametroid" placeholder="Ej: Manuales" class="form-control" [(ngModel)]="sgiparametroid" disabled="disabled">
+            </div>
+            <div class="col-sm-1">
+                <span class="input-group-btn" dropdown>
+                    <button type="button"  class="btn btn-info" (click)="OnBuscarSGI()" ><i class="fa fa-search"></i></button>
+                </span>
+            </div> -->
+        </div>
+    </div>  
+    <p>
+    <div class="row">
+        <div class="col-lg-12">
+<!--             <label class="col-sm-2 control-label">Gerencia:</label>
+            <div class="col-sm-3">
+                <input (keyup)="habilitarBusqueda()" style="width:207.979166px; height:32.979166px;" type="text" id="gerencia" name="gerencia" [(ngModel)]="gerenparametrodesc" placeholder="Ej: Dirección Institucional" class="form-control" disabled="disabled">
+                <input type="hidden" id="gerenparametroid" name="gerenparametroid" placeholder="Ej: Manuales" class="form-control" [(ngModel)]="gerenparametroid" disabled="disabled">
+            </div>
+            <div class="col-sm-1">
+                <span class="input-group-btn" dropdown>
+                    <button type="button"  class="btn btn-info" (click)="OnBuscarGerencia()"><i class="fa fa-search"></i></button>
+                </span>
+            </div> -->
+            <label class="col-sm-2 control-label">Tipo Solicitud:</label>
+            <div class="col-sm-4">
+                <select name="idTipoCan" class="form-control" [(ngModel)]="tipocancelacion">
+                    <option value=0 selected disabled>Seleccione</option>
+                    <option *ngFor="let item of listaTiposSolicitud" [value]="item.idconstante">{{ item.v_valcons}}</option>
+                </select>
+            </div>
+            <label class="col-sm-2 control-label">Tipo de Documento:</label>
+            <div class="col-sm-4">          
+                <select name="idTipoDoc" class="form-control" [(ngModel)]="tipodocumento">
+                    <option value=0 selected disabled>Seleccione</option>
+                    <option *ngFor="let item of listaTipoDocumento" [value]="item.idconstante">{{ item.v_valcons}}</option>
+                </select>
+            </div>
+        </div>
+    </div>   
+    <p>
+            <div class="row">
+                <div class="col-lg-12">
+                    <label class="col-sm-2 control-label">Fecha Cancelación Desde:</label>
+                    <div class="col-sm-4">
+<!--                         <div class="input-group date">
+                            <input (click)="habilitarBusqueda()" placeholder="Ej: 08/02/2019" bsDatepicker #dp1="bsDatepicker" type="text" class="form-control" id="fechacandesde" name="fechacandesde" [(ngModel)]="fechacandesde">
+                            <span class="input-group-addon" (click)="dp1.toggle()"><i class="fa fa-calendar"  [attr.aria-expanded]="dp1.isOpen"></i></span>
+                        </div> -->
+
+                        <div class="input-group date">
+                                <input bsDatepicker #dp1="bsDatepicker" 
+                                        [(ngModel)]="fechacandesde"
+                                        autocomplete="off"
+                                        placeholder="Ej: 01/10/2019"
+                                        class="form-control"
+                                        [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue' }">
+                                <span class="input-group-addon"><i class="fa fa-calendar" (click)="dp1.toggle()"
+                                                [attr.aria-expanded]="dp1.isOpen"></i></span>
+                        </div>
+
+
+
+
+                    </div>
+                    <label class="col-sm-2 control-label">Fecha Cancelación Hasta:</label>
+                    <div class="col-sm-4">
+  <!--                       <div class="input-group date">
+                            <input (click)="habilitarBusqueda()" placeholder="Ej: 09/02/2019" bsDatepicker #dp2="bsDatepicker" type="text" class="form-control" id="fechacanhasta" name="fechacanhasta" [(ngModel)]="fechacanhasta">
+                            <span class="input-group-addon" (click)="dp2.toggle()" ><i class="fa fa-calendar" [attr.aria-expanded]="dp2.isOpen"></i></span>
+                        </div> -->
+                        <div class="input-group date">
+                                <input bsDatepicker #dp2="bsDatepicker" 
+                                        [(ngModel)]="fechacanhasta"
+                                        autocomplete="off"
+                                        placeholder="Ej: 31/10/2019"
+                                        class="form-control"
+                                        [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue' }">
+                                <span class="input-group-addon"><i class="fa fa-calendar" (click)="dp2.toggle()"
+                                                [attr.aria-expanded]="dp2.isOpen"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>   
+    <p>    
+    <div class="modal-footer">
+<!--         <button [disabled]="deshabilitarBuscar" type="button" class="btn btn-default m-r" ><i class="fa fa-eraser"></i> Limpiar</button>
+        <button [disabled]="deshabilitarBuscar" type="button" class="btn btn-success" (click)="OnBuscar()">Buscar</button> -->
+
+        <button (click)="OnBuscar()" class="btn btn-primary m-r"><i class="fa fa-search-plus"></i> Buscar</button>
+        <button (click) = "limpiar()" class = "btn btn-default m-r"><i class = "fa fa-eraser"></i> Limpiar</button>
+    </div>
+</div>

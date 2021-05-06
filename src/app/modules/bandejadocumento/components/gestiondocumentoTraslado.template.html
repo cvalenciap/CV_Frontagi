@@ -1,0 +1,112 @@
+<div class="full-height">                
+<div class="full-height-scroll white-bg border-left">           
+<div class="element-detail-box" style="
+    margin-top: 0px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-bottom: 5px;">                                         
+    <div class="row m-b-sm">  
+        <div class="col-lg-5" style="margin-left:12px;margin-right:-12px">
+        <div class="input-group">
+            <div>
+                <input [disabled]="activarSegunItemArbolSel || deshabilitarTextoBuscar" type="text" placeholder="{{descripcionMostrar}}" class="form-control" (keyup)="habilitarBuscar()" [(ngModel)]="textoBusqueda">
+            </div>
+            <span class="input-group-btn" dropdown>
+                <button [disabled]="deshabilitarBuscar" type="button" class="btn btn-info" (click)="OnBusqueda()"><i class="fa fa-search"></i></button>
+                <button [disabled]="activarSegunItemArbolSel || deshabilitarMenu" dropdownToggle [class.disabled]="deshabilitarMenu" type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split"><i class="fa fa-caret-down"></i></button>
+                <ul *dropdownMenu class="dropdown-menu" (click)="OnDescripcionSeleccionada()" role="menu" aria-labelledby="button-split">
+                    <li role="menuitem" [class.disabled]="deshabilitarMenu" [class.active]="parametroBusqueda == 'titulodefault'"><a *ngIf="!deshabilitarMenu" (click)="parametroBusqueda='titulodefault';textoBusqueda=null;mensajeAlerta=null;mostrarAlerta=false;deshabilitarBuscar=true;deshabilitarTextoBuscar=false">Título</a></li>
+                    <li role="menuitem" [class.disabled]="deshabilitarMenu" [class.active]="parametroBusqueda == 'codigo'"><a *ngIf="!deshabilitarMenu" (click)="parametroBusqueda='codigo';textoBusqueda=null;mensajeAlerta=null;mostrarAlerta=false;deshabilitarBuscar=true;deshabilitarTextoBuscar=false">Código</a></li>
+                    <!--<li role="menuitem" [class.active]="parametroBusqueda == 'avanzada'"><a (click)="parametroBusqueda = 'avanzada';textoBusqueda=null;mensajeAlerta=null;mostrarAlerta=false;deshabilitarBuscar=true">Búsqueda Avanzada...</a></li>-->
+                    <!-- <li role="menuitem" [class.disabled]="deshabilitarMenu" [class.active]="parametroBusqueda == 'avanzada'"><a *ngIf="!deshabilitarMenu" (click)="deshabilitarBuscar=true;textoBusqueda=null;deshabilitarTextoBuscar=true;abrirBusqueda()">Búsqueda Avanzada...</a></li> -->
+                </ul>
+            </span>
+        </div> 
+        </div>                       
+    </div>
+    
+    <div class="row" *ngIf="mostrarInformacion" style="margin-left: 12px;border-right-width: 1px;margin-right: 7px;">
+        <alert type="info"><span [innerHtml]="mensajeInformacion"></span></alert>
+    </div>
+    <div class="row" *ngIf="mostrarAlerta">
+        <alert type="danger"><span [innerHtml]="mensajeAlerta"></span></alert>
+    </div>
+
+    <div class="row m-b-sm">
+    <div class="col-lg-12">
+        <div class="ibox-content" [ngClass]="{'sk-loading': loading}" style="padding-left:5px; padding-right:5px;">
+        <sk-three-bounce></sk-three-bounce>
+        <div class="table-responsive">                        
+            <table class="table table-bordered table-stripped table-hover issue-tracker">
+            <thead>
+            <tr>                                        
+                <th class="text-center">Código</th>                                       
+                <th *ngIf="activarColumna" class="text-center">Tipo Documento</th>
+                <th class="text-center">Título</th>                                
+                <th class="text-center">Revisión</th>
+                <th class="text-center">Fecha de Aprobación</th>
+                <th class="text-center">Estado Actual</th>
+                <th class="text-center">Acción</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of items; let i=index" (click)="OnRowClick(i,item)" [class.info]="i==selectedRow">                                        
+                <td class="text-center" data-col="codigo">{{item.codigo}}</td>
+                <td *ngIf="activarColumna" class="text-center" data-col="tipodocumento">Manual</td>
+                
+                <td class="text-center" data-col="descripcion">{{item.descripcion}}</td>                                                                                                              
+                <td class="text-center" data-col="RevisionDocumento">{{item.idrevision}}</td>                                   
+                <td class="text-center" data-col="fecha">{{item.revisionfecha}}</td>
+                <td class="text-center" [ngSwitch]="item.estado.v_descons">
+                    <h3><span *ngSwitchCase="'Aprobado'"  class="label label-primary">&nbsp;Aprobado&nbsp;&nbsp;</span></h3>
+                    <h3><span *ngSwitchCase="'Emision'"     class="label label-default">&nbsp;&nbsp;&nbsp;Emision&nbsp;&nbsp;&nbsp;</span></h3>
+                    <h3><span *ngSwitchCase="'Cancelado'"   class="label label-danger" >&nbsp;Cancelado&nbsp;</span></h3>
+                    <h3><span *ngSwitchCase="'En Revision'" class="label label-warning">En Revisión</span></h3>
+                </td>
+                <td data-col="accion" class="text-center" style="width:75px;padding-left:0px;padding-right:0px;">
+                    <div class="btn-group" >
+                    <button title="traslado" class="btn btn-success btn-sm m-r" (click)="OnModificar(item)" style="margin-left:5px;margin-right:3px;">
+                        <i class="fa fa-edit"></i>
+                    </button>                  
+                    </div>
+                </td>
+                <!--<button (click)="OnBitacora()"title="Bitacora" class="btn btn-primary btn-sm">
+                    <i class="fa fa-history"></i> 
+                </button>-->
+                
+            </tr>
+            </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-12 col-xs-12">
+                <pagination [(ngModel)]="paginacion.pagina" (pageChanged)="OnPageChanged($event)" [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="text-center m-a-sm">
+                    <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="text-right m-a-sm">
+                    <pagination-set (optionChanged)="OnPageOptionChanged($event)"></pagination-set>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+</div>
+</div>
+
+<swal 
+#visorPdfSwal
+[showConfirmButton]="false"
+customClass="pdf-swal">
+<form *swalPartial class="ajuste">
+  <visor-pdf id="02" [url]="urlPDF"></visor-pdf>
+</form>
+</swal>
+

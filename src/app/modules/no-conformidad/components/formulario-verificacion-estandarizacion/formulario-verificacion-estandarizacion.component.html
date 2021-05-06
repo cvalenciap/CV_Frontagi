@@ -1,0 +1,56 @@
+<div class="wrapper wrapper-content animated fadeInRight" style="padding-left: 0px;">
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group pull-right">
+        <label class="control-label" for="fechaVerificacion">Fecha de Verificación:&nbsp;</label>
+        <div class="input-group date">
+          <input autocomplete="off" bsDatepicker #dp="bsDatepicker" type="text" class="form-control"
+            name="fechaVerificacion" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" placeholder="dd/MM/yyyy" />
+          <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+        </div>
+      </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12" style="height: 420px;overflow-y: auto;">
+    <div class="form-group">
+      <label class="control-label" for="descripcion">Descripción:</label>
+      <textarea name="descripcion" id="descripcion" style="width: 100%;" rows="10"></textarea>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <label class="control-label" for="aprobado">Elaborado por:</label>
+      <input type="text" id="elaborado" class="form-control" value="MARIA PEREZ WESTER" disabled>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label class="control-label" for="elaborado">Aprobado por:</label>
+      <input type="text" id="aprobado" class="form-control" value="JOSE CARDENAS VALVERDE" disabled>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <label class="control-label" for="cargo1">Cargo:</label>
+      <input type="text" id="cargo1" class="form-control" value="ANALISTA DE PROCESOS" disabled>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label class="control-label" for="cargo2">Cargo:</label>
+      <input type="text" id="cargo2" class="form-control" value="COORDINADOR SIG" disabled>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label class="control-label" for="fechaAprobacion">Fecha de Aprobación:</label>
+      <input type="text" id="fechaAprobacion" class="form-control" value="11/02/2020" disabled>
+    </div>
+  </div>
+</div>
+</div>

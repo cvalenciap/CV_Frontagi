@@ -1,0 +1,20 @@
+.table {
+    tr {
+        th[data-col='codigo']    { font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        th[data-col='tipodocumento']  { font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        th[data-col='descripcion']     { font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        th[data-col='idrevision']      { font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        th[data-col='revisionfecha']      { font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        th[data-col='estado']    { font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        th[data-col='rutaActual'] { font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}        
+        
+        td[data-col='codigo']    { text-align: center; font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        td[data-col='tipodocumento']  { text-align: left;font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        td[data-col='descripcion']     { text-align: left;font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        td[data-col='idrevision']      {text-align: center; font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        td[data-col='revisionfecha']    { text-align: center;font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        td[data-col='estado'] { text-align: center;font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        td[data-col='rutaActual']   { font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+    }
+} 
+

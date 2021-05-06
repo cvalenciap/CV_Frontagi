@@ -1,0 +1,27 @@
+{
+    "responseCode": "0",
+    "responseData": 
+      { "btnEditar":true,
+        "Editar":{
+        "tabs":{
+          "participante":{
+            "esVisible":true,
+            "tabAprobacion":false,
+            "tabHomologacion":false,
+             "btnAgregar":true,
+             "clAcciones":false
+          },
+          "fase":{
+            "esVisible":true
+          },
+          "revision":{
+            "esVisible":true
+          },
+          "docComplementario":{
+            "clAcciones":false
+          }
+        }
+      }
+       }
+    
+  }

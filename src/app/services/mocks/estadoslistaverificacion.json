@@ -1,0 +1,20 @@
+{
+    "listaEstadosLV":[
+        {
+            "valorEstado":"1",
+            "descripcionEstado":"Pendiente"
+        },
+        {
+            "valorEstado":"2",
+            "descripcionEstado":"En Proceso"
+        },
+        {
+            "valorEstado":"3",
+            "descripcionEstado":"Rechazado"
+        },
+        {
+            "valorEstado":"4",
+            "descripcionEstado":"Cerrado"
+        }
+    ]
+}

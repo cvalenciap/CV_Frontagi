@@ -1,0 +1,48 @@
+<div class="modal-header modal-cabecera-color">
+    <h4 class="modal-title pull-left">Editar Registro</h4>
+    <!--Button Cerra Modal-->
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="cerrar">&times;</span>
+    </button>
+</div>
+<div class="modal-body">    
+    <div class="row">
+        <div class="col-lg-12">
+            <label class="col-sm-2 control-label">Equipo:</label>
+            <div class="col-sm-4">
+                <!--<input type="text" class="form-control" name="equipo" [(ngModel)]="objeto.equipo" disabled="disabled">-->
+				<input type="text" class="form-control" name="equipo" [(ngModel)]="objeto.equipoColaborador" disabled="disabled">
+            </div>
+            <label class="col-sm-2 control-label">Función:</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control"  name="funcion" [(ngModel)]="objeto.funcion" disabled="disabled">                
+            </div>
+        </div>
+    </div>
+    <p>
+    <div class="row">
+        <div class="col-lg-12">
+            <label class="col-sm-2 control-label">Responsable:</label>
+            <div class="col-sm-4">
+                <input type="text"  class="form-control" name="responsable" disabled="disabled" [(ngModel)]="objeto.responsable">
+            </div>
+            <label class="col-sm-2 control-label">Plazo:</label>
+            <div class="col-sm-4">
+                <input type="text" placeholder="Ej: 5" class="form-control" name="plazo" [(ngModel)]="objeto.plazo">
+            </div>
+        </div>
+    </div>
+    <p>
+    <div class="row">
+        <div class="col-lg-12">
+            <label class="col-sm-2 control-label">Prioridad:</label>
+            <div class="col-sm-4">
+                <input type="text" placeholder="Ej:1 0" class="form-control" name="prioridad" [(ngModel)]="objeto.prioridad">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="seleccionar()">Aceptar</button>
+    <button type="button" class="btn btn-default" (click)="cancelar()">Cancelar</button>
+</div>

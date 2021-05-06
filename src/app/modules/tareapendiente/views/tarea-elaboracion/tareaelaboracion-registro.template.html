@@ -1,0 +1,132 @@
+<div class="row wrapper border-bottom white-bg page-heading" style="padding-bottom: 0px;padding-left: 0px;">
+    <!-- Titulo -->
+    <div class="col-lg-12">
+        <!--<h2>Registro de Fase: Elaboración</h2>-->
+        <h4 style="margin-top: 10px;">Tareas / Elaboración /
+            <strong>Registro Elaboración</strong>
+        </h4>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group" *ngIf="this.indicadorBloqueo">
+                <!--Segurity-->
+               <ng-template [authIf]="session.ACL.ID_TAR_Elaboracion_Detalle_VISUALIZAR">                                    
+                  <button *ngIf="ocultarBotonConPregunta" class="btn m-r btn-info btn-info" (click)="OnOtrosBotones()" 
+                    style="margin-right:5px;">
+                    <i class="fa fa-file-word-o"></i> Ver Documento</button>                      
+
+                    <button *ngIf="ocultarBotonSinPregunta" class="btn m-r btn-success btn-info" 
+                    (click)="OnDocNvoGoogleDocs()" style="margin-right:5px;">
+                    <i class="fa fa-file-word-o"></i> Ver Documento</button>
+
+                    <!--Visor de DOcumento-->
+                    <button *ngIf="tab.general.checkDigital==1" class="btn m-r btn-info btn-info"
+                    (click)="OnValidaRuta(rutaDocumentoObsoleto,visorPdfSwal)"  style="margin-right:5px;">
+                        <i class="fa fa-file-word-o"></i> Ver Documento</button>
+                </ng-template>
+                
+
+                <!--<div  *ngIf="tab.general.item.revision.rutaDocumentoOriginal==null && tab.general.checkDigital==1" class="fileinput fileinput-new col-sm-2 m-r" style="padding-left:0px; margin-right:5px; width:110px;"
+                    data-provides="fileinput" popover="Documento Adjuntado" triggers="mouseenter:mouseleave">-->
+                  <div *ngIf="ocultarBotonVerDocumentoAdjuntotro" class="fileinput fileinput-new col-sm-2 m-r" style="padding-left:0px; margin-right:5px; width:110px;"
+                    data-provides="fileinput" popover="Documento Adjuntado" triggers="mouseenter:mouseleave">
+
+                    <span  class="btn m-r btn-success btn-info btn-file"  >
+
+                        <span class="fileinput-exists">
+                            <i  [class]="(documentoAdjunto.nombreReal=='') ? 'fa fa-upload' : 'fa fa-check'"></i> Adjuntar<!--Adjuntaro-->
+                        </span>
+                        <input  type="file" #file name="file" accept=".pdf" (change)="OnAdjuntar(file)" />
+                    </span>
+                </div>
+
+
+                    <div *ngIf="ocultarBotonVerDocumentoAdjunt1" class="fileinput fileinput-new col-sm-2 m-r" style="padding-left:0px; margin-right:5px; width:110px;"
+                    data-provides="fileinput" popover="Documento Adjuntado" triggers="mouseenter:mouseleave">
+
+                    <span  class="btn m-r btn-success btn-info btn-file"  >
+
+                        <span class="fileinput-exists">
+                            <i  [class]="(documentoAdjunto.nombreReal=='') ? 'fa fa-upload' : 'fa fa-check'"></i> Adjuntar<!--Adjuntar1-->
+                        </span>
+                        <input  type="file" #file name="file" accept=".pdf" (change)="OnAdjuntar(file)" />
+                    </span>
+                </div>
+            
+            <!--<div *ngIf="tab.general.item.revision.rutaDocumentoOriginal!=null && fechaRechazohijo!=false" class="fileinput fileinput-new col-sm-2 m-r" style="padding-left:0px; margin-right:5px; width:110px;"
+                data-provides="fileinput" popover="Documento Adjuntado" triggers="mouseenter:mouseleave">-->
+                <div *ngIf="fechaRechazohijo!=false" class="fileinput fileinput-new col-sm-2 m-r" style="padding-left:0px; margin-right:5px; width:110px;"
+                data-provides="fileinput" popover="Documento Adjuntado" triggers="mouseenter:mouseleave">
+                <span  class="btn m-r btn-success btn-info btn-file"  >
+                    <span class="fileinput-exists">
+                        <i  [class]="(documentoAdjunto.nombreReal=='') ? 'fa fa-upload' : 'fa fa-check'"></i>Adjuntar <!--Adjuntar2-->
+                    </span>
+                    <input  type="file" #file name="file" accept=".pdf" (change)="OnAdjuntar(file)" />
+                </span>
+            </div>
+
+            <div *ngIf="ocultarBotonVerDocumentoAdjunt" class="fileinput fileinput-new col-sm-2 m-r" style="padding-left:0px; margin-right:5px; width:110px;"
+            data-provides="fileinput" popover="Documento Adjuntado" triggers="mouseenter:mouseleave">
+            <span  class="btn m-r btn-success btn-info btn-file"  >
+                <span class="fileinput-exists">
+                    <i  [class]="(documentoAdjunto.nombreReal=='') ? 'fa fa-upload' : 'fa fa-check'"></i>Adjuntar <!--Adjuntar3-->
+                </span>
+                <input  type="file" #file name="file" accept=".pdf" (change)="OnAdjuntar(file)" />
+            </span>
+        </div>
+                <!--Cguerra-->
+                <!--<button *ngIf="tab.general.checkDigital" class="btn m-r btn-info" (click)="OnExportar()">
+                    <i class="fa fa-arrow-left"></i> Exportar</button>-->
+
+                <ng-template [authIf]="session.ACL.ID_TAR_Elaboracion_Detalle_CREAR">
+                    <button class="btn m-r btn-success" [swal]="{ title: '¿Está seguro que desea aprobar el registro del documento?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, Liberar', cancelButtonText: 'No gracias' }"
+                        (confirm)="OnAprobar(file)">
+                        <i class="fa fa-check"></i> Liberar</button>
+                </ng-template>
+                <ng-template [authIf]="session.ACL.ID_TAR_Elaboracion_Detalle_CREAR">
+                    <button class="btn m-r btn-primary" [swal]="{title:'¿Está seguro que desea Guardar el registro?',type:'question',showCancelButton:true,confirmButtonText:'Sí, Grabar',cancelButtonText:'No gracias'}"
+                        (confirm)="OnGuardar(file)">
+                        <i class="fa fa-save"></i> Guardar</button>
+                </ng-template>
+                <button class="btn m-r btn-default" (click)="OnRegresar()">
+                    <i class="fa fa-arrow-left"></i> Regresar</button>
+            </div>
+            <div class="form-group" *ngIf="!this.indicadorBloqueo">
+                <button class="btn m-r btn-default" (click)="OnRegresar()">
+                    <i class="fa fa-arrow-left"></i> Regresar</button>
+                <label style="color:red;">
+                    <i>{{mensaje}}</i>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+                <!--<tab-group-tarea [activar]="activar" [consulta]="consulta"></tab-group-tarea>-->
+                <tab-group-animations-example #tab [activar]="activar" (FechaRechazoAnteior)="OnFechaRechazoAnterior($event)" (RutaOrigin)="OnRutaOrigin($event)" (cantidadRegistroFase)="OnCantidadFase($event)" (FechaRechazo)="OnValidarFechaRechazo($event)" (fechaliberacion)="OnFechadeLiberacion($event)"  [consulta]="consulta" [idFase]="idFase"  (IndicadorDigital)="OnIndicadorDigital($event)"></tab-group-animations-example>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<swal #visorPdfSwal [showConfirmButton]="false" [showCloseButton]="true" customClass="pdf-swal">
+    <form *swalPartial class="ajuste">
+        <div *ngIf="urlPDF">
+            <visor-pdf id="02" [url]="urlPDF"></visor-pdf>
+        </div>
+        <div *ngIf="objetoBlob">
+            <visor-pdf id="02" [file]="objetoBlob"></visor-pdf>
+        </div>
+    </form>
+</swal>

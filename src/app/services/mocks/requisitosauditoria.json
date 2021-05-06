@@ -1,0 +1,50 @@
+{
+    "listaRequisitoPlan": [
+      {
+        "fechaDia":"07/11/2018",
+        "fechaHora":"09:00",
+        "equipoAuditar": "EGIP - Equipo Gestión Integral de Plantas",
+        "alcance": "ISO 9001/PTA",
+        "norma": "ISO 9001:2014",
+        "requisito": "4.3.1 Aspectos Ambientales;4.3.2 Requisitos Legales y otros requisitos",
+        "auditor": "Juan Sanchez"
+      },
+      {
+        "fechaDia":"07/11/2018",
+        "fechaHora":"14:00",
+        "equipoAuditar": "EGIP - Equipo Gestión Integral de Plantas",
+        "alcance": "ISO 9001/GOAS",
+        "norma": "ISO 9001:2014",
+        "requisito": "4.4.1 Recurso, funciones responsabilidad y autoridad",
+        "auditor": "Julio Mina"
+      },
+      {
+        "fechaDia":"08/11/2018",
+        "fechaHora":"09:00",
+        "equipoAuditar": "EGIP - Equipo Gestión Integral de Plantas",
+        "alcance": "ISO 9001/EDP",
+        "norma": "ISO 9001:2014",
+        "requisito": "4.3.1 Aspectos Ambientales",
+        "auditor": "Juan Sanchez"
+      },
+      {
+        "fechaDia":"08/11/2018",
+        "fechaHora":"14:00",
+        "equipoAuditar": "GPO- Gerencia de Proyectos y Obras",
+        "alcance": "ISO 9001/ECRF",
+        "norma": "ISO 9001:2014",
+        "requisito": "4.4.1 Recurso, funciones, responsabilidad y autoridad",
+        "auditor": "Julio Mina"
+      },
+      {
+        "fechaDia":"09/11/2018",
+        "fechaHora":"09:00",
+        "equipoAuditar": "EQUIPO GESTION AMBIENTAL Y SERVICIOS ECOSISTEMICOS",
+        "alcance": "ISO 9001/GPO",
+        "norma": "ISO 9001:2014",
+        "requisito": "4.3.1 Aspectos Ambientales",
+        "auditor": "Rodrigo Cueva"
+      }
+  
+    ]
+}

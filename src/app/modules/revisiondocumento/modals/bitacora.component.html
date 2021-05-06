@@ -1,0 +1,38 @@
+<div class="modal-header modal-cabecera-color">
+  <h4 class="modal-title pull-left">Bitácora de Solicitud</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true" class="cerrar">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="row m-b-sm">
+    <div class="col-lg-12">
+      <div class="ibox-content" >
+          <sk-three-bounce></sk-three-bounce>
+          <div class="table-responsive">
+              
+              <table class="table table-bordered table-stripped table-hover issue-tracker">
+                  <thead>
+                      <tr>                         
+                          <th class="text-center">Fecha Fase</th>               
+                          <th class="text-center">Fase</th>
+                          <th class="text-center">Estado</th>
+                          <th class="text-center">Justificación</th>
+                    
+                      </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let item of itemsBitacoras; let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow">                                        
+                      <td class="text-center">{{item.fechaFase}}</td>
+                      <td class="text-center">{{item.fase}}</td>
+                      <td class="text-center">{{item.estado}}</td>
+                      <td class="text-center">{{item.justificacion}}</td>
+                  </tr>
+                  </tbody>
+              </table>
+          </div>
+
+      </div>
+    </div>
+  </div>
+</div>

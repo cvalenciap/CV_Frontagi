@@ -1,0 +1,160 @@
+<div class="col-lg-12">
+    <br>
+    <div *ngIf="false" class="row m-b-sm">
+        <div class="col-lg-12">
+            <div class="form-group">
+                <div class="col-sm-4" style="padding-left: 0px; padding-right: 0px;">
+                    <div class="input-group">
+                        <input type="text" placeholder="{{placeholder[parametroBusqueda]}}" class="form-control"
+                            [(ngModel)]="textoBusqueda">
+                        <span class="input-group-btn" dropdown>
+                            <button type="button" class="btn btn-info" (click)="onBuscar()">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            <button dropdownToggle type="button"
+                                class="btn btn-info dropdown-toggle dropdown-toggle-split">
+                                <i class="fa fa-caret-down"></i>
+                            </button>
+                            <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
+                                <li role="menuitem" [class.active]="parametroBusqueda == 'codigo'">
+                                    <a (click)="cambiarTipoBusqueda('codigo')">Códigoss</a>
+                                </li>
+                                <li role="menuitem" [class.active]="parametroBusqueda == 'nombreCompleto'">
+                                    <a (click)="cambiarTipoBusqueda('nombreCompleto')">Nombre</a>
+                                </li>
+
+                            </ul>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-12">
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label class="control-label" for="mot_revision">Motivo Revisión(*):</label>
+            <select [disabled]="!permisos?.clAcciones" name="idmotirevi" id="idmotirevi" class="form-control"
+                #idmotirevi="ngModel" [(ngModel)]="revision.idmotirevi"
+                [ngClass]="{'ng-dirty ng-invalid':errors?.idmotirevi}" (ngModelChange)="Validar(idmotirevi)"
+                [tooltip]="errors?.idmotirevi" placement="bottom">
+                <option value="0" selected>Seleccione</option>
+                <option *ngFor="let parametro of listaParametrosPadre" value="{{parametro.idconstante}}">
+                    {{parametro.v_valcons}}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="col-sm-8">
+        <div class="form-group">
+            <label class="control-label" for="descripcion">Descripción(*):</label>
+            <textarea [disabled]="!permisos?.clAcciones" rows="2" #descripcion="ngModel"
+                [(ngModel)]="revision.descripcion" [ngClass]="{'ng-dirty ng-invalid':errors?.descripcion}"
+                maxlength="255" name="descripcion" (ngModelChange)="Validar(descripcion)"
+                [tooltip]="errors?.descripcion" id="descripcion" class="form-control" placement="bottom"></textarea>
+        </div>
+    </div>
+</div>
+<div class="col-lg-12">
+    <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+        <sk-three-bounce></sk-three-bounce>
+        <div class="table-responsive">
+            <table class="table table-bordered table-stripped table-hover issue-tracker">
+                <thead>
+                    <tr>
+                        <th class="text-center">Código</th>
+                        <th class="text-center">Título</th>
+                        <th class="text-center">Revisión</th>
+                        <th class="text-center">Motivo de Revisión</th>
+                        <th class="text-center">Justificación</th>
+                        <th class="text-center">Emisor</th>
+                        <th class="text-center">Equipo Emisor</th>
+                        <!--<th class="text-center">Fecha de Aprobación</th>-->
+                        <th class="text-center">Fecha</th>
+                        <th *ngIf="activar" class="text-center">Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--<tr *ngFor="let item of items; let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow">                                        -->
+                    <tr *ngFor="let revision of this.listaRevisionHist">
+                        <td class="text-center" data-col="codigo">{{revision.documento.codigo}}</td>
+                        <td class="text-center" data-col="titulo">{{revision.documento.descripcion}}</td>
+                        <td class="text-center" data-col="revision">{{revision.numero}}</td>
+                        <td class="text-center" data-col="motRevision">{{revision.motivoRevision}}</td>
+                        <td class="text-center" data-col="justificacion">{{revision.descripcion}}</td>
+                        <td class="text-center" data-col="emisor"
+                            *ngIf="revision.colaborador.nombre==null && revision.colaborador.apellidoPaterno==null && revision.colaborador.apellidoMaterno==null">
+                            AGI MIGRACIÓN</td>
+                        <td class="text-center" data-col="emisor" *ngIf="revision.colaborador.nombre!=null">
+                            {{revision.colaborador.nombre}} {{revision.colaborador.apellidoPaterno}}
+                            {{revision.colaborador.apellidoMaterno}}</td>
+                        <td class="text-center" data-col="equeEmisor">{{revision.equipo.nombre}}</td>
+                        <td *ngIf="revision.estado.idconstante!=530 && revision.estado.idconstante ==143"
+                            class="text-center" data-col="fecha">{{revision.fechaAprobacion | date:'dd/MM/yyyy'}}</td>
+                        <td *ngIf="revision.estado.idconstante!=143 && revision.estado.idconstante ==530"
+                            class="text-center" data-col="fecha">{{revision.fechacancelacion | date:'dd/MM/yyyy'}}</td>
+                        <td *ngIf="activar" class="text-center" data-col="accion"
+                            style="width:130px;padding-left:0px;padding-right:0px;">
+                            <button [disabled]="revision.estado.idconstante == 530"
+                                style="width: 34px;height: 30px;padding-left: 9px;padding-top: 5px;"
+                                title="Ver Historial Documento" class="btn btn-info"
+                                (click)="OnHistorialDoc(revision.documento.id, revision.id)">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            <div style="display: inline-block;width: 3%;"></div>
+                            <ng-template [ngIf]="session.Ruta.RegistroBusquedaDocumento == rutaActual"
+                                [ngIfElse]="otrasPaginas">
+                                <ng-template
+                                    [buttonConsultaIf]="[session.ACL.ID_DOC_ConsultaGeneral_Revisiones_VISUALIZAR,session.ACL.ID_DETALLE_Revisiones_VISUALIZAR, session.ACL.ID_DOC_ConsultaJerarquia_Revision_VISUALIZAR]"
+                                    [rutaAnterior]="rutaAnterior" [rutaAnteriorAnterior]="rutaAnteriorAnterior">
+                                    <div *ngIf="permisos?.btnAgregar" class="btn-group">
+                                        <button
+                                            (click)="urlPDF=revision.rutaFinal; ;  visorPdfSwal.show(); $event.stopPropagation()"
+                                            title="Ver Documento" class="btn btn-primary btn-sm">
+                                            <i class="fa fa-file-o"></i>
+                                        </button>
+                                    </div>
+                                </ng-template>
+                            </ng-template>
+                            <ng-template #otrasPaginas>
+                                <ng-template
+                                    [authButtonComplexIf]="[session.ACL.ID_TAR_Concenso_Revision_Detalle_VISUALIZAR,session.ACL.ID_TAR_Elaboracion_Detalle_Revision_VISUALIZAR,session.ACL.ID_SOL_SolicitudRevision_Detalle_Revision_VISUALIZAR,session.ACL.ID_CON_SeguimientoDocumento_Detalle_Revision_VISUALIZAR]"
+                                    [ruta]="rutaActual" valorComponente="revisiones" valorBoton="VISUALIZAR">
+                                    <div *ngIf="permisos?.btnAgregar" class="btn-group">
+
+                                        <button
+                                            (click)="urlPDF=revision.rutaFinal; ;  visorPdfSwal.show(); $event.stopPropagation()"
+                                            title="Ver Documento" class="btn btn-primary btn-sm">
+                                            <i class="fa fa-file-o"></i>
+                                        </button>
+                                    </div>
+                                </ng-template>
+                            </ng-template>
+                            <!--segurity -->
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<swal #visorPdfSwal [showConfirmButton]="false" [showCloseButton]="true" customClass="pdf-swal">
+    <form *swalPartial class="ajuste">
+        <div *ngIf="urlPDF">
+            <visor-pdf id="02" [url]="urlPDF"></visor-pdf>
+        </div>
+        <div *ngIf="objetoBlob">
+            <visor-pdf id="02" [file]="objetoBlob"></visor-pdf>
+        </div>
+    </form>
+</swal>

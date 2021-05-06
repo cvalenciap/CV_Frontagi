@@ -1,0 +1,35 @@
+{
+  "listaJerarquias": [
+    {
+      "Jerarquia":"Alcance",
+      "Descripcion": "ISO 9001",
+      "Descripcionp": "EPD",
+      "Estado": "Activo",
+      "Nivel": "1"
+    },
+    {
+      "Jerarquia":"Alcance",
+      "Descripcion": "ISO 14001",
+      "Descripcionp": "GGGAR",
+      "Estado": "Activo",
+      "Nivel": "2"
+    },
+    {
+      "Jerarquia":"Gerencia",
+      "Descripcion": "GGAR-Manuales",
+      "Descripcionp": "EPD",
+      "Estado": "Activo",
+      "Nivel": "2"
+
+    },
+    {
+      "Jerarquia":"Gerencia",
+      "Descripcion": "GPDP-Procedimientos",
+      "Descripcionp": "GPDP",
+      "Estado": "Activo",
+      "Nivel": "3"
+
+    }
+
+  ]
+}

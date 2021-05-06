@@ -1,0 +1,9 @@
+.table {
+    tr {
+        th[data-col='check'] {width: 40px;height: 0px;font-size: 11px;}
+        th[data-col='tipo'] {height: 0px}
+        
+        td[data-col='check'] {height: 0px;font-size: 11px;padding-left: 3px; padding-right: 3px;}
+        td[data-col='tipo'] {height: 0px;font-size: 11px;padding-left: 3px; padding-right: 3px;}
+    }
+} 

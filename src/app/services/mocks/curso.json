@@ -1,0 +1,57 @@
+{
+  "listaCursos": [
+    {
+      "codigo":"CU001",
+      "nombre": "Análisis de Protozoarios",
+      "tipo": "CURSO",
+      "duracion": "20h",
+      "indicador":"SI",
+      "disponible": "SI",
+      "cantidad":6
+    },
+    {
+      "codigo":"CU002",
+      "nombre": "Análisis de Nematetemintus",
+      "tipo": "CURSO",
+      "duracion": "20h",
+      "indicador":"SI",
+      "disponible": "SI",
+      "cantidad":5
+    },
+    {
+      "codigo":"CU003",
+      "nombre": "Análisis de Microroganismos  Mutantes",
+      "tipo": "CURSO",
+      "duracion": "24h",
+      "indicador":"NO",
+      "disponible": "SI",
+      "cantidad":3
+    },
+    {
+      "codigo":"CU004",
+      "nombre": "Análisis de Aguas bencenicas",
+      "tipo": "CURSO",
+      "duracion": "22h",
+      "indicador":"NO",
+      "disponible": "SI",
+      "cantidad":6
+    },
+    {
+      "codigo":"CU005",
+      "nombre": "Análisis de Tratamiento destilación",
+      "tipo": "CURSO",
+      "duracion": "22h",
+      "indicador":"SI",
+      "disponible": "SI",
+      "cantidad":3
+    }, {
+      "codigo":"CU006",
+      "nombre": "Análisis de Protozoarios",
+      "tipo": "CURSO",
+      "duracion": "20h",
+      "indicador":"SI",
+      "disponible": "SI",
+      "cantidad":6
+    }
+  ]
+}

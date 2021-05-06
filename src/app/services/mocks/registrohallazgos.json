@@ -1,0 +1,44 @@
+{
+    "listaHallazgos": [
+        {
+            "idHallazgo":"1",
+            "norma":"14001",
+            "nroListaVerificacion":"1",
+            "descripcionAuditoria":"Auditoria de Gestión Ambiental",
+            "estadoHallazgo":"1",
+            "auditorLider":"Alejandro Moreno",
+            "auditor":"Juan Sanchez",
+            "descripcionEntidad":"EGIP - Equipo Gestión Integral de Plantas"
+        },
+        {
+            "idHallazgo":"2",
+            "norma":"14001",
+            "nroListaVerificacion":"2",
+            "descripcionAuditoria":"Auditoria de Gestión Ambiental",
+            "estadoHallazgo":"2",
+            "auditorLider":"Alejandro Moreno",
+            "auditor":"Juan Sanchez",
+            "descripcionEntidad":"GPO- Gerencia de Proyectos y Obras"
+        },
+        {
+            "idHallazgo":"3",
+            "norma":"9001",
+            "nroListaVerificacion":"3",
+            "descripcionAuditoria":"Auditoria de Sistemas Seguridad",
+            "estadoHallazgo":"4",
+            "auditorLider":"Rosa Torres",
+            "auditor":"Juan Sanchez",
+            "descripcionEntidad":"GPO- Gerencia de Proyectos y Obras"
+        },
+        {
+            "idHallazgo":"4",
+            "norma":"18001",
+            "nroListaVerificacion":"4",
+            "descripcionAuditoria":"Auditoria de Sistemas Seguridad",
+            "estadoHallazgo":"4",
+            "auditorLider":"Rosa Torres",
+            "auditor":"Juan Sanchez",
+            "descripcionEntidad":"EQUIPO GESTION AMBIENTAL Y SERVICIOS ECOSISTEMICOS"
+        }
+    ]
+}

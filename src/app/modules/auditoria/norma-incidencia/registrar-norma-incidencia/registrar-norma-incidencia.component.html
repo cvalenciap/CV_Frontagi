@@ -1,0 +1,278 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <h4>Inicio / Auditoría / Normas e Incidencias / <strong>Detalle de Norma e Incidencia</strong>
+        </h4>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight div-principal">
+    <div class="row m-b-md div-botones-superiores">
+        <div class="col-lg-6">
+            <a class="btn btn-primary m-r botones-superiores" (click)="grabar()"><i class="fa fa-floppy-o"></i>
+                Guardar</a>
+            <a class="btn btn-default btn-colores m-r botones-superiores" (click)="OnRegresar()"><i
+                    class="fa fa-arrow-left"></i> Regresar</a>
+        </div>
+        <div class="col-lg-6"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content div-secundario" style=" height: 480px;" [ngClass]="{'sk-loading': loading}">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox-content div-secundario" style="margin-bottom: 5px;height: 120px;"
+                            [ngClass]="{'sk-loading': loading}">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <label class="col-sm-4 control-label titulos-texto">Tipo:</label>
+                                    <label class="col-sm-4 control-label titulos-texto" *ngIf="modelTipoNorma">
+                                        {{modelTipoNorma.v_valcons === '1' ? 'Norma:' : 'Incidencia:'}}
+                                    </label>
+                                    <label class="col-sm-4 control-label titulos-texto" *ngIf="modelTipoNorma">
+                                        {{modelTipoNorma.v_valcons === '1' ? 'Requisito:' : 'Detalle Incidencia:'}}
+                                    </label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <ng-select [items]="listaTiposNormas" bindLabel="v_descons"
+                                            (change)="onChangeTipoNormas()" [(ngModel)]="modelTipoNorma"
+                                            [clearable]="false" [searchable]="false" class="custom"
+                                            placeholder="Seleccionar">
+                                        </ng-select>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <input #nombreNorma type="text" class="form-control"
+                                            [ngClass]="{'ng-dirty ng-invalid':exiteCampoUno}"
+                                            [(ngModel)]="modelNorma.v_nom_norma" [disabled]="habilitarCampos">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="col-sm-3" style="padding-left: 0px;">
+                                            <input #numeroRequisito type="text" class="form-control"
+                                                [ngClass]="{'ng-dirty ng-invalid':exiteCampoDos}"
+                                                (keypress)="onsoloNumeros($event)" [(ngModel)]="modelRequi.v_num_req"
+                                                [disabled]="habilitarCampos">
+                                        </div>
+                                        <div class="col-sm-9" style="padding-left: 0px;">
+                                            <input #nombreRequisito type="text" class="form-control"
+                                                [ngClass]="{'ng-dirty ng-invalid':exiteCampoTre}"
+                                                [(ngModel)]="modelRequi.v_nom_req">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6" style="margin-top: 10px; margin-bottom: 10px;">
+                                        <button class="btn btn-primary botones-superiores" (click)="agregarNodo()"
+                                            style="width: 106px;"><i class="fa fa-plus"></i> Añadir</button>
+                                        <button class="btn btn-success botones-superiores" (click)="modificarNodo()"
+                                            [disabled]="selectedRow<0" style="width: 106px; margin-left: 5px;"><i
+                                                class="fa fa-edit"></i> Actualizar</button>
+                                        <button class="btn btn-danger botones-superiores" [disabled]="selectedRow<0"
+                                            [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                                            (confirm)="onEliminar()" style="width: 106px; margin-left: 5px;"><i
+                                                class="fa fa-trash"></i> Eliminar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-sm-3" style="padding-right: 5px;">
+                                <div class="ibox-content"
+                                    style="height: 342px;padding-bottom: 5px;padding-right: 5px;padding-left: 5px;padding-top: 5px;">
+                                    <div class="col-lg-12" style="height: 303px; padding-right: 0px;padding-left: 0px;">
+                                        <label class="control-label titulos-texto" *ngIf="modelTipoNorma">
+                                            {{modelTipoNorma.v_valcons === '1' ? 'REQUISITOS:' : 'INCIDENCIA:'}}
+                                        </label>
+                                        <tree-root #tree [nodes]="listaNodos" [options]="options"
+                                            style="height: 303px;"></tree-root>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-9" style="padding-right: 15px; padding-left: 0px;">
+                                <div class="ibox-content"
+                                    style="height: 342px;padding-bottom: 5px;padding-right: 5px;padding-left: 5px;padding-top: 5px;">
+                                    <!-- <div *ngIf="mostrarDatosRequisito" class="row"> -->
+                                    <mat-tab-group *ngIf="mostrarTag">
+                                        <mat-tab label="Datos del Requisito">
+                                            <br />
+                                            <div class="col-lg-12">
+                                                <div class="col-sm-2"></div>
+                                                <label class="col-sm-12">Descripción del Requisito:</label>
+                                                <div class="col-sm-12 ">
+                                                    <textarea class="form-control margen" rows="4"
+                                                        [(ngModel)]="requiSelec.v_nom_req"
+                                                        (change)="datosReqisito()"></textarea>
+                                                </div>
+                                                <br />
+                                                <br />
+                                                <label class="col-sm-12">Auditado: <input class="check"
+                                                        class="checkbox checkbox-primary" type="checkbox" class="styled"
+                                                        [(ngModel)]="isAuditable" /></label>
+                                            </div>
+                                        </mat-tab>
+                                        <mat-tab label="Documento Relacionado">
+                                            <!--components Documento -->
+                                            <br>
+                                            <!--                                         <div class="col-lg-12">
+                                                        <label class="col-sm-2">Ver documento:</label>
+                                                        <div class="col-sm-4"> -->
+                                            <!--                                                 <select name="listaDocumentos" class="lista" size="2">
+                                                                <option *ngFor="let item of datoRequisito.documentos" [value]="item.idDocumento">{{item.descripcionDocumento}}</option>
+                                                            </select> -->
+                                            <!--                                             </div>
+                                                        <div class="col-sm-6">
+                                                            <button class="btn btn-primary" (click)="abrirModalDocumento()">
+                                                                <i class="fa fa-plus"></i> Buscar Documento</button>
+                                                        </div> 
+                                                    </div>-->
+
+                                            <div class="col-lg-12">
+                                                <div class="ibox-content row">
+                                                    <div class="col-sm-1">
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <a (click)="abrirModalDocumento()"
+                                                                    class="btn btn-primary m-r">
+                                                                    <i class="fa fa-plus"></i>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <br />
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <button class="btn btn-danger m-r"
+                                                                    [disabled]="selectedCriterioRow<0"
+                                                                    [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                                                                    (confirm)="eliminarDocumento(selectedCriterioRow)">
+                                                                    <i class="fa fa-minus"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="table-responsive">
+                                                        <table
+                                                            class="table table-bordered table-stripped table-hover issue-tracker">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="text-center">Documentos Relacionados</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let item2 of listaDocumentos;  let i = index"
+                                                                    (click)="seleccionCriterio(i, item)"
+                                                                    [class.info]="i == selectedCriterioRow">
+                                                                    <td *ngIf="item2.vestreqdoc=='1'"
+                                                                        class="text-center"
+                                                                        data-col="descripcionEquipo">
+                                                                        {{item2.vcodigo + " - " + item2.vdocumento}}
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </mat-tab>
+                                        <mat-tab label="Correspondencia de Requisito">
+                                            <!--components Documento -->
+                                            <br>
+                                            <div class="col-lg-12">
+                                                <div class="col-sm-6">
+                                                    <div class="col-md-4">
+                                                        <label class="control-label">Norma de Correspondencia:</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <select class="form-control" (change)="cargarRequisito()"
+                                                            name="nombreRelacionada" required>
+                                                            <!--Gpjp [(ngModel)]="idNorma"-->
+                                                            <option value="" selected>Seleccionar</option>
+                                                            <option *ngFor="let item of listaNormas"
+                                                                [value]="item.idNorma">{{item.descripcionNorma}}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="col-md-4">
+                                                        <label class="control-label">Requisito de
+                                                            Correspondencia:</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <select class="form-control" name="requisitoRelacionado"
+                                                            required>
+                                                            <!--Gpjp [(ngModel)]="idRequisito"-->
+                                                            <option value="" selected>Seleccionar</option>
+                                                            <option *ngFor="let item of listaRequisito"
+                                                                [value]="item.idRequisito">{{item.descripcionReq}}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="ibox-content row">
+                                                    <div class="col-sm-1">
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <a (click)="agregarCriterio()"
+                                                                    class="btn btn-primary m-r">
+                                                                    <i class="fa fa-plus"></i>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <br />
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <button class="btn btn-danger m-r"
+                                                                    [disabled]="selectedCriterioRow<0"
+                                                                    [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                                                                    (confirm)="eliminarNormaIncidencia(selectedCriterioRow)">
+                                                                    <i class="fa fa-minus"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="table-responsive">
+                                                        <table
+                                                            class="table table-bordered table-stripped table-hover issue-tracker">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="text-center">Normas y Requisitos de
+                                                                        Correspondencia</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let item1 of listaNormasRequisitos;  let i = index"
+                                                                    (click)="seleccionCriterio(i, item)"
+                                                                    [class.info]="i == selectedCriterioRow">
+                                                                    <td *ngIf="item1.vestreqrel=='1'"
+                                                                        class="text-center"
+                                                                        data-col="descripcionEquipo">
+                                                                        {{item1.normaRelacionada +" / "+ item1.requiRelacionado}}
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </mat-tab>
+                                    </mat-tab-group>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

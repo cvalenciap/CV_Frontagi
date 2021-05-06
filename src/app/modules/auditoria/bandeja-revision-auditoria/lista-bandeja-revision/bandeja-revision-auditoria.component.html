@@ -1,0 +1,165 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <h4>Inicio / Auditoría / Informes de Auditoría / <strong>Informe Parcial</strong>
+        </h4>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight div-principal">
+    <div class="row m-b-md div-botones-superiores">
+        <div class="col-lg-4">
+            <div class="input-group">
+                
+                <input #buscar type="text" placeholder="Buscar" class="form-control cajas-texto" name="valorApellidoPat" [(ngModel)]="valorApellidoPat">
+                <div *ngIf="selectedFilter == 'apellidoPat' || selectedFilter == 'avanzada'">
+                <input #buscar type="text" placeholder="Buscar" class="form-control cajas-texto" name="valorApellidoPat" [(ngModel)]="valorApellidoPat">
+                </div>
+                <div *ngIf="selectedFilter == 'apellidoMat'">
+                <input #buscar type="text" placeholder="Buscar" class="form-control cajas-texto" name="valorApellidoMat" [(ngModel)]="valorApellidoMat"></div>
+                <div *ngIf="selectedFilter == 'nombre'">
+                <input #buscar type="text" placeholder="Buscar" class="form-control cajas-texto" name="valorNombre" [(ngModel)]="valorNombre"></div>
+                    <select *ngIf="selectedFilter == 'equipo'" class="form-control cajas-texto" name="valorEquipo"
+                        [(ngModel)]="valorEquipo">
+                        <option value="" selected>Seleccionar</option>
+                        <option *ngFor="let item of listaEquipos" [value]="item.valorEquipo">{{ item.descripcionEquipo }}
+                        </option>
+                    </select>
+                <div *ngIf="selectedFilter == 'numeroAuditoria'">
+                <input #buscar type="text" placeholder="Buscar" class="form-control cajas-texto" name="numeroAuditoria" [(ngModel)]="numeroAuditoria"></div>
+                <div *ngIf="selectedFilter == 'numeroLV'">
+                <input #buscar type="text" placeholder="Buscar" class="form-control cajas-texto" name="valorNumeroLV" [(ngModel)]="valorNumeroLV"></div>
+                <div *ngIf="selectedFilter == 'numeroInformeAuditoria'">
+                <input #buscar type="text" placeholder="Buscar" class="form-control cajas-texto" name="valorNumeroInformeAuditoria" [(ngModel)]="valorNumeroInformeAuditoria"></div>
+                <span class="input-group-btn" dropdown>
+                    <button type="button" class="btn btn-info botones-buscador" (click)="OnBuscar()"><i class="fa fa-search"></i></button>
+                    <button dropdownToggle type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split botones-buscador"><i class="fa fa-caret-down"></i></button>                    
+                    <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
+                        <li role="menuitem" [class.active]="selectedFilter == 'apellidoPat'"><a (click)="setFilter('apellidoPat')">Apellido Paterno</a></li>
+                        <li role="menuitem" [class.active]="selectedFilter == 'apellidoMat'"><a (click)="setFilter('apellidoMat')">Apellido Materno</a></li>
+                        <li role="menuitem" [class.active]="selectedFilter == 'nombre'"><a (click)="setFilter('nombre')">Nombre</a></li>
+                        <li role="menuitem" [class.active]="selectedFilter == 'equipo'"><a (click)="setFilter('equipo')">Equipo</a></li>
+                        <li role="menuitem" [class.active]="selectedFilter == 'numeroAuditoria'"><a (click)="setFilter('numeroAuditoria')">Numero Auditoría</a></li>
+                        <li role="menuitem" [class.active]="selectedFilter == 'numeroLV'"><a (click)="setFilter('numeroLV')">Numero LV</a></li>
+                        <li role="menuitem" [class.active]="selectedFilter == 'numeroInformeAuditoria'"><a (click)="setFilter('numeroInformeAuditoria')">Numero Informe Auditoría</a></li>
+                        <li class="divider dropdown-divider"></li>
+                        <li role="menuitem"><a (click)="abrirBusqueda()">Busqueda Avanzada</a></li>
+                    </ul>
+                </span>
+            </div>
+        </div>
+   
+        <div class="col-lg-8">
+            <a (click)="OnHabilitarAL()" class="btn btn-primary botones-buscador" style="width: 47px;"> ALG </a>
+            <a (click)="OnHabilitarRE()" class="btn btn-primary botones-buscador" style="width: 47px;margin-left: 10px;"> RE </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content div-secundario" style=" height: 480px;" [ngClass]="{'sk-loading': loading}">
+                <div class="table-responsive" style="height: 344px;">
+                    <table class="table table-bordered table-stripped table-hover issue-tracker">
+                        <thead>
+                            <tr>
+                                <th class="text-center" data-col="auditoria">Auditoría</th>
+                                <th class="text-center" data-col="area">Área Auditada</th>
+                                <th class="text-center" data-col="responsable">Responsable</th>
+                                <th class="text-center" data-col="auditor">Auditor</th>
+                                <th class="text-center" data-col="estado">Estado</th>
+                                <th class="text-center" data-col="accion">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center" data-col="auditoria">Auditoria Interna de la Gerencia de Finanzas I</td>
+                                <td class="text-center" data-col="area">GERENCIA DE DESARROLLO E INVESTIGACIÓN</td>
+                                <td class="text-center" data-col="responsable">GUILLERMO CUADROS CAPILLA</td>
+                                <td class="text-center" data-col="auditor">LORENA ALVARIÑO</td>
+                                <td class="text-center" data-col="estado">Emitido</td>
+                                <td class="text-center" data-col="accion"> 
+                                    <button title="Verificación" class="btn btn-success btn-sm botones-detalle" (click)="OnRevisionListaVer(1)"><i class="fa fa-edit"></i></button>
+<!--                                     <button (click)="OnRevisionListaVerResposable(1)" title="Ver Responsable" class="btn btn-warning btn-sm botones-detalle"><i class="fa fa-history"></i></button> -->
+<!--                                     <button title="Enviar Informe" class="btn btn-success btn-sm m-r botones-detalle" (click)="OnEnviarInforme(1)"><i class="fa fa-envelope"></i></button> -->
+                                </td>
+                            </tr>
+                            <tr>
+                                    <td class="text-center" data-col="auditoria">Auditoria Interna de la Gerencia de Finanzas I</td>
+                                    <td class="text-center" data-col="area">EQUIPO PLANEAMIENTO FÍSICO Y PRE INVERSIÓN</td>
+                                    <td class="text-center" data-col="responsable">GUILLERMO CUADROS CAPILLA</td>
+                                    <td class="text-center" data-col="auditor">LORENA ALVARIÑO</td>
+                                    <td class="text-center" data-col="estado">Emitido</td>
+                                    <td class="text-center" data-col="accion"> 
+                                        <button title="Verificación" class="btn btn-success btn-sm botones-detalle" (click)="OnRevisionListaVer(1)"><i class="fa fa-edit"></i></button>
+    <!--                                     <button (click)="OnRevisionListaVerResposable(1)" title="Ver Responsable" class="btn btn-warning btn-sm botones-detalle"><i class="fa fa-history"></i></button> -->
+    <!--                                     <button title="Enviar Informe" class="btn btn-success btn-sm m-r botones-detalle" (click)="OnEnviarInforme(1)"><i class="fa fa-envelope"></i></button> -->
+                                    </td>
+                                </tr>
+                                <tr>
+                                        <td class="text-center" data-col="auditoria">Auditoria Interna de la Gerencia de Finanzas I</td>
+                                        <td class="text-center" data-col="area">EQUIPO PLANEAMIENTO OPERATIVO FINANCIERO</td>
+                                        <td class="text-center" data-col="responsable">GUILLERMO CUADROS CAPILLA</td>
+                                        <td class="text-center" data-col="auditor">LORENA ALVARIÑO</td>
+                                        <td class="text-center" data-col="estado">Emitido</td>
+                                        <td class="text-center" data-col="accion"> 
+                                            <button title="Verificación" class="btn btn-success btn-sm botones-detalle" (click)="OnRevisionListaVer(1)"><i class="fa fa-edit"></i></button>
+        <!--                                     <button (click)="OnRevisionListaVerResposable(1)" title="Ver Responsable" class="btn btn-warning btn-sm botones-detalle"><i class="fa fa-history"></i></button> -->
+        <!--                                     <button title="Enviar Informe" class="btn btn-success btn-sm m-r botones-detalle" (click)="OnEnviarInforme(1)"><i class="fa fa-envelope"></i></button> -->
+                                        </td>
+                                    </tr>
+                            
+                            <!-- <tr *ngFor="let item of items;  let i = index" (click)="OnRowClick(i, item)"
+                                                        [class.info]="i == selectedRow">
+                                                        <td class="text-center" data-col="fauditoria">{{item.numeroAuditoria}}</td>
+                                                        <td class="text-center" data-col="auditorEvaluado">{{item.fechaIngreso}}</td>
+                                                        <td class="text-center" data-col="rol">{{item.numListaVerificacion}}</td>
+                                                        <td class="text-center" data-col="rol">{{item.estadoListaVerificacion}}</td>
+                                                        <td class="text-center" data-col="rol">{{item.numInformeAuditoria}}</td>
+                                                        <td class="text-center" data-col="rol">{{item.estadoInformeAuditoria}}</td>
+                                                        <td class="text-center" data-col="rol">{{item.auditor}}</td>
+                                                        <td class="text-center" data-col="rol">
+                                                            {{item.equipo}}/{{item.gerencia}}/{{item.actividades}}/{{item.cargoAAuditar}}</td>
+                                                        <td class="text-center" data-col="rol">{{item.responsable}}</td>
+                            
+                                                        <td class="text-center" data-col="accion" style="white-space: nowrap">
+                                                            <button title="Verificación" class="btn btn-success btn-sm"
+                                                                (click)="OnRevisionListaVer(item)"><i class="fa fa-edit"></i></button>
+                                                            <div style="display: inline-block;width: 6%;"></div>
+                                                            <button (click)="OnRevisionListaVerResposable(item)" title="Ver Responsable"
+                                                                class="btn btn-warning btn-sm">
+                                                                <i class="fa fa-history"></i>
+                                                            </button>
+                                                            <div style="display: inline-block;width: 6%;"></div>
+                                                            <button title="Enviar Informe" class="btn btn-success btn-sm m-r"
+                                                                (click)="OnEnviarInforme(item)"><i class="fa fa-envelope"></i></button>
+                                                        </td>
+                            
+                                                    </tr> -->
+                        </tbody>
+    
+                    </table>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <pagination class="texto-pie-pag" [(ngModel)]="paginacion.pagina"
+                            (pageChanged)="OnPageChanged($event)" [totalItems]="paginacion.totalRegistros"
+                            [itemsPerPage]="paginacion.registros" [boundaryLinks]="true" [maxSize]="5"
+                            previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+                        </pagination>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-center m-a-sm">
+                            <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros"
+                                [page]="paginacion.pagina"></pagination-info>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-right m-a-sm">
+                            <pagination-set class="texto-pie-pag" (optionChanged)="OnPageOptionChanged($event)">
+                            </pagination-set>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

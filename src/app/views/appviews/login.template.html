@@ -1,0 +1,45 @@
+<div class="loginColumns loginscreen animated fadeInDown">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="text-center m-t-xl">
+              <img src="assets/images/sedapal-logo-2.png">
+            </div>
+            <h2 class="font-bold text-center titulo">{{name}}</h2>
+          </div>
+          <div class="col-md-6">
+            <div class="ibox-content" [class.sk-loading]="waiting">                
+              <sk-wandering-cubes></sk-wandering-cubes>
+              <div class="alert alert-danger" *ngIf="error">{{error}}.</div>
+              <form class="m-t" #login="ngForm" role="form" (submit)="doLogin(login)">
+                <div class="form-group">
+                  <input name="username" type="text" class="form-control" autocomplete="off" placeholder="Usuario" required [(ngModel)]="username" [disabled]="authenticated">
+                </div>
+                <div class="form-group">
+                  <input name="password" type="password" class="form-control" placeholder="Contraseña" required [(ngModel)]="password" [disabled]="authenticated">
+                </div>
+                <div class="form-group" *ngIf="authenticated">
+                  <label class="text-primary">Seleccione un perfil y haga clic nuevamente en Ingresar</label>
+                  <select name="role" class="form-control" [(ngModel)]="perfil">
+                    <option *ngFor="let item of perfiles"
+                      [value]="item.codPerfil"
+                      [attr.selected]="perfil == item.codPerfil ? true : null">
+                      {{item.descripcion}}
+                    </option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary dim block full-width m-b">Ingresar</button>
+                <a (click)="doRecover()" class="reset-link">No recuerdo mi contraseña</a>
+              </form>
+            </div>
+          </div>
+        </div>
+        <hr/>
+        <div class="row">
+          <div class="col-md-6 titulo">
+            <span [innerHtml]="copyright"></span>
+          </div>
+          <div class="col-md-6 text-right titulo">
+            <small>{{id}} ver. {{version}}</small>
+          </div>
+        </div>
+      </div>

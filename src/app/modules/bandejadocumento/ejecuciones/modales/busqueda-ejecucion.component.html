@@ -1,0 +1,117 @@
+<div class="modal-header modal-cabecera-color">
+    <h4 class="modal-title pull-left">Búsqueda Avanzada Ejecución</h4>
+    <!--Button Cerra Modal-->
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="cerrar">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-lg-12">
+            <label class="col-sm-3 control-label">Número Programación:</label>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <input style="width: 288px;" (keypress)="permitirNumero($event)" type="text" id="numProg"
+                        placeholder="Ej. 340" class="form-control" name="programacion" [(ngModel)]="numProg">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+            <div class="col-lg-12">
+                <label class="col-sm-3 control-label">Código Documento:</label>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <input style="width: 288px;" type="text" id="numDoc"
+                            placeholder="Ej. GFFO0007" class="form-control" name="documento" [(ngModel)]="numDoc">
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <label class="col-sm-3 control-label">Año:</label>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <select style="width: 288px;" name="anioProg" id="anioProg" class="form-control"
+                        [(ngModel)]="anioProg">
+                        <option value=0 selected>Seleccione</option>
+                        <option *ngFor="let item of items" [value]="item.anioProg">{{ item.anioProg }}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <label class="col-sm-3 control-label">Equipo:</label>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <input (keyup)="habilitarBusqueda()" style="width: 248px;height: 32.979166px;" type="text"
+                        placeholder="Ej: Equipo Relaciones Públicas" class="form-control" id="descripcionequipo"
+                        name="descripcionequipo" [(ngModel)]="descripcionequipo" disabled="disabled">
+                </div>
+            </div>
+            <div class="col-sm-1">
+                <div class="form-group">
+                    <span class="input-group-btn" dropdown>
+                        <button style="margin-left: 115px; border-bottom-width: 0px;" type="button" class="btn btn-info"
+                            (click)="OnEquipo()"><i class="fa fa-search"></i></button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <label class="col-sm-3 control-label">Estado Ejecución:</label>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <select style="width: 288px;" name="estProg" id="estProg" class="form-control"
+                        [(ngModel)]="estProg">
+                        <option value=0 selected>Seleccione</option>
+                        <option *ngFor="let item of listaEstadoProgramacion" [value]="item.idconstante">
+                            {{ item.v_valcons }}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--
+    <div class="row">
+        <div class="col-lg-12">
+            <label class="col-sm-3 control-label">Estado Ejecución:</label>
+            <div class="col-sm-6">
+                <div class="form-group">
+    -->
+    <!--
+                    <select name="estado" id="est_ejecucion" class="form-control">
+                        <option value="1" selected="">Emitido</option>
+                        <option value="0">Proceso</option>
+                        <option value="0">Cerrado</option>
+                        <option value="0">todos</option>
+                    </select>
+                    -->
+    <!--
+                    <select style="width: 288px;" name="estEjec" id="estEjec" class="form-control" [(ngModel)]="estEjec">
+                        <option value=0 selected>Seleccione</option>
+                        <option *ngFor="let item of listaEstadoEjecucion" [value]="item.idconstante">{{ item.v_valcons }}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    -->
+    <br>
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <button (keyup)="habilitarBusqueda()" type="button" class="btn btn-primary m-r" (click)="OnBuscar()"><i
+                    class="fa fa-search-plus"></i> Buscar</button>
+            <button (keyup)="habilitarBusqueda()" type="button" class="btn btn-default m-r" (click)="OnLimpiar()"><i
+                    class="fa fa-eraser"></i> Limpiar</button>
+        </div>
+    </div>
+</div>

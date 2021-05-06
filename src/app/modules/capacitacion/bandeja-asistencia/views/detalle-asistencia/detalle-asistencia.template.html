@@ -1,0 +1,144 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <h2>Bandeja Participantes</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a routerLink="starterview">Inicio</a>
+            </li>
+            <li>
+                <a>Capacitación</a>
+            </li>
+            <li>
+                <a>Bandeja Sesiones</a>
+            </li>
+            <li class="active">
+                <strong>Lista Sesiones</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+   <!--  <div class="row m-b-sm">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">Codigo de Capacitación:</label>
+                    <div class="col-sm-4">
+                        <input  type="text" placeholder="Curso" disabled="deshabilitarCaja" class="form-control" name="curso" [ngModel]="codCurso" >
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">Nombre de Capacitación:</label>
+                    <div class="col-sm-4">
+                        <input  type="text" placeholder="Sesión" disabled="deshabilitarCaja" class="form-control" name="sesion"  [ngModel]="nomCurso">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <div class="row m-b-md">
+        <div class="col-lg-12">
+                
+               <!--  <a class="btn btn-primary m-r" (click)="OnGuardar()"><i class="fa fa-check"></i> Guardar</a> -->
+                <a class="btn btn-default m-r" (click)="cancelar()"><i class="fa fa-arrow-left"></i> Regresar</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+                <div class="ibox-content">
+                        <form class="form-horizontal">
+                            <div class="form-group" >
+                                <label class="col-sm-2 control-label">Código Curso:</label>
+                                <div class="col-sm-4"><input type="text" class="form-control" name="codigo" readonly  [(ngModel)]  = "codCurso"
+                                    placeholder="000002"></div>
+                                 
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Nombre del Curso:</label>
+                                <div class="col-sm-4"><input type="text" class="form-control" name="descripcion" readonly  [(ngModel)]  = "nomCurso"
+                                    placeholder="SEGURIDAD Y SALUD EN EL TRABAJO" ></div>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+                </div>
+    <br/>
+    <!-- <div class="row m-b-sm">
+        <div class="col-lg-3">
+            <div class="input-group">
+                <div>
+                    <input #buscar type="text" placeholder="Buscar" class="form-control" [(ngModel)]="textoBusqueda" >
+                </div>
+                <span class="input-group-btn" dropdown>
+                    <button type="button" class="btn btn-info" (click)="OnBuscar()"><i class="fa fa-search"></i></button>
+                    <button dropdownToggle type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split"><i class="fa fa-caret-down"></i></button>
+                    <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
+                        <li role="menuitem" [class.active]="selectedFilter == 'nroFicha'"><a (click)="setFilter('nroFicha')">Nro. Ficha</a></li>
+                        <li role="menuitem" [class.active]="selectedFilter == 'equipo'"><a (click)="setFilter('equipo')">Equipo</a></li>
+                    </ul>
+                </span>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div class="col-lg-2">
+                    <button class="btn btn-warning" [disabled]="selectedRow<0" (click)="abrirModalModificarParticipantes()"><i class="fa fa-edit"></i> Actualizar</button>
+            </div>
+            <a class="btn btn-default m-r" (click)="OnRegresar()"><i class="fa fa-arrow-left"></i> Regresar</a>
+        </div>
+    </div> -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div *ngIf="mostrarAlerta">
+                <alert type="info" ><span [innerHtml]="mensajeAlerta"></span></alert>
+            </div>
+            <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+                <sk-three-bounce></sk-three-bounce>
+                <div class="nuevo" style="height: 250px; overflow-y: auto;overflow-x: hidden">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-stripped table-hover issue-tracker">
+                        <thead>
+                        <tr>
+                            <th class="text-center">item</th>
+                            <th class="text-center">Nombre</th>
+                            <th class="text-center">Duracion</th>
+                            <th class="text-center">Disponible</th>
+                            <th class="text-center">Acción</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!-- <tr *ngFor="let item of listSesion; let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow">
+                            <td class="text-center" data-col="Nro. Ficha">{{item.itemColumna}}</td>
+                            <td class="text-center" data-col="Nombres y Apellidos">{{item.nombreSesion}}</td>
+                            <td class="text-center" data-col="Equipo">{{item.duracion}}</td>
+                             <td class="text-center" data-col="Asistió">{{item.descDisp}}</td>
+
+                            <td class="text-center" data-col="Accion" style="width:130px;padding-left:0px;padding-right:0px;">
+                                <button title="Actualizar" class="btn btn-success btn-sm m-r" (click)="OnVerDetalle(item)" ><i class="fa fa-edit"></i></button>   
+                                           
+                            </td>
+                        </tr> -->
+                        <tr>
+                            <td class="text-center" data-col="Nro. Ficha">1</td>
+                            <td class="text-center" data-col="Nombres y Apellidos">MODULO 1</td>
+                            <td class="text-center" data-col="Equipo">24</td>
+                             <td class="text-center" data-col="Asistió">Si </td>
+
+                            <td class="text-center" data-col="Accion" style="width:130px;padding-left:0px;padding-right:0px;">
+                                <button title="Actualizar" class="btn btn-success btn-sm m-r" (click)="OnVerDetalle()" ><i class="fa fa-edit"></i></button>   
+                                           
+                            </td>
+                        </tr> 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>

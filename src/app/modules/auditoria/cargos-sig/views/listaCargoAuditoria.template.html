@@ -1,0 +1,124 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <h4>Inicio / Auditoría / <strong>Cargos SIG</strong></h4>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight div-principal">
+
+    <div class="row m-b-md div-botones-superiores">
+        <div class="l-md-1 col-lg-1 boton">
+            <a [routerLink]="['registrar']" class="btn btn-primary botones-superiores"><i class="fa fa-plus"></i>
+                Nuevo</a>
+        </div>
+        <div class="col-md-6 col-lg-5">
+            <div class="row input-group">
+                <div class="col-6">
+                    <input type="text" placeholder="Ingrese datos" class="form-control cajas-texto"
+                        [(ngModel)]="textoBusqueda">
+                </div>
+                <span class="col-6 input-group-btn" dropdown>
+                    <button type="button" class="btn btn-info botones-buscador" (click)="OnBuscar()"><i
+                            class="fa fa-search"></i></button>
+                    <button dropdownToggle type="button"
+                        class="btn btn-info dropdown-toggle dropdown-toggle-split botones-buscador"><i
+                            class="fa fa-caret-down"></i></button>
+                    <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
+                        <li role="menuitem" [class.active]="parametroBusqueda == 'nombre'"><a
+                                (click)="parametroBusqueda = 'nombre'">Nombres y Apellidos</a></li>
+                        <li role="menuitem" [class.active]="parametroBusqueda == 'cargos'"><a
+                                (click)="parametroBusqueda = 'cargos'">Cargos SIG</a></li>
+                    </ul>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-2 col-lg-2">
+            <button class="btn btn-light btn-colores botones-superiores" (click)="OnLimpiar()"><i class="fa fa-eraser"></i> Limpiar</button>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div *ngIf="mostrarAlerta">
+                <alert type="info">
+                    <span [innerHtml]="mensajeAlerta"></span>
+                </alert>
+            </div>
+            <div class="ibox-content div-secundario" style=" height: 480px;" [ngClass]="{'sk-loading': loading}">
+                <sk-three-bounce></sk-three-bounce>
+                <div class="table-responsive" style="height: 450px;">
+                    <table class="table table-bordered table-stripped table-hover">
+                        <thead>
+                            <tr>
+                                <th class="text-center" data-col="nombre">Cargo SIG</th>
+                                <th class="text-center" data-col="sigla">Sigla</th>
+                                <th class="text-center" data-col="colaborador">Colaborador</th>
+                                <th class="text-center" data-col="accion">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of itemsPagination">
+                                <td class="text-left" data-col="CargoSig">{{item.nombreCargoSig}}</td>
+                                <td class="text-center" data-col="sigla">{{item.sigla}}</td>
+                                <td class="text-left" data-col="colaborador">{{item.nombreCompleto}}</td>
+                                <td class="text-center" data-col="accion">
+                                    <button title="Actualizar" class="btn btn-success btn-sm m-r botones-detalle"
+                                        (click)="OnModificar(item)"><i class="fa fa-edit"></i></button>
+                                    <button (confirm)="OnEliminar(item)" title="Eliminar"
+                                        class="btn btn-danger btn-sm m-r botones-detalle"
+                                        [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+
+
+
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <div class="row" style="width: 100%;">
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+
+                                <pagination 
+                                [(ngModel)]="paginacion.pagina" 
+                                (pageChanged)="OnPageChanged($event)" 
+                                [totalItems]="paginacion.totalRegistros" 
+                                [itemsPerPage]="paginacion.registros"
+                                 [boundaryLinks]="true" 
+                                 [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+                                </pagination>
+
+
+
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="text-center m-a-sm">
+                                    <pagination-info
+                                    [totalItems]="paginacion.totalRegistros" 
+                                    [itemsPerPage]="paginacion.registros" 
+                                    [page]="paginacion.pagina">
+                                   </pagination-info>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="text-right m-a-sm">
+                                    <pagination-set (optionChanged)="OnPageOptionChanged($event)"></pagination-set>                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>

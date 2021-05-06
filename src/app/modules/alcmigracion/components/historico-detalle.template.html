@@ -1,0 +1,73 @@
+<div class="wrapper wrapper-content animated fadeInRight" style="padding-top: 0px;">
+    <div class="row wrapper border-bottom white-bg page-heading" style="padding-bottom: 5px;">
+        <div class="col-lg-12">
+            <h4 style="margin-top: 10px;">Inicio / Información Documentada / Consulta Histórico /
+                <strong>Ver Detalle</strong>
+            </h4>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row ">
+            <a class="btn btn-default m-r" (click)="OnRegresar()">
+                <i class="fa fa-arrow-left"></i> Regresar</a>
+        </div>
+    </div>
+    <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+        <div class="row m-b-sm">
+            <div class="col-lg-2" style="padding-right: 0">
+                <label class="control-label" for="txtId">Código del Documento:</label>
+                <input type="text" id="txtId" [(ngModel)]="documento.codigo" class="form-control" disabled>
+            </div>
+            <div class="col-lg-10">
+                <label class="control-label" for="txtTitulo">Titulo del Documento:</label>
+                <input type="text" id="txtTitulo" [(ngModel)]="documento.descripcion" class="form-control" disabled>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-stripped table-hover issue-tracker">
+                        <thead>
+                            <tr>
+                                <th class="text-center" style="vertical-align: middle;">Revisión</th>
+                                <th class="text-center" style="vertical-align: middle;">Etapa</th>
+                                <th class="text-center" style="vertical-align: middle;">Fecha</th>
+                                <th class="col-lg-2 text-center" style="vertical-align: middle;">Colaborador</th>
+                                <th class="col-lg-6 text-center" style="vertical-align: middle;">Comentario</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of items; let i = index" [ngStyle]="{'background':item.idEstadoFase==idTipoDocuRechazado?'#EDB8B8':'none'}" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow">
+                                <td class="text-center" data-col="revision">{{item.numeroRevision}}</td>
+                                <td class="text-center" data-col="etapa">{{item.etapa}}</td>
+                                <td class="text-center" data-col="fecha">
+                                    <span [tooltip]=item.valorTooltip placement="bottom"> {{item.fecha | date:'dd/MM/yyyy'}}</span>
+                                </td>
+                                <td class="text-center" data-col="colaborador">{{item.colaborador}}</td>
+                                <td class="text-justify" data-col="comentario">{{item.comentario}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <pagination [(ngModel)]="paginacion.pagina" (pageChanged)="OnPageChanged($event)" [totalItems]="paginacion.totalRegistros"
+                            [itemsPerPage]="paginacion.registros" [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;"
+                            nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-center m-a-sm">
+                            <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-right m-a-sm">
+                            <pagination-set (optionChanged)="OnPageOptionChanged($event)"></pagination-set>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

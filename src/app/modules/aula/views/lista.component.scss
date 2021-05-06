@@ -1,0 +1,20 @@
+.table {
+  tr {
+    td[data-col='codigo'] {
+      width: 100px
+    }
+    td[data-col='nombre'] {
+      width: 200px;
+    }
+    td[data-col='sede'] {
+      width: 300px;
+    }
+    td[data-col='capacitacion'] {
+      width: 20px;
+    }
+    td[data-col='disponibilidad'] {
+      width: 20px;
+    }
+
+  }
+}

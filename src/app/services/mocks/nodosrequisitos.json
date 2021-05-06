@@ -1,0 +1,168 @@
+{   "listaRequisitos":[
+    {
+        "id": 0,
+        "nombre": "ISO 9001-2015",
+        "children": [
+          { 
+            "id": 1, 
+            "nombre": " 4. Contexto de la Organización",
+
+             "children":
+
+             [
+              { 
+                "id": 1, 
+                "nombre": "4.1 Comprension de la Organización y su Contexto "
+              },
+              { 
+                "id": 2, 
+                "nombre": "4.2 Comprensión de las necesidades y expectativas de las partes interesadas "
+              },
+              { 
+                "id": 3, 
+                "nombre": "4.3 Determinacion del Alcance del Sistema de Gestion de Calidad"
+              }
+              ,
+              { 
+                "id": 4, 
+                "nombre": "4.4 Sistema de Gestion de la Calidad y sus Procesos"
+              }
+            ]
+
+          },
+
+
+
+          { 
+            "id": 2, 
+            "nombre": "5. Liderazgo",
+
+             "children":
+
+             [
+              { 
+                "id": 1, 
+                "nombre": "5.1 Liderazgo y Compromiso ",
+
+                "children":
+
+                [
+                 { 
+                   "id": 1, 
+                   "nombre": "5.1.1 Generalidades"
+                 },
+                 { 
+                   "id": 2, 
+                   "nombre": "5.1.2 Enfoque al Cliente"
+                 }
+               ]
+
+              },
+              
+              
+              { 
+                "id": 4, 
+                "nombre": "5.4 Politica"
+              }
+
+              ,
+              { 
+                "id": 4, 
+                "nombre": "5.5 Roles, responsabilidades y autoridades en la Organización"
+              }
+
+            ]
+
+          },
+
+
+          { 
+            "id": 3, 
+            "nombre": "6 Planificacion",
+
+             "children":
+
+             [
+              { 
+                "id": 1, 
+                "nombre": "6.1 Acciones para abordar Riesgos y Oportunidades"
+              },
+              { 
+                "id": 2, 
+                "nombre": "6.2 Objetivos de la Calidad y Planificacion para lograrlos"
+              },
+              { 
+                "id": 3, 
+                "nombre": "6.3 Planificacion de los cambios"
+              }
+              
+            ]
+
+          },
+
+
+          { 
+            "id": 4, 
+            "nombre": "7 Apoyo",
+
+             "children":
+
+             [
+              { 
+                "id": 1, 
+                "nombre": "7.1 Recursos ",
+                "children":
+
+                [
+                 { 
+                   "id": 1, 
+                   "nombre": "7.1.1 Generalidades"
+                 },
+                 { 
+                   "id": 2, 
+                   "nombre": "7.1.2 Enfoque al Cliente"
+                 }
+               ]
+    
+
+              },
+              { 
+                "id": 2, 
+                "nombre": "7.2 Competencia "
+              },
+              { 
+                "id": 3, 
+                "nombre": "7.3 Toma de Conciencia"
+              }
+              ,
+              { 
+                "id": 4, 
+                "nombre": "7.4 Comunicación"
+              }
+            ]
+
+          }
+
+
+
+
+
+
+
+
+
+
+
+        
+        ]
+
+
+
+        
+    }
+
+
+
+
+    ]
+}

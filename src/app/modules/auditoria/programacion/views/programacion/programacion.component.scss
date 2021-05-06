@@ -1,0 +1,110 @@
+.table {
+  tr {
+    td[data-col='codigo'] {width: 48px;height: 0px;font-size: 11px;}
+    td[data-col='descripcion'] {width: 1112px;height: 0px;font-size: 11px;}
+    td[data-col='año'] {width: 73px;height: 0px;font-size: 11px;}
+    td[data-col='estado'] {width: 150px;height: 0px;font-size: 11px;}
+    td[data-col='accion'] {width: 140px;height: 0px;font-size: 11px;}
+
+    th[data-col='codigo'] {width: 48px;height: 0px;font-size: 11px; padding-left: 3px; padding-right: 3px;}
+    th[data-col='descripcion'] {width: 1112px;height: 0px;padding-left: 3px; padding-right: 3px;}
+    th[data-col='año'] {width: 73px;height: 0px;padding-left: 3px; padding-right: 3px;}
+    th[data-col='estado'] {width: 150px;height: 0px;padding-left: 3px; padding-right: 3px;}
+    th[data-col='accion'] {width: 140px;height: 0px;padding-left: 3px; padding-right: 3px;}
+  }
+} 
+
+.btn-sm {
+  padding: 3px 7px;
+  font-size: 11px;
+  margin-right: 4px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+
+.table > tbody > tr > td {
+  padding: 3px;
+}
+
+.table > tbody > tr > td > span {
+  height: 25px;
+  width: 100px;
+  font-size: 12px;
+  padding-top: 3px;
+}
+
+
+.btn-primary, .btn-default{
+  font-size: 12px;
+  padding: 6px 12px;
+}
+
+.btn-info {
+  font-size: 12px;
+  padding-top: 5px;
+  padding-bottom: 8px;
+}
+
+.form-control {
+  font-size: 12px;
+  height: 31.5px;
+}
+
+.bt-div-superior{
+  margin-bottom: 5px;
+  margin-top: 2px;
+}
+
+.div-principal{
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.bt-superior{
+  margin-right: 4px;
+  width: 90px;  
+}
+
+.btn-colores {
+  color: inherit;
+  background: #e6e6e6;
+  border-color: #eac2c2;
+}
+
+.btn-colores:hover {
+  background-color: #fde9e9;
+}
+
+.tx-cajas {
+  height: 32px;
+}
+
+.btn-success-revisar {
+  background-color: #1ab394;
+  border-color: #1ab394;
+  color: #FFFFFF;
+}
+
+.btn-success-revisar:hover {
+  background-color: #9fb3c7;
+}
+
+.table-fixed{
+  width: 100%;
+  tbody{
+    overflow-y:auto;
+    height:259px;    
+    width: 100%;
+    }
+  
+  thead,tbody{
+    display:block;
+    width: 100%;
+  }
+  }
+
+  .texto-pie-pag {
+   font-size: 11px;
+  }

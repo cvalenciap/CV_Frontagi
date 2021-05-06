@@ -1,0 +1,155 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h4>
+            <ol class="breadcrumb">
+                <li>
+                    <a routerLink="starterview">Inicio</a>
+                </li>
+                <li>
+                    <a>Auditoría</a>
+                </li>
+                <li>
+                    <a>Bandeja de Revisión de Auditoría</a>
+                </li>
+                <li class="active">
+                    <strong>
+                    Enviar Informe de Auditoría</strong>
+                </li>
+            </ol>
+        </h4>
+    </div>
+    <div class="col-lg-2">
+    </div>
+  </div>   
+
+  <div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row m-b-md">
+        <div class="col-lg-12">
+            <a class="btn btn-success m-r" ><i class="fa fa-check"></i> Enviar</a>
+            <a  class="btn btn-primary m-r"><i class="fa fa-plus"></i>Imprimir</a>   
+            <a class="btn btn-default m-r" (click)="OnRegresar()"><i class="fa fa-arrow-left"></i> Regresar</a>
+        </div>
+    </div>
+  
+    <div class="ibox-content"> 
+
+            <div class="row">
+                    <div class="col-lg-12"> 
+
+                    <div class="form-horizontal">
+                          <div class="col-sm-6">                               
+                              <div class="form-group">                      
+                                  <label class="col-sm-4 control-label">Informe de Auditoría: </label>   
+                                  <div class="col-sm-8">
+                                        <input type="text"  class="form-control" >                        
+                                  </div>  
+                              </div> 
+                              <div class="form-group">    
+                                      <label class="col-sm-4 control-label">
+                                            Nro. Auditoría</label>   
+                                      <div class="col-sm-8">  
+                                            <input type="text"  class="form-control" >                                                                  
+                                      </div>
+                              </div>
+                          </div>
+                          <div class="col-sm-6">                                
+                                  <div class="form-group">                      
+                                      <label class="col-sm-4 control-label">Estado de Informe Auditoría </label>   
+                                      <div class="col-sm-8">  
+                                          <input type="text"  class="form-control" >                                                     
+                                      </div>
+                                  </div> 
+                                 <div class="form-group">    
+                                          <label class="col-sm-4 control-label"></label>   
+                                          <div class="col-sm-8">   
+                                            <input type="text"  class="form-control"  >                                             
+                                          </div>
+                                      </div>
+                          </div>                           
+                     </div>
+
+                     <div class="form-horizontal">
+                            <div class="col-sm-6">                               
+                                <div class="form-group">                      
+                                    <label class="col-sm-4 control-label">Equipo de Auditoría: </label>   
+                                    <div class="col-sm-8">
+                                          <input type="text"  class="form-control"  >                        
+                                    </div>
+                                </div> 
+                                <div class="form-group">    
+                                        <label class="col-sm-4 control-label">Conclusión(*)</label>                                              
+                                        <div class="col-sm-8">  
+                                                <textarea rows="4" cols="50" id="txtConclusion"> </textarea>                                                                         
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">                                
+                                    <div class="form-group">                      
+                                        <label class="col-sm-4 control-label"></label>   
+                                        <div class="col-sm-8">  
+                                                                                            
+                                        </div>
+                                    </div> 
+                                    <div class="form-group">    
+                                            <label class="col-sm-4 control-label"></label>   
+                                            <div class="col-sm-8">   
+                                                                                                                         
+                                            </div>
+                                        </div>
+                               </div>                           
+                       </div>
+  
+
+                    </div>
+           </div>
+    </div>
+
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+
+                     <div class="row">
+                        <div class="col-lg-12">
+                            <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+                                <sk-three-bounce></sk-three-bounce>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-stripped table-hover issue-tracker">
+                                        <thead>
+                                        <tr>
+                                            <th class="text-center">Id </th>
+                                            <th class="text-center">Categoría</th>
+                                            <th class="text-center">Fecha</th>                          
+                                            <th class="text-center">Descripción Hallazgo</th>                                                               
+                                        </tr>
+                                        </thead>
+                
+                                        <tbody>
+                                          <tr *ngFor="let item of items;  let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow">                                 
+                                              <td class="text-center"  data-col="id">{{item.id}}</td>
+                                              <td class="text-center"  data-col="categoria">{{item.categoria}}</td>
+                                              <td class="text-center"  data-col="fecha">{{item.fecha}}</td>
+                                              <td class="text-center"  data-col="descripcionHallazgo">{{item.descripcionHallazgo}}</td> 
+                                          </tr>
+                                        </tbody>
+                  
+                                    </table>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-12 col-xs-12">
+                                        <pagination [(ngModel)]="paginacion.pagina" (pageChanged)="OnPageChanged($event)" [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                        <div class="text-center m-a-sm">
+                                            <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                        <div class="text-right m-a-sm">
+                                            <pagination-set (optionChanged)="OnPageOptionChanged($event)"></pagination-set>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                 
+</div>

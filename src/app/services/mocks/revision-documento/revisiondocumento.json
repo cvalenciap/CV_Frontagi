@@ -1,0 +1,205 @@
+{
+  "listabandejadocumento": [
+    {
+      "solicitante":"luis gaviota cresta",
+      "tipodoc": "Manual",
+      "codigo": "GARMA015",
+      "verdocumento": "Ver",
+      "titulo": "Tratamiento de Agua",
+      "estadocumento": "Emision",
+      "revision": "20",
+      "fecrevision": "20/11/2018",
+      "fecSolicitud": "13/01/2019",
+	  "numSolicitud":"233",
+      "estaSolicitud":"Aprobado"
+    },
+    {
+      "solicitante":"carlos cardenas cresta",
+      "tipodoc": "Manual",
+      "codigo": "GARMA014",
+      "verdocumento": "Ver",
+      "titulo": "Politica de Personal",
+      "estadocumento": "En Revision",
+      "revision": "15",
+      "fecrevision": "20/11/2018",
+      "fecSolicitud": "13/01/2019",
+	  "numSolicitud":"234",
+      "estaSolicitud":"Emitido"
+    },
+    {
+      "solicitante":"carolina caceres sabala",
+      "tipodoc": "Manual",
+      "codigo": "GARMA016",
+      "verdocumento": "Ver",
+      "titulo": "Politica de Seguridad",
+      "estadocumento": "Cancelado",
+      "revision": "12",
+      "fecrevision": "20/09/2018",
+      "fecSolicitud": "13/01/2019",
+	  "numSolicitud":"234",
+      "estaSolicitud":"Emitido"
+    },
+    {
+      "solicitante":"jose huarca fernandez",
+      "tipodoc": "Manual",
+      "codigo": "GARMA018",
+      "verdocumento": "Ver",
+      "titulo": "Politica de Seguridad",
+      "estadocumento": "Homologado",
+      "revision": "01",
+      "fecrevision": "20/09/2018",
+      "fecSolicitud": "13/01/2019",
+	  "numSolicitud":"233",
+      "estaSolicitud":"Aprobado"
+    },
+    {
+      "solicitante":"luisa pacheco corales",
+      "tipodoc": "Manual",
+      "codigo": "GARMA011",
+      "verdocumento": "Ver",
+      "titulo": "Politica de la Empresa",
+      "estadocumento": "Homologado",
+      "revision": "03",
+      "fecrevision": "20/05/2018",
+      "fecSolicitud": "13/01/2019",
+	  "numSolicitud":"233",
+      "estaSolicitud":"Aprobado"
+    },
+    {
+      "solicitante":"jorge fernandez estribante",
+      "tipodoc": "Manual",
+      "codigo": "GARMA009",
+      "verdocumento": "Ver",
+      "titulo": "Tratamiento",
+      "estadocumento": "Homologado",
+      "revision": "02",
+      "fecrevision": "20/01/2018",
+      "fecSolicitud": "13/01/2019",
+	  "numSolicitud":"233",
+      "estaSolicitud":"Emitido"
+    }
+    ,
+    {
+      "solicitante":"manuela corrales seballos",
+      "tipodoc": "Manual",
+      "codigo": "GARMA009",
+      "verdocumento": "Ver",
+      "titulo": "Tratamiento",
+      "estadocumento": "Homologado",
+      "revision": "02",
+      "fecrevision": "20/01/2018",
+      "fecSolicitud": "13/01/2019",
+	  "numSolicitud":"233",
+      "estaSolicitud":"Emitido"
+    }
+    ,
+    {
+      "solicitante":"claiver bustamante estrada",
+      "tipodoc": "Manual",
+      "codigo": "GARMA009",
+      "verdocumento": "Ver",
+      "titulo": "Tratamiento",
+      "estadocumento": "Homologado",
+      "revision": "02",
+      "fecrevision": "20/01/2018",
+      "fecSolicitud": "13/01/2019",
+	  "numSolicitud":"233",
+      "estaSolicitud":"Emitido"
+    }
+    ,
+    {
+      "solicitante":"cesar callañaupa estrada",
+      "tipodoc": "Manual",
+      "codigo": "GARMA009",
+      "verdocumento": "Ver",
+      "titulo": "Tratamiento",
+      "estadocumento": "Homologado",
+      "revision": "02",
+      "fecrevision": "20/01/2018",
+      "fecSolicitud": "13/01/2019",
+	  "numSolicitud":"233",
+      "estaSolicitud":"Emitido"
+    }
+    ,
+    {
+      "solicitante":"luis gaviota cresta",
+      "tipodoc": "Manual",
+      "codigo": "GARMA009",
+      "verdocumento": "Ver",
+      "titulo": "Tratamiento",
+      "estadocumento": "Homologado",
+      "revision": "02",
+      "fecrevision": "20/01/2018",
+      "fecSolicitud": "13/01/2019",
+	  "numSolicitud":"233",
+      "estaSolicitud":"Emitido"
+    }
+    ,
+    {
+      "solicitante":"luis gaviota cresta",
+      "tipodoc": "Manual",
+      "codigo": "GARMA009",
+      "verdocumento": "Ver",
+      "titulo": "Tratamiento",
+      "estadocumento": "Homologado",
+      "revision": "02",
+      "fecrevision": "20/01/2018",
+      "fecSolicitud": "13/01/2019",
+	  "numSolicitud":"233",
+      "estaSolicitud":"Emitido"
+    }
+    ,
+    {
+      "solicitante":"luis gaviota cresta",
+      "tipodoc": "Manual",
+      "codigo": "GARMA009",
+      "verdocumento": "Ver",
+      "titulo": "Tratamiento",
+      "estadocumento": "Homologado",
+      "revision": "02",
+      "fecrevision": "20/01/2018",
+	  "numSolicitud":"233",
+      "estaSolicitud":"Emitido"
+    }
+    ,
+    {
+      "solicitante":"luis gaviota cresta",
+      "tipodoc": "Manual",
+      "codigo": "GARMA009",
+      "verdocumento": "Ver",
+      "titulo": "Tratamiento",
+      "estadocumento": "Homologado",
+      "revision": "02",
+      "fecrevision": "20/01/2018",
+	  "numSolicitud":"283",
+      "estaSolicitud":"Emitido"
+    }
+    ,
+    {
+      "solicitante":"luis gaviota cresta",
+      "tipodoc": "Manual",
+      "codigo": "GARMA009",
+      "verdocumento": "Ver",
+      "titulo": "Tratamiento",
+      "estadocumento": "Homologado",
+      "revision": "02",
+      "fecrevision": "20/01/2018",
+	  "numSolicitud":"233",
+      "estaSolicitud":"Emitido"
+    }
+    ,
+    {
+      "solicitante":"luis gaviota cresta",
+      "tipodoc": "Manual",
+      "codigo": "GARMA009",
+      "verdocumento": "Ver",
+      "titulo": "Tratamiento",
+      "estadocumento": "Homologado",
+      "revision": "02",
+      "fecrevision": "20/01/2018",
+	  "numSolicitud":"233",
+      "estaSolicitud":"Emitido"
+    }
+
+  ]
+}

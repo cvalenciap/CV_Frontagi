@@ -1,0 +1,18 @@
+<div class="modal-header modal-cabecera-color">
+    <h4 class="modal-title pull-left">Información Documentada - {{textoTitulo}}</h4>
+    <!--Button Cerra Modal-->
+    <button type="button" class="close pull-right" aria-label="Close" (click)="cancelar()">
+        <span aria-hidden="true" class="cerrar">&times;</span>
+    </button>
+</div>
+<div class="modal-body" style="padding-bottom: 0px;padding-top: 0px;">   
+    <!-- Component Arbol-->
+    <arbol-proceso #arbolProceso [idNodoSeleccionado]="idNodo" [idProceso]="idProceso"
+        [activarBotonArbol]="activarBotonArbol"></arbol-proceso>
+    <!-- Component Arbol-->
+    <br>
+    <div class="modal-footer">
+    <button type="button" class="btn btn-success" [disabled]="activarSeleccionar" 
+        (click)="seleccionar()">Seleccionar</button>
+    </div>
+</div>

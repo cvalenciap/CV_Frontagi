@@ -1,0 +1,92 @@
+{
+
+  "listaDeteccionHallazgos": [
+    {
+      "idDeteccionHallazgos":1,
+      "ambito": "Dentro del SGI",
+      "numProg": "1",
+      "codigoDeteccion": "1",
+      "origenDeteccion": "Hallazgo Personal",
+      "tipo": "tipo 1",
+      "fechaIngreso": "16/06/2018",
+      "descripcionAuditgoria": "3.1",
+      "detector": "Juan Perez",    
+      "estado": "Pendiente",
+      "fechaIncioPlan": "16/06/2018",
+      "fechaFinPlan": "16/06/2018"
+ 
+    },
+    {
+      "idDeteccionHallazgos":2,
+      "ambito": "Fuera del SGI",
+      "numProg": "1",
+      "codigoDeteccion": "3",
+      "origenDeteccion": "Incumplimiento Legal",
+      "tipo" :"tipo 2",
+      "fechaIngreso": "16/06/2018",
+      "descripcionAuditoria": "3.1",
+      "detector": "Rodolfo Lopez",    
+      "estado": "Pendiente",
+      "fechaIncioPlan": "16/06/2018",
+      "fechaFinPlan": "16/06/2019"
+    },
+    {
+      "idDeteccionHallazgos":3,
+      "ambito": "Fuera del SGI",
+      "numProg": "1",
+      "codigoDeteccion": "4",
+      "origenDeteccion": "Queja del Cliente",
+      "tipo" :"tipo 3",
+      "fechaIngreso": "16/06/2018",
+      "descripcionAuditoria": "3.1",
+      "detector": "Juan Castillo",
+      "estado": "Pendiente",
+      "fechaIncioPlan": "16/06/2018",
+      "fechaFinPlan": "16/06/2019"
+    },
+    {
+      "idDeteccionHallazgos":4,
+      "ambito": "Fuera del SGI",
+      "numProg": "1",
+      "codigoDeteccion": "5",
+      "origenDeteccion": "Producto no Conforme",
+      "tipo" :"tipo 4",
+      "fechaIngreso": "16/06/2019",
+      "descripcionAuditoria": "3.1",
+      "detector": "Rosa Molina",
+      "estado": "Pendiente",
+      "fechaIncioPlan": "20/06/2019",
+      "fechaFinPlan": "16/06/2019"
+    }
+    ,
+    {
+      "idDeteccionHallazgos":5,
+      "ambito": "Fuera del SG",
+      "numProg": "1",
+      "codigoDeteccion": "6",
+      "origenDeteccion": "Trabajo de ensayo no conforme",
+      "tipo" :"tipo 5",
+      "fechaIngreso": "16/06/2018",
+      "descripcionAuditoria": "3.1",
+      "detector": "Maria Ramirez",
+      "estado": "Cerrado",
+      "fechaIncioPlan": "20/06/2019",
+      "fechaFinPlan": "16/06/2019"
+    }
+    ,
+    {
+      "idDeteccionHallazgos":6,
+      "ambito": "Fuera del SG",
+      "numProg": "1",
+      "codigoDeteccion": "7",
+      "origenDeteccion": "Medio Ambiente",
+      "tipo" :"tipo 6",
+      "fechaIngreso": "16/06/2019",
+      "descripcionAuditoria": "3.1",
+      "detector": "Ruth Altamirano",
+      "estado": "Cerrado",
+      "fechaIncioPlan": "21/06/2019",
+      "fechaFinPlan": "16/06/2019"
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+<div class="wrapper wrapper-content animated fadeInRight" style="padding-left: 0px;">
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-inline">
+      <button type="button" class="btn btn-primary pull-left" title="Añadir"><i class="fa fa-plus"></i><span>
+          Agregar</span></button>
+      <div class="form-group pull-right">
+        <label class="control-label" for="fechaCumplimientoMax">Fecha de Cumplimiento Maximo:&nbsp;</label>
+        <div class="input-group date">
+          <input autocomplete="off" bsDatepicker #dp="bsDatepicker" type="text" class="form-control"
+            name="fechaCumplimientoMax" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" placeholder="dd/MM/yyyy" />
+          <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<p></p>
+<div class="row">
+  <div class="col-md-12" style="height: 420px;overflow-y: auto;">
+    <div class="table-responsive">
+      <table class="table table-bordered table-stripped table-hover issue-tracker">
+        <thead>
+          <tr>
+            <th class="text-center">Nro</th>
+            <th class="text-center">Acción Propuesta</th>
+            <th class="text-center">Responsable</th>
+            <th class="text-center">Área</th>
+            <th class="text-center">Fecha de Cumplimiento</th>
+            <th class="text-center">Observación</th>
+            <th class="text-center">Estado</th>
+            <th class="text-center">Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-center">1</td>
+            <td>Capacitar a operadores de mantenimiento</td>
+            <td>WILLIAN CARDENAS PALOMINO</td>
+            <td class="text-center">EGI</td>
+            <td class="text-center">05/02/2020</td>
+            <td></td>
+            <td class="text-center">ACTIVO</td>
+            <td class="text-center">
+              <button class="btn btn-sm btn-success" title="Editar" style="margin-right: 10px;"><i
+                  class="fa fa-edit"></i></button>
+              <button class="btn btn-sm btn-warning" title="Retornar" style="margin-right: 10px;"><i
+                  class="fa fa-times"></i></button>
+              <button class="btn btn-sm btn-danger" title="Eliminar" [swal]="{ title: '¿Está seguro de eliminar el registro seleccionado?', showCancelButton: true,
+                                confirmButtonText: 'Sí, seguro', cancelButtonText: 'No gracias', focusConfirm: false, type:'question',
+                                focusCancel: true }">
+                <i class="fa fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-center">2</td>
+            <td>mantenimiento de redes</td>
+            <td>JUAN ORDOÑES ROJAS</td>
+            <td class="text-center">ETIC</td>
+            <td class="text-center">10/02/2020</td>
+            <td></td>
+            <td class="text-center">ACTIVO</td>
+            <td class="text-center">
+              <button class="btn btn-sm btn-success" title="Editar" style="margin-right: 10px;"><i
+                  class="fa fa-edit"></i></button>
+              <button class="btn btn-sm btn-warning" title="Retornar" style="margin-right: 10px;"><i
+                  class="fa fa-times"></i></button>
+              <button class="btn btn-sm btn-danger" title="Eliminar" [swal]="{ title: '¿Está seguro de eliminar el registro seleccionado?', showCancelButton: true,
+                                confirmButtonText: 'Sí, seguro', cancelButtonText: 'No gracias', focusConfirm: false, type:'question',
+                                focusCancel: true }">
+                <i class="fa fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<p></p>
+<div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <label class="control-label" for="elaborado">Elaborado por:</label>
+      <input type="text" id="elaborado" class="form-control" value="MARIA PEREZ WESTER" disabled>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label class="control-label" for="elaborado">Aprobado por:</label>
+      <input type="text" id="aprobado" class="form-control" value="JOSE CARDENAS VALVERDE" disabled>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <label class="control-label" for="cargo1">Cargo:</label>
+      <input type="text" id="cargo1" class="form-control" value="ANALISTA DE PROCESOS" disabled>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label class="control-label" for="cargo2">Cargo:</label>
+      <input type="text" id="cargo2" class="form-control" value="COORDINADOR SIG" disabled>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label class="control-label" for="fechaAprobacion">Fecha de Aprobación:</label>
+      <input type="text" id="fechaAprobacion" class="form-control" value="11/02/2020" disabled>
+    </div>
+  </div>
+</div>
+</div>

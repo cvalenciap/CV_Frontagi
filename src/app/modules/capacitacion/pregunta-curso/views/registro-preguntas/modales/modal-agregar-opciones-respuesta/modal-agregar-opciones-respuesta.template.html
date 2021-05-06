@@ -1,0 +1,67 @@
+<div class="modal-header modal-cabecera-color">
+    <h4 class="modal-title pull-left">Registrar Opción Alternativa</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="cerrar">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row center">
+        <div class="col-lg-12 center" >
+            <div class="row center">
+                        <div class="form-group col-lg-12 center">
+                            <label class="col-sm-4 control-label">Codigo:</label>
+                            <div class="col-sm-8">
+                            <input  type="text" placeholder="codigo." class="form-control" name="numFicha" disabled="disabled" [(ngModel)]="selectDetalle.codDetalle">
+                    </div>
+                </div>        
+            </div></div>
+            <div class="col-lg-12 center" >             
+            <div class="row center">
+            <div class="form-group col-lg-12 center">
+                <label class="col-sm-4 control-label">Opción:</label>
+                <div class="col-sm-8">
+                    <input  type="text" placeholder="Respuest de pregunta." class="form-control" name="numFicha" [(ngModel)]="selectDetalle.descPregunta" 
+                    [tooltip]="errors?.descPregunta" [ngClass]="{'ng-dirty ng-invalid':errors?.descPregunta}">
+                </div>
+            </div>        
+            </div>
+            </div>
+            <div class="col-lg-12 center" >    
+            <div class="row center">
+            <div class="form-group col-lg-12 center">
+                    <label class="col-sm-4 control-label">Respuesta :</label>                       
+                    <div class="col-sm-8">
+                        <select name="tipo-dis" id="tipo-dis" class="form-control"  [(ngModel)]="selectDetalle.nomResp"  
+                        placement="bottom" [ngClass]="{'ng-dirty ng-invalid':errors?.nomResp}" (ngModelChange)="Validar(nomResp)"
+                        [tooltip]="errors?.nomResp">
+                       <option  value= "null" >Seleccione</option>
+                       <option *ngFor="let item of listRespuesta" [value]="item.nomResp">{{item.nomResp}}</option>
+                      <!--  <option  value="0" >No</option>   -->
+                    </select>
+                    </div>
+            </div>     
+            </div>
+            </div>
+            <div class="col-lg-12 center" >
+            <div class="row center">
+                    <div class="form-group col-lg-12 center">
+                            <label class="col-sm-4 control-label">Disponible :</label>                       
+                            <div class="col-sm-8">
+                                <select name="tipo-dis" id="tipo-dis" class="form-control"  [(ngModel)]="selectDetalle.nomDisp"
+                                placement="bottom" [ngClass]="{'ng-dirty ng-invalid':errors?.nomDisp}" (ngModelChange)="Validar(nomDisp)"
+                                [tooltip]="errors?.nomDisp">
+                               <option  value= "null" >Seleccione</option>
+                               <option *ngFor="let item of listDisponibilidad" [value]="item.nomDisp" >{{item.nomDisp}}</option>
+                              <!--  <option  value="0" >No</option>  --> 
+                            </select>
+                            </div>
+                    </div>     
+                    </div>                                                  
+                </div>
+    </div>
+</div>    
+<div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="guardar()" >Guardar</button>
+        <button type="button" class="btn btn-default" (click)="cancelar()">Cancelar</button>
+</div>
+       

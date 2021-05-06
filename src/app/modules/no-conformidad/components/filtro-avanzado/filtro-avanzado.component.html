@@ -1,0 +1,342 @@
+<div class="modal-header modal-cabecera-color" style="padding-top: 0px;">
+  <h4 class="modal-title pull-left"> <strong>Búsqueda Avanzada - Bandeja de No conformidad</strong></h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="cerrarModal()">
+    <span aria-hidden="true" class="cerrar">&times;</span>
+  </button>
+</div>
+<div class="modal-body" style="padding-bottom: 0px;">
+  <!-- Fila 1 -->
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label class="control-label" for="numero">N°:</label>
+        <input type="text" id="numero" class="form-control">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label class="control-label" for="tipo">Tipo:</label>
+        <select name="tipo" id="tipo" class="form-control">
+          <option value="" hidden>Seleccione</option>
+          <option value="1">SAP</option>
+          <option value="2">SAC</option>
+          <option value="3">Observación</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label class="control-label" for="norma">Norma:</label>
+        <select name="norma" id="norma" class="form-control">
+          <option value="" hidden>Seleccione</option>
+          <option value="1">Norma 1</option>
+          <option value="2">Norma 2</option>
+          <option value="3">Norma 3</option>
+          <option value="4">Norma 4</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <!-- fila 2 -->
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label class="control-label" for="alcance">Alcance:</label>
+        <select name="alcance" id="alcance" class="form-control">
+          <option value="" hidden>Seleccione</option>
+          <option value="1">Alcance 1</option>
+          <option value="2">Alcance 2</option>
+          <option value="3">Alcance 3</option>
+          <option value="4">Alcance 4</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label class="control-label" for="requisito">Requisito:</label>
+        <select name="requisito" id="requisito" class="form-control">
+          <option value="" hidden>Seleccione</option>
+          <option value="1">Requisito 1</option>
+          <option value="2">Requisito 2</option>
+          <option value="3">Requisito 3</option>
+          <option value="4">Requisito 4</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label class="control-label" for="ambito">Ámbito:</label>
+        <select name="ambito" id="ambito" class="form-control">
+          <option value="" hidden>Seleccione</option>
+          <option value="1">Dentro de SIG</option>
+          <option value="2">Fuera de SIG</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <!-- Fila 3 -->
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label class="control-label" for="origen-deteccion">Origen de la Detección:</label>
+        <select name="origen-deteccion" id="origen-deteccion" class="form-control">
+          <option value="" hidden>Seleccione</option>
+          <option value="1">Origen 1</option>
+          <option value="2">Origen 2</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label class="control-label" for="ambito">Tipo Área:</label>
+        <select name="tipo-area" id="tipo-area" class="form-control">
+          <option value="" hidden>Seleccione</option>
+          <option value="1">Gerencia</option>
+          <option value="2">Equipo</option>
+          <option value="2">Cargo SIG y Comité</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label class="control-label">Fecha de la Detección:</label>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-inline">
+            <label class="control-label text-left">Desde:</label>&nbsp;
+            <div class="input-group date" style="width: 75%;">
+              <input autocomplete="off" bsDatepicker #dp="bsDatepicker" type="text" class="form-control"
+                name="fechaDesde" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" placeholder="dd/MM/yyyy" />
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-inline">
+            <label class="control-label text-left">Hasta:</label>&nbsp;
+            <div class="input-group date" style="width: 75%;">
+              <input autocomplete="off" bsDatepicker #dp="bsDatepicker" type="text" class="form-control"
+                name="fechaDesde" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" placeholder="dd/MM/yyyy" />
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Fila 4 -->
+  <div class="row">
+    <div class="col-md-6">
+      <label class="control-label">Fecha de Aceptación:</label>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-inline">
+            <label class="control-label text-left">Desde:</label>&nbsp;
+            <div class="input-group date" style="width: 75%;">
+              <input autocomplete="off" bsDatepicker #dp="bsDatepicker" type="text" class="form-control"
+                name="fechaDesde" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" placeholder="dd/MM/yyyy" />
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-inline">
+            <label class="control-label text-left">Hasta:</label>&nbsp;
+            <div class="input-group date" style="width: 75%;">
+              <input autocomplete="off" bsDatepicker #dp="bsDatepicker" type="text" class="form-control"
+                name="fechaDesde" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" placeholder="dd/MM/yyyy" />
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label class="control-label" for="agno-aceptacion">Año de Aceptación:</label>
+        <input type="text" id="agno-aceptacion" class="form-control">
+      </div>
+    </div>
+  </div>
+  <!-- Fila 5 -->
+  <div class="row">
+    <div class="col-md-6" style="padding-bottom: 14px;">
+      <label class="control-label">Fecha de Plan de Acción:</label>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-inline">
+            <label class="control-label text-left">Desde:</label>&nbsp;
+            <div class="input-group date" style="width: 75%;">
+              <input autocomplete="off" bsDatepicker #dp="bsDatepicker" type="text" class="form-control"
+                name="fechaDesde" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" placeholder="dd/MM/yyyy" />
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-inline">
+            <label class="control-label text-left">Hasta:</label>&nbsp;
+            <div class="input-group date" style="width: 75%;">
+              <input autocomplete="off" bsDatepicker #dp="bsDatepicker" type="text" class="form-control"
+                name="fechaDesde" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" placeholder="dd/MM/yyyy" />
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label class="control-label">Fecha de Plazo de Acción:</label>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-inline">
+            <label class="control-label text-left">Desde:</label>&nbsp;
+            <div class="input-group date" style="width: 75%;">
+              <input autocomplete="off" bsDatepicker #dp="bsDatepicker" type="text" class="form-control"
+                name="fechaDesde" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" placeholder="dd/MM/yyyy" />
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-inline">
+            <label class="control-label text-left">Hasta:</label>&nbsp;
+            <div class="input-group date" style="width: 75%;">
+              <input autocomplete="off" bsDatepicker #dp="bsDatepicker" type="text" class="form-control"
+                name="fechaDesde" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" placeholder="dd/MM/yyyy" />
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Fila 6 -->
+  <div class="row">
+    <div class="col-md-6" style="padding-bottom: 14px;">
+      <label class="control-label">Fecha de Ejecución:</label>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-inline">
+            <label class="control-label text-left">Desde:</label>&nbsp;
+            <div class="input-group date" style="width: 75%;">
+              <input autocomplete="off" bsDatepicker #dp="bsDatepicker" type="text" class="form-control"
+                name="fechaDesde" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" placeholder="dd/MM/yyyy" />
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-inline">
+            <label class="control-label text-left">Hasta:</label>&nbsp;
+            <div class="input-group date" style="width: 75%;">
+              <input autocomplete="off" bsDatepicker #dp="bsDatepicker" type="text" class="form-control"
+                name="fechaDesde" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" placeholder="dd/MM/yyyy" />
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label class="control-label">Fecha de Verificación y Estandarización:</label>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-inline">
+            <label class="control-label text-left">Desde:</label>&nbsp;
+            <div class="input-group date" style="width: 75%;">
+              <input autocomplete="off" bsDatepicker #dp="bsDatepicker" type="text" class="form-control"
+                name="fechaDesde" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" placeholder="dd/MM/yyyy" />
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-inline">
+            <label class="control-label text-left">Hasta:</label>&nbsp;
+            <div class="input-group date" style="width: 75%;">
+              <input autocomplete="off" bsDatepicker #dp="bsDatepicker" type="text" class="form-control"
+                name="fechaDesde" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" placeholder="dd/MM/yyyy" />
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Fila 7 -->
+  <div class="row">
+    <div class="col-md-6">
+      <label class="control-label">Fecha de Cierre:</label>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-inline">
+            <label class="control-label text-left">Desde:</label>&nbsp;
+            <div class="input-group date" style="width: 75%;">
+              <input autocomplete="off" bsDatepicker #dp="bsDatepicker" type="text" class="form-control"
+                name="fechaDesde" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" placeholder="dd/MM/yyyy" />
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-inline">
+            <label class="control-label text-left">Hasta:</label>&nbsp;
+            <div class="input-group date" style="width: 75%;">
+              <input autocomplete="off" bsDatepicker #dp="bsDatepicker" type="text" class="form-control"
+                name="fechaDesde" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" placeholder="dd/MM/yyyy" />
+              <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label class="control-label" for="agno-aceptacion">Año de Cierre:</label>
+        <input type="text" id="agno-aceptacion" class="form-control">
+      </div>
+    </div>
+  </div>
+  <!-- Fila 8 -->
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label class="control-label" for="responsable">Responsable de Cierre:</label>
+        <select name="responsable" id="responsable" class="form-control">
+          <option value="" hidden>Seleccione</option>
+          <option value="1">Responsable 1</option>
+          <option value="2">Responsable 2</option>
+          <option value="3">Responsable 3</option>
+          <option value="4">Responsable 4</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label class="control-label" for="estado">Estado:</label>
+        <select name="estado" id="estado" class="form-control">
+          <option value="" hidden>Seleccione</option>
+          <option value="1">Abierto</option>
+          <option value="2">Cerrado</option>
+          <option value="3">Cancelado</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label class="control-label" for="ambito">Plazo:</label>
+        <select name="ambito" id="ambito" class="form-control">
+          <option value="" hidden>Seleccione</option>
+          <option value="1">Dentro de Plazo</option>
+          <option value="2">Fuera de Plazo</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer" style="padding-top: 8px;">
+  <button type="button" class="btn btn-primary btn-sm" style="margin-right: 1rem;" (click)="busquedaAvanzadaEmit()">
+    Buscar <i class="fas fa fa-search"></i></button>
+  <button type="button" class="btn-sm btn-default" style="background: #eee" (click)="limpiarFiltros()"><i
+      class="fa fa-eraser" title="Buscar"></i> Limpiar</button>
+</div>

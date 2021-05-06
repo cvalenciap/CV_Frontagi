@@ -1,0 +1,330 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h4>
+            <ol class="breadcrumb">
+                <li>
+                    <a routerLink="starterview">Inicio</a>
+                </li>
+                <li>
+                    <a>Auditoría</a>
+                </li>
+                <li>
+                    <a (click)="irPlanAuditoria()">Plan de Auditoría</a>
+                </li>
+                <li *ngIf="!anadirRequisitos" class="active">
+                    <strong>Detalle de Plan de Auditoría</strong>
+                </li>
+                <li *ngIf="anadirRequisitos">
+                    <a (click)="irRegistroPlanAuditoria()">Detalle de Plan de Auditoría</a>
+                </li>
+                <li *ngIf="anadirRequisitos" class="active">
+                    <strong>Añadir Detalle y Requisitos al Plan de Auditoría</strong>
+                </li>
+            </ol>
+        </h4>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+
+<div *ngIf="!anadirRequisitos" class="wrapper wrapper-content animated fadeInRight div-principal">
+    <div class="row m-b-md bt-div-superior">
+        <div class="col-lg-12">
+            <a *ngIf="mostrarA" class="btn btn-success m-r btn-principales" (click)="OnGuardar()"><i class="fa fa-check"></i> Enviar</a>
+            <a *ngIf="mostrarB" class="btn btn-success m-r btn-principales" (click)="OnGuardar()"><i class="fa fa-check"></i> Aprobar</a>
+            <a *ngIf="mostrarC" class="btn btn-danger m-r btn-principales" (click)="OnGuardar()"><i class="fa fa-upload"></i> Documento</a>
+            <a *ngIf="mostrarD" class="btn btn-primary m-r btn-principales" (click)="OnGuardar()"><i class="fa fa-floppy-o"></i> Guardar</a>
+            <a *ngIf="mostrarE" class="btn btn-danger m-r btn-principales" (click)="OnGuardar()">
+                <i class="fa fa-mail-reply" style="font-size: 16px; padding-right: 3px; color: black;"></i> Retorno</a>
+            <a class="btn btn-primary m-r btn-principales" style="height: 31px;" (click)="OnImprimir()"><i
+                    class="fa fa-print"></i> Imprimir</a>
+            <a class="btn btn-secondary btn-colores m-r btn-principales" (click)="OnRegresar()"><i
+                    class="fa fa-arrow-left"></i> Regresar</a>
+            <!--
+            <a (click)="OnHabilitarAL()" class="btn btn-primary btn-principales"
+                style="margin-left: 100px; width: 47px;"> AL</a>
+            <a (click)="OnHabilitarCO()" class="btn btn-primary btn-principales" style="width: 47px;"> CO </a>
+            <a (click)="OnHabilitarRAD()" class="btn btn-primary btn-principales" style="width: 47px;"> RAD </a>
+            -->
+        </div>
+    </div>
+
+    <form class="form-horizontal" [formGroup]="planAuditoriaForm" novalidate>
+        <div class="ibox-content" style="height: 480px;margin-left: 0px;margin-right: 0px;">
+
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="form-group margen-cajas">
+                        <label class="col-sm-2 control-label">Tipo Auditoría:</label>
+                        <div class="col-sm-3">
+                            <select class="form-control" name="tipoAuditoria" formControlName="tipoAuditoria"
+                                [(ngModel)]="item.tipoAuditoria">
+                                <option value="" selected>SELECCIONAR</option>
+                                <option *ngFor="let item of listaTipos" [value]="item.v_campcons1">
+                                    {{item.v_valcons}}</option>
+                            </select>
+                        </div>
+                        <label class="col-sm-1 control-label">
+                            Periodo:
+                        </label>
+                        <label class="col-sm-1 control-label" style="font-weight:inherit;">Desde</label>
+                        <div class="col-sm-2" style="padding-left: 0px;">
+                            <div class="input-group date">
+                                <input bsDatepicker #dp1="bsDatepicker" type="text" class="form-control"
+                                    name="fechaDesdePlan" formControlName="fechaDesdePlan" placeholder="Ej: 01/01/2019"
+                                    [(ngModel)]="item.fechaInicio"
+                                    [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue' }"
+                                    triggers="dblclick:click">
+                                <span class="input-group-addon"><i class="fa fa-calendar" (click)="dp1.toggle()"
+                                        [attr.aria-expanded]="dp1.isOpen"></i></span>
+                            </div>
+                        </div>
+
+                        <label class="col-sm-1 control-label" style="font-weight:inherit;"> Hasta</label>
+                        <div class="col-sm-2" style="padding-left: 0px;">
+                            <div class="input-group date">
+                                <input bsDatepicker #dp2="bsDatepicker" type="text" class="form-control"
+                                    name="fechaHastaPlan" formControlName="fechaHastaPlan" placeholder="Ej: 31/01/2019"
+                                    [(ngModel)]="item.fechaFin"
+                                    [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue' }"
+                                    triggers="dblclick:click">
+                                <span class="input-group-addon"><i class="fa fa-calendar" (click)="dp2.toggle()"
+                                        [attr.aria-expanded]="dp2.isOpen"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group margen-cajas">
+
+                        <label class="col-sm-2 control-label">Nombre de Auditoría(*):
+                        </label>
+                        <div class="col-sm-4">
+                            <input type="text" name="descripcionPlan" formControlName="descripcionPlan"
+                                placeholder="Ej: Auditoría 2019" class="form-control text-left"
+                                [(ngModel)]="item.descripcionAuditoria" required>
+                        </div>
+                        <label class="col-sm-2 control-label">Alcance (*):
+                        </label>
+                        <div class="col-sm-4">
+                            <input type="text" name="alcancePlan" formControlName="alcancePlan"
+                                placeholder="Ej: Todas las áreas" class="form-control text-left"
+                                [(ngModel)]="item.alcance" required>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group margen-cajas">
+
+                        <label class="col-sm-2 control-label">Objetivo (*):
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" name="objetivoPlan" formControlName="objetivoPlan"
+                                placeholder="Ej: Auditar los requisitos de la Norma" class="form-control text-left"
+                                [(ngModel)]="item.objetivo" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group margen-cajas">
+                        <label class="col-sm-2 control-label">Auditor Lider (*):
+                        </label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <input class="form-control" name="auditorLider" formControlName="auditorLider"
+                                    [(ngModel)]="nombreAuditorLider" placeholder="Ej: Martín Barraza Ramos" disabled>
+                                <span class="input-group-btn" dropdown>
+                                    <button type="button" class="btn btn-info" (click)="buscarObsLiderGrupo()"><i
+                                            class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                        <label class="col-sm-2 control-label">Observador Líder de Grupo:
+                        </label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <input class="form-control" name="obsLiderGrupo" formControlName="obsLiderGrupo"
+                                    [(ngModel)]="nombreObsLiderGrupo" placeholder="Ej: Luis Vargas Quispe" disabled>
+                                <span class="input-group-btn" dropdown>
+                                    <button type="button" class="btn btn-info" (click)="buscarObsLiderGrupo()"><i
+                                            class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" *ngIf="mostrarD" >
+                    <div class="form-group margen-cajas">
+                        <div class="col-sm-1" style="float: left;width: 100px;">
+                            <a  class="btn btn-success m-r btn-principales"  style="width: 100px;margin-left: 23px;"
+                                [routerLink]="['agregarnorma']"><i class="fa fa-plus"></i> Agregar</a>
+                        </div>
+                        <div class="col-sm-1" style="float: right;width: 184px;">
+                                <a  class="btn btn-danger  m-r btn-principales"  style="width: 130px;margin-left: 23px;
+                                " (click)="abrirModalCriterios()"><i class="fa fa-plus"></i> Criterios</a>
+                        </div>
+                        <div class="col-sm-1" style="float: right;width: 184px;">
+                            <a  class="btn btn-danger  m-r btn-principales"  style="margin-left: 73px; width: 130px; margin-left: 73px;"
+                             (click)="abrirModalConsideraciones()"><i class="fa fa-plus"></i> Consideraciones</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row" style="height: 50px;">
+                    <div class="form-group margen-cajas" style="height: 50px;">
+                        <div class="col-sm-12" style="height: 208px;">
+                            <div class="ibox-content"
+                                style="padding-top: 5px; padding-right: 5px; padding-bottom: 5px;padding-left: 5px;height: 246px;">
+                                <div class="table-responsive" style="height: 235px;">
+                                    <table
+                                        class="table table-bordered table-stripped table-hover issue-tracker">
+                                        <thead style="padding-right: 18px;">
+                                            <tr>
+                                                <th class="text-center" data-col="fecha">Fecha</th>
+                                                <th class="text-center" data-col="hora">Hora</th>
+                                                <th class="text-center" data-col="descripcionEntidad">Equipos/ Áreas/ Actividades/ Cargos a Auditar</th>
+                                                <th class="text-center" data-col="auditor">Auditores Líder de Grupo/Auditor Interno</th>
+                                                <th class="text-center" data-col="norma">Norma</th>
+                                                <th class="text-center" data-col="requisito">Requisito</th>
+                                                <th class="text-center" data-col="accion">Acciones</th>
+                                        </thead>
+                                        <tbody style="height: 195px;">
+                                            <tr>
+                                                <td class="text-center" data-col="fecha">24.04.2019</td>
+                                                <td class="text-center" data-col="hora">08:30 - 9:00</td>
+                                                <td class="text-center" data-col="descripcionEntidad"><b>Reunión de Apertura</b></td>
+                                                <td class="text-center" data-col="auditor">Gerente General/ Jefes de Equipo/ RAD/ Coordinadores/ Auditores/ Observadores</td>
+                                                <td class="text-center" data-col="norma"></td>
+                                                <td class="text-center" data-col="requisito"></td>
+                                                <td class="text-center" data-col="accion"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center" data-col="fecha" rowspan="3">24.04.2019</td>
+                                                <td class="text-center" data-col="hora" rowspan="3">9:00 - 16:00</td>
+                                                <td class="text-center" data-col="descripcionEntidad" rowspan="3">Equipo Gestión Institucional RAD C-SGI C-AMS Sub Comités Ambientales del SGI</td>
+                                                <td class="text-center" data-col="auditor" rowspan="3"><b>Cecilia Sierra</b>, Rosario Marca</td>
+                                                <td class="text-center" data-col="norma">ISO 9001:2015</td>
+                                                <td class="text-center" data-col="requisito">4.1, 4.2, 4.4, 6.1, 6.2, 6.3, 7.1.3, 7.1.6, 7.3, 7.4,7.5, S.1,S.2, S.7, 9.1, 9.2, 9.3, 10.2, 10.3.</td>
+                                                <td class="text-center" data-col="accion" rowspan="3">
+                                                    <button title="Agregar Requisito" *ngIf="mostrarBotonB" 
+                                                        class="btn btn-success btn-sm m-r"
+                                                        (click)="agregarRequisito()"><i class="fa fa-edit"></i></button>
+                                                    <button title="Observa" *ngIf="mostrarBotonA"
+                                                        class="btn btn-success-revisar btn-sm m-r"
+                                                        (click)="agregarObservacion()"><i
+                                                            class="fa fa-edit"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center" data-col="norma">ISO 14001:2015</td>
+                                                <td class="text-center" data-col="requisito">4.1,4.2,4.4, 5.1, 5.2, 6.1,6.2, 6.1.2, 6.1.3,6.1.4,7.3,7.4,7.5, S.l, S.2 ,9.1, 9.2, 9.3, 10.2, 10.3.</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center" data-col="norma">OHSAS 18001</td>
+                                                <td class="text-center" data-col="requisito">4.2, 4.3.1, 4.3.2,4.3.3, 4.4.2, 4.4.3, 4.4.5, 4.4.6,4.4.7 4.5.1 4.5.2 4.5.3 4.5.4 4.5.5 4.6</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center" data-col="fecha" rowspan="3">24.04.2019</td>
+                                                <td class="text-center" data-col="hora" rowspan="3">9:00 - 11:00</td>
+                                                <td class="text-center" data-col="descripcionEntidad" rowspan="3">Gerencia Comercial</td>
+                                                <td class="text-center" data-col="auditor" rowspan="3"><b>Lorena Alvariño</b>, Graciela Rojas, Cecilia Vera, Jules Casalino (Obs)</td>
+                                                <td class="text-center" data-col="norma">ISO 9001:2015</td>
+                                                <td class="text-center" data-col="requisito">4.1, 4.2, 4.4, 6.1, 6.2, 6.3, 7.1.3, 7.1.6, 7.3, 7.4,7.5, S.1,S.2, S.7, 9.1, 9.2, 9.3, 10.2, 10.3.</td>
+                                                <td class="text-center" data-col="accion" rowspan="3">
+                                                    <button title="Agregar Requisito" *ngIf="mostrarBotonB" 
+                                                        class="btn btn-success btn-sm m-r"
+                                                        (click)="agregarRequisito()"><i class="fa fa-edit"></i></button>
+                                                    <button title="Observa" *ngIf="mostrarBotonA"
+                                                        class="btn btn-success-revisar btn-sm m-r"
+                                                        (click)="agregarObservacion()"><i
+                                                            class="fa fa-edit"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center" data-col="norma">ISO 14001:2015</td>
+                                                <td class="text-center" data-col="requisito">4.1,4.2,4.4, 5.1, 5.2, 6.1,6.2, 6.1.2, 6.1.3,6.1.4,7.3,7.4,7.5, S.l, S.2 ,9.1, 9.2, 9.3, 10.2, 10.3.</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center" data-col="norma">OHSAS 18001</td>
+                                                <td class="text-center" data-col="requisito">4.2, 4.3.1, 4.3.2,4.3.3, 4.4.2, 4.4.3, 4.4.5, 4.4.6,4.4.7 4.5.1 4.5.2 4.5.3 4.5.4 4.5.5 4.6</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center" data-col="fecha">25.04.2019</td>
+                                                <td class="text-center" data-col="hora">08:30 - 9:00</td>
+                                                <td class="text-center" data-col="descripcionEntidad"><b>Reunión de Enlace</b></td>
+                                                <td class="text-center" data-col="auditor">C. Mari - C. Sierra</td>
+                                                <td class="text-center" data-col="norma"></td>
+                                                <td class="text-center" data-col="requisito"></td>
+                                                <td class="text-center" data-col="accion"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center" data-col="fecha" rowspan="2">25.04.2019</td>
+                                                <td class="text-center" data-col="hora" rowspan="2">9:00 - 11:00</td>
+                                                <td class="text-center" data-col="descripcionEntidad" rowspan="2">Gerencia Comercial</td>
+                                                <td class="text-center" data-col="auditor" rowspan="2"><b>Alvariño Graciela</b>, Rojas Cecilia Vera, Jules Casalino (Obs)</td>
+                                                <td class="text-center" data-col="norma">ISO 9001:2015</td>
+                                                <td class="text-center" data-col="requisito">4.1, 4.2, 4.4, 6.1, 6.2, 6.3, 7.1.3, 7.1.6, 7.3, 7.4,7.5, S.1,S.2, S.7, 9.1, 9.2, 9.3, 10.2, 10.3.</td>
+                                                <td class="text-center" data-col="accion" rowspan="2">
+                                                    <button title="Agregar Requisito" *ngIf="mostrarBotonB" 
+                                                        class="btn btn-success btn-sm m-r"
+                                                        (click)="agregarRequisito()"><i class="fa fa-edit"></i></button>
+                                                    <button title="Observa" *ngIf="mostrarBotonA"
+                                                        class="btn btn-success-revisar btn-sm m-r"
+                                                        (click)="agregarObservacion()"><i
+                                                            class="fa fa-edit"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center" data-col="norma">ISO 14001:2015</td>
+                                                <td class="text-center" data-col="requisito">4.1,4.2,4.4, 5.1, 5.2, 6.1,6.2, 6.1.2, 6.1.3,6.1.4,7.3,7.4,7.5, S.l, S.2 ,9.1, 9.2, 9.3, 10.2, 10.3.</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center" data-col="fecha" >25.04.2019</td>
+                                                <td class="text-center" data-col="hora" >9:00 - 11:00</td>
+                                                <td class="text-center" data-col="descripcionEntidad" >Gerencia Comercial</td>
+                                                <td class="text-center" data-col="auditor" > <b>Lorena Alvariño</b>, Graciela Rojas, Cecilia Vera, Jules Casalino (Obs)</td>
+                                                <td class="text-center" data-col="norma">ISO 9001:2015</td>
+                                                <td class="text-center" data-col="requisito">4.1, 4.2, 4.4, 6.1, 6.2, 6.3, 7.1.3, 7.1.6, 7.3, 7.4,7.5, S.1,S.2, S.7, 9.1, 9.2, 9.3, 10.2, 10.3.</td>
+                                                <td class="text-center" data-col="accion">
+                                                    <button title="Agregar Requisito" *ngIf="mostrarBotonB" 
+                                                        class="btn btn-success btn-sm m-r"
+                                                        (click)="agregarRequisito()"><i class="fa fa-edit"></i></button>
+                                                    <button title="Observa" *ngIf="mostrarBotonA"
+                                                        class="btn btn-success-revisar btn-sm m-r"
+                                                        (click)="agregarObservacion()"><i
+                                                            class="fa fa-edit"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center" data-col="fecha">26.04.2019</td>
+                                                <td class="text-center" data-col="hora">08:30 - 14:00</td>
+                                                <td class="text-center" data-col="descripcionEntidad"><b>Reunión de Cierre</b></td>
+                                                <td class="text-center" data-col="auditor">Gerente General / Jefes de Equipo/ RAD/ Coordinadores/ Auditores/ Observadores</td>
+                                                <td class="text-center" data-col="norma"></td>
+                                                <td class="text-center" data-col="requisito"></td>
+                                                <td class="text-center" data-col="accion"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div [className]="anadirRequisitos?'mostrar':'ocultar'">
+    <app-anadir-requisitos-auditoria #hijo></app-anadir-requisitos-auditoria>
+</div>

@@ -1,0 +1,20 @@
+        <br>
+       
+        <div class="col-sm-10" *ngIf="activar"  >
+                <div class="form-group">
+                    <label class="control-label" for="descripcion">Descripción(*):</label>
+                    <!--<textarea  rows="3" #descripcion="ngModel" [(ngModel)]="revision.descripcion" [ngClass]="{'ng-dirty ng-invalid':errors?.descripcion}"   name="descripcion"   (ngModelChange)="Validar(descripcion)"-->
+                            <textarea   rows="3"    name="critica"    disabled="disabled"        id="critica"
+                       placeholder="" class="form-control" placement="bottom"  [(ngModel)]="critica" ></textarea>
+                </div>
+            </div>
+
+            <div class="col-sm-10" *ngIf="!activar"  style="transform: none;height: 180px;">
+                        <div class="form-group">
+                                
+                            <label class="control-label" for="descripcion">Descripción(*):</label>
+                            <!--<textarea  rows="3" #descripcion="ngModel" [(ngModel)]="revision.descripcion" [ngClass]="{'ng-dirty ng-invalid':errors?.descripcion}"   name="descripcion"   (ngModelChange)="Validar(descripcion)"-->
+                                    <textarea   rows="3"              id="resumenCritica"
+                               placeholder="" class="form-control" placement="bottom" [(ngModel)]="critica"    name="critica"   [ngClass]="{'ng-dirty ng-invalid':errors?.resumenCritica}" [tooltip]="errors?.resumenCritica"></textarea>
+                        </div>
+                    </div>

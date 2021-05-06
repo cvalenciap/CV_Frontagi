@@ -1,0 +1,20 @@
+{
+    "listaTiposHallazgo": [
+        {
+            "valor":"1",
+            "descripcion":"SAP (Sol. acción preventiva)"
+        },
+        {
+            "valor":"2",
+            "descripcion":"SAC (Sol. acción correctiva)"
+        },
+        {
+            "valor":"3",
+            "descripcion":"Observaciones"
+        },
+        {
+            "valor":"4",
+            "descripcion":"Recomendaciones"
+        }
+    ]
+}

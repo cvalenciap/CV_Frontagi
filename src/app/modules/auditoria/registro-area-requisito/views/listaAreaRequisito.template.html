@@ -1,0 +1,112 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <h4>
+            <ol class="breadcrumb">
+                <li>
+                    <a routerLink="starterview">Inicio</a>
+                </li>
+                <li><a>Auditoría</a></li>
+                <li class="active">
+                    <strong>Área y Requisito</strong>
+                </li>
+            </ol>
+        </h4>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight div-principal">
+    <div class="row m-b-sm bt-div-superior">
+        <div class="col-lg-1">
+            <a [routerLink]="['registrar']" class="btn btn-primary bt-superior"><i class="fa fa-plus"></i> Nuevo</a>
+        </div>
+        <div class="col-lg-3">
+            <div class="input-group">
+                <input type="text" placeholder="Buscar" class="form-control tx-cajas" [(ngModel)]="textoBusqueda">
+                <span class="input-group-btn" dropdown>
+                    <button type="button" class="btn btn-info" ><i
+                            class="fa fa-search"></i></button>
+                    <button dropdownToggle type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split"><i
+                            class="fa fa-caret-down"></i></button>
+                    <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
+                        <li role="menuitem" [class.active]="parametroBusqueda == 'numFicha'"><a
+                                (click)="parametroBusqueda = 'numFicha'">Código</a></li>
+                        <li role="menuitem" [class.active]="parametroBusqueda == 'nombreAuditor'"><a
+                                (click)="parametroBusqueda = 'nombreAuditor'">Área</a></li>
+                    </ul>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-2 col-lg-2">
+            <button class="btn btn-md btn-light" ><i class="fa fa-eraser"></i> Limpiar</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content" style="height: 480px;padding-top: 5px;padding-left: 5px;padding-right: 5px;padding-bottom: 5px;"
+             [ngClass]="{'sk-loading': loading}">
+                <sk-three-bounce></sk-three-bounce>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-stripped table-hover">
+                        <thead>
+                            <tr>
+                                <th class="text-center" data-col="codigo">Código</th>
+                                <th class="text-center" data-col="area">Área</th>
+                                <th class="text-center" data-col="tipo">Tipo de Área</th>
+                                <th class="text-center" data-col="accion">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody style="height: 311px;">
+                            <tr>
+                                <td class="text-center" data-col="codigo">1</td>
+                                <td class="text-center" data-col="area">Gerencia Finanzas</td>
+                                <td class="text-center" data-col="tipo">Gerencia / Equipo</td>
+                                <td class="text-center" data-col="accion">
+                                    <button title="Ver detalle" class="btn btn-success btn-sm m-r"
+                                    [routerLink]="['registrar']"><i class="fa fa-edit"></i></button>
+                                    <button title="Eliminar" class="btn btn-danger btn-sm m-r"
+                                        [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                                        >
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center" data-col="codigo">2</td>
+                                <td class="text-center" data-col="area">Control de Gestión</td>
+                                <td class="text-center" data-col="tipo">Comité</td>
+                                <td class="text-center" data-col="accion">
+                                    <button title="Ver detalle" class="btn btn-success btn-sm m-r"
+                                    [routerLink]="['registrar']"><i class="fa fa-edit"></i></button>
+                                    <button title="Eliminar" class="btn btn-danger btn-sm m-r"
+                                        [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                                        >
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <pagination [(ngModel)]="paginacion.pagina" (pageChanged)="OnPageChanged($event)"
+                            [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros"
+                            [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;"
+                            firstText="&laquo;" lastText="&raquo;"></pagination>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-center m-a-sm">
+                            <pagination-info [totalItems]="paginacion.totalRegistros"
+                                [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-right m-a-sm">
+                            <pagination-set (optionChanged)="OnPageOptionChanged($event)" class="texto-pie-pag"></pagination-set>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

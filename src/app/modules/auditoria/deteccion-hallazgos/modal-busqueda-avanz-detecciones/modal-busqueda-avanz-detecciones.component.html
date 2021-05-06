@@ -1,0 +1,66 @@
+<div class="modal-header modal-cabecera-color">
+    <h4 class="modal-title pull-left">Busqueda Avanzada</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="cerrar">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-lg-12">
+         
+            <label class="col-sm-2 control-label">Tipo:</label>
+            <div class="col-sm-4">
+                <select  class="form-control" name="valorTipo" [(ngModel)] = "busqueda.idTipoNoConformidad">
+                    <option value="" selected>Seleccionar</option>
+                    <option *ngFor="let item of listaTipos" [value]="item.idconstante">{{ item.v_valcons }}</option>
+                </select>
+            </div>
+           
+
+            <label class="col-sm-2 control-label">Origen Detección:</label>            
+            <div class="col-sm-4">
+                <select  class="form-control" name="valorOrigenDet" [(ngModel)] = "busqueda.idorigenDeteccion">
+                    <option value="" selected>Seleccionar</option>
+                    <option *ngFor="let item of listaOrigenDet" [value]="item.idconstante">{{ item.v_valcons }}</option>
+              </select>           
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="row"> 
+        <div class="col-lg-12">                                 
+            <label class="col-sm-2 control-label">Estado:</label>
+            <div class="col-sm-4">
+                <select  class="form-control" name="valorEstado" [(ngModel)] = "busqueda.estado">
+                    <option value="" selected>Seleccionar</option>
+                    <option *ngFor="let item of listaEstado" [value]="item">{{ item }}</option>                    
+              </select>
+            </div>   
+            
+            <label class="col-sm-2 control-label">Nombre:</label>
+            <div class="col-sm-4">
+                <input type="text" placeholder="ej: Marcos" class="form-control" name="valorDetectorNombre" [(ngModel)] = "busqueda.nombreDetector" >
+            </div> 
+            
+        </div> 
+    </div> 
+    <br/>
+    <div class="row">
+        <div class="col-lg-12">       
+            <label class="col-sm-2 control-label">Apellido Paterno:</label>
+            <div class="col-sm-4">
+                <input type="text" placeholder="ej: Perez" class="form-control" name="valorDetectorApePaterno" [(ngModel)] = "busqueda.apPaternoDetector" >
+            </div> 
+            
+           <label class="col-sm-2 control-label">Apellido Materno:</label>
+           <div class="col-sm-4">
+                <input type="text" placeholder="ej: Paredes " class="form-control" name="valorDetectorApMaterno" [(ngModel)] = "busqueda.apMaternoDetector" >
+           </div>                
+        </div> 
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="buscar()" >Buscar</button>
+    <button type="button" class="btn btn-default" (click)="cancelar()">Cancelar</button>
+</div>

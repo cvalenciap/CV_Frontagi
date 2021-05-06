@@ -1,0 +1,189 @@
+
+<div class="modal-header modal-cabecera-color">
+    <h4 class="modal-title pull-left">Búsqueda Avanzada</h4>
+    <!--Button Cerra Modal-->
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="cerrar">&times;</span>
+    </button>
+</div>
+<div class="modal-body">              
+    <div class="row">
+        <div class="col-lg-12">
+            <label class="col-sm-2 control-label">Titulo:</label>
+            <div class="col-sm-4">
+                <input type="text" autocomplete="off" (keyup)="habilitarBusqueda()" placeholder="Ej: Operario Especializado de Mantenimiento de Maquinaria Pesada y Equipos" class="form-control" id="titulo" name="titulo" [(ngModel)]="titulo">
+            </div>
+            <label class="col-sm-2 control-label">Estado de Documento:</label>
+            <div class="col-sm-4">
+            <select (change)="habilitarBusqueda()" class="form-control" name="estdoc" multiple="multiple" size="4" style="width: 248.979166px;" [(ngModel)] = "estdoc">
+                <option *ngFor="let item of listaEstadoDocumento" [ngValue]="item.idconstante">{{item.v_valcons}}</option>
+            </select>
+            
+            </div>
+        </div>
+    </div>
+    <p>
+    <p>
+    <div class="row">
+        <div class="col-lg-12">
+            <label class="col-sm-2 control-label">Fecha Aprobación Desde:</label>
+            <div class="col-sm-4">
+                <div class="input-group">    
+                    <input  (click)="habilitarBusqueda()"
+                            bsDatepicker #fechaaprobd="ngModel"
+                            #fechaaprobd="form-control"
+                            [(ngModel)]="fechaaprobdesde"
+                            type="text"
+                            class="form-control"
+                            placeholder="Ej: 01/05/2019"
+                            [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue'}"
+                            [ngClass]="{'ng-dirty ng-invalid':fechaDesdeValidator}">
+                    <span class="input-group-addon" >
+                        <i class="fa fa-calendar" (click)="fechaaprobd.toggle()" [attr.aria-expanded]="fechaaprobd.isOpen" title="Elegir Fecha"></i>
+                    </span>
+                </div> 
+            </div>
+            <label class="col-sm-2 control-label">Fecha Aprobación Hasta:</label>
+
+
+            <div class="col-sm-4">
+                 <div class="input-group">    
+                    <input  (click)="habilitarBusqueda()"
+                            bsDatepicker #fechaaprobh="ngModel"
+                            #fechaaprobh="form-control"
+                            [(ngModel)]="fechaaprobhasta"
+                            type="text"
+                            class="form-control"
+                            placeholder="Ej: 31/05/2019"
+                            [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue'}"
+                            [ngClass]="{'ng-dirty ng-invalid':fechaHastaValidator}">
+                    <span class="input-group-addon" >
+                        <i class="fa fa-calendar" (click)="fechaaprobh.toggle()" [attr.aria-expanded]="fechaaprobh.isOpen" title="Elegir Fecha"></i>
+                    </span>
+                </div> 
+
+            </div>
+
+
+        </div>
+    </div> 
+    <p>
+    <div class="row">
+        <div class="col-lg-12">
+            <label class="col-sm-2 control-label">Proceso:</label>
+            <div class="col-sm-3">
+                <!--<input (keyup)="habilitarBusqueda()" style="width: 207.979166px;height: 32.979166px;" type="text" id="proceso" name="proceso" placeholder="Ej: Gestión Estratégica" class="form-control" [(ngModel)]="procesoparametrodesc" disabled="disabled">-->
+                <input (keyup)="habilitarBusqueda()" style="width: 207.979166px;height: 32.979166px;" type="text" id="proceso" name="proceso" placeholder="Ej: Gestión Estratégica" class="form-control" [(ngModel)]="procesoparametrodesc" disabled="disabled">
+                <input type="hidden" id="procesoparametroid" name="procesoparametroid" placeholder="Ej: Manuales" class="form-control" [(ngModel)]="procesoparametroid" disabled="disabled">
+            </div>
+            <div class="col-sm-1">
+                <span class="input-group-btn" dropdown>
+                    <button  type="button" [disabled]="deshabilitarProceso" class="btn btn-info" (click)="OnBuscarProceso()" ><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+            <label class="col-sm-2 control-label">Alcance SGI:</label>
+            <div class="col-sm-3">
+                <input (keyup)="habilitarBusqueda()" style="width: 207.979166px;height: 32.979166px;" type="text" id="alcanceSGI" name="alcanceSGI" [(ngModel)]="sgiparametrodesc" placeholder="Ej: Iso 9001" class="form-control" disabled="disabled">
+                <input type="hidden" id="sgiparametroid" name="sgiparametroid" placeholder="Ej: Manuales" class="form-control" [(ngModel)]="sgiparametroid" disabled="disabled">
+            </div>
+            <div class="col-sm-1">
+                <span class="input-group-btn" dropdown>
+                    <button type="button" [disabled]="deshabilitarAlcance" class="btn btn-info" (click)="OnBuscarSGI()" ><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </div>
+    </div>  
+    <p>
+    <div class="row">
+        <div class="col-lg-12">
+            <label class="col-sm-2 control-label">Gerencia:</label>
+            <div class="col-sm-3">
+                <input (keyup)="habilitarBusqueda()" style="width:207.979166px; height:32.979166px;" type="text" id="gerencia" name="gerencia" [(ngModel)]="gerenparametrodesc" placeholder="Ej: Dirección Institucional" class="form-control" disabled="disabled">
+                <input type="hidden" id="gerenparametroid" name="gerenparametroid" placeholder="Ej: Manuales" class="form-control" [(ngModel)]="gerenparametroid" disabled="disabled">
+            </div>
+            <div class="col-sm-1">
+                <span class="input-group-btn" dropdown>
+                    <button type="button" [disabled]="deshabilitarGerencia" class="btn btn-info" (click)="OnBuscarGerencia()"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+            <label class="col-sm-2 control-label">Tipo de Documento:</label>
+            <div class="col-sm-4">
+                 <select (change)="habilitarBusqueda()" [disabled]="deshabilitarObjeto" name="idTipoDoc" class="form-control" [(ngModel)]="tipodocumento">
+                    <option value=0 disabled>Seleccione</option>
+                    <option *ngFor="let item of listaTipoDocumento" [value]="item.idconstante">{{ item.v_valcons }}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <p>
+    <div class="row">
+        <div class="col-lg-12">
+            <label class="col-sm-2 control-label">Periodo de Obligatoriedad:</label>
+            <div class="col-sm-4">
+                <!--<input  type="text" placeholder="Periodo de Obligatoriedad" class="form-control" id="periodooblig" name="periodooblig" [(ngModel)]="periodooblig">-->
+                <select (change)="habilitarBusqueda()" name="periodooblig" class="form-control" [(ngModel)]="periodooblig">
+                    <option value= "0" disabled>Seleccione</option>
+                    <option value="1">Si</option>
+                    <option value="2">No</option>
+                </select>
+            </div>
+            <label class="col-sm-2 control-label">Equipo Usuario:</label>
+            <div class="col-sm-3">
+                <input (keyup)="habilitarBusqueda()" style="width: 207.979166px;height: 32.979166px;" type="text" placeholder="Ej: Equipo Relaciones Públicas" class="form-control" id="descripcionarea" name="descripcionarea" [(ngModel)]="descripcionarea" disabled="disabled">
+                <input type="hidden" id="idarea" name="idarea" placeholder="Ej: Manuales" class="form-control" [(ngModel)]="idarea" disabled="disabled">
+            </div>
+            <div class="col-sm-1">
+                <span class="input-group-btn" dropdown>
+                    <button type="button" class="btn btn-info" (click)="OnEquipo()" ><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </div>
+    </div>
+    <p>
+    <div class="row">
+        <div class="col-lg-12">
+            <label class="col-sm-2 control-label">Motivo de Revisión:</label>
+            <div class="col-sm-4">
+                <select (change)="habilitarBusqueda()" name="idMotiRevision" class="form-control" [(ngModel)] = "motirevision">
+                    <option value="" disabled>Seleccione</option>
+                    <option *ngFor="let item of listaEstMotivoRevDoc" [value]="item.idconstante">{{ item.v_valcons }}</option>
+                </select>
+            </div>
+            <label class="col-sm-2 control-label">Participante:</label>
+            <div class="col-sm-3">
+                <input (keyup)="habilitarBusqueda()" style="width: 207.979166px;height: 32.979166px;" type="text" placeholder="Ej: Juan Reyes López" class="form-control" [(ngModel)]="descparticipante" id="descparticipante" name="descparticipante" disabled="disabled">
+                <input type="hidden" id="idparticipante" name="idparticipante" placeholder="Ej: Manuales" class="form-control" [(ngModel)]="idparticipante" disabled="disabled">
+            </div>
+            <div class="col-sm-1">
+                <span class="input-group-btn" dropdown>
+                    <button type="button" class="btn btn-info" (click)="OnParticipante()" ><i class="fa fa-search"></i></button>
+                 </span>
+            </div>
+        </div>
+    </div>
+    <p>
+    <div class="row">
+        <div class="col-lg-12">
+            <label class="col-sm-2 control-label">Fase Actual:</label>
+            <div class="col-sm-4">
+                <select (change)="habilitarBusqueda()" name="idfaseact" class="form-control" (change)="OnHabilitarEstFaseAct()" [(ngModel)] = "idfaseact">
+                    <option value="" disabled>Seleccione</option>
+                    <option *ngFor="let item of listaFaseActDoc" [value]="item.idconstante">{{ item.v_valcons }}</option>
+                </select>
+            </div>
+            <label class="col-sm-2 control-label">Estado de Fase Actual:</label>
+            <div class="col-sm-4">
+                <select (change)="habilitarBusqueda()" [disabled]="deshabilitarFaseAct" name="idfaseestadoact" class="form-control" [(ngModel)] = "idfaseestadoact">
+                    <option value="" disabled>Seleccione</option>
+                    <option *ngFor="let item of listaEstFaseActDoc" [value]="item.idconstante">{{ item.v_valcons }}</option>
+                </select>
+            </div>
+        </div>
+    </div> 
+    <p>
+    <p>
+    <div class="modal-footer">
+        <button [disabled]="deshabilitarBuscar" type="button" class="btn btn-default m-r" (click)="OnLimpiar()"><i class="fa fa-eraser"></i> Limpiar</button>
+        <button [disabled]="deshabilitarBuscar" class="btn btn-primary m-r" (click)="OnBuscar()"><i class="fa fa-search-plus"></i> Buscar</button>
+    </div>
+</div>

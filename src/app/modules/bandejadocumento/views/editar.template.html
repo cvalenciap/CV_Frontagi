@@ -1,0 +1,24 @@
+<div class="row wrapper border-bottom white-bg page-heading" style="padding-bottom: 5px;">
+  <div class="col-lg-12" style="margin-top: 8px">
+    <h4>Documentos / Consulta por Jerarquía / {{segundoHijo.textoAccion}} / <strong>Búsqueda de Documento</strong></h4>
+  </div>
+</div>
+
+<div class="ibox-content" [ngClass]="{'sk-loading': loading}" style="height: 511px;">
+  <sk-three-bounce></sk-three-bounce>
+  <div class="fh-breadcrumb">
+    <div class="fh-column">
+      <h3>Clasificación</h3>
+      <!-- Components Arbol -->
+      <arbol-plantilla></arbol-plantilla>
+    </div>
+    <!-- Components Gestión de Documento -->
+    <div>
+      <bandeja-documento-gestion-documento [activar]="activar" #generalGestion></bandeja-documento-gestion-documento>
+    </div>
+  </div>
+
+
+
+
+</div>

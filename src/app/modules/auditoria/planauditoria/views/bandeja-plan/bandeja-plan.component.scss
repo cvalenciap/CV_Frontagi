@@ -1,0 +1,147 @@
+.item{
+    width:5%
+}
+
+.fecha{
+    width:10%
+}
+
+.tipo-auditoria{
+    width:13%
+}
+
+.estado{
+    width:10%
+}
+
+.descripcion{
+    width:29%
+}
+
+.accion{
+    width:13%
+}
+
+.table {
+    tr {
+        th[data-col='item'] {height: 0px;font-size: 11px;}
+        th[data-col='tipo'] {height: 0px;font-size: 11px;}
+        th[data-col='fecha'] { height: 0px;font-size: 11px;}
+        th[data-col='descripcion'] { height: 0px;font-size: 11px;}
+        th[data-col='mes'] { height: 0px;font-size: 11px;}
+        th[data-col='estado'] { height: 0px;font-size: 11px;}
+        th[data-col='fechad'] {height: 0px;font-size: 11px;}
+        th[data-col='fechah'] { height: 0px;font-size: 11px;}
+        th[data-col='accion'] {height: 0px;font-size: 11px;}
+
+        td[data-col='item'] {height: 0px;font-size: 11px;}
+        td[data-col='tipo'] {height: 0px;font-size: 11px;}
+        td[data-col='fecha'] { height: 0px;font-size: 11px;}
+        td[data-col='descripcion'] { height: 0px;font-size: 11px;}
+        td[data-col='mes'] { height: 0px;font-size: 11px;}
+        td[data-col='estado'] { height: 0px;font-size: 11px;}
+        td[data-col='fechad'] {height: 0px;font-size: 11px;}
+        td[data-col='fechah'] { height: 0px;font-size: 11px;}
+        td[data-col='accion'] {height: 0px;font-size: 11px;}
+    }
+} 
+
+.btn-sm {
+    padding: 3px 7px;
+    font-size: 11px;
+    margin-right: 4px;
+    line-height: 1.5;
+    border-radius: 3px;
+	width: 25px;
+    height: 24px;
+}
+
+.table > tbody > tr > td {
+    padding: 3px;
+}
+
+.table > tbody > tr > td > span {
+    height: 25px;
+    width: 100px;
+    font-size: 12px;
+    padding-top: 3px;
+  }
+
+.btn-principales{
+    font-size: 12px;
+    padding: 6px 12px;
+	margin-right: 4px;
+	width: 90px;
+}
+
+.btn-info {
+    font-size: 12px;
+    padding-top: 5px;
+    padding-bottom: 8px;
+}
+
+.btn-secondary {
+    background-color: lightgray;
+}
+
+.form-control {
+    font-size: 12px;
+    height: 31.5px;
+}
+
+.bt-div-superior{
+    margin-bottom: 5px;
+    margin-top: 2px;
+}
+
+.div-principal{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.btn-colores {
+    color: inherit;
+    background: #e6e6e6;
+    border-color: #eac2c2;
+}
+
+.btn-colores:hover {
+    background-color: #fde9e9;
+}
+
+.tx-cajas {
+    height: 32px;
+}
+
+.margen-cajas{
+    margin-bottom: 8px;
+}
+
+.table-fixed{
+width: 100%;
+tbody{
+  overflow-y:auto;
+  height:259px;    
+  width: 100%;
+  }
+
+thead,tbody{
+  display:block;
+}
+}
+
+.texto-pie-pag {
+font-size: 11px;
+}
+
+.btn-success-revisar {
+    background-color: #899db1;
+    border-color: #899db1;
+    color: #FFFFFF;
+  }
+  
+  .btn-success-revisar:hover {
+    background-color: #9fb3c7;
+  }

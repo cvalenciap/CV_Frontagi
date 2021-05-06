@@ -1,0 +1,107 @@
+.center{
+    text-align:center;
+}
+
+.right{
+    text-align:right;
+}
+
+.modal-lg-norma{
+    max-width: 10%; 
+}
+
+.table {
+    tr {
+        th[data-col='descripcionEntidad'] {width: 237px; height: 0px;}
+        th[data-col='norma'] {width: 146px;height: 0px}
+        th[data-col='requisito'] {width: 700px;height: 0px}
+        th[data-col='accion'] {width: 100px; height: 0px}
+  
+        td[data-col='descripcionEntidad'] {width: 237px;height: 0px;font-size: 11px;}
+        td[data-col='norma'] {width: 146px;height: 0px;font-size: 11px;}
+        td[data-col='requisito'] {width: 700px;height: 0px;font-size: 11px;}
+        td[data-col='accion'] {width: 100px;height: 0px;font-size: 11px;}
+    }
+} 
+
+.btn-sm {
+    padding: 3px 7px;
+    font-size: 11px;
+    margin-right: 4px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+
+.table > tbody > tr > td {
+    padding: 3px;
+}
+
+.btn-primary, .btn-default{
+    font-size: 12px;
+    padding: 6px 12px;
+}
+
+.btn-info {
+    font-size: 12px;
+    padding-top: 5px;
+    padding-bottom: 8px;
+}
+
+.form-control {
+    font-size: 12px;
+    height: 31.5px;
+}
+
+.bt-div-superior{
+    margin-bottom: 5px;
+    margin-top: 2px;
+}
+
+.div-principal{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.bt-superior{
+    margin-right: 4px;
+    width: 90px;
+}
+
+.btn-colores {
+    color: inherit;
+    background: #e6e6e6;
+    border-color: #eac2c2;
+}
+
+.btn-colores:hover {
+    background-color: #fde9e9;
+}
+
+.tx-cajas {
+    height: 32px;
+}
+
+.table-fixed{
+    width: 100%;
+    tbody{
+      overflow-y:auto;
+      height:259px;    
+      width: 100%;
+      }
+    
+    thead,tbody{
+      display:block;
+    }
+}
+
+.btn-success-revisar {
+    background-color: #899db1;
+    border-color: #899db1;
+    color: #FFFFFF;
+  }
+  
+  .btn-success-revisar:hover {
+    background-color: #9fb3c7;
+  }

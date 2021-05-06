@@ -1,0 +1,12 @@
+{
+  "listaAulas": [
+    {
+      "codigo":"2022",
+      "nombre": "SALA 3",
+      "sede": "ATARJEA",
+      "capacidad": "50",
+      "disponible": "No"
+
+    }
+  ]
+}

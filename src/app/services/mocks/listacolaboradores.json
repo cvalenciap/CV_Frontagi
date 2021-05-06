@@ -1,0 +1,28 @@
+{
+    "listaBusquedaColaboradores":[
+        {
+            "idTrabajador":"434",
+            "nroFicha":"043423",
+            "nombreTrabajador": "Carlos Perez",
+            "cargoTrabajador": "Gerente"
+        },
+        {
+            "idTrabajador":"435",
+            "nroFicha":"043418",
+            "nombreTrabajador": "Susana Baca",
+            "cargoTrabajador": "Jefe de Seguridad"
+        },
+        {
+            "idTrabajador":"430",
+            "nroFicha":"043443",
+            "nombreTrabajador": "Marco Parolo",
+            "cargoTrabajador": "Jefe de Area de Marketing"
+        },
+        {
+            "idTrabajador":"423",
+            "nroFicha":"043447",
+            "nombreTrabajador": "Angela Martinez",
+            "cargoTrabajador": "Administrador de Redes"
+        }
+    ]
+}

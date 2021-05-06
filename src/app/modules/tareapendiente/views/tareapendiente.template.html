@@ -1,0 +1,31 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+      <h1>Bandeja de Tareas</h1>
+      <small>Consulta de tareas pendientes.</small>
+      </div>
+    <div class="col-sm-8">
+        <div class="row flexBox">
+        <div class="col-sm-4 col-xs-12" *ngFor="let tarea of listaTareasPendientes;">
+          <a class="animated-widget" [routerLink]="[tarea.ruta]">
+            <div class="widget style1 {{tarea.backgroundColor}}">
+              <div class="row">
+                <div class="col-xs-4">
+                  <i class="fa fa-check-square-o fa-5x infinite bounceIn"></i>
+                </div>
+                <div class="col-xs-8 text-right">
+                  <h2 class="font-bold">{{tarea.cantidad}}</h2>
+                  <span> {{tarea.titulo}} </span>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        
+      </div>
+    </div>
+    <div class="col-sm-4" >
+    </div>
+    </div>
+
+  </div>

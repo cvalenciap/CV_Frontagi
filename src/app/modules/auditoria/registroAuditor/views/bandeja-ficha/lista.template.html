@@ -1,0 +1,134 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <h4>Inicio / Auditoría / <strong>Lista de Auditores</strong>
+        </h4>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight div-principal">
+<div class="row m-b-md div-botones-superiores">
+    <div class="col-lg-1">
+        <a [routerLink]="['registrar']" class="btn btn-primary botones-superiores"><i class="fa fa-plus"></i> Nuevo</a>
+    </div>
+    <div class="col-lg-4">
+        <div class="input-group" style="margin-left: 5px;">
+            <input type="text"
+                   placeholder="Buscar"
+                   class="form-control cajas-texto"
+                   [(ngModel)]="request.ficha"
+                   (ngModelChange)="onChangeBindingRequest(1,'N° Ficha', $event)">
+            <span class="input-group-btn" dropdown>
+                <button type="button"
+                        class="btn btn-info botones-buscador"
+                        (click)="onRealizarBusqueda()">
+                        <i class="fa fa-search"></i></button>
+                <button dropdownToggle type="button"
+                    class="btn btn-info dropdown-toggle dropdown-toggle-split botones-buscador"><i
+                        class="fa fa-caret-down"></i></button>
+                <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
+                    <li role="menuitem" class="active"><a>N° Ficha</a></li>
+                    <li role="menuitem"><a (click)="abrirModalBusquedaAvanzada()">Búsqueda avanzada...</a></li>
+                </ul>
+            </span>
+        </div>
+    </div>
+    <div class="col-md-2 col-lg-2">
+        <button class="btn btn-md btn-light"
+                (click)="onLimpiarFiltros()"><i class="fa fa-eraser"></i> Limpiar</button>
+    </div>
+</div>
+
+  <div class="row">
+      <div class="col-lg-12">
+          <div *ngIf="showFiltrosBusqueda">
+            <alert type="info">
+                <span [innerHtml]="textoFiltros"></span>
+            </alert>
+          </div>
+
+          <div class="ibox-content div-secundario" style=" height: 480px;" [ngClass]="{'sk-loading': loading}">
+              <sk-three-bounce></sk-three-bounce>
+              <div class="table-responsive" style="height: 344px;">
+                  <table class="table table-bordered table-stripped table-hover issue-tracker">
+                    <thead>
+                        <tr>
+                            <th class="text-center" data-col="ficha">N° Ficha</th>
+                            <th class="text-center" data-col="auditor">Auditor</th>
+                            <th class="text-center" data-col="rol">Rol</th>
+                            <th class="text-center" data-col="norma">Norma</th>
+                            <th class="text-center" data-col="gerencia">Gerencia</th>
+                            <th class="text-center" data-col="equipo">Equipo</th>
+                            <th class="text-center" data-col="accion">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <ng-container *ngFor="let item of listaFichaAuditores">
+                        <tr>
+                          <td class="text-center texto-tb-ficha">{{item.ficha}}</td>
+                          <td class="text-left texto-tb-ficha">{{item.auditor}}</td>
+                          <td class="text-center texto-tb-ficha">{{item.rolAuditor.descripcion}}</td>
+                          <td class="text-center texto-tb-ficha">
+                            <div class="texto-tb-ficha"
+                                 *ngFor="let norma of item.cursosNorma">{{norma.nomNorma}}</div>
+                          </td>
+                          <td class="text-center texto-tb-ficha">{{item.gerencia.descripcion}}</td>
+                          <td class="text-center texto-tb-ficha">{{item.equipo.descripcion}}</td>
+                          <td class="text-center texto-tb-ficha">
+                            <table>
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    <button title="Editar"
+                                            class="btn btn-success btn-sm m-r botones-detalle"
+                                            (click)="onEditarFicha(item)">
+                                            <i class="fa fa-edit"></i></button>
+                                  </td>
+                                  <td>
+                                    <button title="Eliminar" class="btn btn-danger btn-sm m-r botones-detalle"
+                                            [swal]="{ title: '¿Está seguro que desea eliminar el registro?',
+                                                      type: 'question',
+                                                      showCancelButton: true,
+                                                      confirmButtonText: 'Sí, eliminar',
+                                                      cancelButtonText: 'No gracias' }"
+                                            (confirm)="onEliminar(item)">
+                                            <i class="fa fa-trash"></i>
+                                    </button>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </ng-container>
+                    </tbody>
+                  </table>
+              </div>
+              <div class="row" style="margin-top: 10px;">
+                  <div class="col-md-4 col-sm-12 col-xs-12">
+                      <pagination class="texto-pie-pag"
+                                  [(ngModel)]="paginacion.pagina"
+                                  (pageChanged)="OnPageChanged($event)"
+                                  [totalItems]="paginacion.totalRegistros"
+                                  [itemsPerPage]="paginacion.registros"
+                                  [boundaryLinks]="true"
+                                  [maxSize]="5"
+                                  previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                  </div>
+                  <div class="col-md-4 col-sm-6 col-xs-12">
+                      <div class="text-center m-a-sm">
+                          <pagination-info [totalItems]="paginacion.totalRegistros"
+                                           [itemsPerPage]="paginacion.registros"
+                                           [page]="paginacion.pagina"></pagination-info>
+                      </div>
+                  </div>
+                  <div class="col-md-4 col-sm-6 col-xs-12">
+                      <div class="text-right m-a-sm">
+                          <pagination-set class="texto-pie-pag"
+                                          (optionChanged)="OnPageOptionChanged($event)"></pagination-set>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

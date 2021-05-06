@@ -1,0 +1,76 @@
+<div class="row wrapper border-bottom white-bg page-heading" style="padding-bottom: 5px;">
+    <div class="col-lg-12" style="margin-top: 8px">
+        <h4>Seguimiento / Descarga de Videos y Plantillas del Sistema /<strong> Carga Archivo</strong></h4>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row m-b-sm">
+        <div class="col-lg-8">
+            <div class="btn-group">
+                <ng-template [authIf]="session.ACL.ID_CON_DescargaVideosPlantillas_CREAR">
+                    <a class="btn btn-primary m-r"
+                        [swal]="{ title: '¿Está seguro que desea Guardar el archivo?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, guardar', cancelButtonText: 'No gracias' }"
+                        (confirm)="OnGuardar()"><i class="fa fa-save"></i> Guardar
+                    </a>
+                </ng-template>
+                <a (click)="cancelar()" class="btn btn-default m-r"><i class="fa fa-arrow-left"></i> Regresar</a>
+            </div>
+        </div>
+    </div>
+    <div class="ibox-content" >
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox-conten t" >
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <label class="col-sm-2 control-label">Tipo(*):</label>
+                            <div class="col-sm-4">
+                                <select name="tipo-plantilla" id="tipo-plantilla" class="form-control"
+                                    [(ngModel)]="tipoPlantilla" [ngClass]="{'ng-dirty ng-invalid':ValidarTipo}" (change)="limpiar()">
+                                    <option value="" selected="" disabled >Seleccione</option>
+                                    <option *ngFor="let item of listaTipoPlantilla" [value]="item.v_descons">
+                                        {{ item.v_descons }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <label class="col-sm-2"> Adjuntar (*): </label>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <label class="input-group-btn">
+                                        <ng-template
+                                            [authIf]="session.ACL.ID_CON_DescargaVideosPlantillas_EXPORTAR">
+                                            <span class="btn btn-success margen">
+                                                <i class="fa fa-upload"></i> <input #file class="ocultar" type="file"
+                                                    id="file" name="file" #filed (change)="adjuntarArchivo($event)">
+                                            </span>
+                                        </ng-template>
+                                    </label>
+                                    <input type="text" class="form-control margen" id="file-name"
+                                        placeholder="Ingresar archivo"
+                                        [ngClass]="{'ng-dirty ng-invalid':ValidarAdjuntar}" [(ngModel)]="nombreArchivo"
+                                        readonly>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label class="col-sm-2 control-label">Descripción(*):</label>
+                        <div class="col-sm-4">
+                            <input type="text" placeholder="Ej: Plantilla de Manuales de Sistemas" class="form-control"
+                                [(ngModel)]="descripcion" [ngClass]="{'ng-dirty ng-invalid':ValidarDescripcion}">
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>

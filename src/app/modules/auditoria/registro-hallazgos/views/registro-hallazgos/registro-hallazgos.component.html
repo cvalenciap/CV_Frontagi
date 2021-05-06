@@ -1,0 +1,440 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <h4>Inicio / Auditoría / Revisión de Hallazgo / <strong>Detalle de Revisión de Hallazgos</strong></h4>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight div-principal">
+
+    <div class="row m-b-md div-botones-superiores">
+        <div class="col-lg-6">
+            <a class="btn btn-success m-r botones-superiores"><i class="fa fa-check"></i> Aprobar</a>
+            <a class="btn btn-danger  botones-superiores"><i class="fa fa-times"></i> Rechazar</a>
+            <a class="btn btn-info m-r botones-superiores"><i class="fa fa-print"></i> Imprimir</a>
+            <a class="btn btn-default btn-colores m-r botones-superiores" (click)="onRegresar()"><i class="fa fa-arrow-left"></i> Regresar</a>
+        </div>
+        <div class="col-lg-6"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content div-secundario" style=" height: 480px;" [ngClass]="{'sk-loading': loading}">
+                    <div class="row">
+                            <div class="col-lg-12">
+                                <div class="ibox-content div-secundario" style="margin-bottom: 5px;" [ngClass]="{'sk-loading': loading}">
+                                    <mat-tab-group style="height: 233px;">
+                                        
+                                        <mat-tab label="Datos Auditoria">
+                                            <br />
+                                            <div class="col-lg-12">
+                                                <div class="row">
+                                                    <label class="col-sm-8 control-label titulos-texto">Descripción Auditoría:</label>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-8"><input class="form-control cajas-texto" type="text" name="numFicha" value="Auditoria Interna de la Gerencia de Finanzas I" disabled="true"></div>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-sm-4 control-label titulos-texto">Auditor Lider de Grupo:</label>
+                                                    <label class="col-sm-4 control-label titulos-texto">Área:</label>
+                                                    <label class="col-sm-4 control-label titulos-texto">Responsable:</label>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-4"><input class="form-control cajas-texto" type="text" name="numFicha" value="GUILLERMO CUADROS CAPILLA" disabled="true"></div>
+                                                    <div class="col-sm-4"><input class="form-control cajas-texto" type="text" name="numFicha" value="GERENCIA DE DESARROLLO E INVESTIGACIÓN" disabled="true"></div>
+                                                    <div class="col-sm-4"><input class="form-control cajas-texto" type="text" name="numFicha" value="LEONOR MARILEZ ORBEGOSO REYES" disabled="true"></div>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-sm-4 control-label titulos-texto">Fecha:</label>
+                                                    <label class="col-sm-2 control-label titulos-texto">Hora Inicial:</label>
+                                                    <label class="col-sm-2 control-label titulos-texto">Hora Final:</label>
+                                                    <label class="col-sm-4 control-label titulos-texto"></label>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-4"><input class="form-control cajas-texto" type="text" name="numFicha" value="23/09/2019" disabled="true"></div>
+                                                    <div class="col-sm-2">
+                                                        <table>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="form-group"><input class="form-control text-center bs-timepicker-field cajas-texto" style="width: 44px" maxlength="2" value="09" type="text" disabled></td>
+                                                                    <td class="ng-star-inserted">&nbsp;:&nbsp;</td>
+                                                                    <td class="form-group ng-star-inserted"><input class="form-control text-center bs-timepicker-field cajas-texto" style="width: 44px" maxlength="2" value="00" type="text" disabled></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <table>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="form-group"><input class="form-control text-center bs-timepicker-field cajas-texto" style="width: 44px" maxlength="2" value="16" type="text" disabled></td>
+                                                                    <td class="ng-star-inserted">&nbsp;:&nbsp;</td>
+                                                                    <td class="form-group ng-star-inserted"><input class="form-control text-center bs-timepicker-field cajas-texto" style="width: 44px" maxlength="2" value="00" type="text" disabled></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="col-sm-4"></div>
+                                                </div>
+                                            </div>
+                                        </mat-tab>
+        
+                                        <mat-tab label="Lista de Auditores">
+                                            <br />
+                                           
+                                            <div class="col-lg-12">
+                                                <div class="row">
+                                                        <div class="col-sm-3"></div>
+                                                        <div class="col-sm-6">
+                                                                <div class="table-responsive" style="height: 157px;">
+                                                                        <table
+                                                                            class="table table-bordered table-stripped table-hover issue-tracker">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th class="text-center" data-col="auditados">Auditores</th>
+                                                                                    <th class="text-center" data-col="cargo">Rol</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td class="text-center" data-col="auditados">ROMAN ARDILES VICENTE</td>
+                                                                                    <td class="text-center" data-col="cargo">Auditor Interno</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="text-center" data-col="auditados">PAOLA GOMEZ GARCIA</td>
+                                                                                    <td class="text-center" data-col="cargo">Auditor Interno</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="text-center" data-col="auditados">JOSE SEPEDA LOPEZ</td>
+                                                                                    <td class="text-center" data-col="cargo">Observador</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td class="text-center" data-col="auditados">NICOLAS TORIBIO URQUIZA</td>
+                                                                                    <td class="text-center" data-col="cargo">Observador</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                        </div>
+                                                        <div class="col-sm-3"></div>
+                                                </div>
+                                            </div>
+                                        </mat-tab>
+                                        <mat-tab label="Horas de Auditoría">
+                                            <br />
+                                            <div class="col-lg-12">
+                                                <div class="col-sm-2" style="margin-right: 75px;"></div>
+                                                <div class="col-sm-6">
+                                                    <div class="row">
+                                                            <label class="col-sm-4 control-label titulos-texto">Hora en Gabinete:</label>
+                                                            <label class="col-sm-4 control-label titulos-texto">Hora en Campo:</label>
+                                                            <label class="col-sm-4 control-label titulos-texto">Total de Horas:</label>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-4">
+                                                                <table>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="form-group"><input class="form-control text-center bs-timepicker-field cajas-texto" style="width: 44px" maxlength="2" value="03" type="text" ></td>
+                                                                            <td class="ng-star-inserted">&nbsp;:&nbsp;</td>
+                                                                            <td class="form-group ng-star-inserted"><input class="form-control text-center bs-timepicker-field cajas-texto" style="width: 44px" maxlength="2" value="00" type="text"></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <table>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="form-group"><input class="form-control text-center bs-timepicker-field cajas-texto" style="width: 44px" maxlength="2" value="07" type="text" ></td>
+                                                                            <td class="ng-star-inserted">&nbsp;:&nbsp;</td>
+                                                                            <td class="form-group ng-star-inserted"><input class="form-control text-center bs-timepicker-field cajas-texto" style="width: 44px" maxlength="2" value="30" type="text" ></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <table>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="form-group"><input class="form-control text-center bs-timepicker-field cajas-texto" style="width: 44px" maxlength="2" value="10" type="text" disabled></td>
+                                                                            <td class="ng-star-inserted">&nbsp;:&nbsp;</td>
+                                                                            <td class="form-group ng-star-inserted"><input class="form-control text-center bs-timepicker-field cajas-texto" style="width: 44px" maxlength="2" value="30" type="text" disabled></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                                <div class="col-sm-4"></div>
+                                                
+                                            </div>
+                                        </mat-tab>
+                                        <mat-tab label="Lista de Auditados">
+                                            <br />
+                                            <div class="col-lg-12">
+                                                <div class="col-sm-3"></div>
+                                                <div class="col-sm-6">
+                                         
+                                                            <div class="row">
+                                                                <div class="table-responsive" style="height: 169px;">
+                                                                    <table class="table table-bordered table-stripped table-hover issue-tracker">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th class="text-center" data-col="auditados">Auditados</th>
+                                                                                <th class="text-center" data-col="accion1">Acción</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="text-center" data-col="auditados">LUIS CARRILLO DIAS</td>
+                                                                                <td class="text-center" data-col="accion1">
+                                                                                    <button title="Bitacora" class="btn btn-danger btn-sm m-r botones-detalle"
+                                                                                    [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                                                                                    ><i class="fa fa-trash"></i> </button>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="text-center" data-col="auditados">JAIME DASSO PEREZ</td>
+                                                                                <td class="text-center" data-col="accion1">
+                                                                                    <button title="Bitacora" class="btn btn-danger btn-sm m-r botones-detalle"
+                                                                                    [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                                                                                    ><i class="fa fa-trash"></i> </button>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="text-center" data-col="auditados">RAMIRO MENDOZA ARIAS</td>
+                                                                                <td class="text-center" data-col="accion1">
+                                                                                    <button title="Bitacora" class="btn btn-danger btn-sm m-r botones-detalle"
+                                                                                    [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                                                                                    ><i class="fa fa-trash"></i> </button>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="row">
+                                                        <div class="col-sm-2">
+                                                            <button (click)="agregarAuditado()" class="btn btn-primary m-r botones-superiores" style="width: 126px;"
+                                                            [disabled]="tipoRol == '2' || item.estadoListaVerificacion == '3' || item.estadoListaVerificacion == '4'"><i
+                                                            class="fa fa-plus"></i> Agregar Auditado</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </mat-tab>
+                                    </mat-tab-group>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-sm-3" style="padding-right: 5px;">
+                                        <div class="ibox-content" style="height: 217px;padding-bottom: 5px;padding-right: 5px;padding-left: 5px;padding-top: 5px;">
+                                            <div class="col-lg-12" style="height: 175px; padding-right: 0px;padding-left: 0px;">
+                                                <label class="control-label titulos-texto">Requisitos:</label>
+                                                <tree-root #tree [nodes]="nodosRequisitos" [options]="treeOptions" (updateData)="cambiarLista()">
+                                                </tree-root>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-9" style="padding-right: 15px; padding-left: 0px;">
+                                        <div class="ibox-content"  style="height: 217px;padding-bottom: 5px;padding-right: 5px;padding-left: 5px;padding-top: 5px;">
+                                                <mat-tab-group>
+                                                    
+                                                    <mat-tab label="Detalle Requisito">
+                                                        <br />
+                                                        <div class="col-lg-12">
+                                                            <div class="col-sm-5" style="padding-left: 0px; padding-right: 5px;">
+                                                                <div class="row">
+                                                                    <label class="col-sm-12 control-label titulos-texto">Detalle del requisito:</label>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-12">
+                                                                        <textarea class="form-control cajas-texto" style="height: 121px;" rows="4" [(ngModel)]="cuestionarioRequisito" readonly></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-7" style="padding-left: 5px; padding-right: 0px;">
+                                                                <div class="row">
+                                                                    <label class="col-sm-12 control-label titulos-texto">Cuestionario:</label>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-sm-12">
+                                                                        <textarea class="form-control cajas-texto" rows="4" style="height: 121px;" [(ngModel)]="cuestionario" readonly></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                </mat-tab>
+                                                        <mat-tab label="Calificación de Auditoría">
+                                                            <br />
+                                                            <div class="col-lg-12">
+                                                                
+                                                                <div class="col-sm-4" style="padding-left: 0px; padding-right: 0px;">
+                                                                    <div class="row">
+                                                                        <label class="col-sm-12 control-label titulos-texto">Norma:</label>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-sm-12">
+                                                                            <select class="form-control cajas-texto" name="valorTipo" >
+                                                                                <option value="" selected disabled>Seleccionar</option>
+                                                                                <option value="1" selected>ISO 9001-2015</option>
+                                                                                <option value="2" selected>ISO 14001-2015</option>
+                                                                                <option value="3" selected>OHSAS 1800-2007</option>
+                                                                                <!-- <option *ngFor="let item of listaTipos" [value]="item.v_campcons1">{{ item.v_valcons }}</option> -->
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <label class="col-sm-6 control-label titulos-texto">Calificación:</label>
+                                                                        <label class="col-sm-6 control-label titulos-texto">Tipo:</label>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-sm-6" style="padding-right: 0px;">
+                                                                            <select class="form-control cajas-texto" name="valorTipo" [(ngModel)]="valorCali" (change)="activarCriterio()">
+                                                                                <option value="" selected disabled>Seleccionar</option>
+                                                                                <option value="01" selected>Conforme</option>
+                                                                                <option value="02" selected>No Conforme</option>
+                                                                                <!-- <option *ngFor="let item of listaTipos" [value]="item.v_campcons1">{{ item.v_valcons }}</option> -->
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="col-sm-6" >
+                                                                            <select class="form-control cajas-texto" name="valorTipo" >
+                                                                                <option value="" selected disabled>Seleccionar</option>
+                                                                                <option value="1" selected>Trazabilidad</option>
+                                                                                <option value="2" selected>Modificación</option>
+                                                                                <!-- <option *ngFor="let item of listaTipos" [value]="item.v_campcons1">{{ item.v_valcons }}</option> -->
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-sm-4" style="padding-left: 5px; padding-right: 0px;">
+                                                                    <div *ngIf="mostrarCamposNoConforme" class="row">
+                                                                        <label class="col-sm-12 control-label titulos-texto">Descripción del Hallazgo:</label>
+                                                                    </div>
+                                                                    <div *ngIf="mostrarCamposNoConforme" class="row">
+                                                                        <div class="col-sm-12">
+                                                                            <textarea class="form-control margen" rows="4" style="height: 89px;"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div *ngIf="!mostrarCamposNoConforme" class="row">
+                                                                        <label class="col-sm-12 control-label titulos-texto">Descripción:</label>
+                                                                    </div>
+                                                                    <div *ngIf="!mostrarCamposNoConforme" class="row">
+                                                                        <div class="col-sm-12">
+                                                                            <textarea class="form-control margen" rows="4" style="height: 89px;"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div *ngIf="mostrarCamposNoConforme" class="col-sm-4" style="padding-left: 5px; padding-right: 0px;">
+                                                                    <div class="row">
+                                                                        <label class="col-sm-7 control-label titulos-texto">Hallazgo:</label>
+                                                                        <label class="col-sm-5 control-label titulos-texto" style="padding-left: 0px;">Fecha de Hallazgo:</label>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-sm-7">
+                                                                            <select name="listaTipoHallazgo" class="form-control cajas-texto">
+                                                                                <option value="" disabled>Seleccionar</option>
+                                                                                <option *ngFor="let item of listaTiposHallazgos" [value]="item.v_campcons1">
+                                                                                    {{item.v_valcons}}</option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="col-sm-5" style="padding-left: 0px;">
+                                                                            <input bsDatepicker #dp1="bsDatepicker" type="text" class="form-control cajas-texto" placement="top"
+                                                                            name="fechaHallazgo"
+                                                                            [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue' }">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                            <label class="col-sm-12 control-label titulos-texto">Adjuntar Evidencia:</label>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-sm-8" style="padding-right: 0px;">
+                                                                                <!-- <input type="text" class="form-control margen" id="pdf-name" placeholder="Ingresar archivo" [(ngModel)]="nombreArchivoEvidencia" readonly> -->
+                                                                                <input type="text" class="form-control cajas-texto" id="pdf-name" placeholder="Ingresar archivo" readonly>
+                                                                            </div>
+                                                                            <div class="col-sm-4" style="padding-left: 0px;">
+                                                                                <a class="btn btn-primary botones-buscador"><i class="fa fa-upload"></i></a>
+<!--                                                                                 <span class="btn btn-success m-r botones-superiores">Adjuntar
+                                                                                    <input #archivoEvidenia class="ocultar" type="file" id="pdf-file" name="pdf_file" (change)="adjuntarArchivo($event)">
+                                                                                </span> -->
+                                                                            </div>
+
+                                                                        </div>
+                                                                </div>
+
+
+
+
+                                                                
+                                                            </div>
+                                                        </mat-tab>
+                                                        
+                                                       
+                                        <mat-tab label="Lista de Documentos">
+                                            <br />
+                                            <div class="col-lg-12">
+                                                <div class="col-sm-2"></div>
+                                                <div class="col-sm-8">
+                                                    <div class="row">
+                                                            <div class="table-responsive" style="height: 145px;">
+                                                                <table class="table table-bordered table-stripped table-hover issue-tracker">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th class="text-center" data-col="tipo">Documento</th>
+                                                                            <th class="text-center" data-col="accion">Acción</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="text-center" data-col="tipo">CGFO0001 - SEDAPAL PROGRAMACIÓN 1</td>
+                                                                            <td class="text-center" data-col="accion">
+                                                                                <button title="Ver Documento" class="btn btn-primary btn-sm botones-detalle"><i class="fa fa-file-o"></i>
+                                                                                </button>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center" data-col="tipo">CGFO0002 - SEDAPAL PROGRAMACIÓN 2</td>
+                                                                            <td class="text-center" data-col="accion">
+                                                                                <button title="Ver Documento" class="btn btn-primary btn-sm botones-detalle"><i class="fa fa-file-o"></i>
+                                                                                </button>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="text-center" data-col="tipo">CGFO0003 - SEDAPAL PROGRAMACIÓN 3</td>
+                                                                            <td class="text-center" data-col="accion">
+                                                                                <button title="Ver Documento" class="btn btn-primary btn-sm botones-detalle"><i class="fa fa-file-o"></i>
+                                                                                </button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                                <div class="col-sm-2"></div>
+                                                
+                                            </div>
+                                        </mat-tab>
+                                                        
+                </mat-tab-group>
+                                        </div>
+            
+                                    </div>
+
+
+
+
+            </div>
+        </div>
+                 </div>
+</div>

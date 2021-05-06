@@ -1,0 +1,98 @@
+.pull-left {
+    float: left !important;
+}
+
+.pull-right {
+    float: right !important;
+}
+
+.table {
+    tr {
+      td[data-col='codigo'] {width: 61px;   height: 0px;font-size: 11px;}
+      td[data-col='area'] {width: 900px;height: 0px;font-size: 11px;}
+      td[data-col='tipo'] {width: 150px;   height: 0px;font-size: 11px;}
+      td[data-col='accion'] { width: 69px;height: 0px;font-size: 11px;}
+
+      th[data-col='codigo'] {width: 61px;height: 0px}
+      th[data-col='area'] {width: 900px;height: 0px}
+      th[data-col='tipo'] {width: 150px;height: 0px}
+      th[data-col='accion'] {width: 69px;height: 0px}
+    }
+  
+} 
+
+.btn-sm {
+    padding: 3px 7px;
+    font-size: 11px;
+    margin-right: 4px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+
+.table > tbody > tr > td {
+    padding: 3px;
+}
+
+.btn-primary, .btn-default{
+    font-size: 12px;
+    padding: 6px 12px;
+}
+
+.btn-info {
+    font-size: 12px;
+    padding-top: 5px;
+    padding-bottom: 8px;
+}
+
+.form-control {
+    font-size: 12px;
+    height: 31.5px;
+}
+
+.bt-div-superior{
+    margin-bottom: 5px;
+    margin-top: 2px;
+}
+
+.div-principal{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.bt-superior{
+    margin-right: 4px;
+    width: 90px;
+}
+
+.btn-colores {
+    color: inherit;
+    background: #e6e6e6;
+    border-color: #eac2c2;
+}
+
+.btn-colores:hover {
+    background-color: #fde9e9;
+}
+
+.tx-cajas {
+    height: 32px;
+}
+
+.table-fixed{
+    width: 100%;
+    tbody{
+      overflow-y:auto;
+      height:259px;    
+      width: 100%;
+      }
+    
+    thead,tbody{
+      display:block;
+    }
+}
+  
+.texto-pie-pag {
+    font-size: 11px;
+}

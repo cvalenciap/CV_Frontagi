@@ -1,0 +1,430 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Registrar Capacitación</h2>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row m-b-sm">
+        <div class="col-lg-12">
+            <a class="btn btn-default m-r" (click)="OnRegresar()">
+                <i class="fa fa-arrow-left"></i> Regresar</a>
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary m-r" >
+                    <i class="glyphicon glyphicon-print"></i> Imprimir Examen</button>
+                <button type="button" class="btn btn-success m-r" (click)="enviarParticipante()">
+                    <i class="fa fa-send"></i> Enviar Participantes</button>
+                <button type="button" class="btn btn-info m-r" (click)="cerrarCapacitacion()" [disabled]="datoCapacitacion.estadoCapacitacion == 'R'">
+                    <i class="fa fa-close"></i>Cerrar Capacitación</button>
+                <button type="button" class="btn btn-warning m-r" (click)="guardarCapacitacion()">
+                    <i class="fa fa-check"></i>Guardar</button>
+                <button type="button" class="btn btn-default" (click)="OnRegresar()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content">
+                <form class="form-horizontal">
+                    <div class="form-group">
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label class="col-sm-3 control-label">Curso:</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" disabled="disabled" name="nombreCurso" [(ngModel)]="datoCurso.nombreCurso">
+                                </div>
+                                <div class="col-sm-1">
+                                    <button type="button" class="btn btn-info" (click)="OnBuscarCurso()" [disabled]="datoCapacitacion.estadoCapacitacion == 'P'">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">Duración:</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" id="duracion" disabled="disabled" name="duracion" class="form-control" [(ngModel)]="datoCurso.duracion">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label class="col-sm-3 control-label"> Instructor:</label>
+                                <div class="col-sm-6">
+                                    <input type="text" id="v_nominst" disabled="disabled" name="v_nominst" class="form-control" [(ngModel)]="datoInstructor.v_nominst">
+                                </div>
+                                <div class="col-sm-1">
+                                    <button type="button" class="btn btn-info" (click)="OnBuscarInstructor()" [disabled]="datoCapacitacion.estadoCapacitacion == 'P'">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label class="col-sm-4 control-label">¿El curso se Evalua?:</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" name="tipo" [(ngModel)]="datoCapacitacion.indEvaluacion">
+                                        <option value="2" selected>Seleccione</option>
+                                        <option value="1">Si</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <tabset>
+                <tab heading="Sesiones" style="margin-top: 0;">
+                    <div class="ibox-content" style="border-top: 0;">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <button class="btn btn-primary m-r" (click)="OnProgramarSesion()">
+                                    <i class="fa fa-exchange"></i> Programar</button>
+                            </div>
+                        </div>
+                        <br/>
+                        <form>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="nuevo" style="height: 160px; overflow-y: auto;overflow-x: hidden;">
+                                        <div class="table-responsive" id="div-tabla1">
+                                            <table class="table table-bordered table-stripped table-hover issue-tracker">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">Item</th>
+                                                        <th class="text-center">Sesión</th>
+                                                        <th class="text-center">Fecha</th>
+                                                        <th class="text-center">Hora Incio</th>
+                                                        <th class="text-center">Hora Fin</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody *ngFor="let item of listaSes; let indice=index">
+                                                    <tr (click)="seleccionarSesion(indice, item)" [class.info]="indice==selectedSesionRow">
+                                                        <td class="text-center">{{item.itemColumna}}</td>
+                                                        <td class="text-center">{{item.nombreSesion}}</td>
+                                                        <td class="text-center">{{item.fechaSesion | date:'dd/MM/yyyy'}}</td>
+                                                        <td class="text-center">{{item.horaInicio}}</td>
+                                                        <td class="text-center">{{item.horaFin}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-4 col-sm-12 col-xs-12">
+                                                <pagination (pageChanged)="OnPageChanged($event)" [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros"
+                                                    [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;"
+                                                    firstText="&laquo;" lastText="&raquo;"></pagination>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                                <div class="text-center m-a-sm">
+                                                    <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                                <div class="text-right m-a-sm">
+                                                    <pagination-set ></pagination-set>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </tab>
+                <tab heading="Participantes" style="margin-top: 0;">
+                    <div class="ibox-content" style="border-top: 0;">
+                        <div class="form-group">
+                            <div class="row">
+                                    <div class="col-sm-6">
+                                        <button class="btn btn-primary m-r" (click)="OnBuscarColaborador()"><i class="fa fa-plus"></i> Agregar</button>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="col-sm-7 control-label" style="
+                                        padding-left: 90px;
+                                        padding-top: 5px;">Cantidad de Participantes :</label>
+                                        <div class="col-sm-3">
+                                                <input type="text" class="form-control" name="cantidad" [(ngModel)]="cantidad" disabled="disabled">
+                                        </div>
+                                    </div> 
+                            </div>
+                               
+                        </div>
+                        <form>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="nuevo" style="height: 160px; overflow-y: auto;overflow-x: hidden;">
+                                        <div class="table-responsive" id="div-tabla1">
+                                            <table class="table table-bordered table-stripped table-hover issue-tracker">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">Item</th>
+                                                        <th class="text-center">Equipo</th>
+                                                        <th class="text-center">Nombre</th>
+                                                        <th class="text-center">Acción</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody *ngFor="let item of listaParticipante; let indice=index">
+                                                    <tr>
+                                                        <td class="text-center">{{item.itemColumnaPart}}</td>
+                                                        <td class="text-center">{{item.descripcionEquipo}}</td>
+                                                        <td class="text-center">{{item.nombre}}</td>
+                                                        <td class="text-center">
+                                                            <button class="btn btn-danger" [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                                                                (confirm)="eliminarParticipante(i,item)">
+                                                                <i class="fa fa-trash"></i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        
+                                        <div class="row">
+                                            <div class="col-md-4 col-sm-12 col-xs-12">
+                                                <pagination (pageChanged)="OnPageChanged($event)" [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros"
+                                                    [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;"
+                                                    firstText="&laquo;" lastText="&raquo;"></pagination>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                                <div class="text-center m-a-sm">
+                                                    <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                                <div class="text-right m-a-sm">
+                                                    <pagination-set ></pagination-set>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </tab>
+                <tab heading="Documentos Internos" style="margin-top: 0;">
+                    <div class="ibox-content" style="border-top: 0;">
+                        <form>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="btn-group">
+                                        <a class="btn btn-primary m-r" (click)="OnAnadirDocumentoInterno()">
+                                            <i class="fa fa-plus"></i> Añadir</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="nuevo" style="height: 160px; overflow-y: auto;overflow-x: hidden;">
+                                        <div class="table-responsive" id="div-tabla1">
+                                            <table class="table table-bordered table-stripped table-hover issue-tracker">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">Item</th>
+                                                        <th class="text-center">Código</th>
+                                                        <th class="text-center">Nombre</th>
+                                                        <th class="text-center">Revisión</th>
+                                                        <th class="text-center">Fecha Revisión</th>
+                                                        <th class="text-center">Acción</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody *ngFor="let item of lstDocumentos; let indice=index">
+                                                    <tr>
+                                                        <td class="text-center">{{item.itemColumnaDoc}}</td>
+                                                        <td class="text-center">{{item.codigoDocumento}}</td>
+                                                        <td class="text-center">{{item.nombreDocumento}}</td>
+                                                        <td class="text-center">{{item.idRevision}}</td>
+                                                        <td class="text-center">{{item.fechaRevisionDocu | date:'dd/MM/yyyy'}}</td>
+                                                        <td class="text-center">
+                                                            <button class="btn btn-danger" [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                                                                (confirm)="eliminarDocInterno(i,item)">
+                                                                <i class="fa fa-trash"></i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-4 col-sm-12 col-xs-12">
+                                                <pagination (pageChanged)="OnPageChanged($event)" [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros"
+                                                    [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;"
+                                                    firstText="&laquo;" lastText="&raquo;"></pagination>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                                <div class="text-center m-a-sm">
+                                                    <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                                <div class="text-right m-a-sm">
+                                                    <pagination-set ></pagination-set>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </tab>
+                <tab heading="Otros Documentos" style="margin-top: 0;">
+                    <div class="ibox-content" style="border-top: 0;">
+                        <form>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label class="col-sm-4 control-label" style="padding-top: 8px;"> Adjuntar Archivo:</label>
+                                    <label class="input-group-btn" style="width: 40px;background: #1ab394;">
+                                        <span class="btn" style="width: 40px">
+                                            <i class="fa fa-upload"></i>
+                                            <input class="ocultar" type="file" #filed name="file" (change)="OnAdjuntar($event)" />
+                                        </span>
+                                    </label>
+                                </div>
+
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="nuevo" style="height: 160px; overflow-y: auto;overflow-x: hidden;">
+                                        <div class="table-responsive" id="div-tabla1">
+                                            <table class="table table-bordered table-stripped table-hover issue-tracker">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">Item</th>
+                                                        <th class="text-center">Nombre</th>
+                                                        <th class="text-center">Acción</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody *ngFor="let item of listaDocCapa; let indice=index">
+                                                    <td class="text-center">{{item.itemColumD}}</td>
+                                                    <td class="text-center">{{item.nombreDocumento}}</td>
+                                                    <td class="text-center">
+                                                        <button class="btn btn-danger" [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                                                            (confirm)="onEliminarDocCapac(i, item)">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
+                                                    </td>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-4 col-sm-12 col-xs-12">
+                                                <pagination (pageChanged)="OnPageChanged($event)" [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros"
+                                                    [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;"
+                                                    firstText="&laquo;" lastText="&raquo;"></pagination>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                                <div class="text-center m-a-sm">
+                                                    <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                                <div class="text-right m-a-sm">
+                                                    <pagination-set ></pagination-set>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </tab>
+                <tab heading="Preguntas" style="margin-top: 0;">
+                    <div class="ibox-content" style="border-top: 0;">
+                        <form>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="btn-group">
+                                        <a class="btn btn-primary m-r" (click)="OnAgregarPregunta()">
+                                            <i class="fa fa-plus"></i> Añadir</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="nuevo" style="height: 160px; overflow-y: auto;overflow-x: hidden;">
+                                        <div class="table-responsive" id="div-tabla1">
+                                            <table class="table table-bordered table-stripped table-hover issue-tracker">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">Código del Curso</th>
+                                                        <th class="text-center">Nombre del Curso</th>
+                                                        <th class="text-center">Tipo de Pregunta</th>
+                                                        <th class="text-center">Pregunta</th>
+                                                        <th class="text-center">Puntaje</th>
+                                                        <th class="text-center">Acción</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody *ngFor="let item of listaPreguntas; let indice=index">
+                                                    <tr>
+                                                        <td class="text-center">{{item.codCurso}}</td>
+                                                        <td class="text-center">{{item.nomCurso}}</td>
+                                                        <td class="text-center">{{item.nomTipo}}</td>
+                                                        <td class="text-center">{{item.pregunta}}</td>
+                                                        <td class="text-center">{{item.puntaje}}</td>
+                                                        <td class="text-center">
+                                                            <button class="btn btn-danger" [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                                                                (confirm)="onEliminaPregunta(i, item)">
+                                                                <i class="fa fa-trash"></i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-4 col-sm-12 col-xs-12">
+                                                <pagination (pageChanged)="OnPageChanged($event)" [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros"
+                                                    [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;"
+                                                    firstText="&laquo;" lastText="&raquo;"></pagination>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                                <div class="text-center m-a-sm">
+                                                    <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                                <div class="text-right m-a-sm">
+                                                    <pagination-set ></pagination-set>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </tab>
+            </tabset>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+<mat-tab-group animationDuration="0ms">
+    <mat-tab label="Información General">
+                <!--components Documento -->
+
+ <!--<bandeja-registro-documento1 #general [activar]="activar" (extrametododepadre)="extrametododepadre($event)" [permisos]="permisos?.general"></bandeja-registro-documento1>-->
+ 
+ <bandeja-registro-documento1 #general  (extrametododepadre)="extrametododepadre($event)"   (indicadordigitalAc)="indicadordigitalAc($event)"    [permisos]="permisos?.general"></bandeja-registro-documento1>
+ 
+
+    </mat-tab>
+    <mat-tab label="Participantes" >
+        <mat-tab-group animationDuration="0ms">
+        <mat-tab label="Elaboración"> 
+        <!--components de elaboración -->
+        <!-- bandeja-documento-elaboracion  #participantes [activar]="activar" [permisos]="permisos?.participantes.tabElaboracion"></bandeja-documento-elaboracion -->
+          <bandeja-documento-elaboracion-migracion  #participantes [activar]="activar" [permisos]="permisos?.participantes.tabElaboracion"></bandeja-documento-elaboracion-migracion>
+        </mat-tab>
+        <mat-tab label="Consenso">
+          <!-- bandeja-documento-consenso  #concenso [activar]="activar" [permisos]="permisos?.participantes.tabConsenso"></bandeja-documento-consenso -->
+          <bandeja-documento-consenso-migracion  #concenso [activar]="activar" [permisos]="permisos?.participantes.tabConsenso"></bandeja-documento-consenso-migracion>
+        </mat-tab>
+        <!-- mat-tab label="Aprobación" *ngIf="permisos?.participantes.tabAprobacion.esVisible">
+            <bandeja-documento-aprobacion #aprobacion [activar]="activar" [permisos]="permisos.participantes.tabAprobacion" ></bandeja-documento-aprobacion>
+        </mat-tab -->
+        <mat-tab label="Aprobación">
+          <bandeja-documento-aprobacion-migracion #aprobacion [activar]="activar" [permisos]="permisos.participantes.tabAprobacion" ></bandeja-documento-aprobacion-migracion>
+        </mat-tab>
+        <!-- mat-tab label="Homologación" *ngIf="permisos?.participantes.tabHomologacion.esVisible">
+            <bandeja-documento-homologacion #homologacion [activar]="activar"  ></bandeja-documento-homologacion>
+        </mat-tab -->
+        <mat-tab label="Homologación">
+          <bandeja-documento-homologacion-migracion #homologacion [activar]="activar"  ></bandeja-documento-homologacion-migracion>
+        </mat-tab>
+        </mat-tab-group>
+    </mat-tab>  
+    <!--
+    <mat-tab label="Justificación">
+        <bandeja-documento-justificativa></bandeja-documento-justificativa>
+    </mat-tab>
+-->
+    <mat-tab label="Documento Relacionado">
+      <!--components Complementario -->
+      <!-- bandeja-documento-complementario #complementario [activar]="activar" [permisos]="permisos?.docComplementario"></bandeja-documento-complementario -->
+      <bandeja-documento-complementario-migracion #complementario [activar]="activar" [permisos]="permisos?.docComplementario"></bandeja-documento-complementario-migracion>
+    </mat-tab>
+    <mat-tab label="Equipo Usuario">
+      <!-- bandeja-documento-equipo-usuario #equipousuario [activar]="activar" [permisos]="permisos?.usuario"></bandeja-documento-equipo-usuario -->
+      <bandeja-documento-equipo-usuario-migracion #equipousuario [activar]="activar" [permisos]="permisos?.usuario"></bandeja-documento-equipo-usuario-migracion>
+    </mat-tab>
+    <mat-tab label="Revisiones" >
+        <bandeja-documento-revision-migracion #revision></bandeja-documento-revision-migracion>
+
+       <!-- <bandeja-documento-revision  [activar]="activar" ></bandeja-documento-revision>-->
+    </mat-tab>
+    <mat-tab label="Crítica"  style="transform: none;height: 235px;" >
+        <bandeja-documento-critica-migracion #critica></bandeja-documento-critica-migracion>
+        <!--<bandeja-documento-revision #revision [activar]="activar" ></bandeja-documento-revision>-->
+    </mat-tab>
+<!--
+    <mat-tab label="Bitácora" *ngIf="permisos?.fase.esVisible">
+            <fase-registro #bitacora ></fase-registro>
+        </mat-tab>
+</mat-tab-group>
+-->

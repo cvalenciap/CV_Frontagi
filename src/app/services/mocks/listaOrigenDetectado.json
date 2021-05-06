@@ -1,0 +1,25 @@
+{
+  "listaOrigenDetectado": [
+    {
+      "valorOrigenDet":"1",
+      "descripcionOrigenDet":"Origen1"
+    },
+    {
+      "valorOrigenDet":"2",
+      "descripcionOrigenDet":"Origen2"
+    },
+    {
+      "valorOrigenDet":"3",
+      "descripcionOrigenDet":"Origen3"
+    },
+    {
+      "valorOrigenDet":"4",
+      "descripcionOrigenDet":"Origen4"
+    },
+    {
+      "valorOrigenDet":"5",
+      "descripcionOrigenDet":"Origen5"
+    }
+
+  ]
+}

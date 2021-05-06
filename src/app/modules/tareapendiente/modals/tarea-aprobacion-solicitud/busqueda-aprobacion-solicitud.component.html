@@ -1,0 +1,51 @@
+<div class="modal-header modal-cabecera-color">
+  <h4 class="modal-title pull-left">Búsqueda Avanzada Aprobación de Solicitud</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true" class="cerrar">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form class = "form-horizontal">
+    <div class = "form-group row">
+      <label class = "col-md-2 control-label text-left">Código: </label>
+      <div class = "col-md-10">
+        <input type = "text" placeholder = "Ej: DGMFCP048" class = "form-control" name = "codigoDocumento" [(ngModel)] = "textoCodigo" (keyup) = "activarBotones()" />
+      </div>
+    </div>
+    <div class = "form-group row">
+      <label class = "col-md-2 control-label text-left">Título: </label>
+      <div class = "col-md-10">
+        <input type = "text" placeholder = "Ej: Analista de Operación de Plantas" class = "form-control" name = "tituloDocumento" [(ngModel)] = "textoTitulo" (keyup) = "activarBotones()" />
+      </div>
+    </div>
+    <hr style="margin-top:10px;margin-bottom:10px;">
+    <div class = "form-group row">
+        <h4 class="modal-title pull-left"><b>Solicitante:</b></h4>
+        <!-- <label class = "col-md-2 control-label text-left">Solicitante: </label> -->
+    </div>
+    <div class = "form-group row">
+      <label class = "col-md-2 control-label text-left">Nombre: </label>
+      <div class = "col-md-10">
+        <input type = "text" placeholder = "Ej: Manuel" class = "form-control" name = "nombres" [(ngModel)] = "textoNombre" (keyup) = "activarBotones()" />
+      </div>
+    </div>
+    <div class = "form-group row">
+      <label class = "col-md-2 control-label text-left">Apellido paterno: </label>
+      <div class = "col-md-10">
+        <input type = "text" placeholder = "Ej: Prado" class = "form-control" name = "apellidoPaterno" [(ngModel)] = "textoApellidoPaterno" (keyup) = "activarBotones()" />
+      </div>
+    </div>
+    <div class = "form-group row">
+      <label class = "col-md-2 control-label text-left">Apellido materno: </label>
+      <div class = "col-md-10">
+        <input type = "text" placeholder = "Ej: Ugaz" class = "form-control" name = "apellidoMaterno" [(ngModel)] = "textoApellidoMaterno" (keyup) = "activarBotones()" />
+      </div>
+    </div>
+    <div class = "form-group row">
+      <div class="col-sm-12 text-center">
+        <button [disabled] = "interruptorBotones" (click)="onBuscar()" class="btn btn-primary m-r"><i class="fa fa-search-plus"></i> Buscar</button>
+        <button [disabled] = "interruptorBotones" (click)="limpiar()" class="btn btn-default m-r"><i class="fa fa-eraser"></i> Limpiar</button>
+      </div>
+    </div>
+  </form>
+</div>

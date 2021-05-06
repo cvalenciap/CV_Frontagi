@@ -1,0 +1,169 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Lista de Ruta y Responsables</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a routerLink="starterview">Inicio</a>
+            </li>
+            <li>
+                <a>Mantenimiento de Ruta y Responsables</a>
+            </li>
+            <li class="active">
+                <strong>Lista de Ruta y Responsables</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row m-b-md">
+    <div class="col-lg-12">
+      <!--<a class="btn btn-success m-r" (click)="OnGuardar()"><i class="fa fa-check"></i> Guardar</a>-->
+      <a class="btn btn-success m-r" (click)="OnRegresar()"><i class="fa fa-check"></i> Guardar</a>
+      <a (click)="OnNuevo()" class="btn btn-primary m-r"><i class="fa fa-plus"></i> Agregar Representate</a>
+      <button class="btn btn-danger m-r" [disabled]="selectedRow<0"
+              [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+               >
+        <i class="fa fa-trash"></i> Eliminar Representante
+      </button>
+      <a class="btn btn-default m-r" (click)="OnRegresar()"><i class="fa fa-arrow-left"></i> Regresar</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox-content">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Descripción :</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" name="descripcion" [(ngModel)]="item.descripcion">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Estado :</label>
+            <div class="col-sm-4">
+              <ng-select [items]="listaEstados"
+                bindLabel="valor"
+                bindValue="valor"
+                [clearable]="false"
+                [searchable]="true"
+                name="estado"
+                placeholder="Seleccione"
+                notFoundText="Texto no encontrado en el menu"
+                [(ngModel)]="item.estado">
+              </ng-select>
+            </div>
+          </div>
+          <tabset>
+            <tab heading="Elaboración" style="margin-top: 0;" (select)="idFase=idElaboracion">
+              <div class="ibox-content" style="border-top: 0;">
+                <div class="table-responsive">
+                  <table class="table table-bordered table-stripped table-hover issue-tracker">
+                    <thead>
+                    <tr>
+                      <th class="text-center">Equipo</th>
+                      <th class="text-center">Función</th>
+                      <th class="text-center">Responsable</th>
+                      <th class="text-center">Plazo</th>
+                      <th class="text-center">Estado</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let participante of item.listaElaboracion; let i=index" (click)="OnRowClick(i,participante)" [class.info]="i==selectedRow">
+                      <td class="text-center" data-col="equipo">{{participante.equipo}}</td>
+                      <td class="text-center" data-col="funcion">{{participante.funcion}}</td>
+                      <td class="text-center" data-col="responsable">{{participante.responsable}}</td>
+                      <td class="text-center" data-col="plazo">{{participante.plazo}}</td>
+                      <td class="text-center" data-col="estado">{{participante.estado}}</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </tab>
+            <tab heading="Consenso" style="margin-top: 0;" (select)="idFase=idConsenso">
+              <div class="ibox-content" style="border-top: 0;">
+                <div class="table-responsive">
+                  <table class="table table-bordered table-stripped table-hover issue-tracker">
+                    <thead>
+                    <tr>
+                      <th class="text-center">Equipo</th>
+                      <th class="text-center">Función</th>
+                      <th class="text-center">Responsable</th>
+                      <th class="text-center">Plazo</th>
+                      <th class="text-center">Estado</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let participante of item.listaConsenso; let i=index" (click)="OnRowClick(i,participante)" [class.info]="i==selectedRow">
+                      <td class="text-center" data-col="equipo">{{participante.equipo}}</td>
+                      <td class="text-center" data-col="funcion">{{participante.funcion}}</td>
+                      <td class="text-center" data-col="responsable">{{participante.responsable}}</td>
+                      <td class="text-center" data-col="plazo">{{participante.plazo}}</td>
+                      <td class="text-center" data-col="estado">{{participante.estado}}</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </tab>
+            <tab heading="Aprobación" style="margin-top: 0;" (select)="idFase=idAprobacion">
+              <div class="ibox-content" style="border-top: 0;">
+                <div class="table-responsive">
+                  <table class="table table-bordered table-stripped table-hover issue-tracker">
+                    <thead>
+                    <tr>
+                      <th class="text-center">Equipo</th>
+                      <th class="text-center">Función</th>
+                      <th class="text-center">Responsable</th>
+                      <th class="text-center">Plazo</th>
+                      <th class="text-center">Estado</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let participante of item.listaAprobacion; let i=index" (click)="OnRowClick(i,participante)" [class.info]="i==selectedRow">
+                      <td class="text-center" data-col="equipo">{{participante.equipo}}</td>
+                      <td class="text-center" data-col="funcion">{{participante.funcion}}</td>
+                      <td class="text-center" data-col="responsable">{{participante.responsable}}</td>
+                      <td class="text-center" data-col="plazo">{{participante.plazo}}</td>
+                      <td class="text-center" data-col="estado">{{participante.estado}}</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </tab>
+            <tab heading="Homologación" style="margin-top: 0;" (select)="idFase=idHomologacion">
+              <div class="ibox-content" style="border-top: 0;">
+                <div class="table-responsive">
+                  <table class="table table-bordered table-stripped table-hover issue-tracker">
+                    <thead>
+                    <tr>
+                      <th class="text-center">Equipo</th>
+                      <th class="text-center">Función</th>
+                      <th class="text-center">Responsable</th>
+                      <th class="text-center">Plazo</th>
+                      <th class="text-center">Estado</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let participante of item.listaHomologacion; let i=index" (click)="OnRowClick(i,participante)" [class.info]="i==selectedRow">
+                      <td class="text-center" data-col="equipo">{{participante.equipo}}</td>
+                      <td class="text-center" data-col="funcion">{{participante.funcion}}</td>
+                      <td class="text-center" data-col="responsable">{{participante.responsable}}</td>
+                      <td class="text-center" data-col="plazo">{{participante.plazo}}</td>
+                      <td class="text-center" data-col="estado">{{participante.estado}}</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </tab>
+
+            </tabset>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>

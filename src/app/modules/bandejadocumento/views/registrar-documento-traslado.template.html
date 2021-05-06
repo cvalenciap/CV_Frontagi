@@ -1,0 +1,132 @@
+<div class="row wrapper border-bottom white-bg page-heading" style="padding-bottom: 0px;padding-left: 0px;">        
+    <div class="col-lg-12">
+            <h4>Información Documentada / Traslado de Documento / <strong>Registro de Traslado</strong></h4> 
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row m-b-sm">
+    <div class="col-lg-8">
+    <div class="btn-group">   
+        <a class="btn btn-primary" [swal]="{ title: '¿Está seguro que desea Guardar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, Grabar', cancelButtonText: 'No gracias' }"
+        (confirm)="OnGuardar()" style="margin-right:5px;" *ngIf="habilitarGrabar"><i class="fa fa-save"></i> Guardar</a>
+        <a class="btn btn-success" style="margin-right:5px;" (click)="OnTrasladar()"><i class="fa fa-file-o"></i> Traslado</a>
+        <a class="btn btn-default m-r" (click)="OnRegresar()"><i class="fa fa-arrow-left"></i> Regresar</a>
+    </div>
+    </div>
+    </div>
+    <div class="row m-b-md"> 
+            <div class="col-lg-12">
+            <h4>Datos del documento</h4>
+         <div class="ibox-content" >  
+                <div class="row" >
+            <div class="col-sm-4">
+            <div class="form-group">
+                <label class="control-label" for="descripcion">Titulo(*):</label>
+                <input type="text" id="descripcion" name="descripcion" [(ngModel)]="item.descripcion"   placeholder="Ej: Criterios de Aceptacion de Materiales" class="form-control" 
+                disabled="disabled">
+            </div>
+            </div> 
+            <div class="col-sm-8">              
+            <div class="input-group" style="width: 100%;">                
+                <label class="control-label" for="gerencia">Gerencia(*):</label>
+                <input type="text" id="gerencia" name="gerencia" placeholder="Ej: \Gerencia General" class="form-control" disabled="disabled" [(ngModel)]="item.jgerencia.descripcion">
+                <input type="hidden" id="gerenparametroid" name="gerenparametroid"  class="form-control"  disabled="disabled">
+            </div>
+            </div>
+                </div>
+          
+                <div class="row" >
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                          <label class="control-label" for="product_name">Tipo Documento(*):</label>                                 
+                        <input type="text" id="tipo" name="tipo" placeholder="Ej: Manuales" class="form-control" disabled="disabled" [(ngModel)]="item.ctipoDocumento.v_descons">
+                        </div>
+                      </div>    
+                  <div class="col-sm-8">               
+                          <div class="input-group" style="width: 100%;">                
+                              <label class="control-label" for="alcanceSGI">Alcance SGI:</label>
+                              <input type="text" id="alcanceSGI" name="alcanceSGI" value="" placeholder="Ej: \ISO 9001" class="form-control" disabled="disabled" [(ngModel)]="item.jalcanceSGI.descripcion">
+                              <input type="hidden" id="sgiparametroid" name="sgiparametroid" class="form-control"  disabled="disabled">
+                         </div>        
+                  </div> 
+              </div>
+                <div class="row" >
+                    <div class="col-sm-4">
+                            <div class="form-group">
+                                    <label class="control-label" for="codigo">Código:</label>
+                                    <input type="text" disabled="disabled" id="codigo" name="codigo" #codigo="ngModel" [(ngModel)]="item.codigo" 
+                                   placement="top" placeholder="Ej: ABC01" class="form-control" >
+                                  </div>
+                      </div>
+        
+                  <div class="col-sm-8">               
+                      <div class="input-group" style="width: 100%;">                
+                          <label class="control-label"  for="proceso">Proceso:</label>
+                          <input type="text" id="proceso" name="proceso" value="" placeholder="Ej: \Gestión Estratégica"  class="form-control" disabled="disabled" [(ngModel)]="item.jproceso.descripcion">                  
+                          <input type="hidden" id="procesoparametroid" name="procesoparametroid" class="form-control" [(ngModel)]="procesoparametroid" disabled="disabled">                  
+                        
+                      </div>        
+                  </div> 
+                </div>   
+               </div>                
+               <h4>Datos del documento a Trasladar</h4>
+               <div class="ibox-content" >  
+                    <div class="row" >                           
+                <div class="col-sm-6">
+                    <div class="input-group" style="width: 100%;">   
+                    <span class="input-group-btn" dropdown>
+                        <input class="form-control " type="checkbox" name="chkGerencia" [(ngModel)]="check" (change)="validarCheck()" style="height:15px;width:15px;margin-right:10px;" >               
+                    </span>                                
+                    <label class="control-label" for="price">Gerencia(*):</label>  
+                    <input type="text" id="gerencia" name="gerencia" placeholder="Ej: \Gerencia General" class="form-control" disabled="disabled" [(ngModel)]="datosRelacion.descripcionGerencia">
+                    <input type="hidden" id="gerenparametroid" name="gerenparametroid"  class="form-control" [(ngModel)]="datosRelacion.idGerencia" disabled="disabled">
+                    <span class="input-group-btn" dropdown>
+                        <button *ngIf="activar" style= "top: 12px"  type="button" class="btn btn-info" (click)="OnBuscarGerencia()" [disabled]="activarGerencia"><i class="fa fa-search"></i></button>
+                    </span>                    
+                </div>
+                </div>
+                
+                <div class="col-sm-4">
+                        <div class="form-group">
+                          <label class="control-label" for="codigoAnterior">Código Nuevo (referencia):</label>
+                          <input type="text" disabled="disabled" id="codigoAnterior" name="codigoAnterior" #codigoAnterior="ngModel" [(ngModel)]="idjerarquia" 
+                         placement="top" placeholder="Ej: ABC01" class="form-control" >
+                        </div>
+                      </div>
+                    </div>
+              
+                    <div class="row" >                        
+                      <div class="col-sm-6">               
+                              <div class="input-group" style="width: 100%;">    
+                                    <span class="input-group-btn" dropdown>
+                                            <input class="form-control " type="checkbox" name="chkAlcance" [(ngModel)]="checkSGI" (change)="validarCheck()" style="height:15px;width:15px;margin-right:10px;" >               
+                                        </span>               
+                                  <label class="control-label" for="price">Alcance SGI:</label>
+                                  <input type="text" id="alcanceSGI" name="alcanceSGI" value="" placeholder="Ej: \ISO 9001" class="form-control" disabled="disabled" [(ngModel)]="datosRelacion.descripcionAlcance">
+                                  <input type="hidden" id="sgiparametroid" name="sgiparametroid" class="form-control" [(ngModel)]="datosRelacion.idAlcance" disabled="disabled">
+                                  <span class="input-group-btn" dropdown>
+                                      <button *ngIf="activar" style="top:12px" type="button" class="btn btn-info" (click)="OnBuscarSGI()" [disabled]="activarAlcance" ><i class="fa fa-search"></i></button>
+                                  </span>
+                              </div>        
+                      </div> 
+                  </div>
+                  <br>
+                    <div class="row" >  
+                      <div class="col-sm-6">               
+                          <div class="input-group" style="width: 100%;">            
+                                <span class="input-group-btn" dropdown>
+                                        <input class="form-control " type="checkbox" name="chkProceso" [(ngModel)]="checkProceso" (change)="validarCheck()" style="height:15px;width:15px;margin-right:10px;" >               
+                                    </span>       
+                              <label class="control-label"  for="price">Proceso:</label>
+                              <input type="text" id="price" name="price" value="" placeholder="Ej: \Gestión Estratégica"  class="form-control" disabled="disabled" [(ngModel)]="procesoparametrodesc">                  
+                              <input type="hidden" id="procesoparametroid" name="procesoparametroid" class="form-control" [(ngModel)]="procesoparametroid" disabled="disabled">                  
+                              <span *ngIf="activar" class="input-group-btn" dropdown>
+                                  <button  style= "top: 12px"  type="button" class="btn btn-info" (click)="OnBuscarProceso()" [disabled]="activarProceso"><i class="fa fa-search"></i></button>
+                              </span>
+                          </div>        
+                      </div> 
+                    </div>   
+                   </div>       
+    </div>   
+    </div>
+</div>

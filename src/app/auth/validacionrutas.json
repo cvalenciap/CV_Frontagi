@@ -1,0 +1,63 @@
+{
+    "listaRutas": [
+      {
+        "rutaSeguridad": "/informacion-documentada",
+        "rutaSistema": "/starterview"
+      },
+      {
+        "rutaSeguridad": "/informacion-documentada/documentos/consulta-jerarquia",
+        "rutaSistema": "/documento/general/bandejadocumento"
+      },
+      {
+        "rutaSeguridad": "/informacion-documentada/documentos/consulta-general",
+        "rutaSistema": "/documento/general/revisardocumentos"
+      },
+      {
+        "rutaSeguridad": "/informacion-documentada/consulta/seguimiento-documento",
+        "rutaSistema": "/consulta/descarga/seguimientoDocumento"
+      },
+      {
+        "rutaSeguridad":"/informacion-documentada/solicitudes/solicitud-revision/detalle",
+        "rutaSistema":"/documento/solicitudes/revisiondocumento/registrar-revision-documento"
+      },
+      {
+        "rutaSeguridad":"/informacion-documentada/consulta/seguimiento-documento/detalle",
+        "rutaSistema":"/consulta/descarga/seguimientoDocumento/detalle"
+      },
+      {
+
+        "rutaSeguridad":"/informacion-documentada/tareas/elaboracion/detalle",
+        "rutaSistema":"/documento/tareapendiente/ElaborarRevisionRegistro"
+      },
+      { 
+        "rutaSeguridad":"/informacion-documentada/tareas/consenso/detalle",
+        "rutaSistema":"/documento/tareapendiente/ConsensuarRevisionRegistro"
+      },
+      {
+        "rutaSeguridad":"/informacion-documentada/tareas/aprobacion/detalle",
+        "rutaSistema":"/documento/tareapendiente/AprobarRevisionRegistro"        
+      },
+      {
+        "rutaSeguridad":"/informacion-documentada/tareas/homologacion/detalle",
+        "rutaSistema":"/documento/tareapendiente/HomologarRevisionRegistro"  
+      },
+      {
+        "rutaSeguridad":"/informacion-documentada/tareas/aprobacion-solicitud-revision/detalle",
+        "rutaSistema":"/documento/tareapendiente/AprobarSolicitud/detalle"
+        
+      },
+
+      {
+        "rutaSeguridad":"/informacion-documentada/tareas/aprobacion-cancelacion/detalle",
+        "rutaSistema":"/documento/tareapendiente/cancelaciones/AprobacionCancel/registro"
+      },
+      {
+        "rutaSeguridad":"/informacion-documentada/solicitudes/solicitud-cancelacion/detalle",
+        "rutaSistema":"/documento/tareapendiente/cancelaciones/SolicitudCancel/registro"
+      },
+      {
+        "rutaSeguridad":"/informacion-documentada/tareas/cancelacion-documentos/detalle",
+        "rutaSistema":"/documento/tareapendiente/cancelaciones/CancelaSolicitud/registro"
+      }   
+    ]
+}

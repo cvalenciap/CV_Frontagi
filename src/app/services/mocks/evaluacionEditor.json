@@ -1,0 +1,53 @@
+{
+  "listaEvaluacionEditor": [
+    {
+      "idEvaluacionAuditor":1,
+      "idAuditoria":"01",
+      "descripcion" :"Descripcion1",    
+      "fauditoria": "12/02/2018",
+      "auditorEvaluado": "Maria",  
+      "numeroFicha" :"34566",
+      "apellidoPat":"Occola",
+      "apellidoMat": "Guzman",
+      "nombre":"Alvaro",
+      "rol": "Auditor Interno"
+    },
+    {
+      "idEvaluacionAuditor":2,
+      "idAuditoria":"02",
+      "descripcion" :"Descripcion2",   
+      "fauditoria": "14/05/2018",
+      "auditorEvaluado": "Juan",
+      "numeroFicha" :"35656",
+      "apellidoPat":"Altamirano",
+      "apellidoMat": "Ovalle",
+      "nombre":"Gerardo",
+      "rol": "Auditor Líder"
+    },
+    {
+      "idEvaluacionAuditor":3,
+      "idAuditoria":"03",
+      "descripcion" :"Descripcion3",
+      "fauditoria": "25/02/2018",
+      "auditorEvaluado": "Carlos",
+      "numeroFicha" :"35656",
+      "apellidoPat":"Perez",
+      "apellidoMat": "Alvarado",
+      "nombre":"Zaida",
+      "rol": "Auditor Líder de Grupo"
+    },
+    {
+      "idEvaluacionAuditor":4,
+      "idAuditoria":"04",
+      "descripcion" :"Descripcion4",
+      "fauditoria": "28/02/2018",
+      "auditorEvaluado": "Pedro",
+      "numeroFicha" :"35656",
+      "apellidoPat":"Alfaro",
+      "apellidoMat": "Acosta",
+      "nombre":"Natalie",
+      "rol": "Auditor Interno"
+    }
+
+  ]
+}

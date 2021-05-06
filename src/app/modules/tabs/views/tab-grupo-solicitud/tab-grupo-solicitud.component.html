@@ -1,0 +1,19 @@
+<mat-tab-group animationDuration="0ms">
+  <mat-tab label="Información general">
+    <div class="container-fluid wrapper-tab">
+      <app-informacion-solicitud-cancelacion #information (documentEvent)="receiveDocument($event)"></app-informacion-solicitud-cancelacion>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Documentos relacionados">
+    <div class="container-fluid wrapper-tab">
+      <app-documento-relacionado-solicitud-cancelacion #relationship></app-documento-relacionado-solicitud-cancelacion>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Sustento de solicitudes">
+    <div class="container-fluid wrapper-tab">
+      <app-sustento-solicitud-cancelacion #livelihood></app-sustento-solicitud-cancelacion>
+    </div>
+  </mat-tab>
+</mat-tab-group>

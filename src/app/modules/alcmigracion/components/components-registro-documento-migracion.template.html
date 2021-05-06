@@ -1,0 +1,155 @@
+<div class="col-lg-11">
+        <div class="wrapper wrapper-content animated fadeInRight" style="padding-bottom: 0px;">  
+        <!--
+        -->
+        <div class="row">   
+                    <div class="col-lg-4" *ngIf="permisos?.btnBuscarDoc"> 
+                            <div class="form-group">
+                                <label>Fecha de Registro(*):</label>
+                                <div class="input-group">    
+                                    <input (bsValueChange)="obtenerFecha($event)" bsDatepicker #fechaCreaDoc="ngModel" #fechaCreaDoc="form-control" [(ngModel)]="item.fechaCreaDoc" type="text" class="form-control" placeholder="Ej: 01/01/2019"
+                                    [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue'}"  (ngModelChange)="Validar(fechaCreaDoc)"  
+                                    [ngClass]="{'ng-dirty ng-invalid':errors?.fechaCreaDoc}"  >
+                                    <!-- [tooltip]="errors?.fechaCreaDoc" placement="bottom">                    -->
+                                    <span class="input-group-addon" ><i class="fa fa-calendar" (click)="fechaCreaDoc.toggle()" [attr.aria-expanded]="fechaCreaDoc.isOpen" title="Elegir Fecha"></i></span>
+                                </div>
+                            </div> 
+                        </div>
+                </div>
+            
+          <div class="row">       
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label class="control-label" for="product_name">Título(*):</label>
+                <input type="text"  id="product_name" name="descripcion"   maxlength="250"  #descripcion="ngModel" [(ngModel)] = "item.descripcion" [ngClass]="{'ng-dirty ng-invalid':errors?.descripcion}"  (ngModelChange)="Validar(descripcion)"  
+                placeholder="Ej: Criterios de Aceptacion de Materiales" class="form-control"  >         
+                </div>
+              </div> 
+        
+          <!--   {{gerenparametroid}}-->
+            
+             <div class="col-sm-8">              
+                      <div class="input-group" style="width: 100%;">                
+                          <label class="control-label" for="price">Gerencia(*):</label>
+                          <input type="text" id="gerencia" name="gerencia" placeholder="Ej: \Gerencia General" class="form-control" disabled="disabled" [(ngModel)]="gerenparametrodesc" #gerencia="ngModel" [ngClass]="{'ng-dirty ng-invalid':errors?.gerencia}"  >
+
+                          <input type="hidden" id="gerenparametroid" name="gerenparametroid"  class="form-control" [(ngModel)]="item.gerencia" >
+                          <span  class="input-group-btn" dropdown >
+                              <button *ngIf="activar" style= "top: 12px"  type="button" class="btn btn-info" (click)="OnBuscarGerencia(gerencia)" ><i class="fa fa-search"></i></button>
+                          </span>
+                      </div>        
+                  </div> 
+          </div>
+                <div class="row" >
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                          <label class="control-label" for="product_name">Tipo Documento(*):</label>
+                        <!--  <select name="status" id="status" class="form-control" [(ngModel)] = "item.tipoDocumento">
+                            <option *ngFor="let item of listaTipos" [value]="item.idconstante">{{ item.v_valcons }}</option>
+                        </select>-->                
+                        <input type="text" id="product_name" name="product_name" placeholder="Ej: Manuales" class="form-control" disabled="disabled" [(ngModel)]="tipodocumento">
+                        </div>
+                      </div>    
+                  <div class="col-sm-8">               
+                          <div class="input-group" style="width: 100%;">                
+                              <label class="control-label" for="price">Alcance SGI:</label>
+                              <input type="text" id="alcanceSGI" name="alcanceSGI" value="" placeholder="Ej: \ISO 9001" class="form-control" disabled="disabled" [(ngModel)]="sgiparametrodesc">
+                              <input type="hidden" id="sgiparametroid" name="sgiparametroid" class="form-control" [(ngModel)]="sgiparametroid" disabled="disabled">
+                              <span class="input-group-btn" dropdown>
+                                  <button *ngIf="activar" style="top:12px" type="button" class="btn btn-info" (click)="OnBuscarSGI()" ><i class="fa fa-search"></i></button>
+                              </span>
+                          </div>        
+                  </div> 
+              </div>
+                <div class="row" >
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                          <label class="control-label" for="codigo">Código:</label>
+                          <input type="text"    [disabled]="habilitacodigo"  maxlength="100"   id="codigo" name="codigo" #codigo="ngModel" [ngClass]="{'ng-dirty ng-invalid':errors?.codigo}" [(ngModel)]="item.codigo" 
+                         placement="top" placeholder="Ej: CTPSDA0001" class="form-control" >
+                        </div>
+                      </div>
+        
+                  <div class="col-sm-8">               
+                      <div class="input-group" style="width: 100%;">                
+                          <label class="control-label"  for="price">Proceso:</label>
+                          <input type="text" id="price" name="price" value="" placeholder="Ej: \Gestión Estratégica"  class="form-control" disabled="disabled" [(ngModel)]="procesoparametrodesc">                  
+                          <input type="hidden" id="procesoparametroid" name="procesoparametroid" class="form-control" [(ngModel)]="procesoparametroid" disabled="disabled">                  
+                          <span *ngIf="activar" class="input-group-btn" dropdown>
+                              <button  style= "top: 12px"  type="button" class="btn btn-info" (click)="OnBuscarProceso()" ><i class="fa fa-search"></i></button>
+                          </span>
+                      </div>        
+                  </div> 
+                </div>    
+              <div class="row">
+                <div class="col-sm-4 form-group">
+                    <!--<label class="control-label" for="product_name">Nombre de Archivo:</label>
+                    <input type="text" id="product_name" name="product_name" value="" placeholder="Ej: GPOPR002_123.doc" [(ngModel)]="item.nombreArchivo" class="form-control" disabled="disabled">-->
+                    <label class="control-label" for="product_name">Estado:</label>
+                    <input type="text" id="product_name" name="product_name" placeholder="Ej: En Emisión" [(ngModel)]="item.estado.v_descons" class="form-control" disabled="disabled">
+                </div>
+                <div class="col-sm-2 form-group">
+                    <!--<div class="form-group">-->
+                    <label class="control-label" for="product_name">Revisión Actual:</label>
+                    <!--<input type="text" id="product_name" name="product_name" placeholder="Ej: 0" [(ngModel)]="item.revision.numero" class="form-control"  disabled="disabled">-->
+                    <input type="text" id="product_name" name="product_name" placeholder="Ej: 1" [(ngModel)]="ultimoNumero" value="{{item.revision.numero}}" class="form-control"  disabled="disabled">
+                    <!--</div>-->
+                </div>                
+                <div class="col-sm-2 form-group" style="padding-left: 0px;">              
+                    <!--<div class="form-group">-->
+                     <label class="control-label" for="product_name" style="padding-left: 0px;padding-right: 0px;">Fecha de Aprobación:</label>
+                    <!--<input type="text" id="product_name" name="product_name" placeholder="Ej: 01/01/2019" date='dd/MM/yyyy' [(ngModel)]= "captura"   value="{{item.revision.fecha| date:'dd/MM/yyyy'}}" class="form-control" disabled="disabled" >-->
+                    <!--<input type="text" id="product_name" name="product_name" placeholder="Ej: 01/01/2019" date='dd/MM/yyyy' [(ngModel)]="captura" value="{{item.revision.fecha| date:'dd/MM/yyyy'}}"   class="form-control" disabled="disabled" >-->
+                    <input type="text" id="product_name" name="product_name" placeholder="Ej: 01/01/2019" date='dd/MM/yyyy' [(ngModel)]="captura"   class="form-control" disabled="disabled" >
+                    <!--</div>-->
+                </div>
+                <div class="col-sm-2 form-group">                     
+                    <label class="control-label" for="status">Revisión en Curso:</label>
+                    <input type="text"  [disabled]= "habilitareviCurso" id="revisionCurso" name="revisionCurso"  maxlength="4" placeholder="Ej: 01" [(ngModel)]="revisionCurso" class="form-control" (keypress)="permitirNumero($event)">
+                </div>
+                <div class="col-sm-2 form-group">          
+                  <label class="control-label" for="status">Documento Digital:</label><br>
+                  <input type="checkbox" name="chkArchivoDigital" style="height:13px;width:13px;" [checked]="todosCheck1" (change)="habilitadigital()" [disabled]="habilitacampo1">
+                </div>
+              </div>
+            <div class="row">
+            <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label" for="status">Revisión Obligatoria:</label>
+                        <input type="checkbox" name="all" [checked]="todosCheck" (change)="habiliarRevision()" style="margin-left: 25px;">
+                        <input type="text" id="periodo" name="periodo" placeholder="Ej: 2" class="form-control" (keypress)="permitirNumero($event)" [disabled]="habilitacampo"
+                        #periodo="ngModel" [(ngModel)]="item.periodo" [tooltip]="errors?.periodo" placement="top" 
+                        [ngClass]="{'ng-dirty ng-invalid':errors?.periodo}" (ngModelChange)="Validar(periodo)" ><!--robligatorio-->
+                    </div>
+                </div>
+             <!--
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="control-label" for="status">Retención de Revisiones Obsoletas(Años):</label>
+                    <input type="text" id="product_name" name="product_name" value="" placeholder="Ej: 09" class="form-control" (keypress)="permitirNumero($event)">
+                  </div>
+              </div>     
+            -->             <!-- *ngIf="activartap"-->
+        
+            <!--
+              <div class="col-sm-4" >              
+                <div class="input-group" >                
+                    <label class="control-label" for="price" >Cod. Anterior:</label>
+                    <input type="text" id="price" name="price" value="" placeholder="Ej: GPOPR002" class="form-control" [(ngModel)]="codigoAnterior" disabled="disabled">                  
+                 
+                 
+                </div>        
+              </div>-->
+              <!-- //JHERRERAP -->
+              <!--<div class="col-sm-4">
+                <div class="form-group">
+                    <label class="control-label" for="coordinador">Coordinador(*):</label>
+                    <input type="text" id="coordinador" name="coordinador" value="" placeholder="Ej: Juan Diaz Perez" class="form-control" [(ngModel)]="coordinador" disabled="disabled" [ngClass]="{'ng-dirty ng-invalid':validarDatoCoordinador}">
+                    <input type="hidden" id="idCoordinador" name="idCoordinador" class="form-control" [(ngModel)]="idCoordinador" disabled="disabled">
+                </div>
+              </div>-->
+              <!-- //JHERRERAP -->
+            </div>
+        </div>    
+        </div>    
+        

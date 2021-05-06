@@ -1,0 +1,171 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-12">
+                <h4>Inicio / Seguimiento / Fases de Auditoría Interna / <strong>Detalle de Fases de Auditoría Interna</strong>
+                </h4>
+        </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight div-principal">
+        <div class="row m-b-md div-botones-superiores">
+                <div class="col-lg-6">
+                        <a class="btn btn-default btn-colores m-r botones-superiores" (click)="OnRegresar()"><i class="fa fa-arrow-left"></i> Regresar</a>
+                </div>
+                <div class="col-lg-6"></div>
+        </div>
+        <div class="row">
+                <div class="col-lg-12">
+                        <div class="ibox-content div-secundario" style=" height: 481px;"
+                                [ngClass]="{'sk-loading': loading}">
+                                <div class="table-responsive" style="height: 344px;">
+                                        <table class="table table-bordered table-stripped table-hover issue-tracker">
+                                                <thead>
+                                                        <tr>
+                                                                <th class="text-center" data-col="area">Área</th>
+                                                                <th class="text-center" data-col="responsable">Responsable</th>
+                                                                <th class="text-center" data-col="norma">Norma</th>
+                                                                <th class="text-center" data-col="requisito">Requisito</th>
+                                                                <th class="text-center" data-col="revisor">Revisor</th>
+                                                                <th class="text-center" data-col="fase">Fase</th>
+                                                                <th class="text-center" data-col="estado">Estado</th>
+                                                        </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <tr>
+                                                                <td class="text-center" data-col="area">GERENTE GENERAL</td>
+                                                                <td class="text-center" data-col="responsable">JUAN VALDEZ MERCADO</td>
+                                                                <td class="text-center" data-col="norma">
+                                                                        <div>ISO 9001:2015</div>
+                                                                        <div>ISO 14001:2015</div>
+                                                                        <div>ISO 9001:2015</div>
+                                                                </td>
+                                                                <td class="text-center" data-col="requisito">4.1, 4.2, 4.4, 6.1, 6.2, 6.3, 7.1.3, 7.1.6, 7.3, 7.4,7.5, S.1,S.2, S.7, 9.1, 9.2, 9.3, 10.2, 10.3.</td>
+                                                                <td class="text-center" data-col="revisor">
+                                                                        <div>MARIA LOPEZ RIOS (AI)</div>
+                                                                        <div>JUAN MELENDEZ PRIETO (OBS)</div>  
+                                                                </td>
+                                                                <td class="text-center" data-col="fase">Lista de Verificación</td>
+                                                                <td class="text-center" data-col="estado">En Revisión</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                                <td class="text-center" data-col="area">Equipo Secretaría General</td>
+                                                                <td class="text-center" data-col="responsable">MARIA ORTEGA LINARES</td>
+                                                                <td class="text-center" data-col="norma">
+                                                                        <div>ISO 9001:2015</div>
+                                                                </td>
+                                                                <td class="text-center" data-col="requisito">4.1, 4.2, 4.4,7.5, S.1,S.2, S.7, 9.1, 9.2, 9.3, 10.2, 10.3.</td>
+                                                                <td class="text-center" data-col="revisor">
+                                                                        <div>ROXANA CABELLO MENDOZA (ALG)</div>
+                                                                </td>
+                                                                <td class="text-center" data-col="fase">Lista de Verificación</td>
+                                                                <td class="text-center" data-col="estado">En Aprobación</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                                <td class="text-center" data-col="area">GERENCIA DE DESARROLLO E INVESTIGACION</td>
+                                                                <td class="text-center" data-col="responsable">ENRIQUE DIAS LESCANO</td>
+                                                                <td class="text-center" data-col="norma">
+                                                                        <div>ISO 9001:2015</div>
+                                                                        <div>ISO 14001:2015</div>
+                                                                </td>
+                                                                <td class="text-center" data-col="requisito">4.1, 4.2, 4.4, 6.1</td>
+                                                                <td class="text-center" data-col="revisor">
+                                                                        <div>ROXANA CABELLO MENDOZA (ALG)</div>
+                                                                </td>
+                                                                <td class="text-center" data-col="fase">Lista de Verificación</td>
+                                                                <td class="text-center" data-col="estado">En Aprobación</td>
+                                                        </tr>
+                                                        <tr>
+                                                                <td class="text-center" data-col="area">Equipo Investigación, Innovación y Normalización</td>
+                                                                <td class="text-center" data-col="responsable">JUAN VALDEZ MERCADO</td>
+                                                                <td class="text-center" data-col="norma">
+                                                                        <div>ISO 9001:2015</div>
+                                                                        <div>ISO 9001:2015</div>
+                                                                </td>
+                                                                <td class="text-center" data-col="requisito">4.1, 4.2, 4.4, 7.4,7.5, S.1,S.2, S.7, 9.1, 9.2, 9.3, 10.2, 10.3.</td>
+                                                                <td class="text-center" data-col="revisor">
+                                                                        <div>MARIA LOPEZ RIOS (AI)</div>
+                                                                        <div>JUAN MELENDEZ PRIETO (OBS)</div>  
+                                                                </td>
+                                                                <td class="text-center" data-col="fase">Lista de Verificación</td>
+                                                                <td class="text-center" data-col="estado">En Revisión</td>
+                                                        </tr>
+                                                        <tr>
+                                                                <td class="text-center" data-col="area">Equipo Planeamiento Físico y Pre Inversión</td>
+                                                                <td class="text-center" data-col="responsable">JUAN VALDEZ MERCADO</td>
+                                                                <td class="text-center" data-col="norma">
+                                                                        <div>ISO 9001:2015</div>
+                                                                        <div>ISO 14001:2015</div>
+                                                                        <div>ISO 9001:2015</div>
+                                                                </td>
+                                                                <td class="text-center" data-col="requisito">4.1, 4.2, 4.4, 6.1, 6.2, 6.3, 7.1.3, 7.1.6, 7.3, 7.4,7.5, S.1,S.2, S.7, 9.1, 9.2, 9.3, 10.2, 10.3.</td>
+                                                                <td class="text-center" data-col="revisor">
+                                                                        <div>MARIA LOPEZ RIOS (AI)</div>
+                                                                        <div>JUAN MELENDEZ PRIETO (OBS)</div>  
+                                                                </td>
+                                                                <td class="text-center" data-col="fase">Lista de Verificación</td>
+                                                                <td class="text-center" data-col="estado">En Revisión</td>
+                                                        </tr>
+                                                        <tr>
+                                                                <td class="text-center" data-col="area">Equipo Planeamiento Operativo y Financiero</td>
+                                                                <td class="text-center" data-col="responsable">JUAN VALDEZ MERCADO</td>
+                                                                <td class="text-center" data-col="norma">
+                                                                        <div>ISO 9001:2015</div>
+                                                                        <div>ISO 14001:2015</div>
+                                                                        <div>ISO 9001:2015</div>
+                                                                </td>
+                                                                <td class="text-center" data-col="requisito">4.1, 4.2, 4.4, 6.1, 6.2, 6.3, 7.1.3, 7.1.6, 7.3, 7.4,7.5, S.1,S.2, S.7, 9.1, 9.2, 9.3, 10.2, 10.3.</td>
+                                                                <td class="text-center" data-col="revisor">
+                                                                        <div>MARIA LOPEZ RIOS (AI)</div>
+                                                                        <div>JUAN MELENDEZ PRIETO (OBS)</div>  
+                                                                </td>
+                                                                <td class="text-center" data-col="fase">Lista de Verificación</td>
+                                                                <td class="text-center" data-col="estado">En Revisión</td>
+                                                        </tr>
+                                                        <tr>
+                                                                <td class="text-center" data-col="area">Equipo Tecnologías de la Información y Comunicaciones</td>
+                                                                <td class="text-center" data-col="responsable">JUAN VALDEZ MERCADO</td>
+                                                                <td class="text-center" data-col="norma">
+                                                                        <div>ISO 9001:2015</div>
+                                                                        <div>ISO 14001:2015</div>
+                                                                        <div>ISO 9001:2015</div>
+                                                                </td>
+                                                                <td class="text-center" data-col="requisito">4.1, 4.2, 4.4, 6.1, 6.2, 6.3, 7.1.3, 7.1.6, 7.3, 7.4,7.5, S.1,S.2, S.7, 9.1, 9.2, 9.3, 10.2, 10.3.</td>
+                                                                <td class="text-center" data-col="revisor">
+                                                                        <div>MARIA LOPEZ RIOS (AI)</div>
+                                                                        <div>JUAN MELENDEZ PRIETO (OBS)</div>  
+                                                                </td>
+                                                                <td class="text-center" data-col="fase">Lista de Verificación</td>
+                                                                <td class="text-center" data-col="estado">En Revisión</td>
+                                                        </tr>
+                                                </tbody>
+                                        </table>
+                                </div>
+                                <div class="row" style="margin-top: 10px;">
+                                        <div class="col-md-4 col-sm-12 col-xs-12">
+                                                <pagination [(ngModel)]="paginacion.pagina"
+                                                        
+                                                        [totalItems]="paginacion.totalRegistros"
+                                                        [itemsPerPage]="paginacion.registros" [boundaryLinks]="true"
+                                                        [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;"
+                                                        firstText="&laquo;" lastText="&raquo;"></pagination>
+                                        </div>
+                                        <div class="col-md-4 col-sm-6 col-xs-12">
+                                                <div class="text-center m-a-sm">
+                                                        <pagination-info [totalItems]="paginacion.totalRegistros"
+                                                                [itemsPerPage]="paginacion.registros"
+                                                                [page]="paginacion.pagina"></pagination-info>
+                                                </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-6 col-xs-12">
+                                                <div class="text-right m-a-sm">
+                                                        <pagination-set class="texto-pie-pag"
+                                                                >
+                                                        </pagination-set>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</div>

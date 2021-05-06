@@ -1,0 +1,190 @@
+<div class="col-lg-11">
+<div class="wrapper wrapper-content animated fadeInRight" style="padding-bottom: 0px;">  
+
+<!--<div class="row">
+        <div class="col-lg-4" *ngIf="permisos?.btnBuscarDoc">
+            <div class="form-group">
+                <label>Buscar Código Documento:</label>
+                <div class="input-group">    
+                    <input type="text" placeholder="Buscar" class="form-control" disabled="disabled">
+                    <span class="input-group-btn" dropdown>
+                        <button type="button" class="btn btn-info" (click)="onBuscarDocumento()">
+                            <i class="fa fa-search"></i>
+                        </button>
+    
+                    </span>
+                </div>
+            </div> 
+        </div>
+</div>-->
+  <div class="row">       
+    <div class="col-sm-4">
+    <div class="form-group">
+        <label class="control-label" for="product_name">Titulo(*):</label>
+        <input type="text" id="product_name" name="descripcion" #descripcion="ngModel" 
+        [(ngModel)]="item.descripcion" [ngClass]="{'ng-dirty ng-invalid':errors?.descripcion}" 
+        (ngModelChange)="Validar(descripcion)"  
+        [tooltip]="errors?.descripcion" placement="bottom" 
+        placeholder="Ej: Criterios de Aceptacion de Materiales" class="form-control" 
+        [disabled]="!permisos?.clAcciones && !permisos?.txtTitulo">
+    </div>
+    </div> 
+
+    <div class="col-sm-8">              
+    <div class="input-group" style="width: 100%;">                
+        <label class="control-label" for="price">Gerencia(*):</label>
+        <input type="text" id="gerencia" name="gerencia" placeholder="Ej: \Gerencia General" class="form-control" disabled="disabled" [(ngModel)]="gerenparametrodesc">
+        <input type="hidden" id="gerenparametroid" name="gerenparametroid"  class="form-control" [(ngModel)]="gerenparametroid" disabled="disabled">
+        <span class="input-group-btn" dropdown>
+            <button *ngIf="activar && ocultarBusqGerencia" style= "top: 12px"  type="button" class="btn btn-info" (click)="OnBuscarGerencia()" ><i class="fa fa-search"></i></button>
+        </span>
+    </div>
+    </div>
+  </div>
+    <div class="row" >
+        <div class="col-sm-4">
+        <div class="form-group">
+            <label class="control-label" for="product_name">Tipo Documento(*):</label>
+        <!--  <select name="status" id="status" class="form-control" [(ngModel)] = "item.tipoDocumento">
+            <option *ngFor="let item of listaTipos" [value]="item.idconstante">{{ item.v_valcons }}</option>
+        </select>-->
+            <input type="text" id="product_name" name="product_name" placeholder="Ej: Manuales" class="form-control" disabled="disabled" [(ngModel)]="tipodocumento">
+        </div>
+        </div>
+        <div class="col-sm-8">               
+        <div class="input-group" style="width: 100%;">
+            <label class="control-label" for="price">Alcance SGI:</label>
+            <input type="text" id="alcanceSGI" name="alcanceSGI" value=""   placeholder="Ej: \ISO 9001" class="form-control" disabled="disabled" [(ngModel)]="sgiparametrodesc">
+            <input type="hidden" id="sgiparametroid" name="sgiparametroid" class="form-control" [(ngModel)]="sgiparametroid" disabled="disabled">
+            <span class="input-group-btn" dropdown>
+                <button *ngIf="activar" style="top:12px" type="button" class="btn btn-info" (click)="OnBuscarSGI()"><i class="fa fa-search"></i></button>
+            </span>
+        </div>
+        </div> 
+    </div>
+    <div class="row" >
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label class="control-label" for="codigo">Código:</label>
+                <input type="text" disabled="disabled" id="codigo" name="codigo" #codigo="ngModel" [(ngModel)]="item.codigo" 
+            [tooltip]="errors?.codigo" placement="top" placeholder="Ej: ABC01" class="form-control" >
+            </div>
+            </div>
+        <div class="col-sm-8">               
+            <div class="input-group" style="width: 100%;">                
+                <label class="control-label"  for="price">Proceso:</label>
+                <input type="text" id="price" name="price" value="" placeholder="Ej: \Gestión Estratégica"  class="form-control" disabled="disabled" [(ngModel)]="procesoparametrodesc">                  
+                <input type="hidden" id="procesoparametroid" name="procesoparametroid" class="form-control" [(ngModel)]="procesoparametroid" disabled="disabled">                  
+                <span *ngIf="activar" class="input-group-btn" dropdown>
+                    <button style="top:12px" type="button" class="btn btn-info" (click)="OnBuscarProceso()"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </div> 
+    </div>
+      <div class="row">
+        <div class="col-sm-4 form-group">
+            <!--<label class="control-label" for="product_name">Nombre de Archivo:</label>
+            <input type="text" id="product_name" name="product_name" value="" placeholder="Ej: GPOPR002_123.doc" [(ngModel)]="item.nombreArchivo" class="form-control" disabled="disabled">-->
+            <label class="control-label" for="product_name">Estado:</label>
+            <input type="text" id="product_name" name="product_name" placeholder="Ej: En Emisión" [(ngModel)]="item.estado.v_descons" class="form-control" disabled="disabled">
+        </div>
+        <div class="col-sm-2 form-group">
+            <!--<div class="form-group">-->
+            <label class="control-label" for="product_name">Revisión Actual:</label>
+            <input type="text" id="product_name" name="product_name" placeholder="Ej: 0" [(ngModel)]="item.revision.numeroAnterior" class="form-control" disabled="disabled">
+            <!--</div>-->
+        </div>
+        <div class="col-sm-2 form-group">              
+            <!--<div class="form-group">-->
+            <label class="control-label" for="product_name">Fecha de Revisión:</label>
+            <input type="text" id="product_name" name="product_name" placeholder="Ej: 01/01/2019" date='dd/MM/yyyy' value="{{item.revision.fechaAprobacionAnterior| date:'dd/MM/yyyy'}}" class="form-control" disabled="disabled">
+            <!--</div>-->
+        </div>
+        <div class="col-sm-2 form-group">                          
+            <label class="control-label" for="status">Revisión en Curso:</label>
+            <input type="text" id="product_name" name="product_name" placeholder="Ej: 1" [(ngModel)]="revisionCurso" class="form-control" disabled="disabled">
+        </div>      
+<!--segurity-->
+<ng-template [ngIf]="session.Ruta.RegistroBusquedaDocumento == rutaActual" [ngIfElse]="otrasPaginas">
+    <ng-template                   
+    [buttonConsultaIf]="[session.ACL.ID_DOC_ConsultaGeneral_Detalle_VISUALIZAR,session.ACL.ID_DETALLE_VISUALIZAR,
+    session.ACL.ID_DOC_ConsultaJerarquia_Detalle_VISUALIZAR]"
+    [rutaAnterior]="rutaAnterior" [rutaAnteriorAnterior]="rutaAnteriorAnterior">                                
+    <div class="col-sm-2 form-group">          
+        <label class="control-label" for="status">Indicador de Documento Digital:</label><br>
+        <input type="checkbox" name="chkArchivoDigital" style="height:13px;width:13px;" [checked]="checkDigital" 
+        (change)="habilitarDigital()"  [disabled]="!permisos?.clAcciones" >
+      </div>                             
+    </ng-template>
+</ng-template>
+<ng-template #otrasPaginas>
+    <ng-template                   
+    [authButtonComplexIf]="[session.ACL.ID_TAR_AprobacionSolicitudRevision_Detalle_VISUALIZAR, session.ACL.ID_TAR_Elaboracion_Detalle_VISUALIZAR,
+    session.ACL.ID_TAR_Consenso_Detalle_VISUALIZAR, session.ACL.ID_TAR_Aprobacion_Detalle_VISUALIZAR, session.ACL.ID_TAR_Homologacion_Detalle_VISUALIZAR,
+    session.ACL.ID_SOL_SolicitudRevision_Detalle_VISUALIZAR]"
+    [ruta]="rutaActual" valorBoton="VISUALIZAR">                                
+    <div class="col-sm-2 form-group">          
+        <label class="control-label" for="status">Indicador de Documento Digital:</label><br>
+        <input type="checkbox" name="chkArchivoDigital" style="height:13px;width:13px;" [checked]="checkDigital" 
+        (change)="habilitarDigital()"  [disabled]="!permisos?.clAcciones" >
+      </div>                             
+    </ng-template>
+</ng-template>
+<!--<ng-template #otrasPaginas >
+        <ng-template 
+        [authButtonComplexIf]="[session.ACL.ID_DOC_ConsultaGeneral_Detalle_MODIFICAR ]"
+        [ruta]="rutaActual" valorComponente="registrodocumento" valorBoton="MODIFICAR">
+        <button  class="btn btn-primary" [swal]="{ title:'¿Está seguro que desea Guardar el registro?',type:'question',showCancelButton:true,confirmButtonText:'Sí, Grabar',cancelButtonText:'No gracias'}"
+        (confirm)="OnGuardar()" style="margin-right:5px;">
+        <i class="fa fa-save"></i> Guardasr</button>                                    
+        </ng-template>
+</ng-template>-->
+    <!--  segurity-->
+      </div>
+    <div class="row">
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label class="control-label" for="status">Revisión Obligatoria:</label>
+            <input type="checkbox" name="all" [checked]="todosCheck" (change)="habiliarRevision()" 
+                style="margin-left: 25px;" [disabled]="!permisos?.clAcciones">
+            <input type="text" id="periodo" name="periodo" placeholder="Ej: 2" class="form-control"
+            (keypress)="permitirNumero($event)" [disabled]="habilitacampo || !permisos?.clAcciones"
+            #periodo="ngModel" [(ngModel)]="item.periodo" [tooltip]="errors?.periodo" placement="top" 
+            [ngClass]="{'ng-dirty ng-invalid':errors?.periodo}" (ngModelChange)="Validar(periodo)"><!--robligatorio-->
+        </div>
+    </div>
+     <!--
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label class="control-label" for="status">Retención de Revisiones Obsoletas(Años):</label>
+            <input type="text" id="product_name" name="product_name" value="" placeholder="Ej: 09" class="form-control" (keypress)="permitirNumero($event)">
+          </div>
+      </div>     
+    -->             <!-- *ngIf="activartap"-->
+      <div class="col-sm-4" >              
+        <div class="input-group" >                
+            <label class="control-label" for="price" >Código Anterior:</label>
+            <input type="text" id="price" name="price" value="" placeholder="Ej: GPOPR002" class="form-control" [(ngModel)]="codigoAnterior" disabled="disabled">                  
+         
+            <!--<span *ngIf="activar" class="input-group-btn" dropdown>
+                <button style= "top: 12px"  type="button" class="btn btn-info" (click)="OnBuscar()" ><i class="fa fa-search"></i></button>
+            </span>-->
+        </div>        
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+            <label class="control-label" for="nombreCompleto">Coordinador:</label>
+            <input type="text" id="nombreCompleto" name="nombreCompleto" placeholder="Ej: Juan Diaz Perez" class="form-control"
+                #nombreCompleto="ngModel" [(ngModel)]="item.coordinador.nombreCompleto"
+                [ngClass]="{'ng-dirty ng-invalid':errors?.nombreCompleto}" disabled="disabled"
+                [tooltip]="errors?.nombreCompleto" (ngModelChange)="validarObjeto(item.coordinador,nombreCompleto)">
+
+                
+          <!--  <input type="hidden" id="idCoordinador" name="idCoordinador" class="form-control" 
+                #idCoordinador="ngModel"  disabled="disabled">-->
+        </div>
+      </div>
+      
+    </div>
+</div>    
+</div>    

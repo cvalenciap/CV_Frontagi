@@ -1,0 +1,57 @@
+<div class="modal-header modal-cabecera-color">
+  <h4 class="modal-title pull-left">{{titulo}}</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true" class="cerrar">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class = "container-fluid">
+    <form class = "form-horizontal">
+      <div class = "form-group">
+        <label class="col-sm-6 control-label text-right">Código del Documento: </label>
+        <div class="col-sm-6">
+          <input  type="text" placeholder="Ingrese código de documento" class="form-control" name="codigo-documento" (keyup) = "validarInterruptorBotones()"  [(ngModel)] = "codigoDocumento">
+        </div>
+      </div>
+      <div class = "form-group">
+        <label class = "col-md-6 text-right control-label">Número de Solicitud:</label>
+        <div class = "col-md-6">
+
+          <input type = "text" placeholder = "Ingrese código de solicitud" class = "form-control" name = "codigo-solicitud" (keyup) = "validarInterruptorBotones()" [(ngModel)] = "codigoSolicitud" (keypress) = "ingresoTexto($event)"/>
+        </div>
+      </div>
+      <div class = "form-group">
+        <label class = "col-md-6 text-right control-label">Título del Documento:</label>
+        <div class = "col-md-6">
+
+          <input type = "text" placeholder = "Ingrese código de solicitud" class = "form-control" name = "codigo-solicitud" (keyup) = "validarInterruptorBotones()" [(ngModel)] = "tituloDocumento" />
+        </div>
+      </div>
+      <div *ngIf="indicador != 1" class = "form-group">
+        <label class = "col-md-6 text-right control-label">Nombres Solicitante:</label>
+        <div class = "col-md-6">
+          <input type = "text" placeholder = "Ingrese nombres" class = "form-control" name = "nombres" (keyup) = "validarInterruptorBotones()" [(ngModel)] = "nombres" />
+        </div>
+      </div>
+      <div *ngIf="indicador != 1" class = "form-group">
+        <label class = "col-md-6 text-right control-label">Apellido Paterno Solicitante:</label>
+        <div class = "col-md-6">
+          <input type = "text" placeholder = "Ingrese apellido paterno" class = "form-control" name = "apellido-paterno" (keyup) = "validarInterruptorBotones()" [(ngModel)] = "apellidoPaterno" />
+        </div>
+      </div>
+      <div *ngIf="indicador != 1" class = "form-group">
+        <label class = "col-md-6 text-right control-label">Apellido Materno Solicitante:</label>
+        <div class = "col-md-6">
+          <input type = "text" placeholder = "Ingrese apellido materno" class = "form-control" name = "apellido-materno" (keyup) = "validarInterruptorBotones()" [(ngModel)] = "apellidoMaterno" />
+        </div>
+      </div>
+      <div class = "form-group">
+        <div class="col-lg-12 text-center">
+          <button [disabled] = "interruptorBotones" (click) = "enviarParametros()" class = "btn btn-primary m-r"><i class = "fa fa-search-plus"></i> Buscar</button>
+          <button [disabled] = "interruptorBotones" (click) = "limpiar()" class = "btn btn-default m-r"><i class = "fa fa-eraser"></i> Limpiar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+

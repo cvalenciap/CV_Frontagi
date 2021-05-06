@@ -1,0 +1,66 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <h4>Inicio / Auditoría / Preguntas para Evaluación del Auditor / <strong>Detalle de Preguntas para Evaluación del Auditor</strong></h4>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight div-principal">
+
+    <div class="row m-b-md div-botones-superiores">
+        <div class="col-lg-6">
+            <a class="btn btn-primary botones-superiores" [swal]="{title:'¿Está seguro que desea guardar la pregunta?',type:'question',showCancelButton:true,confirmButtonText:'Sí, grabar',cancelButtonText:'No gracias'}" (confirm)="OnGuardar()" >   
+            <i class="fa fa-floppy-o"></i> Guardar</a>
+            <a class="btn btn-default btn-colores m-r botones-superiores" (click)="OnRegresar()"><i class="fa fa-arrow-left"></i> Regresar</a>
+        </div>
+        <div class="col-lg-6"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content div-secundario" >
+                <br />
+                <div class="col-lg-12">
+                    <div class="row">
+                        <label class="col-sm-6 control-label titulos-texto">Descripción de Pregunta:</label>
+                        <label class="col-sm-3 control-label titulos-texto">Seleccione Rol:</label>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6"><textarea class="form-control cajas-texto" rows="7" maxlength="500" style="height: 141px;" name="cargo" [(ngModel)]="pregunta"
+                        [ngClass]="{'ng-dirty ng-invalid':prioridadValidator}"></textarea></div>
+                        <div class="col-sm-3">
+                            <div class="ibox-content">
+                                <div class="form-check">
+                                    <label class="form-check-label titulos-texto" for="radio1">
+                                        <input type="checkbox" class="form-check-input" id="radio1" name="optradio1"
+                                            [(ngModel)]="banderaLider"  [tooltip]="errors?.banderaLider"  [ngClass]="{'ng-dirty ng-invalid':prioridadValidator}">
+                                        Auditor Líder
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label titulos-texto" for="radio2">
+                                        <input type="checkbox" class="form-check-input" id="radio2" name="optradio2"
+                                            [(ngModel)]="banderaLiderInterno" [tooltip]="errors?.banderaLiderInterno"   [ngClass]="{'ng-dirty ng-invalid':prioridadValidator}" >
+                                        Auditor Líder de Grupo
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label titulos-texto" for="radio3">
+                                        <input type="checkbox" class="form-check-input" id="radio3" name="optradio3"
+                                            [(ngModel)]="banderaInterno" [tooltip]="errors?.banderaInterno"    [ngClass]="{'ng-dirty ng-invalid':prioridadValidator}">
+                                        Auditor Interno
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label titulos-texto" for="radio4">
+                                        <input type="checkbox" class="form-check-input" id="radio4" name="optradio4"
+                                            [(ngModel)]="banderaObservador"  [tooltip]="errors?.banderaObservador"  [ngClass]="{'ng-dirty ng-invalid':prioridadValidator}" >
+                                        Observador
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

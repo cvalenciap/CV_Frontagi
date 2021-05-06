@@ -1,0 +1,81 @@
+
+<div class="modal-header modal-cabecera-color">
+    <h4 class="modal-title pull-left">Búsqueda Avanzada</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="cerrar">&times;</span>
+    </button>
+</div>
+  
+
+<div class="modal-body">
+        <div class="row">
+            <div class="col-lg-12">
+                    <label class="col-sm-2 control-label">Equipo:</label>
+                    <div class="col-sm-4">
+                        <select  class="form-control" name="valorEquipo" [(ngModel)] = "busqueda.equipo">
+                            <option value="" selected>Seleccionar</option>
+                            <option *ngFor="let item of listaEquipos" [value]="item.valorEquipo">{{ item.descripcionEquipo }}</option>
+                        </select>
+                    </div>
+                <label class="col-sm-2 control-label">Apellido Paterno:</label>
+                <div class="col-sm-4">
+                        <input  type="text" placeholder="Apellido Paterno" class="form-control" name="apellidoPaterno" [(ngModel)] = "busqueda.apellidoPat">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    <label class="col-sm-2 control-label">Apellido Materno:</label>
+                    <div class="col-sm-4">
+                        <input  type="text" placeholder="Apellido Materno" class="form-control" name="apellidoMaterno" [(ngModel)] = "busqueda.apellidoMat">
+                    </div>
+                    <label class="col-sm-2 control-label">Nombre:</label>
+                    <div class="col-sm-4">
+                            <input  type="text" placeholder="Nombre" class="form-control" name="nombre" [(ngModel)] = "busqueda.nombre">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label class="col-sm-2 control-label">Numero Auditoría:</label>
+                        <div class="col-sm-4">
+                            <input  type="text" placeholder="Numero Auditoría" class="form-control" name="numeroAuditoria" [(ngModel)] = "busqueda.numeroAuditoria">
+                        </div>
+                        <label class="col-sm-2 control-label">Numero LV:</label>
+                        <div class="col-sm-4">
+                                <input  type="text" placeholder="Numero LV" class="form-control" name="numeroLV" [(ngModel)] = "busqueda.numeroLV">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            
+    <div class="modal-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    <label class="col-sm-2 control-label">Número de Informe Auditoría:</label>
+                    <div class="col-sm-4">
+                        <input  type="text" placeholder="Numero de Informe Auditoría" class="form-control" name="numeroInformeAuditoria" [(ngModel)] = "busqueda.numeroInformeAuditoria">
+                    </div>
+                    <label class="col-sm-2 control-label"></label>
+                    <div class="col-sm-4">
+                          <!--  <input  type="text" placeholder="Nombre" class="form-control" name="nombre" [(ngModel)] = "busqueda.nombre">-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="buscar()" >Buscar</button>
+    <button type="button" class="btn btn-default" (click)="cancelar()">Cancelar</button>
+</div>

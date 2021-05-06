@@ -1,0 +1,23 @@
+.table {
+  tr {
+    td[data-col='codigo'] {
+      width: 100px
+    }
+    td[data-col='Nro de Ficha'] {
+      width: 200px;
+    }
+    td[data-col='Nombre y Apellido'] {
+      width: 300px;
+    }
+    td[data-col='Tipo de Documento'] {
+      width: 20px;
+    }
+    td[data-col='Número de Documento'] {
+      width: 20px;
+    }
+    td[data-col='Disponible '] {
+      width: 20px;
+    }
+
+  }
+}

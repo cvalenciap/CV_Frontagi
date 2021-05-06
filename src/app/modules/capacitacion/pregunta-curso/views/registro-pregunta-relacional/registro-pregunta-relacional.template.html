@@ -1,0 +1,107 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>Preguntas Relacional</h2>
+            <ol class="breadcrumb">
+                <li> 
+                    <a routerLink="starterview">Inicio</a>
+                </li>
+                <li>
+                    <a>Bandeja Preguntas por Curso</a>
+                </li>
+                <!-- <li>
+                    <a>Registro Nuevas Preguntas Alternativas</a>
+                </li> -->
+                <li class="active">
+                    <strong>Nuevas Preguntas Relacional</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+    
+        <div class="row m-b-md">
+            <div class="col-lg-12">
+                <a class="btn btn-success m-r" ><i class="fa fa-check"></i> Guardar</a>
+    
+                <a class="btn btn-default m-r" (click)="OnRegresar()"><i class="fa fa-arrow-left"></i> Regresar</a>
+            </div>
+        </div>
+    </div>  
+    <form class="form-horizontal ibox-content">  
+        <div class="row">                        
+            <div class="col-lg-12">
+                <div class="row form-group">                        
+                    <label class="col-sm-2 control-label">Código de Curso :</label>
+                        <div class="col-sm-4"><input type="text" class="form-control" name="numFicha" value="CU0001"></div>
+                    </div>
+                    <div class="row form-group">                                                        
+                        <label class="col-sm-2 control-label">Curso :</label>
+                    <div class="col-sm-4"><input type="text" class="form-control" name="cargo" value="Comunicaciones"></div>
+                </div>
+                <div class="row form-group">                        
+                    <label class="col-sm-2 control-label">Código Pregunta :</label>
+                    <div class="col-sm-4"><input type="text" class="form-control" name="numFicha" value="P001"></div>
+                </div>
+                <div class="row form-group">                                                        
+                    <label class="col-sm-2 control-label">Pregunta :</label>
+                    <div class="col-sm-4"><input type="text" class="form-control" name="cargo" value="Selecciones las preguntas y respuestas."></div>
+                </div>
+
+                
+                <div class="row form-group">                        
+                    <div class="col-sm-2">
+                        <div class="row">
+                        </div>
+                    </div>                                                       
+                     
+                    <div class="col-sm-4">
+                        <div class="row ">                                               
+                            <div class="col-sm-4 center">
+                               <button type="button" class="btn btn-primary" (click)="OnAgregar()"><i class="fa fa-plus"> Añadir</i></button>
+                            </div>
+                            <div class="col-sm-4 center">
+                               <button type="button" class="btn btn-warning" (click)="OnModificar()"><i class="fa fa-pencil-square-o"> Modificar</i></button>
+                            </div>
+                            <div class="col-sm-4 center">
+                               <button type="button" class="btn btn-danger" ><i class="fa fa-minus"> Eliminar</i></button>
+                            </div>                           
+                        </div>
+                    </div>
+                </div>        
+                
+                <div class="row form-group center">                                                        
+                    <label class="col-sm-2 control-label center">Lista de Opciones :</label>
+                    <div class="col-sm-4">
+                        <table class="table table-bordered table-stripped table-hover issue-tracker">
+                            <thead>
+                                <tr>
+                                <th class="text-center">N° </th>
+                                <th class="text-center">Opciones</th>
+                                <th class="text-center">Respuesta</th>
+                                <th class="text-center">Disponible</th>                                        
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                                 <!-- *ngFor="let item of items; let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow"> -->
+                                <td class="text-center" data-col="Cód. Curso">01</td>
+                                <td class="text-center" data-col="Nombre Curso">Color azul.</td>                                            
+                                <td class="text-center" data-col="Cód. Pregunta">SI</td>                                
+                                <td class="text-center" data-col="Pregunta">SI</td>                                            
+                                </tr> 
+                            </tbody>
+                        </table>
+                    </div>    
+                </div> 
+                <div class="row form-group">                                                        
+                    <label class="col-sm-2 control-label">Puntaje :</label>
+                    <div class="col-sm-4">
+                        <div class="col-sm-3"><input type="text" name="cargo" value="1"></div>
+                        <div class="col-sm-9"><input type="text" name="cargo" disabled="true" value="Punto(s)."></div>
+                    </div>   
+                </div>
+            </div>    
+        </div>    
+    </form>    

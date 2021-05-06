@@ -1,0 +1,25 @@
+{   "listaIncidencias":[
+    {
+        "id": 0,
+        "nombre": "Laboral",
+        "children": [
+          { 
+              "id": 1, 
+            "nombre": "1 Horario"
+           
+          },
+          { 
+            "id": 2, 
+          "nombre": "2. Indumentaria"
+         
+        },
+        { 
+            "id": 3, 
+          "nombre": "3. Cumplimiento"
+         
+        }
+        
+        ]
+    }
+    ]
+}

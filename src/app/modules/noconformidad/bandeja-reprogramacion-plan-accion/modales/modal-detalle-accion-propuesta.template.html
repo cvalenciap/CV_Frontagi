@@ -1,0 +1,122 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Detalle de Plan de Acción</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-lg-12 m-r">
+            <a class="btn btn-success m-r" *ngIf="!ocultarElemento" (click)="OnAprobar()"><i class="fa fa-check"></i> Aprobar</a>
+            <button class="btn btn-danger m-r" *ngIf="!ocultarElemento" (click)="OnRechazar()"><i class="fa fa-trash"></i> Rechazar</button>
+            <a class="btn btn-primary m-r"  *ngIf="ocultarElemento" (click)="OnSolicitarReprogramacion()"><i class="fa fa-exchange"></i> Solicitar Reprogramación</a>
+            <a class="btn btn-default m-r" (click)="OnCancelar()"><i class="fa fa-arrow-left"></i> Cancelar</a>
+        </div>
+    </div>
+    <br/>
+    <div class="panel panel-default">
+        <div class="panel-heading"><strong>Detalle Acción Propuesta</strong></div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    <label class="col-sm-2 control-label">Acción Propuesta:</label>
+                    <div class="col-sm-10">
+                        <textarea name="descripcionAccionPropuesta" class="form-control"  disabled [(ngModel)]="reprogramacion.descripcionAccionPropuesta" rows="5"></textarea>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-lg-12">
+                    <label class="col-sm-2 control-label">Responsable:</label>
+                    <div class="col-sm-4">
+                        <input  type="text" class="form-control" name="descripcionResponsable" disabled [(ngModel)]="reprogramacion.descripcionResponsable" >
+                    </div>
+                    <label class="col-sm-2 control-label">Fecha de Cumplimiento:</label>
+                    <div class="col-sm-4">
+                        <div class="input-group date">
+                            <input bsDatepicker #dp1="bsDatepicker" type="text" class="form-control" disabled [(ngModel)]="reprogramacion.fechaCumplimiento" name="fechaCumplimiento" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue'}">
+                            <span class="input-group-addon"><i class="fa fa-calendar" (click)="dp1.toggle()" [attr.aria-expanded]="dp1.isOpen" ></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading"><strong>Solicitud de Reprogramación</strong></div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    <label class="col-sm-2 control-label">Fecha de Reprogramación:</label>
+                    <div class="col-sm-4">
+                        <div class="input-group date">
+                            <input bsDatepicker #dp2="bsDatepicker" type="text" placeholder="Ejm.: 30/01/2019" class="form-control" [disabled]="deshabilitarCaja" [minDate]="fechaMin" [maxDate]="fechaMax" [(ngModel)]="reprogramacion.fechaEjecucion" name="fechaEjecucion" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue'}">
+                            <span class="input-group-addon"><i class="fa fa-calendar" (click)="dp2.toggle()" [attr.aria-expanded]="dp2.isOpen" ></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-lg-12">
+                    <label class="col-sm-2 control-label">Justificación de Reprogramación:</label>
+                    <div class="col-sm-10">
+                        <textarea name="descripcionAccionEjecutada" class="form-control" placeholder="Ejm.: Se solicita la reprogramación por el motivo..." [disabled]="deshabilitarCaja" [(ngModel)]="reprogramacion.descripcionAccionEjecutada" rows="5"></textarea>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-lg-12">
+                    <label class="col-sm-2 control-label">Archivos Adjuntos:</label>
+                    <div class="col-sm-10">
+                        <div class="input-group col-sm-8">
+                            <label class="input-group-btn">
+                                <span class="btn btn-primary margen">
+                                    Adjuntar <input #archivoAdjunto class="ocultar" type="file" id="pdfFile" name="pdfFile" [disabled]="deshabilitarCaja" (change)="adjuntarArchivo($event)">
+                                </span>
+                            </label>
+                            <input type="text" class="form-control margen" id="pdf-name" placeholder="Ingresar archivo" [(ngModel)]="nombreArchivoAdjunto" readonly>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="table-responsive">
+                <table class="table table-bordered table-stripped table-hover issue-tracker">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Acción</th>
+                            <th class="text-center">Nombre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center" data-col="alcance">
+                                <button class="btn btn-secondary" type="submit">
+                                    <i class="fa fa-download"></i>
+                                </button>
+                            </td>
+                            <td class="text-center" data-col="requisito">Archivo 1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!ocultarElemento" class="panel panel-default">
+        <div class="panel-heading"><strong>Revisión Reprogramación</strong></div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    <label class="col-sm-2 control-label">Crítica: </label>
+                    <div class="col-sm-10">
+                        <textarea name="descripcionCritica" class="form-control" placeholder="Ejm.: Se aprueba/rechaza la reprogramación por..." [(ngModel)]="reprogramacion.descripcionCritica" rows="5"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

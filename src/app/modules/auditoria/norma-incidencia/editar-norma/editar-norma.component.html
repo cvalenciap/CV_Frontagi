@@ -1,0 +1,60 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-12">
+    <h4>Inicio / Auditoría / Normas e Incidencias / <strong>Detalle de Norma</strong></h4>
+  </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight div-principal">
+
+  <div class="row m-b-md div-botones-superiores">
+    <div class="col-lg-6">
+      <a class="btn btn-primary botones-superiores" (click)="onGuadar()"><i class="fa fa-floppy-o"></i> Guardar</a>
+      <a class="btn btn-default btn-colores m-r botones-superiores" (click)="onRegresar()"><i
+          class="fa fa-arrow-left"></i> Regresar</a>
+    </div>
+    <div class="col-lg-6"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox-content div-secundario" style=" height: 480px;">
+        <br />
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-sm-6" style="padding-left: 0px; padding-right: 5px;">
+              <div class="row">
+                <label class="col-sm-6 control-label titulos-texto">Tipo Norma:</label>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <ng-select [items]="listaTiposNormas" bindLabel="v_descons" disabled [(ngModel)]="modelTipoNorma"
+                    [clearable]="false" [searchable]="false" class="custom" placeholder="Seleccionar">
+                  </ng-select>
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-sm-6 control-label titulos-texto">Nombre:(<label
+                    style="color: crimson;">*</label>):</label>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <input type="text" [ngClass]="{'ng-dirty ng-invalid':validateNombre}" [maxlength]="100"
+                    [(ngModel)]="norma.v_nom_norma" class="form-control cajas-texto"
+                    placeholder="Ingrese nombre de la norma">
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-sm-6 control-label titulos-texto">Estado:</label>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <input [(ngModel)]="estado" class="form-control cajas-texto" type="text" disabled>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

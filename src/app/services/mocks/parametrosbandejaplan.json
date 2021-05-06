@@ -1,0 +1,60 @@
+{
+    "parametros": {
+        "listaTipos": [
+            {
+                "valor":"1",
+                "descripcion":"Interno"
+            },
+            {
+                "valor":"2",
+                "descripcion":"Externo"
+            }
+        ],
+        "listaDetectores": [
+            {
+                "codigo":"1",
+                "nombre":"Juan Perez"
+            },
+            {
+                "codigo":"2",
+                "nombre":"Rosa Torres"
+            },
+            {
+                "codigo":"3",
+                "nombre":"Alejandro Moreno"
+            }
+        ],
+        "listaEstados": [
+            {
+                "valor":"1",
+                "descripcion":"Pendiente"
+            },
+            {
+                "valor":"2",
+                "descripcion":"Culminado"
+            }
+        ],
+        "listaAuditores": [
+            {
+                "idAuditor":"1",
+                "nombreAuditor":"Jose Segura"
+            },
+            {
+                "idAuditor":"2",
+                "nombreAuditor":"Carmen Lopez"
+            }
+        ],
+        "listaObservadores":[
+            {
+                "idObservador":"1",
+                "nombreObservador":"Julio Contreras"
+            },
+            {
+                "idObservador":"2",
+                "nombreObservador":"Pedro García"
+            }
+        ]
+        
+
+    }
+  }

@@ -1,0 +1,59 @@
+.circleBase{
+    border-radius: 50%;
+    border: 1px solid #fff;
+    box-shadow: 0 0 0 1px;
+    width: 33px;
+    height: 33px;
+    margin: 0;
+    padding: 0;
+}
+
+.greenCircle{
+    background: #008000;
+}
+
+.yellowCircle{
+    background: #f1dd38;
+}
+
+.redCircle{
+    background: #ff0000;
+}
+
+.grayCircle{
+    background: #676669;
+}
+
+.largo{
+    height:110px;
+}
+
+.medio-panel{
+    padding:40px;
+}
+
+.seleccione{
+    width:6%;
+}
+
+.codigo{
+    width: 123px;
+}
+.titulo{
+    width:20%;
+}
+.motivoSoli{
+    width:12%;
+}
+.estadoDoc{
+    width:12%;
+}
+.faseEst{
+    width:20%;
+}
+.revision{
+    width:8%;
+}
+.accion{
+    width:9%;
+}

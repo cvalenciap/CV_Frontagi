@@ -1,0 +1,110 @@
+.pull-left {
+    float: left !important;
+}
+
+.pull-right {
+    float: right !important;
+}
+
+.table {
+    tr {
+        th[data-col='item']     { font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        th[data-col='tipo']     { font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        th[data-col='rol']      { font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        th[data-col='accion']   {  width: 71px;font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+
+        td[data-col='item']     { font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        td[data-col='tipo']     { text-align: left; font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        td[data-col='rol']      { font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        td[data-col='accion']   { font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+    }
+} 
+
+.div-principal{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 100%;
+}
+
+.div-botones-superiores{
+    margin-bottom: 5px;
+    margin-top: 2px;
+}
+
+.btn-colores {
+    color: inherit;
+    background: #e6e6e6;
+    border-color: #eac2c2;
+}
+
+.btn-colores:hover {
+    background-color: #fde9e9;
+}
+
+.botones-superiores{
+    font-size: 12px;
+    padding: 6px 12px;
+	margin-right: 4px;
+    width: 96px;
+    height: 30px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+
+}
+
+.cajas-texto {
+   height: 31px;
+   font-size: 12px; 
+  
+
+}
+
+.botones-buscador {
+    height: 31px;
+    font-size: 12px;
+ }
+
+ .div-secundario{
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    height:57rem;
+} 
+
+.botones-detalle {
+    padding: 3px 7px;
+    font-size: 11px;
+    margin-right: 4px;
+    line-height: 1.5;
+    border-radius: 3px;
+    width: 25px;
+    height: 24px;
+}
+
+.texto-pie-pag {
+    font-size: 12px;
+}
+
+@media (min-width: 768px) { 
+
+    .boton{
+    
+        margin-right: 30px;
+        }
+     }
+
+@media (min-width: 992px) { 
+
+.boton{
+
+    margin-right: 30px;
+    }
+
+    .div-secundario{
+        height:40rem;
+    }
+
+ }

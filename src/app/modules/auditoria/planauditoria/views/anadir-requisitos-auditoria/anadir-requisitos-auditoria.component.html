@@ -1,0 +1,190 @@
+<form class="form-horizontal div-principal" [formGroup]="registroRequisitosForm" #formDir="ngForm" novalidate >
+    <div class="row m-b-sm bt-div-superior">
+        <div class="col-lg-12">
+            <div class="pull-left">
+                <button type="button" class="btn btn-primary btn-principales m-r" (click)="guardar()"><i class="fa fa-plus"></i>
+                    Agregar</button>
+                <a class="btn btn-default btn-colores m-r btn-principales" (click)="cancelar()"><i class="fa fa-arrow-left"></i> Regresar</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content" style="height: 481px;">
+                <mat-tab-group>
+                    <mat-tab label="Información General">
+                        <br />
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <div class="col-sm-1">
+                                    <label class="control-label">Área:</label>
+                                </div>
+                                <div class="col-sm-6" style="padding-left: 0px;padding-right: 0px;">
+                                    <input type="text" placeholder="Gerencia Comercial" class="form-control" name="alcanceRequisito"
+                                        disabled>
+                                </div>
+                                <div class="col-sm-1">
+                                        <label class="control-label">Responsable:</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <input type="text" placeholder="RAUL AUGUSTO HANS BARRERA"class="form-control tx-cajas" name="alcanceRequisito" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-1" >
+                                    <label class="control-label">Fecha:</label>
+                                </div>
+                                <div class="col-sm-2" style="padding-left: 0px;padding-right: 0px;">
+                                    <div class="input-group">
+                                        <!--  <input  type="text" bsDatepicker class="form-control tx-cajas"
+                                            placeholder="Ej: 01/01/2019" style="width: 166px;"
+                                            [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue'}"
+                                            [ngModelOptions]="{standalone: true}">-->
+                                        <!--
+                                        <span class="input-group-addon"><i class="fa fa-calendar" 
+                                                title="Elegir Fecha"></i></span>-->
+                                        <input type="text" class="form-control txt-cajas" style="width: 166px;">
+                                    </div>
+                                </div>
+                                <label class="col-sm-1 control-label" style="padding-top: 5px;width: 90px;padding-right: 17px;">Hora:</label>
+                                <label class="col-sm-1 control-label" style="padding-top: 5px;width: 90px;padding-right: 17px;">Inicio</label>
+                                <div class="col-sm-2" style="width: 119px;">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td class="form-group"><input class="form-control text-center bs-timepicker-field" style="width: 44px" maxlength="2" placeholder="00" type="text"></td>
+                                                <td class="ng-star-inserted">&nbsp;:&nbsp;</td>
+                                                <td class="form-group ng-star-inserted"><input class="form-control text-center bs-timepicker-field" style="width: 44px" maxlength="2" placeholder="00" type="text"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <label class="col-sm-1 control-label" style="padding-top: 5px;width: 90px;padding-right: 17px;">Fin</label>
+                                <div class="col-sm-2" style="width: 119px;">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td class="form-group"><input class="form-control text-center bs-timepicker-field" style="width: 44px" maxlength="2" placeholder="00" type="text"></td>
+                                                <td class="ng-star-inserted">&nbsp;:&nbsp;</td>
+                                                <td class="form-group ng-star-inserted"><input class="form-control text-center bs-timepicker-field" style="width: 44px" maxlength="2" placeholder="00" type="text"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2" >
+                                    <label class="control-label">Detalle de Auditores:</label>
+                                </div>
+                                <div class="col-sm-8" style=" padding-right: 18px; margin-right: 75px;"></div>
+                                <div class="col-sm-1" style="padding-left: 0px;padding-right: 0px;">
+                                  <a (click)="buscarAuditor()" class="btn btn-primary m-r"><i class="fa fa-plus"></i> Auditores</a>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="form-group">
+                        <div class="col-sm-12">
+                            <!-- <div class="row"> -->
+                                <!-- <div class="wrapper wrapper-content animated fadeInRight"> -->
+                                    <div class="row">
+                                        <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+                                            <div class="table-responsive">
+                                                <table
+                                                    class="table table-bordered table-stripped table-hover issue-tracker">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-center">Auditor</th>
+                                                            <th class="text-center">Tipo de Auditor</th>
+                                                            <th class="text-center">Acción</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="text-center">CECILIA SIERRA VARGAS</td>
+                                                            <td class="text-center">Auditor Lider</td>
+                                                            <td class="text-center">
+                                                                <button class="btn btn-danger m-r"
+                                                                    [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, quitar', cancelButtonText: 'No gracias' }"
+                                                                    >
+                                                                    <i class="fa fa-trash"></i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-center">JUAN SANTA MARIA RIOS</td>
+                                                            <td class="text-center">Auditor Interno</td>
+                                                            <td class="text-center">
+                                                                <button class="btn btn-danger m-r"
+                                                                    [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, quitar', cancelButtonText: 'No gracias' }"
+                                                                    >
+                                                                    <i class="fa fa-trash"></i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-center">DANTE MOYANO VARGAS</td>
+                                                            <td class="text-center">Observador</td>
+                                                            <td class="text-center">
+                                                                <button class="btn btn-danger m-r"
+                                                                    [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, quitar', cancelButtonText: 'No gracias' }"
+                                                                    >
+                                                                    <i class="fa fa-trash"></i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="Lista de Requisitos">
+                        <br />
+                        <div class="col-lg-12">
+                            <div [ngClass]="{'sk-loading': loadingRequisitos}">
+                                <div class="col-md-5">
+                                    <div>
+                                        <label>Requisitos</label>
+                                    </div>
+                                    <div class="panel panel-success">
+                                        <div class="panel-body panel-select">
+                                            <tree-root #tree [nodes]="listaRequisitos" [options]="treeOptions" (updateData)="cambioArbol($event)"></tree-root>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="col-centered text-center">
+                                        <input type="button" (click)="seleccionarRequisitos()" class="botonSeleccion circulo" value="> ">
+                                        <br />
+                                        <input type="button" (click)="quitarRequisitos()" class="botonSeleccion circulo" value="< ">
+                                        <br />
+                                        <input type="button" (click)="seleccionarTodos()" class="botonSeleccion circulo" value=">>">
+                                        <br/>
+                                        <input type="button" (click)="quitarTodos()" class="botonSeleccion circulo" value="<<">
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div>
+                                        <label>Requisitos Asignados</label>
+                                    </div>
+                                    <div class="panel panel-success">
+                                        <div class="panel-body panel-select" style="height: 262px;">
+                                            <tree-root #treeDestino [nodes]="listaNodosRequisitoDestino"
+                                                [options]="treeOptionsDestino"
+                                                (updateData)="cambioArbolDestino($event)"></tree-root>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-tab>
+                </mat-tab-group>
+            </div>
+        </div>
+    </div>
+</form>

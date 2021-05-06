@@ -1,0 +1,14 @@
+<div class="modal-header modal-cabecera-color">
+    <h4 class="modal-title pull-left">Información Documentada</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="cerrar">&times;</span>
+    </button>
+</div>   
+<div class="modal-body" style="padding-bottom: 0px;padding-top: 0px;">
+    <div class="btn-group" style="overflow-y:auto; height:385px;">
+        <tree-root #tree [nodes]="nodosJerarquia" [options]="treeOptions" ></tree-root>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-success" [disabled]="activarSeleccionar" (click)="OnSeleccionar()">Seleccionar</button>
+</div>

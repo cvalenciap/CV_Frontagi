@@ -1,0 +1,102 @@
+<div class="row">
+  <div class="col-sm-5">
+    <div class="form-group">
+      <label class="control-label">Motivo (*):</label>
+      <select id="numMotivoCancelacion" name="numMotivoCancelacion" class="form-control" #numMotivoCancelacion="ngModel" [(ngModel)]="cancel.numMotivoCancelacion"
+        [ngClass]="{'ng-dirty ng-invalid':errors?.numMotivoCancelacion}" [tooltip]="errors?.numMotivoCancelacion" (ngModelChange)="Validar(numMotivoCancelacion)"
+        [disabled]="indCancelacionSustento != '3'">
+        <option value="">Seleccione</option>
+        <option *ngFor="let motivo of listaMotivos" [value]="motivo.idconstante">{{motivo.v_valcons}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="col-sm-2">
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-8">
+    <div class="form-group">
+      <label class="control-label">Sustento Solicitud(*):</label>
+      <textarea id="sustentoSolicitud" name="sustentoSolicitud" rows="3" placeholder="" class="form-control" #sustentoSolicitud="ngModel"
+        [(ngModel)]="cancel.sustentoSolicitud" [ngClass]="{'ng-dirty ng-invalid':errors?.sustentoSolicitud}" [tooltip]="errors?.sustentoSolicitud"
+        (ngModelChange)="Validar(sustentoSolicitud)" [readonly]="indCancelacionSustento != '3'"></textarea>
+    </div>
+  </div>
+</div>
+<ng-template [authIf]="session.ACL.ID_SOL_SolicitudCancelacion_Detalle_SustSoli_EXPORTAR">
+  <div class="row filaAdjuntar">
+    <label class="col-sm-12">Adjuntar Sustento(*):</label>
+    <div class="col-sm-8">
+      <div class="input-group">
+        <label class="input-group-btn">
+          <span class="btn btn-primary margen">
+            Adjuntar
+            <input #archivoSustento class="ocultar" type="file" id="file_sustento" name="file_sustento" (change)="adjuntarArchivo($event)"
+              [disabled]="indCancelacionSustento != '3'">
+          </span>
+        </label>
+        <input id="nombreArchivoSustento" name="nombreArchivoSustento" type="text" class="form-control margen" id="file-name" placeholder="Ingresar archivo"
+          #nombreArchivoSustento="ngModel" [(ngModel)]="cancel.nombreArchivoSustento" [ngClass]="{'ng-dirty ng-invalid':errors?.nombreArchivoSustento}"
+          [tooltip]="errors?.nombreArchivoSustento" readonly>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <a [href]="rutaArchivoSustento" *ngIf="valorFinal" class="btn btn-success margen">Ver Adjunto</a>
+    </div>
+  </div>
+</ng-template>
+<ng-template [authIf]="session.ACL.ID_TAR_Aprobacion_Cancelacion_Detalle_Sustento_Solicitudes_EXPORTAR">
+    <div class="row filaAdjuntar">
+      <label class="col-sm-12">Adjuntar Sustento(*):</label>
+      <div class="col-sm-8">
+        <div class="input-group">
+          <label class="input-group-btn">
+            <span class="btn btn-primary margen">
+              Adjuntar
+              <input #archivoSustento class="ocultar" type="file" id="file_sustento" name="file_sustento" (change)="adjuntarArchivo($event)"
+                [disabled]="indCancelacionSustento != '3'">
+            </span>
+          </label>
+          <input id="nombreArchivoSustento" name="nombreArchivoSustento" type="text" class="form-control margen" id="file-name" placeholder="Ingresar archivo"
+            #nombreArchivoSustento="ngModel" [(ngModel)]="cancel.nombreArchivoSustento" [ngClass]="{'ng-dirty ng-invalid':errors?.nombreArchivoSustento}"
+            [tooltip]="errors?.nombreArchivoSustento" readonly>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <a [href]="rutaArchivoSustento" *ngIf="indCancelacionSustento != '4'" class="btn btn-success margen">Ver Adjunto</a>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template [authIf]="session.ACL.ID_TAR_Cancelacion_Documento_Detalle_Sustento_Solicitud_VISUALIZAR">
+      <div class="row filaAdjuntar">
+        <label class="col-sm-12">Adjuntar Sustento(*):</label>
+        <div class="col-sm-8">
+          <div class="input-group">
+            <label class="input-group-btn">
+              <span class="btn btn-primary margen">
+                Adjuntar
+                <input #archivoSustento class="ocultar" type="file" id="file_sustento" name="file_sustento" (change)="adjuntarArchivo($event)"
+                  [disabled]="indCancelacionSustento != '3'">
+              </span>
+            </label>
+            <input id="nombreArchivoSustento" name="nombreArchivoSustento" type="text" class="form-control margen" id="file-name" placeholder="Ingresar archivo"
+              #nombreArchivoSustento="ngModel" [(ngModel)]="cancel.nombreArchivoSustento" [ngClass]="{'ng-dirty ng-invalid':errors?.nombreArchivoSustento}"
+              [tooltip]="errors?.nombreArchivoSustento" readonly>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <a [href]="rutaArchivoSustento" *ngIf="indCancelacionSustento != '3'" class="btn btn-success margen">Ver Adjunto</a>
+        </div>
+      </div>
+    </ng-template>
+
+
+  
+<div *ngIf="(sustentoRechazo != null && sustentoRechazo != undefined) && indCancelacion == '1'" class="row">
+  <div class="col-sm-8">
+    <div class="form-group">
+      <label class="control-label">Sustento Rechazo:</label>
+      <textarea rows="3" name="descripcion" value="" placeholder="" class="form-control" [(ngModel)]="sustentoRechazo" readonly></textarea>
+    </div>
+  </div>
+</div>

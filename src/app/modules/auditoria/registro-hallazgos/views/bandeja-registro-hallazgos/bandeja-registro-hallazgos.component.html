@@ -1,0 +1,120 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <h4>Inicio / Auditoría / <strong>Revisión de Hallazgos</strong></h4>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight div-principal">
+    <div class="row m-b div-botones-superiores">
+        <div class="col-lg-6">
+            <div class="input-group">
+
+                <select *ngIf="parametroBusqueda == 'estado'" class="form-control cajas-texto" name="valorEstado" [(ngModel)]="valorEstado">
+                    <option value="" selected>Seleccionar</option>
+                    <option *ngFor="let item of listaEstados" [value]="item.v_campcons1">{{ item.v_valcons }}</option>
+                </select>
+
+                <span class="input-group-btn" dropdown>
+                    <button type="button" class="btn btn-info botones-buscador" (click)="OnBuscar()"><i class="fa fa-search"></i></button>
+                    <button dropdownToggle type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split botones-buscador"><i class="fa fa-caret-down"></i></button>
+                    <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
+                        <li role="menuitem" [class.active]="parametroBusqueda == 'estado'"><a (click)="activarOpcion(1)">Estado</a></li>
+                    </ul>
+                </span>
+                <button class="col-lg-1 btn btn-sm btn-success" ><i class="fa fa-check"></i> Aprobar</button>
+                <button class="col-lg-1 btn btn-sm btn-light" ><i class="fa fa-eraser"></i> Limpiar</button>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12"  style="margin-left: 8px;
+        margin-right: 0px;
+        border-right-width: 5px;
+        height: 488px;
+        width: 1160px;">
+            <div class="ibox-content div-secundario" style=" height: 480px;" [ngClass]="{'sk-loading': loading}">
+                <div class="table-responsive" style="height: 344px;">
+                    <table class="table table-bordered table-stripped table-hover issue-tracker">
+                        <thead>
+                            <tr>
+<!--                                 <th class="text-center" data-col="auditoria">Nombre Auditoría</th>
+                                <th class="text-center" data-col="area">Área</th>
+                                <th class="text-center" data-col="norma">Norma</th>
+                                <th class="text-center" data-col="fecha">Fecha</th>
+                                <th class="text-center" data-col="auditor">Auditor Lider</th>
+                                <th class="text-center" data-col="auditores">Auditores</th>
+                                <th class="text-center" data-col="estado">Estado</th>
+                                <th class="text-center" data-col="accion">Acción</th> -->
+                                <th class="text-center check" data-col="check"><input type="checkbox"></th>
+                                <th class="text-center desc-aud" data-col="desc-aud">Nombre Auditoría</th>
+                                <th class="text-center fecha" data-col="fecha">Mes</th>
+                                <th class="text-center norma" data-col="norma">Año</th>
+                                <th class="text-center area" data-col="area">Área</th>
+                                <th class="text-center tipo-lv"  data-col="tipo-lv">Normas</th>
+                                <th class="text-center auditor-lider" data-col="auditor-lider">Auditor Lider</th>
+                                <th class="text-center auditores" data-col="auditores">Auditor(es)</th>
+                                <th class="text-center estado" data-col="estado">Estado</th>
+                                <th class="text-center acciones" data-col="acciones">Acciones</th>
+
+
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of datatemp; let i=index;">
+                                    <td data-col="check"><input type="checkbox" ng-model="item.checked" id="{{'idcheck'+i}}"></td>
+                                    <td class="text-center" data-col="desc-aud" style="width: 181px;">{{item.descripcionAuditoria}}</td>
+                                    <td class="text-center" data-col="fecha" >{{item.mes}}</td>
+                                    <td class="text-center" data-col="fecha" >{{item.ano}}</td>
+                                    <td class="text-center" data-col="area">{{item.area}}</td>
+                                    <td class="text-center"  data-col="norma" >
+                                        <ul type=none><li *ngFor="let norma of item.normas">{{norma}}</li></ul>
+                                    </td>
+                                    <td class="text-center"  data-col="auditor-lider">{{item.auditorLider}}</td>
+                                    <td class="text-center"  data-col="auditores" >
+                                        <ul type=none><li *ngFor="let auditor of item.auditores">{{auditor}}</li></ul>
+                                    </td>
+                                    <td class="text-center" data-col="estado">
+                                        <span *ngIf="item.estado=='En Aprobación'" class="btn btn-primary">{{item.estado}}</span>
+                                        <span *ngIf="item.estado=='En Revisión'" class="btn btn-warning">{{item.estado}}</span>
+                                    </td>
+                                    <td class="text-center" data-col="accion">
+                                    <button *ngIf="true || tipoRol == '1'" title="Actualizar" class="btn btn-success btn-sm m-r botones-detalle" (click)="OnModificar()"><i
+                                            class="fa fa-edit"></i></button>
+                                    <button *ngIf="true || tipoRol == '2'" title="Consultar" class="btn btn-primary btn-sm m-r botones-detalle"
+                                        (click)="OnConsultar(item)"><i class="fa fa-file-o"></i></button>
+                                    </td>
+                            </tr>
+                        </tbody>
+                    
+                    </table>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <pagination class="texto-pie-pag" [(ngModel)]="paginacion.pagina"
+                            (pageChanged)="OnPageChanged($event)" [totalItems]="paginacion.totalRegistros"
+                            [itemsPerPage]="paginacion.registros" [boundaryLinks]="true" [maxSize]="5"
+                            previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+                        </pagination>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-center m-a-sm">
+                            <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros"
+                                [page]="paginacion.pagina"></pagination-info>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-right m-a-sm">
+                            <pagination-set class="texto-pie-pag" (optionChanged)="OnPageOptionChanged($event)">
+                            </pagination-set>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

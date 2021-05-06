@@ -1,0 +1,28 @@
+{
+    "listaConsideraciones": [
+      {
+        "idConsideracion":"1",
+        "textoConsideracion": "Los auditores deben recaba r evidencia ojetiva de las Normas ISO9001 indicados en el presente Plan de Auditoría.Queda a cirterio del auditor conderar requisitos adicionales."
+      },
+      {
+        "idConsideracion":"2",
+        "textoConsideracion": "El AIFO0033 Formulario Lista de Verifiacción debe ser elaborado por el Grupo Auditor antes del inicio de la Auditor."
+      },
+      {
+        "idConsideracion":"3",
+        "textoConsideracion": "Verificar el tratamiento y cierre de la No Conformidades y Observaciones no cerradas de la dos últimas auditoríasm cuyos resultados deben ser detallados en el AIFO003."
+      },
+      {
+        "idConsideracion":"4",
+        "textoConsideracion": "Se solicita a los Jefes de Equipo de las áreas auditadas su participació activa durante la Auditoría Interna."
+      },
+      {
+        "idConsideracion":"5",
+        "textoConsideracion": "Se requiere que las auditorías se realicen dentro del período establecido en el Plan de Auditoría."
+      },
+      {
+        "idConsideracion":"6",
+        "textoConsideracion": "Se requiere que los auditores realizen trazabiidad con otro equipos/areas/cargos cuando haya una evidencia relacionada con el incumplimiento del criterio de auditoría correspondiente."
+      }
+    ]
+}

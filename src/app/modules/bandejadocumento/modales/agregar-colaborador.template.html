@@ -1,0 +1,110 @@
+    <div class="modal-header modal-cabecera-color">
+        <h4 class="modal-title pull-left">Añadir Colaborador</h4>
+        <!--Button Cerra Modal-->
+        <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+            <span aria-hidden="true" class="cerrar">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <h3>Buscar por:</h3>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-lg-12">
+                <label class="col-sm-2 control-label">Equipo:</label>
+                <div class="col-sm-4">
+                      <select class="form-control" name="equipo" [(ngModel)]="equipo">
+                            <option value="null" selected disabled>Seleccione Equipo</option>
+                            <option *ngFor="let item of listaEquipos" [value]="item.id">{{item.descripcion}}</option>
+                    </select>
+
+                </div>
+
+                <label class="col-sm-2 control-label">Función:</label>
+                <div class="col-sm-4">
+                    <input  type="text" class="form-control" placeholder="Ingrese Función" name="funcion" [(ngModel)]="funcion">
+                </div>
+            </div>
+        </div>
+        <br>   
+
+        <div class="row">
+            <div class="col-lg-12">
+                <label class="col-sm-2 control-label">Apellido Paterno:</label>
+                <div class="col-sm-4">
+                    <input  type="text" placeholder="Ingrese Apellido Paterno" class="form-control" name="apePaterno" [(ngModel)]="apellidoPaterno">
+                </div>
+                <label class="col-sm-2 control-label">Apellido Materno:</label>
+                <div class="col-sm-4">
+                    <input  type="text" placeholder="Ingrese Apellido Materno" class="form-control" name="apeMaterno" [(ngModel)]="apellidoMaterno" >
+                </div>
+            </div>
+        </div>
+        <!-- <br> -->
+        <br/>
+        <div class="row">
+            <div class="col-lg-12">
+                <label class="col-sm-2 control-label">Nombres:</label>
+                <div class="col-sm-4">
+                    <input  type="text" class="form-control" placeholder="Ingrese Nombres" name="nombreAuditor" [(ngModel)]="nombre">
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-lg-12">
+                <a (click)="buscar()" class="btn btn-primary m-r"><i class="fa fa-search-plus"></i> Buscar</a>
+                <a (click)="limpiar()" class="btn btn-default m-r"><i class="fa fa-eraser"></i> Limpiar</a>
+            </div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+                    <sk-three-bounce></sk-three-bounce>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-stripped table-hover issue-tracker">
+                            <thead>
+                            <tr>
+                                <th class="text-center">Equipo</th>
+                                <th class="text-center">Función</th>
+                                <th class="text-center">Responsable</th>
+                            </tr>
+                            </thead>
+                            <tbody *ngFor="let item of listaColaborador; let i=index">
+                            <tr id="{{item.numeroFicha}}" (click)="seleccionarColaborador(i,item)" [class.info]="i==filaSeleccionada">
+                                <td class="text-center" >{{item.equipo.descripcion}}</td>
+                                <td class="text-center" >{{item.funcion}}</td>
+                                <td class="text-center" >{{item.nombreCompleto}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+                            <pagination [(ngModel)]="paginacion.pagina" (pageChanged)="OnPageChanged($event)" [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="text-center m-a-sm">
+                                <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="text-right m-a-sm">
+                                <pagination-set (optionChanged)="OnPageOptionChanged($event)"></pagination-set>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+              
+            
+    </div>
+    
+    </div>
+    
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="agregar()">Seleccionar</button>
+        <button type="button" class="btn btn-default" (click)="cancelar()">Cancelar</button>
+    </div>

@@ -1,0 +1,151 @@
+<div class="modal-header modal-cabecera-color">
+        <h4 class="modal-title pull-left">Añadir Usuario</h4>
+        <!--Button Cerra Modal-->
+        <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+            <span aria-hidden="true" class="cerrar">&times;</span>
+        </button>
+    </div>
+    <!-- Scroll-->
+    <div class="nuevo" style="height: 550px; overflow: auto;">
+    <div  class="modal-body" style="padding-top: 0px;" >    
+    <p>
+        <div class="row">
+            <div class="col-lg-12">
+                <label class="col-sm-2 control-label">Equipo:</label>
+                <div class="col-sm-4">
+                    <ng-select  style="
+                    padding-top: 0px;
+                    padding-bottom: 0px;" [disabled]="desabilitarCombo" [items]="listaEquipos" bindLabel="descripcion" bindValue="id" [clearable]="true" [searchable]="true" name="equipo"
+                        placeholder="Seleccione Equipo" notFoundText="Texto no encontrado en el menu" [(ngModel)]="equipo" >
+                    </ng-select>
+                </div>
+                <label class="col-sm-2 control-label">Función:</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" placeholder="Ej: Analista" name="funcion" [(ngModel)]="funcion" (keyup)="habilitarLimpiar()">
+                </div>
+    
+    
+                <!--                <label class="col-sm-2 control-label">Plazo:</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" name="fecha" disabled="disabled" [(ngModel)]="textoFecha">
+                    </div> -->
+    
+            </div>
+        </div>
+        <p>
+            <div class="row">
+                <div class="col-lg-12">
+    <!--                <label class="col-sm-2 control-label">Equipo:</label>
+                    <div class="col-sm-4">
+                        <ng-select [items]="listaEquipos"
+                            bindLabel="descripcion"
+                            bindValue="id"
+                            [clearable]="true"
+                            [searchable]="true"
+                            name="equipo"
+                            placeholder="Seleccione Equipo"
+                            notFoundText="Texto no encontrado en el menu"
+                            [(ngModel)]="equipo">
+                          </ng-select>
+                    </div> -->
+                    <label class="col-sm-2 control-label">Nombre:</label>
+                    <div class="col-sm-4">
+                        <input type="text" placeholder="Ej: Juan" class="form-control" name="responsable" [(ngModel)]="responsable" (keyup)="habilitarLimpiar()">
+                    </div>
+                    <label class="col-sm-2 control-label">Apellido Paterno:</label>
+                    <div class="col-sm-4">
+                        <input type="text" placeholder="Ej: Quispe" class="form-control" name="appaterno" [(ngModel)]="appaterno" (keyup)="habilitarLimpiar()">
+                    </div>
+                </div>
+            </div>
+            <p>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label class="col-sm-2 control-label">Apellido Materno:</label>
+                        <div class="col-sm-4">
+                            <input type="text" placeholder="Ej: Lopez" class="form-control" name="appmaterno" [(ngModel)]="appmaterno" (keyup)="habilitarLimpiar()">
+                        </div>
+                    </div>
+                </div>
+                <!--<hr>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label class="col-sm-2 control-label">Prioridad(*):</label>
+                        <div class="col-sm-4">
+                            <input type="text" placeholder="Ej: 5" class="form-control" name="prioridad" [(ngModel)]="prioridad" (keypress)="permitirNumero($event)" (keyup)="habilitarLimpiar()">
+                        </div>
+                        <label class="col-sm-2 control-label">Cant. días de Plazo(*):</label>
+                        <div class="col-sm-4">
+                            <input type="text" placeholder="Ej: 10" class="form-control" name="plazo" [(ngModel)]="plazo" (keypress)="permitirNumero($event)" (keyup)="habilitarLimpiar()">
+                        </div>
+    
+                    </div>
+                </div>-->
+                <p>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <button (click)="buscar()" class="btn btn-primary m-r"  [disabled]="deshabilitarLimpiar" >
+                                <i class="fa fa-search-plus"></i> Buscar</button>
+                            <button type="button" (click)="limpiar()" class="btn btn-default m-r" [disabled]="deshabilitarLimpiar">
+                                <i class="fa fa-eraser" ></i> Limpiar</button>
+                        </div>
+                    </div>
+                    <p>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+                                    <sk-three-bounce></sk-three-bounce>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-stripped table-hover issue-tracker">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">Número de Ficha</th>
+                                                    <th class="text-center">Participantes</th>
+                                                    <th class="text-center">Equipo</th>
+                                                    <th class="text-center">Función</th>
+                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let item of listaColaborador; let i=index" (click)="OnRowClick(i,item)" [class.info]="i==selectedRow">
+                                                    <td class="text-center">{{item.numeroFicha}}</td>
+                                                    <td class="text-left">{{item.nombreCompleto}}</td>
+                                                    <td class="text-left">{{item.equipo.descripcion}}</td>
+                                                    <td class="text-center">{{item.funcion}}</td>                                                
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-12 col-xs-12">
+                                            <pagination [(ngModel)]="paginacion.pagina" (pageChanged)="OnPageChanged($event)" [totalItems]="paginacion.totalRegistros"
+                                                [itemsPerPage]="paginacion.registros" [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;"
+                                                nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                                        </div>
+                                        <div class="col-md-4 col-sm-6 col-xs-12">
+                                            <div class="text-center m-a-sm">
+                                                <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-6 col-xs-12">
+                                            <div class="text-right m-a-sm">
+                                                <pagination-set (optionChanged)="OnPageOptionChanged($event)"></pagination-set>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+    
+                        </div>
+    
+    </div>
+    
+    
+    </div>
+    
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success" [disabled]="selectedRow<0" (click)="seleccionar()">Seleccionar</button>
+        <button type="button" class="btn btn-default" (click)="cancelar()">Cancelar</button>
+    </div>
+    

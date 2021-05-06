@@ -1,0 +1,144 @@
+<div class="row wrapper border-bottom white-bg page-heading" style="padding-top: 3px; padding-bottom: 0;padding-left: 10px;border-bottom-width: 0;border-bottom-width: 0;">
+    <div class="col-lg-12">
+        <h4>Revisión Actualización de Documentos /
+            <strong>Bandeja de Seguimiento de Ejecución</strong>
+        </h4>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row m-b-sm">
+        <div class="col-lg-3">
+           <ng-template [authIf]="session.ACL.ID_REV_BandejaEjecucion_BUSCAR" >
+                <div class="input-group">
+                    <input type="text" placeholder="Buscar" class="form-control" [(ngModel)]="textoBusqueda" (keypress)="ingresoTexto($event)">
+                    <span class="input-group-btn" dropdown>
+                            <button type="button" class="btn btn-info" (click)="busquedaSimple()"><i class="fa fa-search"></i></button>
+                            <button dropdownToggle type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split"><i class="fa fa-caret-down"></i></button>
+                            <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
+                                <li role="menuitem" [class.active]="parametroBusqueda=='codigo'">
+                                    <a (click)="parametroBusqueda = 'codigo';this.textoBusqueda = ''">Número de Programación</a>
+                                </li>
+                                <li role="menuitem" [class.active]="parametroBusqueda=='avanzada'">
+                                    <a (click)="abrirBusquedaAvanzada()">Busqueda Avanzada</a>
+                                </li>
+                            </ul>
+                    </span>
+                </div>
+           </ng-template>
+        </div>
+        <div class="col-lg-6">
+            <div class="btn-group">
+                <button class="btn btn-light" (click)="OnLimpiar()"><i class="fa fa-eraser"></i> Limpiar</button>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="mostrarAlerta">
+        <alert type="info">
+            <span [innerHtml]="mensajeAlerta"></span>
+        </alert>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content contendor-tabla" [ngClass]="{'sk-loading': loading}">
+                <sk-three-bounce></sk-three-bounce>
+                <div class="table-responsive tabla">
+                    <table class="table table-bordered table-stripped table-hover issue-tracker">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Código de Programación</th>
+                                <th class="text-center">Código Documento</th>
+                                <th class="text-center">Fecha Programación</th>
+                                <th class="text-center">Fecha Distribución</th>
+                                <th class="text-center">Fecha Ejecución</th>
+                                <th class="text-center">Trimestre</th>
+                                <th class="text-center">Estado</th>
+                                <th class="text-center">Fase Actual</th>
+                                <th class="text-center">Estado Ejecución</th>
+                                <th class="text-center">Equipo Ejecutante</th>
+                                <th class="text-center">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of listadoFinal; let i=index;" (click)="OnRowClick(i,item)" [class.info]="i==selectedRow">
+                                <td class="text-center" data-col="año">{{item.idProg}}</td>
+                                <td class="text-center" data-col="CodDocu">{{item.codDocu}}</td>
+                                <td class="text-center" data-col="FechaProgramacion">{{item.fechaProgramacion}}</td>
+                                <td class="text-center" data-col="FechaDistribucion">{{item.fechaDistribucion}}</td>
+                                <td class="text-center" data-col="FechaEjecucion">{{item.fechaEjecucion}}</td>
+                                <td class="text-center" data-col="idTrimestre" [ngSwitch]="item.idTrimestre">
+                                        <span *ngSwitchCase="'1'" >&nbsp;&nbsp;&nbsp;I&nbsp;&nbsp;&nbsp;</span>
+                                        <span *ngSwitchCase="'2'" >&nbsp;&nbsp;&nbsp;II&nbsp;&nbsp;&nbsp;</span>
+                                        <span *ngSwitchCase="'3'" >&nbsp;&nbsp;&nbsp;III&nbsp;&nbsp;&nbsp;</span>
+                                        <span *ngSwitchCase="'4'" >&nbsp;&nbsp;&nbsp;IV&nbsp;&nbsp;&nbsp;</span>
+                                </td>
+                                  <!-- CGUERRA INICIO-->
+                                    <td class="text-center" data-col="alerta" style="height:70px;">
+                                            <div class={{item.estiloPlazo}}></div>
+                                    </td>
+                                  <!--CGUERRA FIN-->
+                                <td class="text-center" data-col="estado" [ngSwitch]="item.estadoSoli">
+                                    <h3>
+                                        <span *ngSwitchCase="'En Revision'" class="label label-default" style="padding-left: 0px; padding-right: 0px;">&nbsp;&nbsp;&nbsp;{{item.estadoFase}}&nbsp;&nbsp;&nbsp;</span>
+                                    </h3>
+                                    <h3>
+                                        <span *ngSwitchCase="'Emision'" class="label label-default" style="padding-left: 0px; padding-right: 0px;">&nbsp;&nbsp;&nbsp;Solicitud&nbsp;&nbsp;&nbsp;</span>
+                                    </h3>
+                                </td>                               
+
+                                <td class="text-center" data-col="estado" [ngSwitch]="item.desestadoejec">
+                                    <h3>
+                                        <span *ngSwitchCase="'Pendiente'" class="label label-default" >&nbsp;&nbsp;&nbsp;Pendiente&nbsp;&nbsp;&nbsp;</span>
+                                    </h3>
+                                    <h3>
+                                        <span *ngSwitchCase="'Evaluado'" class="label label-warning" >&nbsp;&nbsp;&nbsp;&nbsp;Evaluado&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    </h3>
+                                    <h3>
+                                        <span *ngSwitchCase="'Actualizado'" class="label label-primary" style="padding-left: 0px; padding-right: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Actualizado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    </h3>
+                                    <h3>
+                                        <span *ngSwitchCase="'Cancelado'" class="label label-danger" style="padding-left: 0px; padding-right: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cancelado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    </h3>
+                                </td>
+                                <td class="text-left" data-col="EquipoProgramacion">{{item.equipoProgramacion}}</td>
+                                <td class="text-center" data-col="accion">
+                                    <div class="btn-group" style="width: 41px;height: 30px;">
+                                            <button title="Ver Documento" class="btn btn-primary btn-sm m-r"  [disabled]="item.desestadoejec != 'Evaluado'"
+                                                (click)="urlPDF=item.ruta; ;visorPdfSwal.show(); $event.stopPropagation()"
+                                                style="margin-right:0px;width:40px;">
+                                                <i class="fa fa-file-o"></i>
+                                            </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row" style="margin-top: 15px;">
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <pagination [(ngModel)]="paginacion.pagina" (pageChanged)="OnPageChanged($event)" [totalItems]="paginacion.totalRegistros"
+                            [itemsPerPage]="paginacion.registros" [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;"
+                            nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-center m-a-sm">
+                            <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-right m-a-sm">
+                            <pagination-set (optionChanged)="OnPageOptionChanged($event)"></pagination-set>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<swal #visorPdfSwal [showConfirmButton]="false" [showCloseButton]="true" customClass="pdf-swal">
+        <form *swalPartial class="ajuste">
+            <visor-pdf id="02" [url]="urlPDF"></visor-pdf>
+        </form>
+    </swal>

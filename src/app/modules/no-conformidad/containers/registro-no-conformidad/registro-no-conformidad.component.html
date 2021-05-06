@@ -1,0 +1,94 @@
+<div class="row wrapper border-bottom white-bg page-heading" style="padding-top: 3px; padding-bottom: 0px;">
+  <div class="col-lg-12">
+    <h4><a routerLink="/inicio">Inicio</a> / No Conformidades / <strong>Detalle de No Conformidad</strong>
+      <!-- <strong>{{ config.title }}</strong> -->
+    </h4>
+  </div>
+</div>
+<!-- Botones-->
+<div class="row m-b-sm m-t-sm">
+  <div class="col-lg-12">
+    <button type="button" class="btn btn-success" (click)="validarAccion('ENVIAR');" title="Enviar"><i
+        class="fa fa-check"></i><span>
+        Enviar</span></button>&nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-success" (click)="validarAccion('VALIDAR');" title="Validar"><i
+        class="fa fa-check"></i><span>
+        Validar</span></button>&nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-danger" (click)="mostrarModalRechazo();" title="Rechazar"><i
+        class="fa fa-times"></i><span>
+        Rechazar</span></button>&nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-warning" (click)="mostrarModalRetorno();" title="Retornar"><i
+        class="fa fa-reply"></i><span>
+        Retornar</span></button>&nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-success" (click)="validarAccion('REVISAR');" title="Revisar"><i
+        class="fa fa-check"></i><span>
+        Revisar</span></button>&nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-success" (click)="validarAccion('APROBAR');" title="Aprobar"><i
+        class="fa fa-check"></i><span>
+        Aprobar</span></button>&nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-info" (click)="validarAccion('CANCELAR');" title="Cancelar"><i
+        class="fa fa-times"></i><span>
+        Cancelar</span></button>&nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-success" (click)="validarAccion('ASIGNAR');" title="Asignar"><i
+        class="fa fa-check"></i><span>
+        Asignar</span></button>&nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-info" title="Imprimir"><i
+        class="fa fa-print"></i><span>
+        Imprimir</span></button>&nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-secondary" (click)="regresar();" title="Regresar"><i
+        class="fa fa-arrow-left"></i><span>
+        Regresar</span></button>
+  </div>
+</div>
+<!-- Body -->
+<div class="wrapper wrapper-content animated main-content" style="padding: 0px;">
+  <div class="ibox-content" style="padding-left: 10px;padding-right: 0px;padding-bottom: 0px">
+    <mat-tab-group>
+      <mat-tab label="No Conformidad">
+        <mat-tab-group>
+          <mat-tab label="Datos de la Identificación">
+            <app-formulario-datos-identificacion></app-formulario-datos-identificacion>
+          </mat-tab>
+          <mat-tab label="Observación y Análisis">
+            <app-formulario-observacion-analisis></app-formulario-observacion-analisis>
+          </mat-tab>
+          <mat-tab label="Plan de Acción">
+            <app-formulario-plan-accion></app-formulario-plan-accion>
+          </mat-tab>
+          <mat-tab label="Ejecución">
+            <app-formulario-ejecucion></app-formulario-ejecucion>
+          </mat-tab>
+          <mat-tab label="Verificación y Estandarización">
+            <app-formulario-verificacion-estandarizacion></app-formulario-verificacion-estandarizacion>
+          </mat-tab>
+          <mat-tab label="Cierre">
+            <app-formulario-cierre></app-formulario-cierre>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-tab>
+      <mat-tab label="Bitacora">
+        <app-formulario-bitacora></app-formulario-bitacora>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
+<!-- Modal confirmacion -->
+<swal #swalConfirmacionAccion type="question" confirmButtonText="Si, grabar" [showCancelButton]="true"
+  [title]="mensajeConfirmarAccion" cancelButtonText="No gracias" (confirm)="confirmarAccion();">
+</swal>
+<swal #swalRechazarNoConformidad [allowOutsideClick]="false" [showConfirmButton]="false"
+  customClass="modal-ingresar-comentario">
+  <div *swalPartial>
+    <app-ingreso-texto-generico [configuracion]="configModalIngresoTexto" (aceptarEvent)="rechazar($event)"
+      (cancelarEvent)="cerralModalAgregarRechazo();">
+    </app-ingreso-texto-generico>
+  </div>
+</swal>
+<swal #swalRetornarNoConformidad [allowOutsideClick]="false" [showConfirmButton]="false"
+  customClass="modal-ingresar-comentario">
+  <div *swalPartial>
+    <app-ingreso-texto-generico [configuracion]="configModalIngresoTexto" (aceptarEvent)="retornar($event)"
+      (cancelarEvent)="cerralModalRetornar();">
+    </app-ingreso-texto-generico>
+  </div>
+</swal>

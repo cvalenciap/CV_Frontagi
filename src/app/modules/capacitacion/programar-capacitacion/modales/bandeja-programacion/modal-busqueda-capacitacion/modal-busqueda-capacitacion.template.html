@@ -1,0 +1,67 @@
+<div class="modal-header modal-cabecera-color">
+    <h4 class="modal-title pull-left">Busqueda Avanzada</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="cerrar">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-lg-12">
+            <label class="col-sm-2 control-label">Capacitación:</label>
+            <div class="col-sm-10">
+                <input  type="text" placeholder="Capacitación" class="form-control" name="capacitacion" [(ngModel)] = "busqueda.capacitacion">
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-lg-12">
+            <label class="col-sm-2 control-label">Instructor:</label>
+            <div class="col-sm-10">
+                <input  type="text" placeholder="Instructor" class="form-control" name="instructor" [(ngModel)] = "busqueda.instructor">
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-lg-12">
+            <label class="col-sm-2 control-label">Año Planificación:</label>
+            <div class="col-sm-4">
+                <input  type="text" placeholder="Año Planificación" class="form-control" name="anioPlanificacion" [(ngModel)] = "busqueda.anioPlanificacion">
+            </div>
+            <label class="col-sm-2 control-label">Estado:</label>
+            <div class="col-sm-4">
+                <input  type="text" placeholder="Estado" class="form-control" name="estado" [(ngModel)] = "busqueda.estado">
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="panel panel-default">
+        <div class="panel-heading"><strong>Rango de Fechas de Capacitación</strong></div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    <label class="col-sm-2 control-label">Fecha Inicio:</label>
+                    <div class="col-sm-4">
+                        <div class="input-group date">
+                            <input bsDatepicker #dp1="bsDatepicker" type="text" class="form-control" [(ngModel)]="busqueda.fechaInicio" name="fechaInicio" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-red' }">
+                            <span class="input-group-addon"><i class="fa fa-calendar" (click)="dp1.toggle()" [attr.aria-expanded]="dp1.isOpen" ></i></span>
+                        </div>
+                    </div>
+                    <label class="col-sm-2 control-label">Fecha Fin:</label>
+                    <div class="col-sm-4">
+                        <div class="input-group date">
+                            <input bsDatepicker #dp2="bsDatepicker" type="text" class="form-control" [(ngModel)]="busqueda.fechaFin" name="fechaFin" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-red' }">
+                            <span class="input-group-addon"><i class="fa fa-calendar" (click)="dp2.toggle()" [attr.aria-expanded]="dp2.isOpen" ></i></span>
+                        </div>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="OnBuscar()" >Buscar</button>
+    <button type="button" class="btn btn-default" (click)="OnCancelar()">Cancelar</button>
+</div>

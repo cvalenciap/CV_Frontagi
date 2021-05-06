@@ -1,0 +1,171 @@
+<div class="wrapper wrapper-content animated fadeInRight" style="padding-top:0px;">
+    <div class="row border-bottom white-bg dashboard-header animated fadeInRight"
+        style="padding-left:0px; padding-top:0px;">
+
+        <div class="col-sm-8" style="margin-top: 0px">
+            <h1><strong>Información Documentada</strong></h1>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <a class="animated-widget" (click)="onClick(idProceso)"
+                        [routerLink]="['/documento/general/bandejadocumento/editar']">
+                        <div class="widget style1 blue-bg">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <i class="fa fa-edit fa-5x infinite wobble"></i>
+                                </div>
+                                <div class="col-xs-8 text-right">
+                                    <h2 class="font-bold">Proceso</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-4">
+                    <a class="animated-widget" (click)="onClick(idAlcance)"
+                        [routerLink]="['/documento/general/bandejadocumento/editar']">
+                        <div class="widget style1 lazur-bg">
+                            <div class="row">
+                                <div class="col-xs-4" style="padding-right:0px;">
+                                    <i class="fa fa-check-square-o fa-5x infinite bounceIn"></i>
+                                </div>
+                                <div class="col-xs-8 text-right">
+                                    <h2 class="font-bold">SGI</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-sm-4" style="padding-right: 0px;">
+                    <a class="animated-widget" (click)="onClick(idGerencia)"
+                        [routerLink]="['/documento/general/bandejadocumento/editar']">
+                        <div class="widget style1 navy-bg">
+                            <div class="row">
+                                <div class="col-xs-4" style="padding-right:0px; padding-left:0px;">
+                                    <i class="fa fa-check fa-5x infinite bounce"></i>
+                                </div>
+                                <div class="col-xs-8 text-right" style="padding-right:0px; padding-left:0px;">
+                                    <h2 class="font-bold" style="text-align:left;">Gerencia</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <br><br><br>
+
+            <div class="col-md-4"></div>
+            <div class="row col-sm-5" align="right">
+                 <select name="idTrimestre" class="form-control m-b" [(ngModel)]="idTrimestre" (change)="mostrar()">
+                    <option *ngFor="let item of lista" [value]="item.idconstante">Programación
+                        {{anio}}-{{item.v_valcons}} Trim</option>
+                </select>
+            </div>
+            <div class="box-form">
+                <div class="row">
+                    <div class="col-md-12" style="display:block;height:254px;width:670px;padding-left:120px;">&nbsp;
+                        <!--Diagrama  -->
+                        <canvas baseChart #baseChart="base-chart" height="114" [datasets]="lineChartData"
+                            [labels]="lineChartLabels" [options]="lineChartOptions" [chartType]="lineChartType"
+                            [colors]="lineChartColors" (chartClick)="exportar($event)">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row"></div>
+            <hr>
+            <div class="row"></div>
+        </div>
+        <br>
+        <div class="col-sm-4" align="right">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title" style="height:15px;width:250px;padding-top:15px;">
+                    <h5>Tareas Pendientes</h5>
+                </div>
+                <div class="ibox-content" style="width:250px;padding-top:5px;padding-bottom:5px;">
+                    <div class="feed-activity-list">
+
+                        <div>
+                            <h4 *authIf="session.ACL.ID_TAR_AprobacionSolicitudRevision" align="left">Solicitudes</h4>
+                        </div>
+                        <div *authIf="session.ACL.ID_TAR_AprobacionSolicitudRevision" class="feed-element" style="padding-bottom:10px;margin-top:10px;">
+                            <div *authIf="session.ACL.ID_TAR_AprobacionSolicitudRevision">
+                                <div style="height: 25px;">
+                                    <a (click)="onClicIndicador()" [routerLink]="['/documento/tareapendiente/AprobarSolicitud']">Para Revisar&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                                    <span class="label label-success pull-right">{{datosInfDocumentaria.cantidadParaRevision}}</span>
+                                </div>
+                            </div>
+                            <div *authIf="session.ACL.ID_TAR_CancelacionDocumentos"> 
+                                <div style="height: 25px;">
+                                    <a (click)="onClicIndicador()" [routerLink]="['/documento/tareapendiente/cancelaciones/CancelaSolicitud']">Para Cancelar&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                                    <span class="label label-success pull-right">{{datosInfDocumentaria.cantidadParaCancelar}}</span>
+                                </div>
+                            </div>
+                            <div *authIf="session.ACL.ID_TAR_AprobacionCopiasImpresas">
+                                <div style="height: 25px;">
+                                    <a (click)="onClicIndicador()" [routerLink]="['/documento/tareapendiente/CopiaImpresion']">Para Imprimir&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                                    <span class="label label-success pull-right">{{datosInfDocumentaria.cantidadParaImprimir}}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 align="left">Documentos en Revisión</h4>
+                        </div>
+                        <div class="feed-element" style="padding-bottom:10px;margin-top:10px;">
+                            <div *authIf="session.ACL.ID_TAR_Elaboracion">
+                                <div style="height: 25px;">
+                                    <a (click)="onClicIndicador()" [routerLink]="['/documento/tareapendiente/ElaborarRevision']">Elaboración&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                                    <span class="label label-danger pull-right">{{datosInfDocumentaria.cantidadElaboracion}}</span>
+                                </div>
+                            </div>
+                            <div *authIf="session.ACL.ID_TAR_Consenso">
+                                <div style="height: 25px;">
+                                    <a (click)="onClicIndicador()" [routerLink]="['/documento/tareapendiente/ConsensuarRevision']">Consenso&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                                    <span class="label label-danger pull-right">{{datosInfDocumentaria.cantidadConsenso}}</span>
+                                </div>
+                            </div>
+                            <div *authIf="session.ACL.ID_TAR_Aprobacion">
+                                <div style="height: 25px;">
+                                    <a (click)="onClicIndicador()" [routerLink]="['/documento/tareapendiente/AprobarRevision']">Aprobación&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                                    <span class="label label-danger pull-right">{{datosInfDocumentaria.cantidadAprobacion}}</span>
+                                </div>
+                            </div>
+                            <div *authIf="session.ACL.ID_TAR_Homologacion">
+                                <div style="height: 25px;">
+                                    <a (click)="onClicIndicador()" [routerLink]="['/documento/tareapendiente/HomologarRevision']">Homologación&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                                    <span class="label label-danger pull-right">{{datosInfDocumentaria.cantidadHomologacion}}</span>
+                                </div>
+                            </div>
+                            <div *authIf="session.ACL.ID_TAR_AprobacionCancelacion">
+                                <div style="height: 25px;">
+                                    <a (click)="onClicIndicador()" [routerLink]="['/documento/tareapendiente/cancelaciones/AprobacionCancel']">Cancelación&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                                    <span class="label label-danger pull-right">{{datosInfDocumentaria.cantidadCancelacion}}</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="height: 25px;">
+                                    <a>Cambio de Personal&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                                    <span class="label label-danger pull-right">{{datosInfDocumentaria.cantidadCambioPersonal}}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 align="left">Por Conocimiento</h4>
+                        </div>
+                        <div class="feed-element" style="padding-bottom:10px;margin-top:10px;border-bottom-width: 0px;">
+                            <div>
+                                <div>
+                                    <a (click)="onClicIndicador()" [routerLink]="['/documento/tareapendiente/ConocimientoRevision']">Realizar Revisión&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                                    <span class="label label-success pull-right">{{datosInfDocumentaria.cantidadRealizarRevision}}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

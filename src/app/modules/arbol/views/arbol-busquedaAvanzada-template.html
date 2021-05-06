@@ -1,0 +1,8 @@
+<div *ngIf="activarBotonArbol" class="btn-group">
+    <button (click)="treeModel.collapseAll()" class="btn btn-success m-r">Integrar</button> 
+    <button (click)="treeModel.expandAll()"class="btn btn-primary m-r">Expandir</button>
+</div>
+<br>
+<div class="btn-group" style="overflow-y:auto; height:385px;">
+    <tree-root #tree [nodes]="listaJerarquia" [options]="treeOptions" (updateData)="actualizarArbol()"></tree-root>
+</div>

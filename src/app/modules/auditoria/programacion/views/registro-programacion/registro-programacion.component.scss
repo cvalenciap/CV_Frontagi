@@ -1,0 +1,136 @@
+.table {
+    tr {
+      td[data-col='descripcionEntidad'] {  width: 176px;height: 0px;font-size: 11px;}
+      td[data-col='norma'] {width: 80px;height: 0px;font-size: 11px;}
+      td[data-col='ene'] { width: 61px;height: 0px;font-size: 11px;}
+      td[data-col='feb'] { width: 61px;height: 0px;font-size: 11px;}
+      td[data-col='mar'] { width: 61px;height: 0px;font-size: 11px;}
+      td[data-col='abr'] { width: 61px;height: 0px;font-size: 11px;}
+      td[data-col='may'] { width: 61px;height: 0px;font-size: 11px;}
+      td[data-col='jun'] { width: 61px;height: 0px;font-size: 11px;}
+      td[data-col='jul'] { width: 61px;height: 0px;font-size: 11px;}
+      td[data-col='ago'] { width: 61px;height: 0px;font-size: 11px;}
+      td[data-col='set'] { width: 61px;height: 0px;font-size: 11px;}
+      td[data-col='oct'] { width: 61px;height: 0px;font-size: 11px;}
+      td[data-col='nov'] { width: 61px;height: 0px;font-size: 11px;}
+      td[data-col='dic'] { width: 61px;height: 0px;font-size: 11px;}
+      td[data-col='obs'] { width: 53px;height: 0px;font-size: 11px;}
+
+      th[data-col='descripcionEntidad'] { width: 176px; height: 0px;}
+      th[data-col='norma'] {width: 80px;height: 0px}
+      th[data-col='ene'] { width: 61px;height: 0px}
+      th[data-col='feb'] { width: 61px;height: 0px}
+      th[data-col='mar'] { width: 61px;height: 0px}
+      th[data-col='abr'] { width: 61px;height: 0px}
+      th[data-col='may'] { width: 61px;height: 0px}
+      th[data-col='jun'] { width: 61px;height: 0px}
+      th[data-col='jul'] { width: 61px;height: 0px}
+      th[data-col='ago'] { width: 61px;height: 0px}
+      th[data-col='set'] { width: 61px;height: 0px}
+      th[data-col='oct'] { width: 61px;height: 0px}
+      th[data-col='nov'] { width: 61px;height: 0px}
+      th[data-col='dic'] { width: 61px;height: 0px}
+      th[data-col='obs'] { width: 53px;height: 0px}
+    }
+  } 
+  
+.btn-sm {
+    padding: 3px 7px;
+    font-size: 11px;
+    margin-right: 4px;
+    line-height: 1.5;
+    border-radius: 3px;
+    width: 25px;
+    height: 24px;
+}
+
+.table > tbody > tr > td {
+    padding: 3px;
+}
+
+.btn-principales{
+  font-size: 12px;
+  padding: 6px 12px;
+  margin-right: 4px;
+  width: 96px;
+}
+
+.btn-info {
+    font-size: 12px;
+    padding-top: 5px;
+    padding-bottom: 8px;
+}
+
+.form-control {
+    font-size: 12px;
+    height: 31.5px;
+}
+
+.bt-div-superior{
+    margin-bottom: 5px;
+    margin-top: 2px;
+}
+
+.div-principal{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.bt-superior{
+    margin-right: 4px;
+    width: 90px;
+
+}
+
+.btn-colores {
+    color: inherit;
+    background: #e6e6e6;
+    border-color: #eac2c2;
+}
+
+.btn-colores:hover {
+    background-color: #fde9e9;
+}
+
+.control-label {
+  padding-left: 18px;
+  padding-top: 5px;
+  padding-right: 15px;
+}
+
+.tx-cajas {
+    height: 30px;
+}
+
+.margen-cajas{
+    margin-bottom: 8px;
+}
+
+.btn-success-revisar {
+    background-color: #899db1;
+    border-color: #899db1;
+    color: #FFFFFF;
+  }
+  
+  .btn-success-revisar:hover {
+    background-color: #9fb3c7;
+  }
+
+  .table-fixed{
+    width: 100%;
+    tbody{
+      overflow-y:auto;
+      height:259px;    
+      width: 100%;
+      }
+
+    thead,tbody{
+      display:block;
+    }
+  }
+  
+  
+  
+

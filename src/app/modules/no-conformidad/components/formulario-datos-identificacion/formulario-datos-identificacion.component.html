@@ -1,0 +1,292 @@
+<div class="wrapper wrapper-content animated fadeInRight" style="padding-left: 0px;">
+<div class="row">
+  <div class="col-lg-5">
+    <div class="row">
+      <div class="col-lg-12">
+        <button type="button" class="btn btn-info" (click)="mostrarModalAgregarProblema();" title="Añadir"><i
+            class="fa fa-plus"></i><span>
+            Añadir</span></button>&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-danger" (click)="eliminarProblema();" title="Eliminar"><i
+            class="fa fa-arrow-minus"></i><span>
+            Eliminar</span></button>
+      </div>
+    </div>
+    <p></p>
+    <div class="row">
+      <div class="col-lg-12">
+        <div style="height: 575px;overflow-y: auto;">
+          <div class="table-responsive">
+            <table class="table table-bordered table-stripped table-hover issue-tracker">
+              <thead>
+                <tr>
+                  <th class="text-center">Descripción del Problema</th>
+                  <th class="text-center">Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur id iste atque? Debitis,
+                    voluptatibus rerum voluptatum officiis</td>
+                  <td class="text-center">
+                    <button class="btn btn-sm btn-success" (click)="editarProblema()" title="Editar"><i
+                        class="fa fa-edit"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur id iste atque? Debitis,
+                    voluptatibus rerum voluptatum officiis</td>
+                  <td class="text-center">
+                    <button class="btn btn-sm btn-success" (click)="editarProblema()" title="Editar"><i
+                        class="fa fa-edit"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur id iste atque? Debitis,
+                    voluptatibus rerum voluptatum officiis</td>
+                  <td class="text-center">
+                    <button class="btn btn-sm btn-success" (click)="editarProblema()" title="Editar"><i
+                        class="fa fa-edit"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="col-lg-7" style="padding-left: 0px;"> -->
+  <div class="col-lg-7" >
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class="control-label" for="tipo">Tipo:</label>
+          <select name="tipo" id="tipo" class="form-control">
+            <option value="" hidden>Seleccione</option>
+            <option value="1">SAC</option>
+            <option value="2">SAP</option>
+            <option value="3">Observación</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class="control-label" for="numero">Nro:</label>
+          <input type="text" id="numero" class="form-control">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class="control-label">Fecha Identificación:</label>
+          <div class="input-group date">
+            <input autocomplete="off" bsDatepicker #dp="bsDatepicker" type="text" class="form-control"
+              name="fechaIdentificacion" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" placeholder="dd/MM/yyyy" />
+            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label class="control-label" for="ambito">Ambito:</label>
+          <select name="ambito" id="ambito" class="form-control">
+            <option value="" hidden>Seleccione</option>
+            <option value="1">Fuera del SGI</option>
+            <option value="2">Dentro del SGI</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label" for="origen">Origen:</label>
+          <select name="origen" id="origen" class="form-control">
+            <option value="" hidden>Seleccione</option>
+            <option value="1">Auditoría Interna</option>
+            <option value="2">Auditoría Externa</option>
+            <option value="3">Hallazgo Personal</option>
+            <option value="4">Queja de cliente</option>
+            <option value="5">Incumplimiento legal</option>
+            <option value="6">Trabajo de ensayo no conforme</option>
+            <option value="7">Derivados de SAC-SAP Canceladas</option>
+            <option value="8">Derivados de Acciones Anuladas</option>
+            <option value="9">Otros</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label" for="origen">Tipo Área:</label>
+          <div class="form-inline">
+            <div class="radio" style="padding-left: 9px;">
+              <input type="radio" id="gerencia" name="tipoArea" [value]="1">
+              <label for="gerencia">Gerencia</label>
+            </div>&nbsp;
+            <div class="radio">
+              <input type="radio" id="equipo" name="tipoArea" [value]="2">
+              <label for="equipo">Equipo</label>
+            </div>&nbsp;
+            <div class="radio">
+              <input type="radio" id="comite" name="tipoArea" [value]="3">
+              <label for="comite">Comité</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label class="control-label" for="area">Área:</label>
+          <select name="area" id="area" class="form-control">
+            <option value="" hidden>Seleccione</option>
+            <option value="1">GERENCIA FINANZAS</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label class="control-label" for="responsable">Responsable:</label>
+          <input type="text" id="responsable" class="form-control" value="JOSE HERRERA CARPIO" disabled>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label class="control-label" for="cargo-sig">Cargo SIG:</label>
+          <select name="cargo-sig" id="cargo-sig" class="form-control">
+            <option value="" hidden>Seleccione</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label class="control-label" for="norma">Norma:</label>
+          <select name="norma" id="norma" class="form-control">
+            <option value="" hidden>Seleccione</option>
+            <option value="1">ISO 9001:2015</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label class="control-label" for="alcance">Alcance:</label>
+          <select name="alcance" id="alcance" class="form-control">
+            <option value="" hidden>Seleccione</option>
+            <option value="1">ISO 9001/PTA</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label class="control-label" for="requisito">Requisito:</label>
+          <select name="requisito" id="requisito" class="form-control">
+            <option value="" hidden>Seleccione</option>
+            <option value="1">1.4 Politicas y Gestión</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1 text-center" style="padding-left: 0px; padding-right: 0px;">
+        <div class="row">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-primary btn-sm" (click)="agregarProblema();" title="Agregar"><i
+                class="fa fa-plus"></i></button>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-danger btn-sm" (click)="agregarProblema();" title="Eliminar"><i
+                class="fa fa-minus"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-7" style="padding-left: 0px;">
+        <div style="height: 200px;overflow-y: auto;">
+          <div class="table-responsive">
+            <table class="table table-bordered table-stripped table-hover issue-tracker">
+              <thead>
+                <tr>
+                  <th class="text-center">Norma</th>
+                  <th class="text-center">Alcance</th>
+                  <th class="text-center">Requisito</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>ISO 9001:2015</td>
+                  <td>ISO 9001/PTA</td>
+                  <td>1.4 Politicas y Gestión</td>
+                </tr>
+                <tr>
+                  <td>ISO 14001:2015</td>
+                  <td>ISO 14001</td>
+                  <td>1.4 Politicas y Gestión</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label class="control-label">Archivo Adjunto:</label>
+              <div class="row">
+                <div class="col-md-9" style="margin-right: 0px;">
+                  <input type="text" class="form-control " id="archivo-adjunto" value="Evidencia_c0.1.doc" readonly>
+                </div>
+                <div class="col-md-3" style="padding-left: 0px;">
+                  <button type="button" class="btn btn-primary" title="Cargar archivo"><i
+                      class="fa fa-file"></i><span></span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label class="control-label" for="asignar-responsable">Asignar Responsable:</label>
+              <div class="row">
+                <div class="col-md-9" style="margin-right: 0px;">
+                  <input type="text" class="form-control " id="asignar-responsable" value="WILLIAN CASTILLO TERAN" readonly>
+                </div>
+                <div class="col-md-3" style="padding-left: 0px;">
+                  <button type="button" class="btn btn-primary" title="Asignar Responsable"><i
+                      class="fa fa-search"></i><span></span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-11">
+            <div class="form-group">
+              <label class="control-label">Fecha de Aceptación:</label>
+              <div class="input-group date">
+                <input autocomplete="off" bsDatepicker #dp="bsDatepicker" type="text" class="form-control"
+                  name="fechaAceptacion" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" placeholder="dd/MM/yyyy" />
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!-- Modales -->
+<swal #swalAgregarProblema [allowOutsideClick]="false" [showConfirmButton]="false"
+  customClass="modal-ingresar-comentario">
+  <div *swalPartial>
+    <app-ingreso-texto-generico [configuracion]="configModalIngresoTexto" (aceptarEvent)="agregarProblema($event)"
+      (cancelarEvent)="cerralModalAgregarProblema();">
+    </app-ingreso-texto-generico>
+  </div>
+</swal>

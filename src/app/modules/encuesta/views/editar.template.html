@@ -1,0 +1,156 @@
+<div class="row wrapper border-bottom white-bg page-heading" style="padding-bottom: 5px;">
+    <div class="col-lg-12" style="margin-top: 8px">
+        <h4>Mantenimiento / Encuesta /
+            <strong>{{tipoAccion}}</strong>
+        </h4>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row m-b-md">
+        <div class="col-lg-12">
+            <a class="btn btn-primary m-r" (click)="OnGuardar()">
+                <i class="fa fa-check"></i> Guardar</a>
+            <a class="btn btn-default m-r" (click)="OnRegresar()">
+                <i class="fa fa-arrow-left"></i> Regresar</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content">
+                <form class="form-horizontal">
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" style="padding-top: 5px;">Codigo :</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" name="vcodencu" [(ngModel)]="textoCodEncuesta"
+                                [ngClass]="{'ng-dirty ng-invalid':errors?.vcodencu}"
+                                [tooltip]="errors?.vcodencu"
+                                placement="bottom">
+                            </div>
+                            <label class="col-sm-1 control-label" style="padding-top: 0px;padding-right: 0px;padding-left: 0px;height: 45px;">Nombre Encuesta :</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="encuesta" [(ngModel)]="textoEncuesta" 
+                                [ngClass]="{'ng-dirty ng-invalid':errors?.vnomencu}"
+                                [tooltip]="errors?.vnomencu"
+                                placement="bottom">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" style="padding-top: 5px;">Código de Curso:</label>
+                            <div class="col-sm-2">
+                                <div class="input-group">
+                                    <input type="text" #idcolaboracioncreaciondoc="ngModel" [(ngModel)]="textoCodigo" placeholder="Buscar" class="form-control"
+                                        name="idcolaboracioncreaciondoc" id="idcolaboracioncreaciondoc"  
+                                        [ngClass]="{'ng-dirty ng-invalid':errors?.v_cod_cur}"
+                                        [tooltip]="errors?.v_cod_cur"
+                                        placement="bottom" readonly>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-info" (click)="obtenerColaborador(idcolaboracioncreaciondoc)" [disabled]="habilitar">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <label class="col-sm-1 control-label" style="padding-top: 5px; padding-right: 0px; padding-left: 43px;">Curso :</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" disabled="disabled" name="curso" [(ngModel)]="textoCurso">
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" style="padding-top: 5px;">Disponible :</label>
+                            <div class="col-sm-2">
+                                <select name="dispo" id="dispo" class="form-control" [(ngModel)]="vdispo" [disabled]= "hdisponible">
+                                    <option value="null" disabled>Seleccione</option>
+                                    <option value="1">Si</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" style="padding-top: 5px; padding-right: 75px;">Preguntas :</label>
+                        </div>
+                    </div>
+                </form>
+
+                <form class="form-horizontal">
+                    <div class="form-group">
+
+                        <div class="col-lg-12">
+                            <!-- <div class="ibox-content" [ngClass]="{'sk-loading': loading}"> -->
+                            <div class="ibox-content">
+                                    <!-- <button class="btn btn-info"  (click)="abrirBusqueda()"><i class="fa fa-edit"></i> Vista Previa</button> -->
+                                    <a class="btn btn-primary m-r" style="top:12px" (click)="OnAgregar()">
+                                            <i class="fa fa-plus"></i> Añadir</a>
+                                    <button type="button" class="btn btn-primary" style="top:12px;padding-left: 12px;margin-left: 6px;" (click)="abrirBusqueda()" [disabled]="habilitar_vp">
+                                        <i class="fa fa-eye" ></i> Vista Previa</button>
+                                    <div>
+                                        <br>
+                                        <sk-three-bounce></sk-three-bounce>
+                                        <div class="table-responsive">
+                                        <table class="table table-bordered table-stripped table-hover issue-tracker">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center ">Codigo</th>
+                                                    <th class="text-center">Pregunta</th>
+                                                    <th class="text-center">Disponible</th>
+                                                    <th class="text-center">Acción</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let item of listaPreguntas; let i=index">
+                                                    <td class="text-center" style="width: 93px;">{{item.vcodetaencu}}</td>
+                                                    <td class="text-center">{{item.vdespre}}</td>
+                                                    <td class="text-center" [ngSwitch]="item.ndisdetenc"  style="width: 118px;">
+                                                            <span *ngSwitchCase= "0"  class="text-center">No</span>
+                                                            <span *ngSwitchCase= "1"  class="text-center" >Si</span>
+                                                    </td>
+                                                    <td class="text-center" data-col="accion" style="width:130px;padding-left:0px;padding-right:0px;">
+                                                        <button title="Actualizar" class="btn btn-success btn-sm m-r" (click)="editarCursoSesion(i, item)">
+                                                            <i class="fa fa-edit"></i>
+                                                        </button>
+
+                                                        <button title="Eliminar" class="btn btn-danger btn-sm m-r" [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                                                            (confirm)="eliminarSesion(i,item)">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    </div>
+                                <!-- </div> -->
+                                <!--                                 <div class="row">
+                                    <div class="col-md-4 col-sm-12 col-xs-12">
+                                        <pagination [(ngModel)]="paginacion.pagina" (pageChanged)="OnPageChanged($event)" [totalItems]="paginacion.totalRegistros"
+                                            [itemsPerPage]="paginacion.registros" [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;"
+                                            nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                        <div class="text-center m-a-sm">
+                                            <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                        <div class="text-right m-a-sm">
+                                            <pagination-set (optionChanged)="OnPageOptionChanged($event)"></pagination-set>
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

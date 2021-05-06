@@ -1,0 +1,20 @@
+{
+    "listaDetalleAsistencia": [
+        {
+            "nroFicha":"P0001",
+            "nombresApellidos":"Juan Gonzales Naveda",
+            "equipo":"EGI",
+            "asistencia":"NO",
+            "justificacion":"Descanso Médico",
+            "documento":""
+        },
+        {
+            "nroFicha":"P0002",
+            "nombresApellidos":"Marleni Flores Osorio",
+            "equipo":"ISOTEC",
+            "asistencia":"SI",
+            "justificacion":"",
+            "documento":""
+        }
+    ]
+}

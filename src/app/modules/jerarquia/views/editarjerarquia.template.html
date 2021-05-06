@@ -1,0 +1,191 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2>11Editar Jerarquia</h2>
+    <ol class="breadcrumb">
+      <li>
+        <a routerLink="starterview">Inicio</a>
+      </li>
+      <li>
+        <a>Mantenimiento de Jerarquia</a>
+      </li>
+      <li class="active">
+        <strong>Editar Jerarquia</strong>
+      </li>
+    </ol>
+  </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row m-b-md">
+    <div class="col-lg-12">
+      <a class="btn btn-primary m-r" (click)="OnGuardar()"><i class="fa fa-check"></i> Guardar</a>
+      <a class="btn btn-warning m-r" (click)="OnGuardar()"><i class="fa fa-spinner"></i> Limpiar</a>
+      <a class="btn btn-default m-r" (click)="OnRegresar()"><i class="fa fa-arrow-left"></i> Regresar</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox-content">
+        <form class="form-horizontal">
+          <h3><p class="text-success">Identificación de Proceso</p></h3>
+            <div class="form-group">
+            <label class="col-sm-2 control-label">Tipo de Proceso(*) :</label>
+              <div class="col-sm-4">
+                <ng-select [items]="listaTipos"
+                           bindLabel="descripcion"
+                           bindValue="codigo"
+                           [clearable]="false"
+                           name="tipo"
+                           >
+                </ng-select>
+              </div>
+              <label class="col-sm-2 control-label">Nivel(*) :</label>
+              <div class="col-sm-4">
+                <ng-select [items]="listaTipos"
+                           bindLabel="descripcion"
+                           bindValue="codigo"
+                           [clearable]="false"
+                           name="tipo"
+                           >
+                </ng-select>
+              </div>
+          </div>
+          <div class="form-group">
+           <label class="col-sm-2 control-label">Nombre del Proceso(*):</label>
+            <div class="col-sm-4">  <textarea class="form-control" rows="3" name="referencia" ></textarea></div>
+            <label class="col-sm-2 control-label">Responsable del Proceso(*) :</label>
+            <div class="col-sm-4">  <textarea class="form-control" rows="3" name="referencia" ></textarea></div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Objetivo(*) :</label>
+            <div class="col-sm-4">  <textarea class="form-control" rows="3" name="referencia" ></textarea></div>
+            <label class="col-sm-2 control-label">Alcance(*) :</label>
+            <div class="col-sm-4">  <textarea class="form-control" rows="3" name="referencia" ></textarea></div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Requisitos Legales y Reglamentos(*) :</label>
+            <div class="col-sm-4">  <textarea class="form-control" rows="3" name="referencia" ></textarea></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox-content">
+        <form class="form-horizontal">
+          <h3><p class="text-success">Componentes del Proceso</p></h3>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Proveedores :</label>
+            <div class="col-sm-4">  <textarea class="form-control" rows="3" name="referencia" ></textarea></div>
+            <label class="col-sm-2 control-label">Entradas :</label>
+            <div class="col-sm-4">  <textarea class="form-control" rows="3" name="referencia" ></textarea></div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">SubProceso / Actividades :</label>
+            <div class="col-sm-4">  <textarea class="form-control" rows="3" name="referencia" ></textarea></div>
+            <label class="col-sm-2 control-label">Salidas :</label>
+            <div class="col-sm-4">  <textarea class="form-control" rows="3" name="referencia" ></textarea></div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Cliente / Usuario :</label>
+            <div class="col-sm-4">  <textarea class="form-control" rows="3" name="referencia" ></textarea></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox-content">
+        <form class="form-horizontal">
+          <h3><p class="text-success">Identificación de Recursos Críticos para la Ejecución y Control del Proceso</p></h3>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Personal :</label>
+            <div class="col-sm-4">  <textarea class="form-control" rows="3" name="referencia" ></textarea></div>
+            <label class="col-sm-2 control-label">Equipos y Herramientas :</label>
+            <div class="col-sm-4">  <textarea class="form-control" rows="3" name="referencia" ></textarea></div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Materiales y Suministro de Oficina :</label>
+            <div class="col-sm-4">  <textarea class="form-control" rows="3" name="referencia" ></textarea></div>
+            <label class="col-sm-2 control-label">Ambiente de Trabajo :</label>
+            <div class="col-sm-4">  <textarea class="form-control" rows="3" name="referencia" ></textarea></div>
+          </div>
+          <div class="form-group">
+              <label class="col-sm-2 control-label">Documentos Aplicados :</label>
+              <div class="col-sm-4">
+
+                <table class="table table-bordered table-stripped table-hover issue-tracker">
+                  <thead>
+                  <tr>
+                    <th class="text-center">Código</th>
+                    <th class="text-center">Titulo</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr   >
+                    <td class="text-center" data-col="Jerarquia"></td>
+                    <td class="text-center" data-col="Descripcion"></td>
+                  </tr>
+                  </tbody>
+                </table>
+                </div>
+
+
+
+
+          <label class="col-sm-2 control-label">Controles e Inspecciones :</label>
+            <div class="col-sm-4">  <textarea class="form-control" rows="3" name="referencia" ></textarea></div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Registros a Controlar :</label>
+            <div class="col-sm-4">  <textarea class="form-control" rows="3" name="referencia" ></textarea></div>
+            <label class="col-sm-2 control-label">Indicadores Desempeño :</label>
+            <div class="col-sm-4">  <textarea class="form-control" rows="3" name="referencia" ></textarea></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox-content">
+        <form class="form-horizontal">
+          <h3><p class="text-success">Aprobación</p></h3>
+           <div class="form-group">
+            <label class="col-sm-2 control-label">Elaborado p1or :</label>
+            <div class="col-sm-4">
+              <div class="input-group">
+                <input type="text" placeholder="Buscar" class="form-control" >
+              <span class="input-group-btn" dropdown>
+                <button type="button" class="btn btn-info" ><i class="fa fa-search"></i></button>
+              </span>
+              </div>
+            </div>
+            <div class="form-group">
+            <label class="col-sm-2 control-label">Consensado por :</label>
+            <div class="col-sm-4">
+              <div class="input-group">
+                <input type="text" placeholder="Buscar" class="form-control" >
+                  <span class="input-group-btn" dropdown>
+                    <button type="button" class="btn btn-info" ><i class="fa fa-search"></i></button>
+                  </span>
+              </div>
+            </div>
+            </div>
+            <label class="col-sm-2 control-label">Aprobado por :</label>
+            <div class="col-sm-4">
+              <div class="input-group">
+                <input type="text" placeholder="Buscar" class="form-control" >
+                 <span class="input-group-btn" dropdown>
+                  <button type="button" class="btn btn-info" (click)="OnBusquedaAvanzada()"><i class="fa fa-search"></i></button>
+                 </span>
+              </div>
+            </div>
+            </div>
+        </form>
+      </div>
+
+
+
+

@@ -1,0 +1,14 @@
+<div class="full-height"  style="overflow-y:auto;">
+    <div class="full-height-scroll white-bg border-left">
+        <div *ngIf="activarBotonArbol" class="btn-group">
+            <button (click)="treeModel.collapseAll()" class="btn btn-success m-r">Integrar</button>
+            <button (click)="treeModel.expandAll()" class="btn btn-primary m-r">Expandir</button>
+        </div>
+        <br>
+        <!--<div class="btn-group" style="overflow-y:auto; height:385px;">-->
+        <div class="btn-group" style="overflow-y:auto;  height:auto; ">
+            <tree-root style="height: auto;" #tree [nodes]="listaJerarquia" [options]="treeOptions"
+                (updateData)="actualizarArbol()"></tree-root>
+        </div>
+    </div>
+</div>

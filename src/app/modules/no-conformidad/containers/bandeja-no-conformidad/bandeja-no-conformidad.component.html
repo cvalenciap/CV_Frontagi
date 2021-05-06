@@ -1,0 +1,63 @@
+<div class="row wrapper border-bottom white-bg page-heading" style="padding-top: 3px; padding-bottom: 0px;">
+  <div class="col-lg-12">
+    <h4><a routerLink="/inicio">Inicio</a> / No Conformidades / <strong>Bandeja de No Conformidades</strong>
+      <!-- <strong>{{ config.title }}</strong> -->
+    </h4>
+  </div>
+</div>
+<!-- Busqueda Basica -->
+<!-- <div class="row m-b-sm m-t-sm">
+  <div class="col-lg-1" style="margin-right: -45px;">
+    <button type="button" class="btn btn-primary" (click)="registrarNoConformidad();"
+      title="Nuevo"><i class="fa fa-plus"></i><span> Nuevo</span></button>
+  </div>
+  <div class="col-lg-3" style="padding-right: 0px;">
+    <app-filtro-basico (buscarAvanzado)="this.modalBusquedaAvanzada.show();">
+    </app-filtro-basico>
+  </div>
+  <div class="col-lg-1" style="padding-right: 0px;">
+    <button type="button" class="btn btn-secondary" title="Limpiar"><i class="fa fa-eraser"></i><span>
+        Limpiar</span></button>
+  </div>
+  <div class="col-lg-1" style="padding-right: 0px;margin-right: 0px; background: yellow;">
+    <button style="background: blue;" type="button" class="btn btn-success" title="Reporte"><i class="fa fa-file-alt"></i><span>
+        Reporte</span></button>
+  </div>
+  <div class="col-lg-1">
+    <button type="button" class="btn btn-warning" title="Grafico"><i class="fa fa-download"></i><span>
+        Graficos</span></button>
+  </div>
+</div> -->
+<div class="row m-b-sm m-t-sm">
+  <div class="col-lg-12">
+    <div class="form-inline">
+      <button type="button" class="btn btn-primary" (click)="registrarNoConformidad();" title="Nuevo"><i
+          class="fa fa-plus"></i><span> Nuevo</span></button>&nbsp;&nbsp;
+      <app-filtro-basico (buscarAvanzado)="this.modalBusquedaAvanzada.show();">
+      </app-filtro-basico>&nbsp;&nbsp;
+      <button type="button" class="btn btn-secondary" title="Limpiar"><i class="fa fa-eraser"></i><span>
+          Limpiar</span></button>&nbsp;&nbsp;
+      <button type="button" class="btn btn-success" title="Reporte"><i class="fa fa-file"></i><span>
+          Reporte</span></button>&nbsp;&nbsp;
+      <button type="button" class="btn btn-warning" title="Grafico"><i class="fa fa-download"></i><span>
+          Graficos</span></button>
+    </div>
+  </div>
+</div>
+<!-- Busqueda Avanzada -->
+<swal #modalBusquedaAvanzada [showCancelButton]="false" [showConfirmButton]="false"
+  customClass="modal-busqueda-no-conformidad">
+  <div *swalPartial>
+    <app-filtro-avanzado (cerrarModalEvent)="cerralModalBusquedaAvanzada()">
+    </app-filtro-avanzado>
+  </div>
+</swal>
+<!-- Panel filtro busqueda -->
+<app-datos-busqueda-bandeja *ngIf="mostrarDatosBusqueda" [datos]="datosBusqueda" (cerrarPanel)="limpiarFiltro($event)">
+</app-datos-busqueda-bandeja>
+<!-- Grilla No Conformidades -->
+<div class="wrapper wrapper-content animated main-content" style="padding: 0px;">
+  <div class="ibox-content" style="padding-left: 10px;padding-right: 10px;padding-bottom: 0px">
+    <app-tabla-no-conformidad></app-tabla-no-conformidad>
+  </div>
+</div>

@@ -1,0 +1,191 @@
+<div class="modal-header modal-cabecera-color">
+    <div class="row ">
+        <div class="col-lg-8 text-center">
+            <span style="color: darkblue; font-size: 2em">
+                <strong>{{ title }}</strong>
+            </span>
+        </div>
+        <div class="col-lg-4">
+            <span style="font-size: 1.5em">
+                <strong>Tiempo restante:&nbsp;</strong>
+            </span>
+            <span style="color: red; font-size: 1.5em">
+                <strong>{{ tiempoExamen }}</strong>
+            </span>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-2">
+            <label for="">Capacitación:</label>
+        </div>
+        <div class="col-lg-10">
+            <p>CU001 - Análisis de tratamiento de agua</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">
+            <label>Usuario:</label>
+        </div>
+        <div class="col-lg-10">
+            <p>Belgica Garagatti Castillo</p>
+        </div>
+    </div>
+</div>
+
+<div class="modal-body">
+    <div *ngIf="numeroPregunta == 1">
+        <div class="row">
+            <label class="control-label">P001 - ¿ La caida del Imperio Romano fue en el Año 1670?</label>
+            &nbsp;
+            <label>
+                <i>(1 pto)</i>
+            </label>
+        </div>
+        <div class="row">
+            <div class="radio">
+                <input type="radio" id="radio1" name="optradio" value="option1">
+                <label for="radio1">Verdadero</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="radio2" name="optradio" value="option1">
+                <label for="radio2">Falso</label>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="numeroPregunta == 2">
+        <div class="row">
+            <label class="control-label">P002 - ¿ La Batalla de Waterloo se libro en que fecha ?</label>
+            &nbsp;
+            <label>
+                <i>(1 pto)</i>
+            </label>
+        </div>
+        <div class="row">
+            <div class="radio">
+                <input type="radio" id="radio3" name="optradio1">
+                <label for="radio3">13 de mayo de 1815</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="radio4" name="optradio1" value="option1">
+                <label for="radio4">18 de junio de 1815</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="radio5" name="optradio1">
+                <label for="radio5">10 de julio de 1815</label>
+            </div>
+            <div class="radio">
+                <input type="radio" id="radio6" name="optradio1">
+                <label for="radio6">20 de junio de 1715</label>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="numeroPregunta == 3">
+        <div class="row col-lg-12">
+            <label class="control-label">P003 - Relacionar las siguientes preguntas:</label>
+            &nbsp;
+            <label>
+                <i>(4 ptos)</i>
+            </label>
+        </div>
+        <br>
+        <div class="row">
+            <div class="row col-lg-12 m-b-md">
+                <div class="col-lg-7">
+                    <label>A.&nbsp;</label>Elimina filas duplicadas del resultado de un SELECT
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-inline">
+                        <select name="tipo" id="answer1" class="form-control">
+                            <option value="0" selected>--</option>
+                            <option value="1">DROP ()</option>
+                            <option value="2">DELETE ()</option>
+                            <option value="3">AVG ()</option>
+                            <option value="4">UNIQUE ()</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row col-lg-12 m-b-md">
+                <div class="col-lg-7">
+                    <label>B.&nbsp;</label>Eliminación definitiva, de índice o una tabla o una base de datos.
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-inline">
+                        <select name="tipo" id="answer2" class="form-control">
+                            <option value="0" selected>--</option>
+                            <option value="1">DROP ()</option>
+                            <option value="2">DELETE ()</option>
+                            <option value="3">AVG ()</option>
+                            <option value="4">UNIQUE ()</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row col-lg-12 m-b-md">
+                <div class="col-lg-7">
+                    <label>C.&nbsp;</label>No es una función de agregación
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-inline">
+                        <select name="tipo" id="answer3" class="form-control">
+                            <option value="0" selected>--</option>
+                            <option value="1">DROP ()</option>
+                            <option value="2">DELETE ()</option>
+                            <option value="3">AVG ()</option>
+                            <option value="4">UNIQUE ()</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row col-lg-12">
+                <div class="col-lg-7">
+                    <label>D.&nbsp;</label>Permite borrar 0 o mas registros de una tabla
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-inline">
+                        <select name="tipo" id="answer4" class="form-control">
+                            <option value="0" selected>--</option>
+                            <option value="1">DROP ()</option>
+                            <option value="2">DELETE ()</option>
+                            <option value="3">AVG ()</option>
+                            <option value="4">UNIQUE ()</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="vistaPrevia">
+        <div class="form-group">
+            <a (click)="OnVerPregunta(1)">
+                <strong>P001</strong>
+            </a>&nbsp;&nbsp;
+            <span>
+                <i>Contestado</i>
+            </span>
+        </div>
+        <div class="form-group">
+            <a (click)="OnVerPregunta(2)">
+                <strong>P002</strong>
+            </a>&nbsp;&nbsp;
+            <span>
+                <i>Sin Contestar</i>
+            </span>
+        </div>
+        <div class="form-group">
+            <a (click)="OnVerPregunta(3)">
+                <strong>P003</strong>
+            </a>&nbsp;&nbsp;
+            <span>
+                <i>Contestado</i>
+            </span>
+        </div>
+    </div>
+</div>
+<div class="modal-footer" *ngIf="!vistaPrevia">
+    <button *ngIf="numeroPregunta > 1" type="button" class="btn btn-default" (click)="OnNavegaPregunta('anterior')">Anterior</button>
+    <button *ngIf="numeroPregunta < 3" type="button" class="btn btn-default" (click)="OnNavegaPregunta('siguiente')">Siguiente</button>
+    <button *ngIf="numeroPregunta == 3" type="button" class="btn btn-primary" (click)="OnFinalizarExamen()">Finalizar Examen</button>
+    <button type="button" class="btn btn-success" (click)="OnVistaPrevia()">Vista Previa</button>
+</div>

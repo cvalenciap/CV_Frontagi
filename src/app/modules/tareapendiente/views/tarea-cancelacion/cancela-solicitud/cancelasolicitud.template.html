@@ -1,0 +1,152 @@
+<!-- <div class="wrapper wrapper-content animated fadeInRight"  style = "padding-top: 2px;"> -->
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-12">
+    <h4 style="margin-top: 10px;">Tareas /
+      <strong>Cancelación de Documentos</strong>
+    </h4>
+  </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row m-b-sm">
+    <div class="col-lg-4">
+      <ng-template [authIf]="session.ACL.ID_TAR_CancelacionDocumentos_BUSCAR">
+        <div class="input-group">
+          <input type="text" placeholder="Buscar" class="form-control" [(ngModel)]="textoBusqueda" (keypress)="ingresoTexto($event)">
+          <span class="input-group-btn" dropdown>
+            <button type="button" class="btn btn-info" (click)="busquedaSimple()"><i class="fa fa-search"></i></button>
+            <button dropdownToggle type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split"><i class="fa fa-caret-down"></i></button>
+            <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
+              <li role="menuitem" [class.active]="parametroBusqueda == 'codigo-documento'">
+                <a (click)="parametroBusqueda = 'codigo-documento';this.textoBusqueda = ''">Código de Documento</a>
+              </li>
+              <li role="menuitem" [class.active]="parametroBusqueda == 'codigo-solicitud'">
+                <a (click)="parametroBusqueda = 'codigo-solicitud';this.textoBusqueda = ''">Número de Solicitud</a>
+              </li>
+              <li role="menuitem" [class.active]="parametroBusqueda == 'titulo-documento'">
+                <a (click)="parametroBusqueda = 'titulo-documento';this.textoBusqueda = ''">Título de Documento</a>
+              </li>
+              <li role="menuitem" [class.active]="parametroBusqueda == '-'">
+                <a (click)="abrirBusquedaAvanzada()">Busqueda Avanzada</a>
+              </li>
+            </ul>
+          </span>
+        </div>
+      </ng-template>
+    </div>
+    <div class="col-lg-8">
+      <div class="btn-group">
+        <button class="btn btn-light" (click)="limpiar()">
+          <i class="fa fa-eraser"></i> Limpiar
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row m-b-sm">
+    <div class="col-lg-12">
+      <div *ngIf="mostrarAlerta">
+        <alert type="info">
+          <span [innerHtml]="mensajeAlerta"></span>
+        </alert>
+      </div>
+      <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+        <sk-three-bounce></sk-three-bounce>
+        <div class="table-responsive">
+          <table class="table table-bordered table-stripped table-hover issue-tracker">
+            <thead>
+              <tr>
+                <!-- <th class="text-center numeroSolicitud">Número de Solicitud</th>
+                <th class="text-center estadoSolicitud">Estado de Solicitud</th>
+                <th class="text-center codDocumento">Código de Documento</th>
+                <th class="text-center titulo">Título</th>
+                <th class="text-center estadoDocumento">Estado Documento</th>
+                <th class="text-center numeroRevision">Número Revision</th>
+                <th class="text-center solicitante">Solicitante</th>
+                <th class="text-center motivoCancelacion">Motivo Cancelación</th>
+                <th class="text-center accion">Acción</th> -->
+
+                <th class="text-center numeroSolicitud">Número de Solicitud</th>
+                <th class="text-center tipoSoli">Tipo de Solicitud</th>
+                <th class="text-center solicitante">Solicitante</th>
+                <th class="text-center motivoCancelacion">Motivo</th>
+                <th class="text-center estadoSolicitud">Estado de Solicitud</th>
+                <th class="text-center codDocumento">Código Documento</th>
+                <th class="text-center titulo">Título Documento</th>
+                <th class="text-center numeroRevision">Número Revision</th>
+                <th class="text-center estadoDocumento">Estado Documento</th>
+                <th class="text-center accion">Acción</th>
+
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cancelacion of solicitudesCancelacion; index as i" (click)="onRowClick(i, cancelacion)" [class.info]="i == selectedRow">
+                <td class="text-center" data-col="codigo">{{cancelacion.idSolicitudCancelacion}}</td>
+                <td class="text-center" data-col="tipo-solicitud">{{cancelacion.tipoCancelacion}}</td>
+                <td class="text-left" data-col="solicitante">{{cancelacion.nombreColaborador + ' ' + cancelacion.apePatColaborador + ' ' + cancelacion.apeMatColaborador}}</td>
+                <td class="text-left" data-col="motivo-cancelacion">{{cancelacion.motivoCancelacion}}</td>
+                <td class="text-center" data-col="estado">{{cancelacion.estadoSolicitud}}</td>
+                <td class="text-center" data-col="codigo-documento">{{cancelacion.codigoDocumento}}</td>
+                <td class="text-left" data-col="titulo">{{cancelacion.tituloDocumento}}</td>
+                <td class="text-center" data-col="numero-revision">{{cancelacion.numeroRevision}}</td>
+                <td class="text-center" [ngSwitch]="cancelacion.estadoDocumento">
+                  <h3>
+                    <span *ngSwitchCase="'Aprobado'" class="label label-primary">&nbsp;Aprobado&nbsp;&nbsp;</span>
+                  </h3>
+                  <h3>
+                    <span *ngSwitchCase="'Emision'" class="label label-default">&nbsp;&nbsp;&nbsp;Emision&nbsp;&nbsp;&nbsp;</span>
+                  </h3>
+                  <h3>
+                    <span *ngSwitchCase="'Cancelado'" class="label label-danger">&nbsp;Cancelado&nbsp;</span>
+                  </h3>
+                  <h3>
+                    <span *ngSwitchCase="'En Revision'" class="label label-warning">En Revisión</span>
+                  </h3>
+                </td>
+                
+                
+                
+                <td class="text-center" data-col="accion" style="width:100px; padding-left:0; padding-right:0;">
+                  <div class="btn-group" style="width:80px;">
+                    <ng-template [authIf]="session.ACL.ID_TAR_CancelacionDocumentos_MODIFICAR">
+                      <button title="Ver Detalle" class="btn btn-success btn-sm  text-center" (click)="onModificar(cancelacion)">
+                        <i class="fa fa-edit"></i>
+                      </button>
+                    </ng-template>
+                    <ng-template [authIf]="session.ACL.ID_TAR_CancelacionDocumentos_VISUALIZAR">
+                      <button title="Ver Documento" class="btn btn-primary btn-sm" (click)="buscarRutaDocumento(cancelacion,visorPdfSwal,$event)"
+                        style="margin-right:0; margin-left:3px;">
+                        <i class="fa fa-file-o"></i>
+                      </button>
+                    </ng-template>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="row">
+          <div class="col-md-4 col-sm-12 col-xs-12">
+            <pagination [(ngModel)]="paginacion.pagina" (pageChanged)="onPageChanged($event)" [totalItems]="paginacion.totalRegistros"
+              [itemsPerPage]="paginacion.registros" [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;"
+              firstText="&laquo;" lastText="&raquo;"></pagination>
+          </div>
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="text-center m-a-sm">
+              <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="text-right m-a-sm">
+              <pagination-set (optionChanged)="onPageOptionChanged($event)" #pageOption></pagination-set>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<swal #visorPdfSwal [showConfirmButton]="false" [showCloseButton]="true" customClass="pdf-swal">
+  <form *swalPartial class="ajuste">
+    <visor-pdf id="02" [url]="urlPDF"></visor-pdf>
+  </form>
+</swal>

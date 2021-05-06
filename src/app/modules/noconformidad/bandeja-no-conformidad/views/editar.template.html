@@ -1,0 +1,875 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row wrapper border-bottom white-bg page-heading" style="padding-bottom: 0px">
+        <div class="col-lg-12" style="margin-top: 8px">
+            <h4>No Conformidades / <strong>Bandeja de No Conformidades</strong></h4>
+        </div>
+    </div>
+    <div class="ibox-content" >
+        <!-- <div class="row m-b-md" *ngIf="mostrarBotonEtapas"> -->
+            <div class="row m-b-md">
+            <!-- <div class="col-lg-12" *ngIf="mostrarProblema || mostrarObservacion"> -->
+            <div class="col-lg-12">
+                <!-- <button class="btn btn-primary m-r" type="submit" (click)="OnIniciarProceso()" *ngIf="mostrarProblema"><i class="fa fa-check"></i> Iniciar Proceso</button>
+                <button class="btn btn-primary m-r" type="submit" (click)="OnAprobar()" *ngIf="mostrarObservacion"><i class="fa fa-check"></i> Aprobar</button>
+                <button class="btn btn-success m-r" type="submit" (click)="OnGuardar()" *ngIf="guardarProblemaObservacion"><i class="fa fa-save"></i> Guardar</button>
+                <button class="btn btn-danger m-r" type="submit" (click)="OnRechazar()" *ngIf="!ocultarElemento"><i class="fa fa-trash"></i> Rechazar</button> -->
+                <button class="btn btn-primary m-r" type="submit" (click)="OnIniciarProceso()" ><i class="fa fa-check"></i> Iniciar Proceso</button>
+                <button class="btn btn-primary m-r" type="submit" (click)="OnAprobar()" ><i class="fa fa-check"></i> Aprobar</button>
+                <button class="btn btn-success m-r" type="submit" (click)="OnGuardar()" ><i class="fa fa-save"></i> Guardar</button>
+                <button class="btn btn-danger m-r" type="submit" (click)="OnRechazar()" ><i class="fa fa-trash"></i> Rechazar</button>
+                <a class="btn btn-default m-r" (click)="OnRegresar()"><i class="fa fa-arrow-left"></i> Regresar</a>
+            </div>
+            <div class="col-lg-12" *ngIf="mostrarPlanAccion || mostrarEjecucion">
+                <a class="btn btn-primary m-r" type="submit" (click)="OnRegistrar()"><i class="fa fa-plus"></i> Nuevo</a>
+                <button class="btn btn-primary m-r" type="submit" (click)="OnAprobar()"><i class="fa fa-check"></i> Aprobar</button>
+                <button class="btn btn-success m-r" type="submit" (click)="OnGuardarPlanAccionEjecucion()" *ngIf="ocultarElemento || mostrarEjecucion"><i class="fa fa-save"></i> Guardar</button>
+                <button class="btn btn-danger m-r" type="submit" (click)="OnRechazar()" *ngIf="!ocultarElemento && mostrarPlanAccion"><i class="fa fa-trash"></i> Rechazar</button>
+                <a class="btn btn-default m-r" (click)="OnRegresar()"><i class="fa fa-arrow-left"></i> Regresar</a>
+            </div>
+            <div class="col-lg-12" *ngIf="mostrarVerificacion || mostrarCierre">
+                <button class="btn btn-primary m-r" type="submit" (click)="OnAprobar()"><i class="fa fa-check"></i> Aprobar</button>
+                <button class="btn btn-danger m-r" type="submit" (click)="OnRechazar()" *ngIf="mostrarCierre"><i class="fa fa-trash"></i> Rechazar</button>
+                <a class="btn btn-default m-r" (click)="OnRegresar()"><i class="fa fa-arrow-left"></i> Regresar</a>
+            </div>
+            <div class="col-lg-12" *ngIf="mostrarBitacora">
+                <a class="btn btn-default m-r" (click)="OnRegresar()"><i class="fa fa-arrow-left"></i> Regresar</a>
+            </div>
+        </div>
+
+        <div class="row m-b-md" *ngIf="mostrarBotonRegresar">
+            <div class="col-lg-12">
+                <a class="btn btn-default m-r" (click)="OnRegresar()"><i class="fa fa-arrow-left"></i> Regresar</a>
+            </div>
+        </div>
+
+        <div class="ibox-content">
+            <!-- <mat-tab-group (selectedIndexChange)="obtenerTabPrincipal($event)"> -->
+            <mat-tab-group>
+                <mat-tab label="Datos de la Identificación">
+                    <br/>
+                    <div class="col-lg-12">
+                        <div class="row m-b-md">
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <div class="form-group">
+                                            <label class="control-label">Tipo No Conformidad:</label>
+                                            <!-- <input type="text" disabled="disabled" class="form-control" [(ngModel)]="objNoConformidad.descripcionTipoNoConformidad" name="descripcionTipoNoConformidad"> -->
+                                            <input type="text" disabled="disabled" class="form-control" name="descripcionTipoNoConformidad">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label class="control-label">Nro:</label>
+                                            <!-- <input type="text" disabled="disabled" class="form-control" [(ngModel)]="objNoConformidad.idNoConformidad" name="idNoConformidad"> -->
+                                            <input type="text" disabled="disabled" class="form-control" name="idNoConformidad">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label class="control-label">Fec. Identificación:</label>
+                                            <div class="input-group date">
+                                                <!-- <input bsDatepicker #dp1="bsDatepicker" [(ngModel)]="objNoConformidad.fechaIdentificacion" type="text" class="form-control" name="fechaIdentificacion" -->
+                                                <input bsDatepicker #dp1="bsDatepicker" type="text" class="form-control" name="fechaIdentificacion"
+                                                    [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue'}">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-calendar" (click)="dp1.toggle()" [attr.aria-expanded]="dp1.isOpen"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Ámbito:</label>
+                                            <!-- <input type="text" disabled="disabled" class="form-control" [(ngModel)]="objNoConformidad.descripcionTipoAmbito" name="descripcionTipoAmbito"> -->
+                                            <input type="text" disabled="disabled" class="form-control"  name="descripcionTipoAmbito">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Origen:</label>
+                                            <!-- <input type="text" disabled="disabled" class="form-control" [(ngModel)]="objNoConformidad.descripcionOrigenDeteccion" name="descripcionOrigenDeteccion"> -->
+                                            <input type="text" disabled="disabled" class="form-control" name="descripcionOrigenDeteccion">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Responsable:</label>
+                                            <input type="text" disabled="disabled" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Gerencia:</label>
+                                            <!-- <input type="text" disabled="disabled" class="form-control" [(ngModel)]="objNoConformidad.descripcionGerencia" name="descripcionGerencia"> -->
+                                            <input type="text" disabled="disabled" class="form-control" name="descripcionGerencia">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Equipo:</label>
+                                            <!-- <input type="text" disabled="disabled" class="form-control" [(ngModel)]="objNoConformidad.descripcionEquipo" name="descripcionEquipo"> -->
+                                            <input type="text" disabled="disabled" class="form-control" name="descripcionEquipo">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <label class="control-label">Norma y Requisitos:</label>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-stripped table-hover issue-tracker">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">Item</th>
+                                                <th class="text-center">Norma</th>
+                                                <th class="text-center">Requisito</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!--<tr *ngFor="let item of items; let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow">
+                                                <td class="text-center" data-col="idNormaRequisito">{{item.idNormaRequisito}}</td>
+                                                <td class="text-center" data-col="descripcionNorma">{{item.descripcionNorma}}</td>
+                                                <td class="text-center" data-col="descripcionRequisito">{{item.descripcionRequisito}}</td>
+                                            </tr>-->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-2"></div>
+                            <div class="col-lg-8">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="col-lg-1" style="padding: 0;margin:1px;">
+                                            <div class="text-center">
+                                                <p style="padding: 0;margin: 0;">
+                                                    <label class="circleBase" [ngStyle]="{'background': etapaNC >= 1 ? bgVerde: bgAmarillo}"></label>
+                                                </p>
+                                                <i>
+                                                    <small>Identificación del Problema</small>
+                                                </i>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-1" style="padding: 0;margin: 0px;">
+                                            <div class="text-center" style="padding: 0;margin: 0px;">
+                                                <i class="fa fa-arrow-right fa-2x"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-1" style="padding: 0;margin: 1px;">
+                                            <div class="text-center">
+                                                <p style="padding: 0;margin: 0;">
+                                                    <label class="circleBase" [ngStyle]="{'background': etapaNC >= 2 ? bgVerde: bgAmarillo}"></label>
+                                                </p>
+                                                <i>
+                                                    <small>Observación y Análisis</small>
+                                                </i>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-1" style="padding: 0;margin: 0px;">
+                                            <div class="text-center" style="padding: 0;margin: 0px;">
+                                                <i class="fa fa-arrow-right fa-2x"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-1" style="padding: 0;margin: 1px;">
+                                            <div class="text-center">
+                                                <p style="padding: 0;margin: 0;">
+                                                    <label class="circleBase" [ngStyle]="{'background': etapaNC >= 3 ? bgVerde: bgAmarillo}"></label>
+                                                </p>
+                                                <i>
+                                                    <small>Plan de Acción</small>
+                                                </i>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-1" style="padding: 0;margin: 0px;">
+                                            <div class="text-center" style="padding: 0;margin: 0px;">
+                                                <i class="fa fa-arrow-right fa-2x"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-1" style="padding: 0;margin: 1px;">
+                                            <div class="text-center">
+                                                <p style="padding: 0;margin: 0;">
+                                                    <label class="circleBase" [ngStyle]="{'background': etapaNC >= 4 ? bgVerde: bgAmarillo}"></label>
+                                                </p>
+                                                <i>
+                                                    <small>Ejecución</small>
+                                                </i>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-1" style="padding: 0;margin: 0px;">
+                                            <div class="text-center" style="padding: 0;margin: 0px;">
+                                                <i class="fa fa-arrow-right fa-2x"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-1" style="padding: 0;margin: 1px;">
+                                            <div class="text-center">
+                                                <p style="padding: 0;margin: 0;">
+                                                    <label class="circleBase" [ngStyle]="{'background': etapaNC >= 5 ? bgVerde: bgAmarillo}"></label>
+                                                </p>
+                                                <i>
+                                                    <small>Verificación y Estandarización</small>
+                                                </i>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-1" style="padding: 0;margin: 0px;">
+                                            <div class="text-center" style="padding: 0;margin: 0px;">
+                                                <i class="fa fa-arrow-right fa-2x"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-1" style="padding: 0;margin: 1px;">
+                                            <div class="text-center">
+                                                <p style="padding: 0;margin: 0;">
+                                                    <label class="circleBase" [ngStyle]="{'background': etapaNC >= 6 ? bgVerde: bgAmarillo}"></label>
+                                                </p>
+                                                <i>
+                                                    <small>Cierre</small>
+                                                </i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2"></div>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Estado de la No Conformidad">
+                    <!-- <mat-tab-group [selectedIndex]="etapaNC - 1"  (selectedIndexChange)="obtenerTabEtapas($event)"> -->
+                    <mat-tab-group>
+                        <mat-tab [disabled]="habilitarTabs[0]" label="Identif. del Problema">
+                            <br/>
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">Comentario:</label>
+                                                    <!-- <textarea class="form-control" rows="5"  [(ngModel)]="objetoProblema.descripcionIdentifProblema"></textarea> -->
+                                                    <textarea class="form-control" rows="5" ></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="!ocultarElemento" class="form-group">
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <div class="col-xs-6">
+                                                        <label class="control-label">Registrado por:</label>
+                                                        <input type="text" disabled="disabled" value="Jorge Poma Deza" class="form-control">
+                                                    </div>
+                                                        <br><br>Responsable de NC
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <div class="col-xs-6">
+                                                        <label class="control-label">Aprobado por:</label>
+                                                        <input type="text" disabled="disabled" value="Juan Perez" class="form-control">
+                                                    </div>
+                                                        <br><br>Detector de NC
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-7" style="text-align: right; padding-top: 2mm">                                            
+                                                    <label class="control-label">Fecha de Aceptación:</label>
+                                                </div>
+                                                <div class="col-lg-5 input-group date">
+                                                    <!-- <input bsDatepicker #dp2="bsDatepicker" [(ngModel)]="fechaAceptacion" type="text" class="form-control" name="fechaAceptacion" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue'}"> -->
+                                                    <input bsDatepicker #dp2="bsDatepicker" type="text" class="form-control" name="fechaAceptacion" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue'}">
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-calendar" (click)="dp2.toggle()" [attr.aria-expanded]="dp2.isOpen"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">Archivos Adjuntos:</label>
+                                                    <div class="input-group">
+                                                        <label class="input-group-btn">
+                                                            <span class="btn btn-primary">
+                                                                Adjuntar <input #archivoAdjuntoProblema class="ocultar" type="file" id="fileProblema" name="fileProblema" (change)="OnAdjuntarArchivo($event)">
+                                                            </span>
+                                                        </label>
+                                                        <!-- <input type="text" class="form-control" id="pdf-name" placeholder="Ingresar archivo" [(ngModel)]="nombreArchivoAdjuntoProblema" name="nombreArchivoAdjuntoProblema" readonly> -->
+                                                        <input type="text" class="form-control" id="pdf-name" placeholder="Ingresar archivo"  name="nombreArchivoAdjuntoProblema" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered table-stripped table-hover issue-tracker">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="text-center">Acción</th>
+                                                                    <th class="text-center">Nombre</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <!--<tr *ngFor="let item of items; let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow">
+                                                                    <td class="text-center" data-col="accion">
+                                                                        <button class="btn btn-secondary" type="submit">
+                                                                            <i class="fa fa-download"></i>
+                                                                        </button>
+                                                                    </td>
+                                                                    <td class="text-center" data-col="descripcionNorma">{{item.nombreProblema}}</td>
+                                                                </tr>-->
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-tab>
+                        <mat-tab [disabled]="habilitarTabs[1]" label="Obs. y Análisis">
+                            <br/>
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">Acción Inmediada:</label>
+                                                    <!-- <textarea class="form-control" rows="5" [(ngModel)]="objetoObservacion.descripcionAccionInmediata"></textarea> -->
+                                                    <textarea class="form-control" rows="5" ></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="!ocultarElemento" class="row">
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">Críticas:</label>
+                                                    <!-- <textarea class="form-control" rows="5" [(ngModel)]="objetoObservacion.criticaAccionInmediata"></textarea> -->
+                                                    <textarea class="form-control" rows="5" ></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-7" style="text-align: right; padding-top: 2mm">
+                                                    <label class="control-label">Fecha de Aprobación:</label>
+                                                </div>
+                                                <div class="col-lg-5 input-group date">
+                                                    <!-- <input bsDatepicker #dp3="bsDatepicker" [(ngModel)]="fechaAprobacionAnalisis" type="text" class="form-control" name="fechaAprobacionAnalisis" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue'}"> -->
+                                                    <input bsDatepicker #dp3="bsDatepicker" type="text" class="form-control" name="fechaAprobacionAnalisis" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue'}">
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-calendar" (click)="dp3.toggle()" [attr.aria-expanded]="dp3.isOpen"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">Archivos Adjuntos:</label>
+                                                    <div class="input-group">
+                                                        <label class="input-group-btn">
+                                                            <span class="btn btn-primary">
+                                                                Adjuntar <input #archivoAdjuntoObservacion class="ocultar" type="file" id="fileObservacion" name="fileObservacion" (change)="OnAdjuntarArchivo($event)">
+                                                            </span>
+                                                        </label>
+                                                        <!-- <input type="text" class="form-control" id="pdf-name" placeholder="Ingresar archivo" [(ngModel)]="nombreArchivoAdjuntoObservacion" name="nombreArchivoAdjuntoObservacion" readonly> -->
+                                                        <input type="text" class="form-control" id="pdf-name" placeholder="Ingresar archivo" name="nombreArchivoAdjuntoObservacion" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered table-stripped table-hover issue-tracker">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="text-center">Acción</th>
+                                                                    <th class="text-center">Nombre</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <!--<tr *ngFor="let item of items; let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow">
+                                                                    <td class="text-center" data-col="accion">
+                                                                        <button class="btn btn-secondary" type="submit">
+                                                                            <i class="fa fa-download"></i>
+                                                                        </button>
+                                                                    </td>
+                                                                    <td class="text-center" data-col="descripcionNorma">{{item.descripcionObservacion}}</td>
+                                                                </tr>-->
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr style="height: 5px;background-color: #DCDCDC;color: #DCDCDC;">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Observaciones:</label>
+                                                    <textarea class="form-control" rows="5" [(ngModel)]="objetoObservacion.descripcionObservacion"></textarea>                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr style="height: 5px;background-color: #DCDCDC;color: #DCDCDC;">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">Análisis de Causa
+                                                        <label class="text-danger">(*)</label>:</label>
+                                                    <!-- <textarea class="form-control" rows="5"  [(ngModel)]="objetoObservacion.descripcionAnalisisCausa"></textarea> -->
+                                                    <textarea class="form-control" rows="5" ></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="!ocultarElemento" class="row">
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">Críticas:</label>
+                                                    <!-- <textarea class="form-control" rows="5" [(ngModel)]="objetoObservacion.criticaAnalisisCausa"></textarea> -->
+                                                    <textarea class="form-control" rows="5" ></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="!ocultarElemento" class="form-group">
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <div class="col-xs-6">
+                                                        <label class="control-label">Registrado por:</label>
+                                                        <input type="text" disabled="disabled" value="Jorge Poma Deza" class="form-control">
+                                                    </div>
+                                                    <br>
+                                                    <br> Responsable de NC
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <div class="col-xs-6">
+                                                        <label class="control-label">Aprobado por:</label>
+                                                        <input type="text" disabled="disabled" value="Juan Perez" class="form-control">
+                                                    </div>
+                                                    <br>
+                                                    <br> Detector de NC
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">Archivos Adjuntos:</label>
+                                                    <div class="input-group">
+                                                        <label class="input-group-btn">
+                                                            <span class="btn btn-primary">
+                                                                Adjuntar <input #archivoAdjuntoAnalisis class="ocultar" type="file" id="fileAnalisis" name="fileAnalisis" (change)="OnAdjuntarArchivo($event)">
+                                                            </span>
+                                                        </label>
+                                                        <!-- <input type="text" class="form-control" id="pdf-name" placeholder="Ingresar archivo" [(ngModel)]="nombreArchivoAdjuntoAnalisis" name="nombreArchivoAdjuntoAnalisis" readonly> -->
+                                                        <input type="text" class="form-control" id="pdf-name" placeholder="Ingresar archivo" name="nombreArchivoAdjuntoAnalisis" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered table-stripped table-hover issue-tracker">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="text-center">Acción</th>
+                                                                    <th class="text-center">Nombre</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <!--<tr *ngFor="let item of items; let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow">
+                                                                    <td class="text-center" data-col="accion">
+                                                                        <button class="btn btn-secondary" type="submit">
+                                                                            <i class="fa fa-download"></i>
+                                                                        </button>
+                                                                    </td>
+                                                                    <td class="text-center" data-col="descripcionNorma">{{item.descripcionAnalisis}}</td>
+                                                                </tr>-->
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-tab>
+                        <mat-tab [disabled]="habilitarTabs[2]"label="Plan de Acción">
+                            <br/>
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="col-lg-9" style="text-align: right; padding-top: 2mm">
+                                            <label class="control-label">Fecha de Aprobación:</label>
+                                        </div>
+                                        <div class="col-lg-3 input-group date">
+                                            <input bsDatepicker #dp4="bsDatepicker" [(ngModel)]="fechaAprobacionPlanAccion" type="text" class="form-control" name="fechaAprobacionPlanAccion" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue'}">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-calendar" (click)="dp4.toggle()" [attr.aria-expanded]="dp4.isOpen"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Plan de Acción:</label>
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered table-stripped table-hover issue-tracker">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-center">Item</th>
+                                                            <th class="text-center">Acción Propuesta</th>
+                                                            <th class="text-center">Responsable</th>
+                                                            <th class="text-center">Fecha de Cumplimiento</th>
+                                                            <th class="text-center">Crítica</th>
+                                                            <th class="text-center">Acción</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="text-center">Item</td>
+                                                            <td class="text-center">Acción Propuesta</td>
+                                                            <td class="text-center">Responsable</td>
+                                                            <td class="text-center">Fecha de Cumplimiento</td>
+                                                            <td class="text-center">Crítica</td>
+                                                            <td class="text-center" data-col="accion" style="white-space: nowrap">
+                                                                    <button title="Actualizar" class="btn btn-warning btn-sm" >
+                                                                        <i class="fa fa-edit"></i>
+                                                                    </button>
+                                                                    <div style="display: inline-block;width: 6%;"></div>
+                                                                    <button title="Eliminar" class="btn btn-danger btn-sm" [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                                                                        ><i class="fa fa-trash"></i>
+                                                                    </button>
+                                                                </td>
+                                                        </tr>
+                                                        <!--                                  <tr *ngFor="let item of objetoPlanAccion; let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow">
+                                                                                                                <td class="text-center" >{{item.item}}</td>
+                                                                                                                <td data-col="descripcionAccionPropuesta">{{item.descripcionAccionPropuesta}}</td>
+                                                                                                                <td class="text-center" data-col="descripcionResponsable">{{item.descripcionResponsable}}</td>
+                                                                                                                <td class="text-center" data-col="fechaCumplimiento">{{item.fechaCumplimiento | date: 'dd/MM/yyyy'}}</td>
+                                                                                                                <td data-col="descripcionCritica">{{item.descripcionCritica}}</td>
+                                                                                                                <td class="text-center" data-col="accion" style="white-space: nowrap">
+                                                                                                                    <button title="Actualizar" class="btn btn-warning btn-sm" (click)="OnRegistrarPlanAccion(i, item)">
+                                                                                                                        <i class="fa fa-edit"></i>
+                                                                                                                    </button>
+                                                                                                                    <div style="display: inline-block;width: 6%;"></div>
+                                                                                                                    <button title="Eliminar" class="btn btn-danger btn-sm" [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                                                                                                                        (confirm)="OnEliminarPlanAccion(i, item)"><i class="fa fa-trash"></i>
+                                                                                                                    </button>
+                                                                                                                </td>
+                                                                                                            </tr> -->
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 col-sm-12 col-xs-12">
+                                                    <pagination [(ngModel)]="paginacionPlanAccion.pagina" (pageChanged)="OnPageChanged($event)" [totalItems]="paginacionPlanAccion.totalRegistros"
+                                                        [itemsPerPage]="paginacionPlanAccion.registros" [boundaryLinks]="true" name="paginacionPlanAccion"
+                                                        [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"
+                                                        lastText="&raquo;"></pagination>
+                                                </div>
+                                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                                    <div class="text-center m-a-sm">
+                                                        <pagination-info [totalItems]="paginacionPlanAccion.totalRegistros" [itemsPerPage]="paginacionPlanAccion.registros" [page]="paginacionPlanAccion.pagina"></pagination-info>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                                    <div class="text-right m-a-sm">
+                                                        <pagination-set (optionChanged)="OnPageOptionChanged($event)"></pagination-set>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="form-group" *ngIf="!ocultarElemento"> -->
+                                <div class="form-group" >
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-xs-3">
+                                                <label class="control-label">Registrado por:</label>
+                                                <input type="text" disabled="disabled" value="Jorge Poma Deza" class="form-control">
+                                            </div>
+                                            <br>
+                                            <br> Responsable de NC
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-xs-3">
+                                                <label class="control-label">Aprobado por:</label>
+                                                <input type="text" disabled="disabled" value="Juan Perez" class="form-control">
+                                            </div>
+                                            <br>
+                                            <br> Coordinador de Alcance
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-tab>
+                        <mat-tab [disabled]="habilitarTabs[3]" label="Ejecución">
+                            <br/>
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="col-lg-9" style="text-align: right; padding-top: 2mm">
+                                            <label class="control-label">Fecha de Cumplimiento:</label>
+                                        </div>
+                                        <div class="col-lg-3 input-group date">
+                                            <!-- <input bsDatepicker #dp5="bsDatepicker" [(ngModel)]="fechaCumplimiento" type="text" class="form-control" name="fechaCumplimiento" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue'}"> -->
+                                            <input bsDatepicker #dp5="bsDatepicker" type="text" class="form-control" name="fechaCumplimiento" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue'}">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-calendar" (click)="dp5.toggle()" [attr.aria-expanded]="dp5.isOpen"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Acciones Ejecutadas:</label>
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered table-stripped table-hover issue-tracker">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-center">Item</th>
+                                                            <th class="text-center">Acción Propuesta</th>
+                                                            <th class="text-center">Numeral</th>
+                                                            <th class="text-center">Acción Ejecutada</th>
+                                                            <th class="text-center">Fecha de Ejecución</th>
+                                                            <th class="text-center">Verificación de Ejecución</th>
+                                                            <th class="text-center">Acción</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                            <tr>
+                                                                    <td class="text-center">Item</td>
+                                                                    <td class="text-center">Acción Propuesta</td>
+                                                                    <td class="text-center">Numeral</td>
+                                                                    <td class="text-center">Acción Ejecutada</td>
+                                                                    <td class="text-center">Fecha de Ejecución</td>
+                                                                    <td class="text-center">Verificación de Ejecución</td>
+                                                                    <td class="text-center" data-col="accion">
+                                                                            <div class="btn-group">
+                                                                                <button title="Actualizar" class="btn btn-warning btn-sm" >
+                                                                                    <i class="fa fa-edit"></i>
+                                                                                </button>
+                                                                            </div>
+                                                                        </td>
+                                                                </tr>
+<!--                                                         <tr *ngFor="let item of objetoEjecucion; let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow">
+                                                            <td class="text-center" data-col="idPlanAccion">{{item.item}}</td>
+                                                            <td data-col="descripcionAccionPropuesta">{{item.descripcionAccionPropuesta}}</td>
+                                                            <td class="text-center" data-col="numeral">{{item.numeral}}</td>
+                                                            <td data-col="descripcionAccionEjecutada">{{item.descripcionAccionEjecutada}}</td>
+                                                            <td class="text-center" data-col="fechaEjecucion">{{item.fechaEjecucion | date: 'dd/MM/yyyy'}}</td>
+                                                            <td data-col="descripcionVerificacion">{{item.descripcionVerificacion}}</td>
+                                                            <td class="text-center" data-col="accion">
+                                                                <div class="btn-group">
+                                                                    <button title="Actualizar" class="btn btn-warning btn-sm" (click)="OnRegistrarEjecucion(i, item)">
+                                                                        <i class="fa fa-edit"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </td>
+                                                        </tr> -->
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 col-sm-12 col-xs-12">
+                                                    <pagination [(ngModel)]="paginacionEjecucion.pagina" (pageChanged)="OnPageChanged($event)" [totalItems]="paginacionEjecucion.totalRegistros"
+                                                        [itemsPerPage]="paginacionEjecucion.registros" [boundaryLinks]="true" name="paginacionEjecucion"
+                                                        [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"
+                                                        lastText="&raquo;"></pagination>
+                                                </div>
+                                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                                    <div class="text-center m-a-sm">
+                                                        <pagination-info [totalItems]="paginacionEjecucion.totalRegistros" [itemsPerPage]="paginacionEjecucion.registros" [page]="paginacionEjecucion.pagina"></pagination-info>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                                    <div class="text-right m-a-sm">
+                                                        <pagination-set (optionChanged)="OnPageOptionChanged($event)"></pagination-set>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-tab>
+                        <mat-tab [disabled]="habilitarTabs[4]" label="Verif. y Estand.">
+                            <br/>
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="col-lg-9" style="text-align: right; padding-top: 2mm">                                            
+                                            <label class="control-label">Fecha de Verificación:</label>
+                                        </div>
+                                        <div class="col-lg-3 input-group date">
+                                            <!-- <input bsDatepicker #dp6="bsDatepicker" [(ngModel)]="fechaVerificacion" type="text" class="form-control" name="fechaVerificacion" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue'}"> -->
+                                            <input bsDatepicker #dp6="bsDatepicker" type="text" class="form-control" name="fechaVerificacion" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue'}">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-calendar" (click)="dp6.toggle()" [attr.aria-expanded]="dp6.isOpen"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Comentario:</label>
+                                            <!-- <textarea class="form-control" rows="5" [(ngModel)]="objetoVerificacion.comentarioVerificacion"></textarea> -->
+                                            <textarea class="form-control" rows="5" ></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-xs-4">
+                                            <label class="control-label">Registrado por:</label>
+                                            <input type="text" disabled="disabled" value="Jorge Poma Deza" class="form-control">
+                                        </div>
+                                        <br>
+                                        <br> Coordinador SGI
+                                    </div>
+                                </div>
+                                <br/>
+                            </div>
+                        </mat-tab>
+                        <mat-tab [disabled]="habilitarTabs[5]" label="Cierre">
+                            <br/>
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="col-lg-9" style="text-align: right; padding-top: 2mm">                                            
+                                            <label class="control-label">Fecha de Cierre:</label>
+                                        </div>
+                                        <div class="col-lg-3 input-group date">
+                                            <!-- <input bsDatepicker #dp7="bsDatepicker" [(ngModel)]="fechaCierre" type="text" class="form-control" name="fechaCierre" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue'}"> -->
+                                            <input bsDatepicker #dp7="bsDatepicker" type="text" class="form-control" name="fechaCierre" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue'}">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-calendar" (click)="dp7.toggle()" [attr.aria-expanded]="dp7.isOpen"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label class="control-label">Comentario:</label>
+                                            <!-- <textarea class="form-control" rows="5" [(ngModel)]="objetoCierre.comentarioCierre"></textarea> -->
+                                            <textarea class="form-control" rows="5"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" *ngIf="!ocultarElemento">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-xs-4">
+                                                    <label class="control-label">Registrado por:</label>
+                                                    <input type="text" disabled="disabled" value="Jorge Poma Deza" class="form-control">
+                                                </div>
+                                                <br>
+                                                <br> Coordinador Alcance
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-xs-4">
+                                                    <label class="control-label">Aprobado por:</label>
+                                                    <input type="text" disabled="disabled" value="Juan Perez" class="form-control">
+                                                </div>
+                                                <br>
+                                                <br> Coordinador SGI
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-tab>
+                    </mat-tab-group>
+                </mat-tab>
+                <mat-tab label="Bitácora">
+                    <br/>
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-stripped table-hover issue-tracker">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" style="vertical-align: middle;">Item</th>
+                                                    <th class="text-center" style="vertical-align: middle;">Etapa</th>
+                                                    <th class="text-center" style="vertical-align: middle;">Estado</th>
+                                                    <th class="text-center" style="vertical-align: middle;">Responsable Movimiento</th>
+                                                    <th class="text-center" style="vertical-align: middle;">Fecha Movimiento</th>                                                            
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- <tr *ngFor="let item of objBitacora; let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow">
+                                                    <td class="text-center" data-col="Item" >{{item.numeroFila}}</td>
+                                                    <td class="text-center" data-col="Etapa">{{item.etapa}}</td>
+                                                    <td class="text-center" data-col="Estado">{{item.descripcionTipoNoConformidad}}</td>
+                                                    <td class="text-center" data-col="Responsable">{{item.descripcionGerencia}}</td>
+                                                    <td class="text-center" data-col="Fecha">{{item.fechaseguimiento | date:'dd/MM/yyyy'}}</td>                                                          
+                                                                                                                
+                                                </tr> -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-12 col-xs-12">
+                                            <pagination [(ngModel)]="paginacionBitacora.pagina" (pageChanged)="OnPageChanged($event)" [totalItems]="paginacionBitacora.totalRegistros"
+                                                [itemsPerPage]="paginacionBitacora.registros" [boundaryLinks]="true" [maxSize]="5" name="paginacionBitacora"
+                                                previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                                        </div>
+                                        <div class="col-md-4 col-sm-6 col-xs-12">
+                                            <div class="text-center m-a-sm">
+                                                <pagination-info [totalItems]="paginacionBitacora.totalRegistros" [itemsPerPage]="paginacionBitacora.registros" [page]="paginacionBitacora.pagina"></pagination-info>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-6 col-xs-12">
+                                            <div class="text-right m-a-sm">
+                                                <pagination-set (optionChanged)="OnPageOptionChanged($event)"></pagination-set>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</div>

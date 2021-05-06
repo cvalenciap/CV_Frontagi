@@ -1,0 +1,13 @@
+{
+  "listaRequisito": [
+    {
+      "idRequisito":"1",
+      "descripcionRequisito":" 8.5.3 Acción Preventiva"
+    },
+    {
+      "idRequisito":"2",
+      "descripcionRequisito":"8.5.4 Acción Preventiva"
+    }
+    
+  ]
+}

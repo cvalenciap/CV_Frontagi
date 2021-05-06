@@ -1,0 +1,62 @@
+<div class="modal-header modal-cabecera-color">
+    <h4 class="modal-title pull-left">Busqueda Conocimiento Revisión</h4>
+    <!--Button Cerra Modal-->
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="cerrar">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <h3>Buscar por:</h3>
+    </div>
+    <br/>
+    <div class="row">
+            <div class="col-lg-12">
+                    <label class="col-sm-3 control-label">Código Documento:</label>
+                    <div class="col-sm-6">
+                        <input  type="text" placeholder="Ingrese codigo" class="form-control" name="codigo" >
+                    </div>
+
+            </div>
+        </div>
+        <br />
+    <div class="row">
+            <div class="col-lg-12">
+                    <label class="col-sm-3 control-label">Titulo:</label>
+                    <div class="col-sm-6">
+                        <input  type="text" placeholder="Ingrese titulo" class="form-control" name="titulo" >
+                    </div>
+
+            </div>
+
+    </div>
+    <br />
+    <div class="row">
+            <div class="col-lg-12">
+
+                 <label class="col-sm-3 control-label">Estado:</label>
+                 <div class="col-sm-6">
+                     <div class="form-group">
+                         <select name="estado" id="estado" class="form-control">
+                             <option value="1" selected="">Todo</option>
+                             <option value="0">Alta</option>
+                             <option value="0">Cancelado</option>
+                             <option value="0">Emisión</option>
+
+                         </select>
+                     </div>
+                 </div>
+
+             </div>
+    </div>
+
+
+        <br>
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <a (click)="bsModalRef.hide()" class="btn btn-primary m-r"><i class="fa fa-search-plus"></i> Buscar</a>
+            <a (click)="bsModalRef.hide()" class="btn btn-default m-r"><i class="fa fa-paint-brush"></i> Limpiar</a>
+        </div>
+    </div>
+
+</div>

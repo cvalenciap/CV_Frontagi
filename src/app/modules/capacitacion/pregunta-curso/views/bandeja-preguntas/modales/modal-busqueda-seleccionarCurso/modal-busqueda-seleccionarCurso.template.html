@@ -1,0 +1,85 @@
+<div class="modal-content" style="width: 900px;right: 132px;">
+<div class="modal-header modal-cabecera-color">
+    <h4 class="modal-title pull-left">Seleccionar Curso</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="cerrar">&times;</span>
+    </button>
+</div>
+
+<div class="nuevo" style="padding-bottom: 0px;overflow: auto;">
+<div class="modal-body" >
+    <div class="row form-group">
+        <div class="col-lg-12" >                         
+            <label class="col-sm-2 control-label">Código:</label>
+            <div class="col-sm-4">
+                <input  type="text" placeholder="Código curso." class="form-control" name="numFicha" 
+                [(ngModel)]="codCurso">
+            </div>
+            <label class="col-sm-2 control-label">Nombre:</label>
+            <div class="col-sm-4">
+                <input  type="text" placeholder="Nombre curso." class="form-control" name="nombre"
+                [(ngModel)]="nomCurso">
+            </div>                                                            
+        </div>
+    </div>
+    <div class="row form-group">
+            <div class="col-lg-12 form-group">
+                <a (click)="OnBuscar()" class="btn btn-primary m-r"><i class="fa fa-search-plus"></i> Buscar</a>
+                <a (click)="OnLimpiar()" class="btn btn-default m-r"><i class="fa fa-paint-brush"></i> Limpiar</a>
+            </div>                             
+        </div>
+ 
+    <div class="row ibox-content">
+        <div class="col-lg-12">
+          <div class="nuevo" style="height: 200px; overflow-y: auto;overflow-x: hidden;">                   
+            <div class="table-responsive">
+                <table class="table table-bordered table-stripped table-hover issue-tracker">
+                <thead>
+                <tr>
+                    <th class="text-center">Código</th>
+                    <th class="text-center">Nombre</th>
+                    <th class="text-center">Tipo</th>                     
+                    <th class="text-center">Disponible</th>               
+                                
+                </tr>              
+                </thead>
+                <tbody *ngFor="let item of items; let indice = index" >
+                <tr id = "{{item.idCurso}}" (click)="seleccionarCurso(indice, item)" [class.info]="indice == filaSeleccionada">
+                     <!-- *ngFor="let item of items; let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow"> -->
+                    <td class="text-center" >{{item.codCurso}}</td>
+                    <td class="text-center" >{{item.nomCurso}}</td>
+                    <td class="text-center" >{{item.descTipoCurso}}</td>
+                    <td class="text-center" >{{item.disponibilidadCurso}}</td>                    
+                </tr> 
+                </tbody>
+                </table>
+            </div>
+        </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                  <pagination [(ngModel)]="paginacion.pagina" (pageChanged)="OnPageChanged($event)" [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                  <div class="text-center m-a-sm">
+                    <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                  </div>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                  <div class="text-right m-a-sm">
+                    <pagination-set (optionChanged)="OnPageOptionChanged($event)"></pagination-set>
+                  </div>
+                </div>
+              </div>               
+        
+    </div> 
+
+
+    </div>
+</div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="guardar()" [disabled]="selectedRow<0">Seleccionar</button>
+  
+    <button type="button" class="btn btn-default" (click)="cancelar()">Cancelar</button>
+</div>
+</div>

@@ -1,0 +1,58 @@
+
+  <div class="row wrapper border-bottom white-bg page-heading" style="padding-bottom: 5px;">
+  <div class="col-lg-12" style="margin-top: 8px">
+      <h4>Documentos / <strong>Consulta por Jerarquía</strong></h4>
+  </div>
+  </div>
+
+  <div class="row">
+    <br>
+    <div class="col-sm-8" style="right:-50px;">
+        <div class="row">
+        <div class="col-sm-4" >            
+          <a class="animated-widget"  (click)="onClick(idProceso)"  [routerLink]="['./editar']"> 
+            <div class="widget style1 blue-bg">
+              <div class="row">
+                <div class="col-xs-4">
+                  <i class="fa fa-edit fa-5x infinite wobble"></i>
+                </div>
+                <div class="col-xs-8 text-right">
+                  <h2 class="font-bold">Proceso</h2>                                    
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>    
+        <div class="col-sm-4">
+          <a class="animated-widget" (click)="onClick(idAlcance)"  [routerLink]="['./editar']">
+            <div class="widget style1 lazur-bg">
+              <div class="row">
+                <div class="col-xs-4">
+                  <i class="fa fa-check-square-o fa-5x infinite bounceIn"></i>
+                </div>
+                <div class="col-xs-8 text-right">
+                  <h2 class="font-bold">SGI</h2>                  
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-sm-4" style="padding-right: 0px;">
+          <a class="animated-widget" (click)="onClick(idGerencia)"  [routerLink]="['./editar']">
+            <div class="widget style1 navy-bg">
+              <div class="row">
+                <div class="col-xs-4">
+                  <i class="fa fa-check fa-5x infinite bounce"></i>
+                </div>
+                <div class="col-xs-8 text-right">
+                  <h2 class="font-bold">Gerencia</h2>
+                </div>
+              </div>
+            </div>             
+          </a>    
+        </div>
+      </div>
+    </div>
+    
+    </div>
+  

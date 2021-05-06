@@ -1,0 +1,146 @@
+.pull-left {
+    float: left !important;
+}
+
+.pull-right {
+    float: right !important;
+}
+
+.table {
+    tr {
+        th[data-col='item']     { font-size: 11px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        th[data-col='tipo']     { font-size: 11px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        th[data-col='rol']      { font-size: 11px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        th[data-col='accion']   { font-size: 11px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+
+        td[data-col='item']     { font-size: 11px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        td[data-col='tipo']     { text-align: left; font-size: 11px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        td[data-col='rol']      { font-size: 11px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        td[data-col='accion']   { font-size: 11px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+    }
+} 
+
+.div-principal{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.div-botones-superiores{
+    margin-bottom: 5px;
+    margin-top: 2px;
+}
+
+.botones-superiores{
+    font-size: 12px;
+    padding: 6px 12px;
+	margin-right: 4px;
+    width: 96px;
+    height: 30px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+
+}
+
+.cajas-texto {
+   height: 31px;
+   font-size: 12px;
+   margin-left: 3px;
+}
+
+.botones-buscador {
+    height: 31px;
+    font-size: 12px;
+ }
+
+ .div-secundario{
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    height:55rem;
+} 
+
+.botones-detalle {
+    padding: 3px 7px;
+    font-size: 11px;
+    margin-right: 4px;
+    line-height: 1.5;
+    border-radius: 3px;
+    width: 25px;
+    height: 24px;
+}
+
+.texto-pie-pag {
+    font-size: 12px;
+}
+
+
+.tabla-detalle{
+    height: 400px;
+}
+
+
+
+@media (min-width: 768px) { 
+
+    .boton{
+    
+        margin-right: 30px;
+        }
+     }
+
+@media (min-width: 992px) { 
+
+.boton{
+
+    margin-right: 30px;
+    }
+
+    .div-secundario{
+        height:480px;
+    }
+
+ }
+
+
+
+/* button.btn.btn-danger {
+    margin-left: 8px;
+}
+
+.ibox-content{
+    height: 480px;
+    margin-right: -20px;
+    margin-left: -25px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.table {
+    tr {
+        th[data-col='Nro_Auditoría']    { font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        th[data-col='Fecha_Auditoría']  { font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        th[data-col='Ficha_Auditor']     { font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        th[data-col='Auditor_Evaluado']      { font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        th[data-col='Rol']    { font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        th[data-col='Acción'] { font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+       
+
+        td[data-col='auditoria']    { text-align: left; font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        td[data-col='fecha']  { font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        td[data-col='estado']     { text-align: left;font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        td[data-col='auditor']      { text-align: left;font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        td[data-col='area']    { text-align: left;font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        td[data-col='responsable'] { text-align: left;font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+        td[data-col='accion']   { font-size: 12px;height: 0px;padding-left: 3px;padding-right: 3px; padding-bottom: 3px; padding-top: 3px;}
+
+
+
+    }
+} 
+
+.contenedor-tabla{
+    height: 380px;
+} */

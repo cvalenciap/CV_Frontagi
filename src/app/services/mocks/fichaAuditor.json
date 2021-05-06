@@ -1,0 +1,29 @@
+{
+  "listaFichaAuditor": [
+    {
+      "idFichaAuditor":"01",
+      "tipo": "1",
+      "nombreAuditor": "Ruth",
+      "rol": "10"
+    },
+    {
+      "idFichaAuditor":"01",
+      "tipo": "2",
+      "nombreAuditor": "Marilsa",
+      "rol": "10"
+    },
+    {
+      "idFichaAuditor":"01",
+      "tipo": "3",
+      "nombreAuditor": "Esmeralda",
+      "rol": "10"
+    },
+    {
+      "idFichaAuditor":"01",
+      "tipo": "4",
+      "nombreAuditor": "Julia",
+      "rol": "10"
+    }
+
+  ]
+}

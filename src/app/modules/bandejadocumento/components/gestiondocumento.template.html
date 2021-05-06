@@ -1,0 +1,352 @@
+<div class="full-height">
+    <div class="full-height-scroll white-bg border-left" style="height: 451px;overflow: hidden;width: auto;">
+        <div class="element-detail-box" style="
+    margin-top: 0px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    height: 501px;">
+            <div class="row m-b-sm">
+                <ng-template [ngIf]="session.Ruta.ConsultaGeneral == rutaActual" [ngIfElse]="validaCrear">
+                    <ng-template [authIf]="session.ACL.ID_DOC_ConsultaGeneral_CREAR">
+                        <div *ngIf="activarNuevo" class="col-lg-1">
+                            <button [disabled]="deshabilitaNuevo" style="padding-right:8px;padding-left:8px;"
+                                (click)="OnNuevo()" class="btn btn-success">
+                                <i class="fa fa-plus"></i> Nuevo</button>
+                        </div>
+                    </ng-template>
+                </ng-template>
+                <ng-template #validaCrear>
+                    <ng-template [ruta]="rutaAnterior"
+                        [authAndViewIf]="[session.ACL.ID_DOC_ConsultaJerarquia_CREAR,session.ACL.ID_CREAR]">
+                        <div *ngIf="activarNuevo" class="col-lg-1">
+                            <button [disabled]="deshabilitaNuevo" style="padding-right:8px;padding-left:8px;"
+                                (click)="OnNuevo()" class="btn btn-success">
+                                <i class="fa fa-plus"></i> Nuevo</button>
+                        </div>
+                    </ng-template>
+                </ng-template>
+
+                <div class="col-lg-4" style="margin-left:12px;margin-right:-12px">
+                    <div class="input-group">
+                        <div>
+                            <input [disabled]="activarSegunItemArbolSel || deshabilitarTextoBuscar" type="text"
+                                placeholder="{{descripcionMostrar}}" class="form-control" (keyup)="habilitarBuscar()"
+                                [(ngModel)]="textoBusqueda">
+                        </div>
+                        <ng-template [ngIf]="session.Ruta.ConsultaGeneral == rutaActual" [ngIfElse]="validaBuscar">
+                            <ng-template [authIf]="session.ACL.ID_DOC_ConsultaGeneral_BUSCAR">
+                                <span class="input-group-btn" dropdown>
+                                    <button [disabled]="deshabilitarBuscar" type="button" class="btn btn-info"
+                                        (click)="OnBusqueda()">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                    <button [disabled]="activarSegunItemArbolSel || deshabilitarMenu" dropdownToggle
+                                        [class.disabled]="deshabilitarMenu" type="button"
+                                        class="btn btn-info dropdown-toggle dropdown-toggle-split">
+                                        <i class="fa fa-caret-down"></i>
+                                    </button>
+                                    <ul *dropdownMenu class="dropdown-menu" (click)="OnDescripcionSeleccionada()"
+                                        role="menu" aria-labelledby="button-split">
+                                        <li role="menuitem" [class.disabled]="deshabilitarMenu"
+                                            [class.active]="parametroBusqueda == 'titulodefault'">
+                                            <a *ngIf="!deshabilitarMenu"
+                                                (click)="parametroBusqueda='titulodefault';textoBusqueda=null;mensajeAlerta=null;mostrarAlerta=false;deshabilitarBuscar=true;deshabilitarTextoBuscar=false;activarSegunItemArbolSel=false">Título</a>
+                                        </li>
+                                        <li role="menuitem" [class.disabled]="deshabilitarMenu"
+                                            [class.active]="parametroBusqueda == 'codigo'">
+                                            <a *ngIf="!deshabilitarMenu"
+                                                (click)="parametroBusqueda='codigo';textoBusqueda=null;mensajeAlerta=null;mostrarAlerta=false;deshabilitarBuscar=true;deshabilitarTextoBuscar=false;activarSegunItemArbolSel=false">Código</a>
+                                        </li>
+                                        <!--<li role="menuitem" [class.active]="parametroBusqueda == 'avanzada'"><a (click)="parametroBusqueda = 'avanzada';textoBusqueda=null;mensajeAlerta=null;mostrarAlerta=false;deshabilitarBuscar=true";deshabilitarTextoBuscar=true">Búsqueda Avanzada...</a></li>-->
+                                        <li role="menuitem" [class.disabled]="deshabilitarMenu"
+                                            [class.active]="parametroBusqueda == 'avanzada'">
+                                            <a *ngIf="!deshabilitarMenu"
+                                                (click)="deshabilitarBuscar=true;textoBusqueda=null;deshabilitarTextoBuscar=true;abrirBusqueda()">Búsqueda
+                                                Avanzada...</a>
+                                        </li>
+                                    </ul>
+                                </span>
+                            </ng-template>
+                        </ng-template>
+                        <ng-template #validaBuscar>
+                            <ng-template [ruta]="rutaAnterior"
+                                [authAndViewIf]="[session.ACL.ID_DOC_ConsultaJerarquia_BUSCAR,session.ACL.ID_BUSCAR]">
+                                <span class="input-group-btn" dropdown>
+                                    <button [disabled]="deshabilitarBuscar" type="button" class="btn btn-info"
+                                        (click)="OnBusqueda()">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                    <button [disabled]="activarSegunItemArbolSel || deshabilitarMenu" dropdownToggle
+                                        [class.disabled]="deshabilitarMenu" type="button"
+                                        class="btn btn-info dropdown-toggle dropdown-toggle-split">
+                                        <i class="fa fa-caret-down"></i>
+                                    </button>
+                                    <ul *dropdownMenu class="dropdown-menu" (click)="OnDescripcionSeleccionada()"
+                                        role="menu" aria-labelledby="button-split">
+                                        <li role="menuitem" [class.disabled]="deshabilitarMenu"
+                                            [class.active]="parametroBusqueda == 'titulodefault'">
+                                            <a *ngIf="!deshabilitarMenu"
+                                                (click)="parametroBusqueda='titulodefault';textoBusqueda=null;mensajeAlerta=null;mostrarAlerta=false;deshabilitarBuscar=true;deshabilitarTextoBuscar=false;activarSegunItemArbolSel=false">Título</a>
+                                        </li>
+                                        <li role="menuitem" [class.disabled]="deshabilitarMenu"
+                                            [class.active]="parametroBusqueda == 'codigo'">
+                                            <a *ngIf="!deshabilitarMenu"
+                                                (click)="parametroBusqueda='codigo';textoBusqueda=null;mensajeAlerta=null;mostrarAlerta=false;deshabilitarBuscar=true;deshabilitarTextoBuscar=false;activarSegunItemArbolSel=false">Código</a>
+                                        </li>
+                                        <!--<li role="menuitem" [class.active]="parametroBusqueda == 'avanzada'"><a (click)="parametroBusqueda = 'avanzada';textoBusqueda=null;mensajeAlerta=null;mostrarAlerta=false;deshabilitarBuscar=true">Búsqueda Avanzada...</a></li>-->
+                                        <li role="menuitem" [class.disabled]="deshabilitarMenu"
+                                            [class.active]="parametroBusqueda == 'avanzada'">
+                                            <a *ngIf="!deshabilitarMenu"
+                                                (click)="deshabilitarBuscar=true;textoBusqueda=null;deshabilitarTextoBuscar=true;abrirBusqueda()">Búsqueda
+                                                Avanzada...</a>
+                                        </li>
+                                    </ul>
+                                </span>
+                            </ng-template>
+                        </ng-template>
+
+                    </div>
+                </div>
+              
+                <div class="col-lg-7" style="
+                width: auto">
+                    <div class="btn-group">
+                        <button [disabled]="deshabilitaNuevo" class="btn btn-light" (click)="OnLimpiar()"
+                            style="margin-right: 14px;"><i class="fa fa-eraser"></i> Limpiar</button>
+                    </div>
+                    <ng-template [ngIf]="session.Ruta.ConsultaGeneral == rutaActual" [ngIfElse]="validaExportar">
+                        <ng-template [authIf]="session.ACL.ID_DOC_ConsultaGeneral_EXPORTAR">
+                            <button class="btn btn-danger" (click)="OnExportarPdf(visorPdfSwal1)"
+                                [disabled]="deshabilitaNuevo">
+                                <i class="fa fa-file-pdf-o"></i> Exportar PDF</button>
+                            &nbsp;&nbsp;
+                        </ng-template>
+                    </ng-template>
+
+                    <ng-template #validaExportar>
+                        <ng-template [ruta]="rutaAnterior"
+                            [authAndViewIf]="[session.ACL.ID_DOC_ConsultaJerarquia_EXPORTAR,session.ACL.ID_EXPORTAR]">
+                            <button class="btn btn-danger" (click)="OnExportarPdf(visorPdfSwal1)"
+                                [disabled]="deshabilitaNuevo">
+                                <i class="fa fa-file-pdf-o"></i> Exportar PDF</button>
+                            &nbsp;&nbsp;
+                        </ng-template>
+                    </ng-template>
+
+
+                    <ng-template [ngIf]="session.Ruta.ConsultaGeneral == rutaActual" [ngIfElse]="validaDesbloquear">
+                        <ng-template [authIf]="session.ACL.ID_DOC_ConsultaGeneral_DESBLOQUEAR">
+                            <button class="btn btn-primary" (click)="OnExportarXls()" [disabled]="deshabilitaNuevo">
+                                <i class="fa fa-file-excel-o"></i> Exportar Excel</button>
+                            &nbsp;&nbsp;
+                        </ng-template>
+                    </ng-template>
+                    <ng-template #validaDesbloquear>
+                        <ng-template [ruta]="rutaAnterior"
+                            [authAndViewIf]="[session.ACL.ID_DOC_ConsultaJerarquia_DESBLOQUEAR,session.ACL.ID_DESBLOQUEAR]">
+                            <button class="btn btn-primary" (click)="OnExportarXls()" [disabled]="deshabilitaNuevo">
+                                <i class="fa fa-file-excel-o"></i> Exportar Excel</button>
+                            &nbsp;&nbsp;
+                        </ng-template>
+                    </ng-template>
+                    <ng-template [ngIf]="session.Ruta.ConsultaGeneral == rutaActual" [ngIfElse]="validaActivar">
+                        <ng-template [authIf]="session.ACL.ID_DOC_ConsultaGeneral_ACTIVAR">
+                            <button *ngIf="activarverficha" [disabled]="activarFicha" (click)="OnVerFicha()"
+                                class="btn btn-info ">
+                                <i class="fa fa-align-left"></i> Ver Ficha</button>
+                        </ng-template>
+                    </ng-template>
+                    <ng-template #validaActivar>
+                        <ng-template [ruta]="rutaAnterior"
+                            [authAndViewIf]="[session.ACL.ID_DOC_ConsultaJerarquia_ACTIVAR,session.ACL.ID_ACTIVAR]">
+                            <button *ngIf="activarverficha" [disabled]="activarFicha" (click)="OnVerFicha()"
+                                class="btn btn-info ">
+                                <i class="fa fa-align-left"></i> Ver Ficha</button>
+                        </ng-template>
+                    </ng-template>
+                </div>
+
+                   
+            </div>
+            <div class="row" *ngIf="mostrarInformacion"
+                style="margin-left: 12px;border-right-width: 1px;margin-right: 7px;">
+                <alert type="info">
+                    <span [innerHtml]="mensajeInformacion"></span>
+                </alert>
+            </div>
+            <div class="row" *ngIf="mostrarAlerta">
+                <alert type="danger">
+                    <span [innerHtml]="mensajeAlerta"></span>
+                </alert>
+            </div>
+            <div class="row m-b-sm">
+                <div class="col-lg-12" style="height: 200px;">
+                    <div class="ibox-content" [ngClass]="{'sk-loading': loading}"
+                        style="padding-left:5px; padding-right:5px;">
+                        <sk-three-bounce></sk-three-bounce>
+                        <div class="table-responsive" style="height: 343px;">
+                            <table class="table table-bordered table-stripped table-hover issue-tracker table-fixed">
+                                <thead>
+                                    <tr>
+                                        <th data-col="codigo" class="text-center">Código</th>
+                                        <th *ngIf="activarColumna" class="text-center">Tipo Documento</th>
+                                        <th class="text-center"> Título</th>
+                                        <th class="text-center">Revisión</th>
+                                        <th class="text-center">Fecha de Aprobación</th>
+                                        <th class="text-center">Estado Actual</th>
+                                        <!--<th class="text-center">Acción</th>-->
+                                        <th class="text-center" style="vertical-align: middle;">Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of items; let i=index" (click)="OnRowClick(i,item)"
+                                        [class.info]="i==selectedRow">
+                                        <td class="text-center" data-col="codigo">{{item.codigo}}</td>
+                                        <td *ngIf="activarColumna" class="text-center" data-col="tipodocumento">
+                                            {{item.ctipoDocumento == null ? "":item.ctipoDocumento.v_descons}}</td>
+                                        <td class="text-left" data-col="descripcion">{{item.descripcion}}</td>                                        
+                                        <!--<td class="text-center" data-col="idrevision">{{item.idrevision}}</td>-->
+                                        <td class="text-center" data-col="idrevision">{{item.revision.numero}}</td>
+                                        <td class="text-center" data-col="idrevision">{{item.revision.fechaAprobacion | date:'dd/MM/yyyy' }}</td>
+                                        <!--<td class="text-center" data-col="revisionfecha">{{item.revisionfecha}}</td>-->
+                                        <td class="text-center" data-col="estado" [ngSwitch]="item.estado.v_descons">
+                                            <h3>
+                                                <span *ngSwitchCase="'Aprobado'"
+                                                    class="label label-primary">&nbsp;Aprobado&nbsp;&nbsp;</span>
+                                            </h3>
+                                            <h3>
+                                                <span *ngSwitchCase="'Emision'"
+                                                    class="label label-default">&nbsp;&nbsp;&nbsp;Emision&nbsp;&nbsp;&nbsp;</span>
+                                            </h3>
+                                            <h3>
+                                                <span *ngSwitchCase="'Cancelado'"
+                                                    class="label label-danger">&nbsp;Cancelado&nbsp;</span>
+                                            </h3>
+                                            <h3>
+                                                <span *ngSwitchCase="'En Revision'" class="label label-warning">En
+                                                    Revisión</span>
+                                            </h3>
+                                        </td>                                        
+                                            <td class="text-center" data-col="rutaActual"
+                                            style="white-space: nowrap">
+                                            <div class="col-md-12 text-center">
+                                                <div class="btn-group">
+                                                    <ng-template [ngIf]="session.Ruta.ConsultaGeneral == rutaActual"
+                                                        [ngIfElse]="validaModificar">
+                                                        <ng-template
+                                                            [authIf]="session.ACL.ID_DOC_ConsultaGeneral_MODIFICAR">
+                                                            <button title="Ver Detalle" class="btn btn-success btn-sm"
+                                                                (click)="OnModificar(item)" style="margin-right:3px">
+                                                                <i class="fa fa-edit"></i>
+                                                            </button>
+                                                        </ng-template>
+                                                    </ng-template>
+                                                    <ng-template #validaModificar>
+                                                        <ng-template [ruta]="rutaAnterior"
+                                                            [authAndViewIf]="[session.ACL.ID_DOC_ConsultaJerarquia_MODIFICAR,session.ACL.ID_MODIFICAR]">
+                                                            <button title="Ver Detalle" class="btn btn-success btn-sm"
+                                                                (click)="OnModificar(item)" style="margin-right:3px">
+                                                                <i class="fa fa-edit"></i>
+                                                            </button>
+                                                        </ng-template>
+                                                    </ng-template>
+
+                                                    <ng-template [ngIf]="session.Ruta.ConsultaGeneral == rutaActual"
+                                                        [ngIfElse]="validaVisualizar">
+                                                        <ng-template
+                                                            [authIf]="session.ACL.ID_DOC_ConsultaGeneral_VISUALIZAR">
+                                                            <button title="Ver Documento" class="btn btn-primary btn-sm"
+                                                                (click)="OnValidaRuta(item.rutaDocumentoCopiaNoCont,visorPdfSwal)"
+                                                                [disabled]="item.estado.v_descons != 'Aprobado' && item.estado.v_descons != 'Cancelado'">
+                                                                <i class="fa fa-file-o"></i>
+                                                            </button>
+                                                        </ng-template>
+                                                    </ng-template>
+                                                    <ng-template #validaVisualizar>
+                                                        <ng-template [ruta]="rutaAnterior"
+                                                            [authAndViewIf]="[session.ACL.ID_DOC_ConsultaJerarquia_VISUALIZAR,session.ACL.ID_VISUALIZAR]">
+                                                            <button title="Ver Documento" class="btn btn-primary btn-sm"
+                                                                (click)="OnValidaRuta(item.rutaDocumentoCopiaNoCont,visorPdfSwal)"
+                                                                [disabled]="item.estado.v_descons != 'Aprobado'  && item.estado.v_descons != 'Cancelado'">
+                                                                <i class="fa fa-file-o"></i>
+                                                            </button>
+                                                        </ng-template>
+                                                    </ng-template>
+                                                    <!--CGUERRA INICIO-->
+
+                                                    <!--<button style="left: 3px;" title="Descargar"
+                                                        class="btn  btn-danger btn-sm"
+                                                        (click)="OnValidaRutaOrigin(item.rutaDocumentoOriginal,visorPdfSwal)"
+                                                        [disabled]="item.estado.v_descons != 'Aprobado' && item.estado.v_descons != 'Cancelado' || item.jgerencia.indicadorDescargas!=1">
+                                                        <i class="fa fa-download"></i>
+                                                    </button>-->
+                                                    <!--CGUERRA INICIO-->
+                                                    <button style="left: 3px;" title="Descargar"
+                                                    class="btn  btn-danger btn-sm"
+                                                    (click)="OnValidaRutaOrigin1(item.rutaDocumentoOffice)"
+                                                    [disabled]="item.estado.v_descons != 'Aprobado' && item.estado.v_descons != 'Cancelado' || item.jgerencia.indicadorDescargas!=1">
+                                                    <i class="fa fa-download"></i>
+                                                </button>
+
+                                                       <!-- <button style="left: 3px;" title="Descargar" 
+                                                                class="btn  btn-danger btn-sm"                                                                       
+                                                                (click)="OnValidaRutaOrigin1(item.rutaDocumentoOffice)"> 
+                                                                    <i   class="fa fa-download"> </i>
+                                                        </button>-->
+                                                <!--FIN CGUERRA-->
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12 col-xs-12">
+                                <pagination [(ngModel)]="paginacion.pagina" (pageChanged)="OnPageChanged($event)"
+                                    [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros"
+                                    [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;"
+                                    firstText="&laquo;" lastText="&raquo;"></pagination>
+                            </div>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="text-center m-a-sm">
+                                    <pagination-info [totalItems]="paginacion.totalRegistros"
+                                        [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina">
+                                    </pagination-info>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="text-right m-a-sm">
+                                    <pagination-set (optionChanged)="OnPageOptionChanged($event)" #general>
+                                    </pagination-set>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<swal   #visorPdfSwal [showConfirmButton]="false" [showCloseButton]="true" customClass="pdf-swal">
+    <form *swalPartial class="ajuste">
+        <div *ngIf="urlPDF">
+            <visor-pdf id="02" [url]="urlPDF"></visor-pdf>
+        </div>
+        <div *ngIf="urlPDF2">
+            <visor-pdf id="02" [url]="urlPDF1" download="true"></visor-pdf>
+        </div>
+    </form>
+</swal> 
+
+<swal  #visorPdfSwal1 [showConfirmButton]="false" [showCloseButton]="true" customClass="pdf-swal">
+    <form *swalPartial class="ajuste" >
+        <div *ngIf="objetoBlob">
+            <visor-pdf  id="02" [file]="objetoBlob" download="true"></visor-pdf>
+            <!--<visor-pdf url="{{urlReportePdf}}" download="true"></visor-pdf>-->
+        </div>
+    </form>
+</swal>

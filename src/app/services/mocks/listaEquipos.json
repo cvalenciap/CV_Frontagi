@@ -1,0 +1,21 @@
+{
+    "listaEquipos": [
+      {
+        "valorEquipo":"1",
+        "descripcionEquipo": "Equipo 1"
+      },  
+      {
+        "valorEquipo":"2",
+        "descripcionEquipo": "Equipo 2"
+      },
+      {
+        "valorEquipo":"3",
+        "descripcionEquipo": "Equipo 3"
+      },
+      {
+        "valorEquipo":"4",
+        "descripcionEquipo": "Equipo 4"
+      }
+  
+    ]
+}

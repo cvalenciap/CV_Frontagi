@@ -1,0 +1,97 @@
+.botonSeleccion {margin:10px 1px 0 1px;border:1px solid #ccc;padding:10px;}
+.izq{border-radius:10px 0 0 10px;}
+.der{border-radius:0 10px 10px 0;}
+.circulo{border-radius:10px 10px 10px 10px;}
+.lista {
+    width: 347px;
+    margin: 0 0 50px 0;
+    border: 1px solid #337ab7;
+    padding: 10px;
+    border-radius: 10px 0 0 10px;
+}
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+.btn-sm {
+    padding: 3px 7px;
+    font-size: 11px;
+    margin-right: 4px;
+    line-height: 1.5;
+    border-radius: 3px;
+	width: 25px;
+    height: 24px;
+}
+
+.table > tbody > tr > td {
+    padding: 3px;
+}
+
+.btn-primary, .btn-default,.btn-success{
+    font-size: 12px;
+    padding: 6px 12px;
+}
+
+.btn-info {
+    font-size: 12px;
+    padding-top: 5px;
+    padding-bottom: 8px;
+}
+
+.form-control {
+    font-size: 12px;
+    height: 31.5px;
+}
+
+.bt-div-superior{
+    margin-bottom: 5px;
+    margin-top: 2px;
+}
+
+.div-principal{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.bt-superior{
+    margin-right: 4px;
+	width: 96px;
+}
+
+.btn-colores {
+    color: inherit;
+    background: #e6e6e6;
+    border-color: #eac2c2;
+}
+
+.btn-colores:hover {
+    background-color: #fde9e9;
+}
+
+.tx-cajas {
+    height: 32px;
+}
+
+.margen-cajas{
+    margin-bottom: 8px;
+}
+
+.table-fixed{
+width: 100%;
+tbody{
+  overflow-y:auto;
+  height:259px;    
+  width: 100%;
+  }
+
+thead,tbody{
+  display:block;
+}
+}
+
+.texto-pie-pag {
+font-size: 11px;
+}

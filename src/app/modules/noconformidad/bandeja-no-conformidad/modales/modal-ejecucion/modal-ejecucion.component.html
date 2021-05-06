@@ -1,0 +1,126 @@
+<div class="modal-header modal-cabecera-color">
+    <h4 class="modal-title pull-left">{{title}}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="OnCancelar()">
+        <span aria-hidden="true" class="cerrar">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <!--<div class="row m-b-md" *ngIf="mostrarAccionPropuesta">-->
+    <div class="row m-b-md">
+        <div class="form-group">
+            <div class="col-sm-2">
+                <label class="control-label">Acción Propuesta:</label>
+            </div>
+            <div class="col-sm-5">
+                <select name="accionPropuesta" class="form-control" [(ngModel)]="ejecucion.idPlanAccion" (click)="mostrarDatosEjecucion(ejecucion.idPlanAccion)">
+                    <option value="0" selected="">Seleccione</option>
+                    <option *ngFor="let item of listaComboAccion" [value]="item.idPlanAccion" >{{item.item}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                <label class="control-label">Descripción:</label>
+                <textarea class="form-control" rows="5" name="descripcionAccionPropuesta" disabled="disabled" [(ngModel)]="ejecucion.descripcionAccionPropuesta"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row m-b-md">
+        <div class="form-group">
+            <div class="col-sm-2" style="margin-top: 2mm">
+                <label class="control-label">Responsable:</label>
+            </div>
+            <div class="col-sm-4">
+                <input type="text" disabled="disabled" name="descripcionResponsable" [(ngModel)]="ejecucion.descripcionResponsable" class="form-control">
+            </div>
+            <div class="col-sm-2">
+                <label class="control-label">Fecha de Cumplimiento:</label>
+            </div>
+            <div class="col-sm-4">
+                <div class="input-group date">
+                    <input bsDatepicker #dp1="bsDatepicker" disabled="disabled" [(ngModel)]="ejecucion.fechaCumplimiento" type="text" class="form-control" name="fechaCumplimiento" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue'}">
+                    <span class="input-group-addon">
+                        <i class="fa fa-calendar" (click)="dp1.toggle()" [attr.aria-expanded]="dp1.isOpen"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                <label class="control-label">Acción Ejecutada:</label>
+                <textarea class="form-control" rows="5" name="descripcionAccionEjecutada" [(ngModel)]="ejecucion.descripcionAccionEjecutada"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row m-b-md">
+        <div class="form-group">
+            <div class="col-sm-2">
+                <label class="control-label">Fecha de Ejecución:</label>
+            </div>
+            <div class="col-sm-4">
+                <div class=" input-group date">
+                    <input bsDatepicker #dp2="bsDatepicker" disabled="disabled" name="fechaEjecucion" [(ngModel)]="ejecucion.fechaEjecucion" type="text" class="form-control" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue'}">
+                    <span class="input-group-addon">
+                        <i class="fa fa-calendar" (click)="dp2.toggle()" [attr.aria-expanded]="dp2.isOpen"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <label for="responsable">Verificación Ejecución:</label>
+            </div>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" name="descripcionVerificacion" [(ngModel)]="ejecucion.descripcionVerificacion">
+            </div>
+        </div>
+    </div>
+    <div class="row m-b-md">
+        <div class="form-group">
+            <div class="col-sm-2 m-r">
+                <label class="control-label">Archivos Adjuntos:</label>
+            </div>
+            <div class="input-group col-sm-6">
+                <label class="input-group-btn">
+                    <span class="btn btn-primary">
+                        Adjuntar <input #archivoAdjunto class="ocultar" type="file" id="fileEjecucion" name="fileEjecucion" (change)="adjuntarArchivo($event)">
+                    </span>
+                </label>
+                <input type="text" class="form-control" id="pdf-name" placeholder="Ingresar archivo" [(ngModel)]="nombreArchivoAdjuntoEjecucion" name="nombreArchivoAdjuntoEjecucion" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                <div class="table-responsive" id="tabla1">
+                    <table class="table table-bordered table-stripped table-hover issue-tracker">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Acción</th>
+                                <th class="text-center">Nombre</th>                             
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--<tr *ngFor="let item of items; let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow">
+                                <td class="text-center" data-col="accion">
+                                    <button class="btn btn-secondary" type="submit">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                </td>
+                                <td class="text-center" data-col="descripcionAccionEjecutada">{{item.descripcionAccionEjecutada}}</td>
+                            </tr>-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="OnGuardar()" >Guardar</button>
+    <button type="button" class="btn btn-default" (click)="OnCancelar()">Cancelar</button>
+</div>

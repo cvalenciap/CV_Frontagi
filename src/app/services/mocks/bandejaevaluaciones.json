@@ -1,0 +1,39 @@
+{
+    "listaBandejaEvaluaciones": [
+      {
+        "codigoCapacitacion":"C001",
+        "capacitacion":"SGI-Módulo Ambiental",
+        "instructor" : "Lutecio Argon",
+        "cantidadParticipantes" : "15",
+        "estado" : "Programado"
+      },
+      {
+        "codigoCapacitacion":"C002",
+        "capacitacion":"SGI-Módulo Ambiental",
+        "instructor" : "Luis Hidrilio",
+        "cantidadParticipantes" : "20",
+        "estado" : "Programado"
+      },
+      {
+        "codigoCapacitacion":"C003",
+        "capacitacion":"SGI-Continuidad del Negocio",
+        "instructor" : "Aldo Galli",
+        "cantidadParticipantes" : "20",
+        "estado" : "Ejecutado"
+      },
+      {
+        "codigoCapacitacion":"C004",
+        "capacitacion":"SGI-Seguridad y Salud en el Trabajo",
+        "instructor" : "Cesio Bromo",
+        "cantidadParticipantes" : "10",
+        "estado" : "Programado"
+      },
+      {
+        "codigoCapacitacion":"C005",
+        "capacitacion":"SGI-Seguridad y Salud en el Trabajo",
+        "instructor" : "Gian Asbesto",
+        "cantidadParticipantes" : "5",
+        "estado" : "Programado"
+      }
+    ]
+}

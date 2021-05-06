@@ -1,0 +1,107 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Búsqueda Colaborador</h4>
+    <!-- 
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="cerrar">&times;</span>
+    </button>
+-->
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-lg-12">
+            <label class="col-sm-2 control-label">Nro. Ficha:</label>
+            <div class="col-sm-4">
+                <input  type="text" placeholder="Ingrese Nro." class="form-control" name="nroFicha" [(ngModel)]="busquedaTrabajador.nroFicha">
+            </div>
+            <label class="col-sm-2 control-label">Apellido Paterno:</label>
+            <div class="col-sm-4">
+                <input  type="text" placeholder="Ingrese Apellido Paterno" class="form-control" name="apePaterno" [(ngModel)]="busquedaTrabajador.apePaternoTrabajador">
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-lg-12">
+            <label class="col-sm-2 control-label">Apellido Materno:</label>
+            <div class="col-sm-4">
+                <input  type="text" placeholder="Ingrese Apellido Materno" class="form-control" name="apeMaterno" [(ngModel)]="busquedaTrabajador.apeMaternoTrabajador">
+            </div>
+            <label class="col-sm-2 control-label">Nombres:</label>
+            <div class="col-sm-4">
+                <input  type="text" class="form-control" placeholder="Ingrese Nombres" name="nombreAuditor" [(ngModel)]="busquedaTrabajador.nombreTrabajador">
+            </div>
+        </div>
+    </div>
+    <!-- 
+    <br/>
+    <div class="row">
+        <div class="col-lg-12">
+            <label class="col-sm-2 control-label">Rol</label>
+            <div class="col-sm-4">
+                <select class="form-control" name="rolColaborador" >
+                    <option value="" selected>Seleccionar</option>
+                  </select>
+            </div>
+        </div>
+    </div>
+    -->
+    <br/>
+    <div class="row">
+        <div class="col-lg-12">
+            <a (click)="buscar()" class="btn btn-primary m-r"><i class="fa fa-search-plus"></i> Buscar</a>
+            <!--ECG<a (click)="limpiar()" class="btn btn-default m-r"><i class="fa fa-paint-brush"></i> Limpiar</a>-->
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+                <sk-three-bounce></sk-three-bounce>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-stripped table-hover issue-tracker">
+                        <thead>
+                        <tr>
+                            <th class="text-center">Nro. Ficha</th>
+                            <th class="text-center">Nombre</th>
+                            <th class="text-center">Cargo</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let item of participantes; let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow">
+                            <td class="text-center" >{{item.nroFicha}}</td>
+                            <td class="text-center" >{{item.nombreTrabajador}}</td>
+                            <td class="text-center" >{{item.cargoTrabajador}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <pagination  [(ngModel)]="paginacion.pagina" (pageChanged)="OnPageChanged($event)" [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-center m-a-sm">
+                            <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-right m-a-sm">
+                            <pagination-set (optionChanged)="OnPageOptionChanged($event)"></pagination-set>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+          
+        
+</div>
+
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="seleccionarAuditor()" >Seleccionar</button>
+    <button type="button" class="btn btn-default" (click)="cancelar()">Cancelar</button>
+</div>

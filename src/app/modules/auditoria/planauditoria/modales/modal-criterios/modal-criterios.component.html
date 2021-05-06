@@ -1,0 +1,150 @@
+
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Añadir Criterios</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div style="height: 369px;">
+<div class="modal-body">
+    <div class="row">
+        <label class="col-sm-5 control-label">Criterios de Resultado(*):
+        </label>
+        <div class="col-sm-7">
+            <select class="form-control" name="criterioResultado" [(ngModel)]="criterioSeleccionado">
+                <option value="" selected>Seleccionar</option>
+                <option *ngFor="let item of listaSeleccionCriterios" [ngValue]="item">{{item.v_valcons}}</option>
+            </select>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-1">
+            <div class="row">
+                <div class="col-lg-12">
+                    <a (click)="agregarCriterio()" class="btn btn-primary m-r"><i class="fa fa-plus"></i></a>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-12">
+                    <button class="btn btn-danger m-r" 
+                        [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                        >
+                        <i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-10">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+                        <sk-three-bounce></sk-three-bounce>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-stripped table-hover issue-tracker">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Criterios de Resultado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of item.listaCriterios; let i = index"
+                                        (click)="seleccionCriterio(i, item)" [class.info]="i == selectedCriterioRow">
+                                        <td class="text-center tabla-criterio">{{item.descripcionCriterio}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--<div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+                <sk-three-bounce></sk-three-bounce>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-stripped table-hover issue-tracker">
+                        <thead>
+                        <tr>
+                            <th class="text-center">Item</th>
+                            <th class="text-center">Descripción de Consideración</th>
+                            <th class="text-center">Acción</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let item of items; let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow">
+                            <td class="text-center" >{{i+1}}</td>
+                            <td class="text-center" >{{item.textoConsideracion}}</td>
+                            <td class="text-center" >
+                                <button class="btn btn-danger" 
+                                [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                                (confirm)="quitarConsideracion(i,item)">
+                                        <i class="fa fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+
+            
+        <!-- <div class="form-group">
+                <div class = "col-sm-4"></div>
+                <div class = "col-sm-1">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <a (click)="agregarCriterio()" class="btn btn-primary m-r"><i class="fa fa-plus"></i></a>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <button class="btn btn-danger m-r" [disabled]="selectedCriterioRow<0"
+                                                    [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                                                    (confirm)="eliminarCriterio(selectedCriterioRow)" >
+                                            <i class="fa fa-minus"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+                                        <sk-three-bounce></sk-three-bounce>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-stripped table-hover issue-tracker">
+                                                <thead>
+                                                <tr>
+                                                    <th class="text-center">Criterios de Resultado</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr *ngFor="let item of item.listaCriterios; let i = index" (click)="seleccionCriterio(i, item)" [class.info]="i == selectedCriterioRow">
+                                                    <td class="text-center tabla-criterio" >{{item.descripcionCriterio}}</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                </div>
+                            </div>      
+                        </div>
+                </div>
+        </div> -->
+
+</div>
+</div>
+
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="bsModalRef.hide()"><i class="fa fa-plus"></i> Agregar</button>    
+</div>

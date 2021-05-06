@@ -1,0 +1,132 @@
+<div class="row wrapper border-bottom white-bg page-heading" style="padding-top: 3px; padding-bottom: 0;padding-left: 10px;border-bottom-width: 0;border-bottom-width: 0;">
+    <div class="col-lg-12">
+        <h4>Revisión Actualización de Documento/
+            <strong>Programa</strong>
+        </h4>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row m-b-sm">
+        <ng-template [authIf]="session.ACL.ID_REV_Programacion_CREAR">
+            <div class="col-lg-1">
+                <button style="padding-right:8px;padding-left:8px;" [routerLink]="['registrar']" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo
+                </button>
+            </div>
+        </ng-template>
+        <div class="col-lg-3">
+            <div class="input-group">
+                <ng-template [authIf]="session.ACL.ID_REV_Programacion_BUSCAR">
+                    <input type="text" placeholder="Buscar" class="form-control" [(ngModel)]="textoBusqueda"
+                        (keypress)="ingresoTexto($event)">
+                    <span class="input-group-btn" dropdown>
+                        <button type="button" class="btn btn-info" (click)="busquedaSimple()"><i class="fa fa-search"></i></button>
+                        <button dropdownToggle type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split"><i
+                                class="fa fa-caret-down"></i></button>
+                        <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
+                            <li role="menuitem" [class.active]="parametroBusqueda=='codigo'">
+                                <a (click)="parametroBusqueda = 'codigo';this.textoBusqueda = ''">Número de Programa</a>
+                            </li>
+                            <li role="menuitem" [class.active]="parametroBusqueda=='avanzada'">
+                                <a (click)="abrirBusquedaAvanzada()">Busqueda Avanzada</a>
+                            </li>
+                        </ul>
+                    </span>
+                </ng-template>
+
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="btn-group">
+                <button class="btn btn-light" (click)="OnLimpiar()"><i class="fa fa-eraser"></i> Limpiar</button>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="mostrarAlerta">
+        <alert type="info">
+            <span [innerHtml]="mensajeAlerta"></span>
+        </alert>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content" style="height: 52rem;" [ngClass]="{'sk-loading': loading}">
+                <sk-three-bounce></sk-three-bounce>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-stripped table-hover issue-tracker">
+                        <thead>
+                            <tr>
+                                <th class="text-center">N° de Programa</th>
+                                <th class="text-center">Año</th>
+                                <th class="text-center">Fecha de Programa</th>
+                                <th class="text-center">Fase Programa</th>
+                                <th class="text-center">Tipo de Documento</th>
+                                <th class="text-center">Fecha de Modificación</th>
+                                <th class="text-center">Usuario</th>
+                                <th class="text-center">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of items; let i=index;" (click)="OnRowClick(i,item)" [class.info]="i==selectedRow">
+                                <td class="text-center" data-col="codigo">{{item.idProg}}</td>
+                                <td class="text-center" data-col="año">{{item.anioProg}}</td>
+                                <td class="text-center" data-col="fechaProgramacion">{{item.fecCreProg}}</td>
+                                <td class="text-center" data-col="estado" [ngSwitch]="item.estProg">
+                                    <h3>
+                                        <span *ngSwitchCase="'Programado'" class="label label-default">&nbsp;&nbsp;&nbsp;Programado&nbsp;&nbsp;&nbsp;</span>
+                                    </h3>
+                                    <h3>
+                                        <span *ngSwitchCase="'Distribuido'" class="label label-warning">&nbsp;&nbsp;&nbsp;&nbsp;Distribuido&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    </h3>
+                                    <h3>
+                                        <span *ngSwitchCase="'Ejecutado'" class="label label-primary">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ejecutado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    </h3>
+                                    <h3>
+                                        <span *ngSwitchCase="'Cancelado'" class="label label-danger">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cancelado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    </h3>
+                                </td>
+                                <td class="text-center" data-col="tipoDocumento">{{item.desTipoDocuProg}}</td>
+                                <td class="text-center" data-col="fechaModificacion">{{item.fechModProg}}</td>
+                                <td class="text-left" data-col="usuarioModificacion">{{item.usuCreProg}}</td>
+                                <td class="text-center" data-col="accion" style="width:130px;padding-left:0px;padding-right:0px;">
+
+                                    <ng-template [authIf]="session.ACL.ID_REV_Programacion_MODIFICAR">
+                                        <button title="Ver Detalle" class="btn btn-success btn-sm" [disabled]="item.estProg != 'Programado'" (click)="OnModificar(item.idProg, item.idEstProg)">
+                                            <i class="fa fa-edit"></i>
+                                        </button>
+                                    </ng-template>
+
+                                    <div style="display: inline-block;width: 3%;"></div>
+                                    <ng-template [authIf]="session.ACL.ID_REV_Programacion_ELIMINAR">
+                                    <button title="Eliminar" class="btn btn-danger btn-sm" style="margin-right:0px;" [disabled]="item.estProg != 'Programado'"
+                                        [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                                        (confirm)="OnEliminar(item.idProg)">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                 </ng-template>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <pagination [(ngModel)]="paginacion.pagina" (pageChanged)="OnPageChanged($event)" [totalItems]="paginacion.totalRegistros"
+                            [itemsPerPage]="paginacion.registros" [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;"
+                            nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-center m-a-sm">
+                            <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-right m-a-sm">
+                            <pagination-set (optionChanged)="OnPageOptionChanged($event)" #pageOption></pagination-set>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="modal-header modal-cabecera-color">
+    <h4 class="modal-title pull-left">Rechazar Lista de Verificación</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="cerrar">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-lg-12">
+            <label class="col-sm-12">Critica:</label>
+            <div class="col-sm-12">
+                <textarea name="descripcionRechazo" class="form-control" [(ngModel)]="descripcionRechazo" rows="5"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-success" [swal]="{ title: '¿Está seguro que desea rechazar la Lista de Verificación?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, rechazar', cancelButtonText: 'No gracias' }"
+    (confirm)="rechazar()">Aceptar</button>
+    <button type="button" class="btn btn-default" (click)="cancelar()">Cancelar</button>
+</div>

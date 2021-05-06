@@ -1,0 +1,183 @@
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <h2>Bandeja Evaluaciones</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a routerLink="starterview">Inicio</a>
+            </li>
+            <li>
+                <a>Capacitación</a>
+            </li>
+            <li>
+                <a>Bandeja Evaluaciones</a>
+            </li>
+            <li class="active">
+                <strong>Lista de Participantes</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row m-b-md">
+        <div class="col-lg-12">
+                
+                <a class="btn btn-primary m-r" (click)="OnGuardar()"><i class="fa fa-check"></i> Guardar</a>
+                <a class="btn btn-default m-r" (click)="OnRegresar()"><i class="fa fa-arrow-left"></i> Regresar</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+                <div class="ibox-content">
+                        <form class="form-horizontal">
+                            <div class="form-group" >
+                                <label class="col-sm-2 control-label">Nombre de Capacitación:</label>
+                                <div class="col-sm-4"><input type="text" class="form-control" name="codigo" readonly disabled="deshabilitarCaja" name="curso" [ngModel]="valorCurso"
+                                    placeholder="SEGURIDAD Y SALUD EN EL TRABAJO"
+                                   ></div>
+                                 
+                            </div>
+                            
+                            
+                        </form>
+                    </div>
+                </div>
+                </div>
+       
+   
+    <br/>
+    <div class="row m-b-sm">
+        <div class="col-lg-3">
+            <div class="input-group">
+                <div>
+                    <input #buscar type="text" placeholder="Buscar" class="form-control" [(ngModel)]="textoBusqueda">
+                </div>
+                <span class="input-group-btn" dropdown>
+                    <button type="button" class="btn btn-info" (click)="OnBuscar()"><i class="fa fa-search"></i></button>
+                    <button dropdownToggle type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split"><i class="fa fa-caret-down"></i></button>
+                    <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
+                        <li role="menuitem" [class.active]="parametroBusqueda == 'nombre'"><a (click)="parametroBusqueda = 'nombre'">Nombres</a></li>
+                        <li role="menuitem" [class.active]="parametroBusqueda == 'equipo'"><a (click)="parametroBusqueda = 'equipo'">Equipo</a></li>
+                    </ul>
+                </span>
+            </div>
+        </div>
+        <div class="col-lg-9">
+           <!--  <button class="btn btn-info m-r" [disabled]="selectedRow<0" (click)="abrirModalRegistrarEvaluacionManual()"><i class="fa fa-align-left"></i> Eval. Manual</button> -->
+           <button  class="btn btn-danger" (click)="OnExportarPdf(visorPdfSwal1)" ><i class="fa fa-file-pdf-o"></i> Exportar PDF</button>
+           <!--  <a class="btn btn-default m-r" (click)="OnRegresar()"><i class="fa fa-arrow-left"></i> Regresar</a> -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div *ngIf="mostrarAlerta">
+                <alert type="info" ><span [innerHtml]="mensajeAlerta"></span></alert>
+            </div>
+            <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+                <sk-three-bounce></sk-three-bounce>
+              
+                <div class="table-responsive">
+                    <table class="table table-bordered table-stripped table-hover issue-tracker">
+                        <thead>
+                        <tr>
+                            <th class="text-center">Item</th>
+                            <th class="text-center">Nombres y Apellidos</th>
+                            <th class="text-center">Equipo</th>
+                            <th class="text-center">Estado</th>
+                            <th class="text-center">Tipo</th>
+                            <th class="text-center">Nota</th>
+                            <th class="text-center">Sustento</th>
+                            <th class="text-center">Acción</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!-- <tr *ngFor="let item of listEmpleado; let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow">
+                            <td class="text-center" data-col="Codigo">{{item.itemColumna}}</td>
+                            <td class="text-center" data-col="Fecha programa">{{item.nombreTrabajador}}</td>
+                            <td class="text-center" data-col="Equipo">{{item.nomEquipo}}</td>
+                            <td class="text-center" data-col="Estado">{{item.estadoEvaluacion}}</td>
+                            <td class="text-center" data-col="Tipo">{{item.tipoEvaluacion}}</td>
+                            <td class="text-center" data-col="Nota">{{item.nota}}</td>
+                            <td class="text-center" data-col="Sustento">
+                                <button title="Original" class="btn btn-primary btn-sm m-r" style="margin-left: 5px; margin-right: 5px;"  *ngIf="item.desactivar"  (click)="urlPDF=item.nombreArchivo; ;  visorPdfSwal.show(); $event.stopPropagation()" >
+                                    <i class="fa fa-file-o"></i>
+                            </button>
+                            
+                            </td>
+                            <td class="text-center" data-col="Accion" style="width:130px;padding-left:0px;padding-right:0px;">
+                                <button title="Actualizar" class="btn btn-success btn-sm m-r"  (click)="abrirModalRegistrarEvaluacionManual(item)" ><i class="fa fa-edit"></i></button>   
+                                      
+                            </td>
+                        </tr> -->
+                        <tr>
+                            <td class="text-center" data-col="Codigo">1</td>
+                            <td class="text-center" data-col="Fecha programa">JUAN POMA DE AYALA</td>
+                            <td class="text-center" data-col="Equipo">EQUIPO DE GESTION INSTITUCIONAL</td>
+                            <td class="text-center" data-col="Estado">Aprobado</td>
+                            <td class="text-center" data-col="Tipo">Taller</td>
+                            <td class="text-center" data-col="Nota">16</td>
+                            <td class="text-center" data-col="Sustento">
+                                <button title="Original" class="btn btn-primary btn-sm m-r" style="margin-left: 5px; margin-right: 5px;"   (click)="urlPDF=item.nombreArchivo; ;  visorPdfSwal.show(); $event.stopPropagation()" >
+                                    <i class="fa fa-file-o"></i>
+                            </button>
+                            
+                            </td>
+                            <td class="text-center" data-col="Accion" style="width:130px;padding-left:0px;padding-right:0px;">
+                                <button title="Actualizar" class="btn btn-success btn-sm m-r"  (click)="abrirModalRegistrarEvaluacionManual()" ><i class="fa fa-edit"></i></button>   
+                                      
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+           
+            
+            <div class="row">
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <pagination [(ngModel)]="paginacion.pagina" (pageChanged)="OnPageChanged($event)" [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="text-center m-a-sm">
+                        <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="text-right m-a-sm">
+                        <pagination-set (optionChanged)="OnPageOptionChanged($event)"></pagination-set>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+<swal 
+#visorPdfSwal
+[showConfirmButton]="false"
+[showCloseButton]="true"
+customClass="pdf-swal">
+<form *swalPartial class="ajuste">
+    <div *ngIf="urlPDF">
+    <visor-pdf id="02" [url]="urlPDF"></visor-pdf>
+    </div>
+
+</form>
+</swal>
+
+<swal 
+#visorPdfSwal1
+[showConfirmButton]="false"
+[showCloseButton]="true"
+customClass="pdf-swal">
+<form *swalPartial class="ajuste">
+   
+    <div *ngIf="objetoBlob">
+    <visor-pdf id="02" [file]="objetoBlob"></visor-pdf>
+    </div>
+</form>
+</swal>

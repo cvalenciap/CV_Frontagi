@@ -1,0 +1,71 @@
+{
+  "listaParametros": [
+    {
+      "id":"01",
+      "nombre": "DocuAsoc",
+      "descripcion": "Documentos Asociados",
+      "estado": "Activo"
+    },
+    {
+      "id":"02",
+      "nombre": "CateDocu",
+      "descripcion": "Categoría del Documento",
+      "estado": "Activo"
+    },
+    {
+      "id":"03",
+      "nombre": "TipoSoli",
+      "descripcion": "Tipo de Solicitud",
+      "estado": "Activo"
+    },
+    {
+      "id":"04",
+      "nombre": "TipoRuta",
+      "descripcion": "Rutas",
+      "estado": "Activo"
+    },
+    {
+      "id":"05",
+      "nombre": "TipoDocu",
+      "descripcion": "Tipo de Documento de Identidad",
+      "estado": "Activo"
+    },
+    {
+      "id":"06",
+      "nombre": "DocuAsoc",
+      "descripcion": "Documentos Asociados",
+      "estado": "Activo"
+    },
+    {
+      "id":"07",
+      "nombre": "CateDocu",
+      "descripcion": "Categoría del Documento",
+      "estado": "Activo"
+    },
+    {
+      "id":"08",
+      "nombre": "TipoSoli",
+      "descripcion": "Tipo de Solicitud",
+      "estado": "Activo"
+    },
+    {
+      "id":"09",
+      "nombre": "TipoRuta",
+      "descripcion": "Rutas",
+      "estado": "Activo"
+    },
+    {
+      "id":"10",
+      "nombre": "TipoDocu",
+      "descripcion": "Tipo de Documento de Identidad",
+      "estado": "Activo"
+    },
+    {
+      "id":"11",
+      "nombre": "DocuAsoc",
+      "descripcion": "Documentos Asociados",
+      "estado": "Activo"
+    }
+
+  ]
+}

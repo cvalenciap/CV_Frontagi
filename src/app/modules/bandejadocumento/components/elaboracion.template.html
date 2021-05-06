@@ -1,0 +1,106 @@
+<br>
+<ng-template [ngIf]="session.Ruta.RegistroBusquedaDocumento == rutaActual" [ngIfElse]="otrasPaginas">
+    <ng-template 
+    [buttonConsultaIf]="[session.ACL.ID_DOC_ConsultaGeneral_Elaboracion_CREAR,session.ACL.ID_DETALLE_Elaboracion_CREAR, session.ACL.ID_DOC_ConsultaJerarquia_Elaboracion_CREAR ]"
+    [rutaAnterior]="rutaAnterior" [rutaAnteriorAnterior]="rutaAnteriorAnterior">
+        <div  class="btn-group">
+            <button *ngIf="habilitar" (click)="OnNuevo()" class="btn btn-primary">
+                <i class="fa fa-plus"></i> Añadir</button> 
+        </div>
+    </ng-template>
+</ng-template>
+<ng-template #otrasPaginas >
+    <ng-template   
+    [authButtonComplexIf]="[session.ACL.ID_TAR_Aprobacion_Detalle_Elaboracion_CREAR,session.ACL.ID_TAR_Consenso_Detalle_Elaboracion_CREAR,session.ACL.ID_TAR_Elaboracion_Detalle_Elaboracion_CREAR,session.ACL.ID_SOL_SolicitudRevision_Detalle_Elaboracion_CREAR,session.ACL.ID_CON_SeguimientoDocumento_Detalle_Elaboracion_CREAR,session.ACL.ID_TAR_AprobacionSolicitudRevision_Detalle_Elaboracion_CREAR]"
+    [ruta]="rutaActual" valorComponente="elaboracion" valorBoton="CREAR">
+        <div   class="btn-group">
+                <!--<div  *ngIf="permisos?.btnAgregar" class="btn-group">-->
+                    <button (click)="OnNuevo()" class="btn btn-primary">
+                        <i class="fa fa-plus"></i> Añadir</button>
+        </div>
+    </ng-template>
+</ng-template>
+
+
+
+<hr style="margin-bottom: 0px;">
+<div>
+    <table class="table table-bordered table-stripped table-hover issue-tracker">
+    <thead>
+    <tr>
+        <th class="text-center">Prioridad</th>
+        <th class="text-center">Equipo</th>
+        <th class="text-center">Cargo</th>
+        <th class="text-center">Responsable</th>
+        <th class="text-center">Plazo en Días</th>                
+        <th class="text-center">Plazo de Liberación</th>
+        <th class="text-center">Fecha de Liberación</th>
+        <th class="text-center">Acción</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let participante of item.listaElaboracion; let i=index"
+            (click)="OnRowClick(i,participante)" [class.info]="i==selectedRow"
+            [ngClass]="{'text-center':!participante.estiloBloqueado,
+                        'text-center-rojo':participante.estiloBloqueado}"
+            [title]="participante.textoBloqueado">
+<!-- <td class="text-center" data-col="items">{{participante.idColaborador}}</td>      -->
+        <td class="text-center" data-col="prioridad">{{participante.prioridad}}</td>
+        <td class="text-center" data-col="equipo">{{participante.equipoColaborador}}</td>
+        <td class="text-center" data-col="función">{{participante.funcion}}</td>
+        <td class="text-center" data-col="responsable">{{participante.responsable}}</td>
+        <td class="text-center" data-col="plazo">{{participante.plazo}}</td>              
+        <td class="text-center" data-col="fechaPlazo">{{participante.fechaPlazo|date:'dd/MM/yyyy'}}</td>
+        <td class="text-center" data-col="fechaLiberacion">{{participante.fechaLiberacion|date:'dd/MM/yyyy'}}</td>
+        
+               <!-- <td data-col="accion" *ngIf="permisos?.clAcciones && !participante.fechaLiberacion" style="width:120px;padding-left:0px;padding-right:0px;">-->
+                    <td data-col="accion"  style="width:120px;padding-left:0px;padding-right:0px;">
+                    <div class="col-md-12 text-center">
+                        <div class="btn-group">
+                            <ng-template [ngIf]="session.Ruta.RegistroBusquedaDocumento == rutaActual" [ngIfElse]="otroModificarRuta">
+                                <ng-template 
+                                    [buttonConsultaIf]="[session.ACL.ID_DOC_ConsultaGeneral_Elaboracion_MODIFICAR,session.ACL.ID_DETALLE_Elaboracion_MODIFICAR, session.ACL.ID_DOC_ConsultaJerarquia_Elaboracion_MODIFICAR ]"
+                                    [rutaAnterior]="rutaAnterior" [rutaAnteriorAnterior]="rutaAnteriorAnterior">
+                                    <button *ngIf="habilitar"  title="Detalle" class="btn btn-success btn-sm m-r" (click)="OnActualizar(i,participante)"
+                                        style="margin-right:3px;">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                </ng-template>
+                            </ng-template>
+                            <ng-template #otroModificarRuta >
+                                    <ng-template [authButtonComplexIf]="[session.ACL.ID_TAR_Aprobacion_Detalle_Elaboracion_MODIFICAR,session.ACL.ID_TAR_Consenso_Detalle_Elaboracion_MODIFICAR,session.ACL.ID_TAR_Elaboracion_Detalle_Elaboracion_MODIFICAR,session.ACL.ID_SOL_SolicitudRevision_Detalle_Elaboracion_MODIFICAR,session.ACL.ID_CON_SeguimientoDocumento_Detalle_Elaboracion_MODIFICAR,session.ACL.ID_TAR_AprobacionSolicitudRevision_Detalle_Elaboracion_MODIFICAR]"
+                                    [ruta]="rutaActual" valorComponente="elaboracion" valorBoton="MODIFICAR">
+                                    <button title="Detalle" class="btn btn-success btn-sm m-r" (click)="OnActualizar(i,participante)"
+                                        style="margin-right:3px;">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    </ng-template>
+                            </ng-template>
+                            <ng-template [ngIf]="session.Ruta.RegistroBusquedaDocumento == rutaActual" [ngIfElse]="otroEliminarRuta">
+                                <ng-template 
+                                    [buttonConsultaIf]="[session.ACL.ID_DOC_ConsultaGeneral_Elaboracion_ELIMINAR,session.ACL.ID_DETALLE_Elaboracion_ELIMINAR, session.ACL.ID_DOC_ConsultaJerarquia_Elaboracion_ELIMINAR ]"
+                                    [rutaAnterior]="rutaAnterior" [rutaAnteriorAnterior]="rutaAnteriorAnterior">
+                                    <button *ngIf="habilitar" class="btn btn-danger btn-sm" (confirm)="onEliminar(i,participante)" title="Eliminar"
+                                        [swal]="{ title:'¿Está seguro que desea eliminar el registro?', type:'question', showCancelButton:true, confirmButtonText:'Sí, eliminar', cancelButtonText:'No gracias'}">
+                                    <i class="fa fa-trash"></i>
+                                    </button>
+                                </ng-template>
+                            </ng-template>
+                            <ng-template #otroEliminarRuta >
+                                    <ng-template 
+                                    [authButtonComplexIf]="[session.ACL.ID_SOL_SolicitudRevision_Detalle_Elaboracion_ELIMINAR,session.ACL.ID_CON_SeguimientoDocumento_Detalle_Elaboracion_ELIMINAR,session.ACL.ID_TAR_Elaboracion_Detalle_Elaboracion_ELIMINAR,session.ACL.ID_TAR_Consenso_Detalle_Elaboracion_ELIMINAR,session.ACL.ID_TAR_Aprobacion_Detalle_Elaboracion_ELIMINAR,session.ACL.ID_TAR_Homologacion_Detalle_Elaboracion_ELIMINAR,session.ACL.ID_TAR_AprobacionSolicitudRevision_Detalle_Elaboracion_ELIMINAR]"
+                                    [ruta]="rutaActual" valorComponente="elaboracion" valorBoton="ELIMINAR">
+                                    <button class="btn btn-danger btn-sm" (confirm)="onEliminar(i,participante)" title="Eliminar"
+                                        [swal]="{ title:'¿Está seguro que desea eliminar el registro?', type:'question', showCancelButton:true, confirmButtonText:'Sí, eliminar', cancelButtonText:'No gracias'}">
+                                    <i class="fa fa-trash"></i>
+                                    </button>
+                                    </ng-template>
+                            </ng-template>
+                        </div>
+                    </div>
+                </td>
+        <td *ngIf="permisos?.clAcciones && participante.fechaLiberacion"></td>
+    </tr>         
+    </tbody>
+    </table>
+</div>

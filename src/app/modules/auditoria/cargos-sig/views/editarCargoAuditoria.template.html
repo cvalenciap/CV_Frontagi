@@ -1,0 +1,59 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <h4>Inicio / Auditoría / Cargos SIG / <strong>Detalle de Cargo SIG</strong>
+        </h4>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight div-principal">
+
+    <div class="row m-b-md div-botones-superiores">
+        <div class="col-lg-6">
+            <a class="btn btn-primary botones-superiores" (click)="OnGuardar()"><i class="fa fa-floppy-o"></i> Guardar</a>
+            <a class="btn btn-default btn-colores m-r botones-superiores" (click)="OnRegresar()"><i class="fa fa-arrow-left"></i> Regresar</a>
+        </div>
+        <div class="col-lg-6"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content div-secundario" style=" height: 480px;" >
+                <br />
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-6" style="padding-left: 0px; padding-right: 5px;">
+                                <div class="row">
+                                    <label class="col-sm-8 control-label titulos-texto">Cargo SIG(<label
+                                        style="color: crimson;">*</label>):</label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-8"><input (keyup)="habilitarLimpiar()"  [ngClass]="{'ng-dirty ng-invalid':validatecargosig}"   maxlength="100"  [(ngModel)]="cargosig"  class="form-control cajas-texto" type="text" name="nombre" placeholder=""></div>
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-4 control-label titulos-texto">Sigla(<label
+                                        style="color: crimson;">*</label>):</label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4"><input  (keyup)="habilitarLimpiar()" [ngClass]="{'ng-dirty ng-invalid':validatesigla}"   maxlength="80"   [(ngModel)]="sigla"   class="form-control cajas-texto" type="text" name="sigla" placeholder=""></div>
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-8 control-label titulos-texto">Colaborador(<label
+                                        style="color: crimson;">*</label>):</label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-8"><input  [ngClass]="{'ng-dirty ng-invalid':validacolaborador}"  [(ngModel)]="colaborador"       class="form-control cajas-texto" type="text" name="colaborador" placeholder="" disabled></div>
+                                    <div class="col-sm-1">
+                                        <a class="btn btn-primary m-r" (click)="BusquedaColaborador()"><i
+                                                class="fa fa-search-plus"></i></a>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="col-sm-6" style="padding-left: 5px; padding-right: 0px;">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

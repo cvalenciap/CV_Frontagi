@@ -1,0 +1,242 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <h4>Inicio / Auditoría / Áreas / <strong>Detalle de Áreas</strong>
+        </h4>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight div-principal">
+
+    <div class="row m-b-md div-botones-superiores">
+        <div class="col-lg-6">
+            <a class="btn btn-primary botones-superiores" (click)="OnGuardar()"><i class="fa fa-floppy-o"></i>
+                Guardar</a>
+            <a class="btn btn-default btn-colores m-r botones-superiores" (click)="OnRegresar()"><i
+                    class="fa fa-arrow-left"></i> Regresar</a>
+        </div>
+        <div class="col-lg-6"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content div-secundario" style=" height: 480px;">
+                <br />
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="ibox-content"
+                            style="margin-bottom: 10px; height: 43px; padding-bottom: 0px; padding-top: 10px;">
+                            <label class="col-sm-2 control-label titulos-texto"
+                                style="padding-left: 0px;width: 105px;padding-top: 4px;">Tipo de Área:</label>
+                            <fieldset class="col-sm-4">
+                                <label class="titulos-texto" style="padding-right: 20px;"><input type="radio"
+                                        id="tipoGerencia" name="tipoarea" value="gerencia" [checked]="checkGerencia"
+                                        (change)="onChangeTipo(1);">
+                                    Gerencia </label>
+                                <label class="titulos-texto" style="padding-right: 20px;"><input type="radio"
+                                        id="tipoEquipo" name="tipoarea" value="equipo" (change)="onChangeTipo(2);"
+                                        [checked]="checkEquipo"> Equipo
+                                </label>
+                                <label class="titulos-texto" style="padding-right: 20px;"><input type="radio"
+                                        id="tipoComite" name="tipoarea" value="comite" (change)="onChangeTipo(3);"
+                                        [checked]="checkComite"> Comité
+                                </label>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="ibox-content" style="height: 392px;">
+
+                            <div *ngIf="valorRadio==1 || valorRadio==2" class="col-sm-6"
+                                style="padding-left: 0px; padding-right: 5px;">
+                                <div class="row">
+                                    <label class="col-sm-12 control-label titulos-texto">Gerencia:</label>
+                                </div>
+                                <div *ngIf="nuevo" class="row">
+                                    <div class="col-sm-12">
+                                        <ng-select [items]="lstGerencias" bindLabel="v_nom_area"
+                                            [(ngModel)]="modeloGerencia" (change)="onSelectGerencia(modeloGerencia)"
+                                            [clearable]="false" [searchable]="false" class="custom">
+                                        </ng-select>
+                                    </div>
+                                </div>
+                                <div *ngIf="!nuevo" class="row">
+                                    <div class="col-sm-12">
+                                        <select class="form-control cajas-texto" name="valorTipo">
+                                            <option [value]="" selected disabled>
+                                                {{ gerenciaSeleccionada }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div *ngIf="valorRadio==2">
+                                    <div class="row">
+                                        <label class="col-sm-12 control-label titulos-texto">Equipo:</label>
+                                    </div>
+                                    <div *ngIf="nuevo" class="row">
+                                        <div class="col-sm-12">
+                                            <ng-select [items]="lstEquipos" bindLabel="v_nom_area"
+                                                [(ngModel)]="modeloEquipo" (change)="onSelectEquipo(modeloEquipo)"
+                                                [clearable]="false" [searchable]="false" class="custom">
+                                            </ng-select>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="!nuevo" class="row">
+                                        <div class="col-sm-12">
+                                            <select class="form-control cajas-texto" name="valorTipo">
+                                                <option value="" selected disabled>{{ areaAuditoria.v_nom_area }}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-12 control-label titulos-texto">Responsable:</label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12"><input class="form-control cajas-texto" type="text"
+                                            name="cargo" value="{{responsable}}" disabled="true"></div>
+                                </div>
+                                <div *ngIf="valorRadio==2">
+                                    <div class="row">
+                                        <label class="col-sm-8 control-label titulos-texto">Cargo SIG:</label>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <ng-select [items]="lstCargos" bindLabel="nombreCargoSig"
+                                                [(ngModel)]="modeloCargo" [clearable]="false" [searchable]="false"
+                                                class="custom">
+                                            </ng-select>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-top: 10px;">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-1">
+                                                <div class="row">
+                                                    <a class="btn btn-primary m-r botones-detalle"
+                                                        (click)="onAgregarCargo()"><i class="fa fa-plus"></i></a>
+                                                </div>
+                                                <br />
+                                                <div class="row">
+                                                    <a class="btn btn-danger m-r botones-detalle"
+                                                        (click)="onQuitarCargo()"><i class="fa fa-minus"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-11" style="padding-left: 0px; padding-right: 0px;">
+                                                <div class="table-responsive" style="height: 112px;">
+                                                    <table
+                                                        class="table table-bordered table-stripped table-hover issue-tracker">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="text-center" data-col="cargo">Descripción de
+                                                                    Cargo</th>
+                                                                <th class="text-center" data-col="sigla">Sigla</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let item of lstAreaCargoAuditoria;  let i = index"
+                                                                (click)="OnRowClickCargo(i, item)"
+                                                                [class.info]="i == selectedRow">
+                                                                <td class="text-center" data-col="cargo">
+                                                                    {{item.v_nom_cargo_sig}}</td>
+                                                                <td class="text-center" data-col="cargo">
+                                                                    {{item.v_sigla}}</td>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div *ngIf="valorRadio==3" class="col-sm-6" style="padding-left: 5px; padding-right: 0px;">
+                                <div class="row">
+                                    <label class="col-sm-12 control-label titulos-texto">Comité:</label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12"><input class="form-control cajas-texto" type="text"
+                                            placeholder="Ej: Comités Ambientales del SGI" name="cargo"
+                                            style="text-transform: uppercase;" [(ngModel)]="modeloComite"></div>
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-12 control-label titulos-texto">Siglas:</label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12"><input class="form-control cajas-texto" type="text"
+                                            style="text-transform: uppercase;" placeholder="Ej: CA-SGI" name="cargo"
+                                            [(ngModel)]="modeloSiglaComite">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-12 control-label titulos-texto">Responsable:</label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-11"><input class="form-control cajas-texto" type="text"
+                                            name="cargo" value="{{responsable}}" disabled="true"></div>
+                                    <div class="col-sm-1"
+                                        style="text-align: right; padding-left: 0px; padding-right: 0px; margin-left: 0px; width: 36px;">
+                                        <a class="btn btn-primary m-r botones-buscador"
+                                            style="padding-right: 15px;margin-right: 0px;"
+                                            (click)="BusquedaColaborador()"><i class="fa fa-search-plus"></i></a></div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-1"></div>
+
+                            <div *ngIf="valorRadio==1 || valorRadio==2" class=" col-sm-5"
+                                style="padding-left: 5px; padding-right: 0px;">
+                                <div class="row">
+                                    <label class="col-sm-8 control-label titulos-texto">Alcance:</label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <ng-select [items]="lstAlcances" bindLabel="v_abrecons"
+                                            [(ngModel)]="modeloAlcance" [clearable]="false" [searchable]="false"
+                                            class="custom">
+                                        </ng-select>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 10px;">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-1">
+                                            <div class="row">
+                                                <a class="btn btn-primary m-r botones-detalle"
+                                                    (click)="onAgregarAlcance()"><i class="fa fa-plus"></i></a>
+                                            </div>
+                                            <br />
+                                            <div class="row">
+                                                <a class="btn btn-danger m-r botones-detalle"
+                                                    (click)="onQuitarAlcance()"><i class="fa fa-minus"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-11" style="padding-left: 0px; padding-right: 0px;">
+                                            <div class="table-responsive" style="height: 142px;">
+                                                <table class="table table-bordered table-stripped table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-center" data-col="alcance">Alcance</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let item of lstAreaAlcancesAuditoria;  let i = index"
+                                                            (click)="OnRowClickAlcance(i, item)"
+                                                            [class.info]="i == selectedRow">
+                                                            <td class="text-center" data-col="alcance">
+                                                                {{item.v_abre_alca}}</td>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

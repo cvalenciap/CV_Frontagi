@@ -1,0 +1,74 @@
+<!-- Código modificado LARP-->
+<div class="modal-header modal-cabecera-color">
+  <h4 class="modal-title pull-left">Añadir Equipo Responsable Migración</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true" class="cerrar">&times;</span>
+  </button>
+</div>
+<div class="nuevo" style="height: 500px; padding-bottom: 0px; overflow: auto;">
+  <div class="modal-body">
+    <div class="row">
+      <div class = "form-group">
+        <label class = "col-md-1 control-label" style = "padding-top: 8px;">Sigla: </label>
+        <div class = "col-md-3">
+          <input type="text" placeholder="Ingresar siglas del equipo" class="form-control" (keyup)="validarBoton()" [(ngModel)]="siglaBusqueda" [ngModelOptions]="{standalone: true}">
+        </div>
+        <label class = "col-md-2 control-label" style = "padding-top: 8px;">Gerencia/Equipo: </label>
+        <div class = "col-md-6">
+          <input type="text" placeholder="Ej: GERENCIA DE RECURSOS HUMANOS" class="form-control" (keyup)="validarBoton()" [(ngModel)]="textoBusqueda" [ngModelOptions]="{standalone: true}">
+        </div>
+      </div>
+    </div>
+    <div class = "row" style="margin-top: 10px;">
+      <div class = "col-sm-4">
+        <button (click)="buscar()" [disabled]="interruptorBoton" class="btn btn-primary m-r"><i class="fa fa-search-plus"></i> Buscar</button>
+        <button (click)="limpiar()" [disabled]="interruptorBoton" class="btn btn-default m-r"><i class="fa fa-eraser"></i> Limpiar</button>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 5px;">
+      <div class="col-lg-12">
+          <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+            <div class="row">
+              <sk-three-bounce></sk-three-bounce>
+              <div class="table-responsive">
+                <table class="table table-sm table-bordered table-stripped table-hover issue-tracker" id = "tabla-datos">
+                  <thead>
+                  <tr>
+                    <th class="text-center">Gerencia / Equipo</th>
+                    <th class="text-center">Siglas</th>
+                  </tr>
+                  </thead>
+                  <tbody *ngFor="let item of listado; let i=index">
+                    <tr id = "{{item.idArea}}" (click)="OnRowClick(i,item)" [class.info]="i==selectedRow">
+                      <td class = "text-center" data-col = "equipo">{{item.descripcion}}</td>
+                      <td class = "text-center" data-col = "abreviatura">{{item.abreviatura}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-12 col-xs-12" style="padding-right:0px">
+                    <pagination [(ngModel)]="paginacion.pagina" (pageChanged)="OnPageChanged($event)" [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="text-center m-a-sm">
+                        <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="text-right m-a-sm">
+                        <pagination-set (optionChanged)="OnPageOptionChanged($event)"></pagination-set>
+                    </div>
+                </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div> 
+<div class="modal-footer">
+  <button type="button" class="btn btn-success" (click)="seleccionarAuditor()" [disabled]="interruptorAceptar" >Seleccionar</button>
+  <button type="button" class="btn btn-default" (click)="cancelar()">Cancelar</button>
+<!-- Código modificado LARP -->
+</div>

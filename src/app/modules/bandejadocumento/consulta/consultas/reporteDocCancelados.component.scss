@@ -1,0 +1,29 @@
+.table {
+  tr {
+    th[data-col='codigo'] {height: 0px;font-size: 11px;}
+    th[data-col='titulo'] {height: 0px;font-size: 11px;}
+    th[data-col='revision'] {height: 0px;font-size: 11px;}
+    th[data-col='tipo'] {height: 0px;font-size: 11px;}
+    th[data-col='motivo'] {height: 0px;font-size: 11px;}
+    th[data-col='descripcion'] {height: 0px;font-size: 11px;}
+    th[data-col='solicitado'] {height: 0px;font-size: 11px;}
+    th[data-col='fechas'] {height: 0px;font-size: 11px;}
+    th[data-col='aprobado'] {height: 0px;font-size: 11px;}
+    th[data-col='fechaa'] {height: 0px;font-size: 11px;}
+    th[data-col='cancelado'] {height: 0px;font-size: 11px;}
+    th[data-col='fechac'] {height: 0px;font-size: 11px;}
+
+    td[data-col='codigo'] {height: 0px;font-size: 11px;padding-left: 3px; padding-right: 3px;}
+    td[data-col='titulo'] {height: 0px;font-size: 11px;padding-left: 3px; padding-right: 3px;}
+    td[data-col='revision'] {height: 0px;font-size: 11px;padding-left: 3px; padding-right: 3px;}
+    td[data-col='tipo'] {height: 0px;font-size: 11px;padding-left: 3px; padding-right: 3px;}
+    td[data-col='motivo'] {height: 0px;font-size: 11px;}
+    td[data-col='descripcion'] {height: 0px;font-size: 11px;padding-left: 3px; padding-right: 3px;}
+    td[data-col='solicitado'] {height: 0px;font-size: 11px;}
+    td[data-col='fechas'] {height: 0px;font-size: 11px;padding-left: 3px; padding-right: 3px;}
+    td[data-col='aprobado'] {height: 0px;font-size: 11px;padding-left: 3px; padding-right: 3px;}
+    td[data-col='fechaa'] {height: 0px;font-size: 11px;padding-left: 3px; padding-right: 3px;}
+    td[data-col='cancelado'] {height: 0px;font-size: 11px;padding-left: 3px; padding-right: 3px;}
+    td[data-col='fechac'] {height: 0px;font-size: 11px;padding-left: 3px; padding-right: 3px;}
+  }
+} 

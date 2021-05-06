@@ -1,0 +1,90 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="ibox-content" style="padding: 0; border: 0">
+      <p>Seleccione los filtros y luego haga clic en Buscar.</p>
+      <form role="form">
+        <!--1 inicio -->
+        <div class="row">
+          <div class="col-md-3 padding"  [(ngModel)]="filtrosBusqueda.nano" type="text"  name="nano" >
+            <label>Año :</label>
+            <select class="form-control m-b" >
+              <option value="2018" selected="selected">2018</option>
+              <option value="2017">2017</option>
+              <option value="2016">2016</option>
+              <option value="2015">2015</option>
+            </select>
+          </div>
+          <div class="col-md-3 ">
+            <label>Origen :</label>
+            <select class="form-control"   type="text"  name="OrigenDocumento">
+              <option></option>
+              <option>INTERNO</option>
+              <option>EXTERNO</option>
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <div class="formt-group"><label>Registro :</label><input  type="text" class="form-control" name="correlativo" [(ngModel)]="filtrosBusqueda.correlativo"/>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="form-group"><label>Número :</label> <input type="text" class="form-control" name="numero" [(ngModel)]="filtrosBusqueda.numero"></div> -->
+        <!-- <div class="form-group"><label>Remitente :</label> <input type="text" class="form-control" name="remitente" [(ngModel)]="filtrosBusqueda.remitente"></div> -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="formt-group"><label>Remitente :</label><input type="text" class="form-control" name="remitente" [(ngModel)]="filtrosBusqueda.remitente"/>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="formt-group"><label>Número :</label><input type="text" class="form-control" name="numero" [(ngModel)]="filtrosBusqueda.numero"/>
+
+            </div>
+            <br>
+          </div>
+        </div>
+        <div class="form-group"><label>Asunto :</label> <input type="text" class="form-control" name="asunto" [(ngModel)]="filtrosBusqueda.asunto"></div>
+
+        <div class="form-group"><label>Fecha de Documento :</label>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="input-group date">
+                <span class="input-group-addon"><i class="fa fa-calendar"></i> Desde:</span>
+                <input bsDatepicker #dp="bsDatepicker" [(ngModel)]="filtrosBusqueda.fechaDocumentoInicio" type="text" class="form-control" name="fechaDocumentoInicio">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="input-group date">
+                <span class="input-group-addon"><i class="fa fa-calendar"></i> Hasta:</span>
+                <input bsDatepicker #dp="bsDatepicker" [(ngModel)]="filtrosBusqueda.fechaDocumentoFin" type="text" class="form-control" name="fechaDocumentoFin">
+              </div>
+            </div>
+          </div>
+          <br>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group"><label>Prioridad :</label>
+              <select class="form-control m-b"  type="text" class="form-control" name="prioridadDocumento">
+                <option></option>
+                <option>URGENTE</option>
+                <option>ALTA</option>
+                <option>MEDIA</option>
+                <option>BAJA</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group"><label>Estado :</label>
+              <select class="form-control m-b"  type="text" class="form-control" name="EstadoDocumento">
+                <option></option>
+                <option>PENDIENTE</option>
+                <option>ATENDIDO</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,139 @@
+<div class="wrapper wrapper-content animated fadeInRight" style="padding-left: 0px;">
+<!-- Fila 1 -->
+<div class="row">
+  <div class="col-md-7">
+    <div class="form-group">
+      <label class="control-label" for="accion-inmediata">Acción Inmediata:</label>
+      <textarea name="accion-inmediata" id="accion-inmediata" style="width: 100%;" rows="8"></textarea>
+    </div>
+  </div>
+  <div class="col-md-5">
+    <br>
+    <div class="row">
+      <div class="col-md-1 text-center" style="padding-left: 0px; padding-right: 0px;">
+        <div class="row">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-primary btn-sm" title="Agregar"><i class="fa fa-plus"></i></button>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-danger btn-sm" title="Eliminar"><i class="fa fa-minus"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-11" style="padding-left: 0px;">
+        <div style="height: 150px;overflow-y: auto;">
+          <div class="table-responsive">
+            <table class="table table-bordered table-stripped table-hover table-condensed issue-tracker">
+              <thead>
+                <tr>
+                  <th class="text-center">Archivos Adjuntos</th>
+                  <th class="text-center">Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="col-md-11">Evidencia_v0.1.pdf</td>
+                  <td class="col-md-1 text-center">
+                    <button class="btn btn-sm btn-success" title="Ver"><i
+                        class="fa fa-file"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-11">Cuadros_estadisticosv0.1.xls</td>
+                  <td class="col-md-1 text-center">
+                    <button class="btn btn-sm btn-success" title="Ver"><i
+                        class="fa fa-file"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Fila 2 -->
+<div class="row" style="padding-bottom: 0px;">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label class="control-label" for="observaciones">Observaciones:</label>
+      <textarea name="observaciones" id="observaciones" style="width: 100%;" rows="7"></textarea>
+    </div>
+  </div>
+</div>
+<!-- Fila 3 -->
+<div class="row">
+  <div class="col-md-7">
+    <div class="form-group">
+      <label class="control-label" for="analisis-causa">Análisis de Causa:</label>
+      <textarea name="analisis-causa" id="analisis-causa" style="width: 100%;" rows="8"></textarea>
+    </div>
+  </div>
+  <div class="col-md-5">
+    <br>
+    <div class="row">
+      <div class="col-md-1 text-center" style="padding-left: 0px; padding-right: 0px;">
+        <div class="row">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-primary btn-sm" title="Agregar"><i class="fa fa-plus"></i></button>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-danger btn-sm" title="Eliminar"><i class="fa fa-minus"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-11" style="padding-left: 0px;">
+        <div style="height: 30%;overflow-y: auto;">
+          <div class="table-responsive">
+            <table class="table table-bordered table-stripped table-hover table-condensed issue-tracker">
+              <thead>
+                <tr>
+                  <th class="text-center">Archivos Adjuntos</th>
+                  <th class="text-center">Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="col-md-11">Evidencia_v0.1.pdf</td>
+                  <td class="col-md-1 text-center">
+                    <button class="btn btn-sm btn-success" title="Ver"><i
+                        class="fa fa-file"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-11">Cuadros_estadisticosv0.1.xls</td>
+                  <td class="col-md-1 text-center">
+                    <button class="btn btn-sm btn-success" title="Ver"><i
+                        class="fa fa-file"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-7"></div>
+      <div class="col-md-5">
+        <div class="form-group">
+          <label class="control-label">Fecha de Aprobaciòn:</label>
+          <div class="input-group date">
+            <input autocomplete="off" bsDatepicker #dp="bsDatepicker" type="text" class="form-control"
+              name="fechaAprobacion" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" placeholder="dd/MM/yyyy" />
+            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,48 @@
+{
+  "listaVerificacionResponsable": [
+    {  
+      "id" :"01",
+      "norma": "14001:2004",
+      "evidenciaObjetiva": "-Se Indico que la Politica Integrada se aplica en la GPO a través de: El cumplimiento de los indicadores, principalmente la ampliación de la coberturas.",
+      "resultado": "Conforme",
+      "nroConformidad": "SAP",
+      "descripcionHallazgo": "Hallazgo 1",
+      "fechaHallazgo": "02/07/2019"
+      
+    },
+
+    {
+      "id" :"02",
+      "norma": "14001:2004",
+      "evidenciaObjetiva": "-Se Indico que la Politica Integrada se aplica en la GPO a través de: El cumplimiento de los indicadores, principalmente la ampliación de la coberturas.",
+      "resultado": "No Conforme",
+      "nroConformidad": "SAC",
+      "descripcionHallazgo": "Hallazgo 2",
+      "fechaHallazgo": "02/07/2017"
+      
+     
+    },
+    {
+      "id" :"03",
+      "norma": "14001:2004",
+      "evidenciaObjetiva": "GPO- Gerencia de Proyectos y Obras",
+      "resultado": "Conforme",
+      "nroConformidad": "SAP",
+      "descripcionHallazgo": "Hallazgo 3",
+      "fechaHallazgo": "02/06/2018"
+      
+     
+    },
+    {
+      "id" :"04",
+      "norma": "14001:2004",
+      "evidenciaObjetiva": "EQUIPO GESTION AMBIENTAL Y SERVICIOS ECOSISTEMICOS",
+      "resultado": "Conforme",
+      "nroConformidad": "Observación",
+      "descripcionHallazgo": "Hallazgo 4",
+      "fechaHallazgo": "02/08/2018"
+      
+    }
+
+  ]
+}

@@ -1,0 +1,81 @@
+.custom-file{
+    margin: 0;
+    //opacity: 0;
+    display: none;
+}
+.sp-file-custom{
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 5;
+    height: 3.5rem;
+    padding: .5rem 1rem;
+    line-height: 1.5;
+    color: #555;
+    background-color: #eee;
+    border: .075rem solid #ddd;
+    border-radius: .25rem;
+}
+
+.sp-file-custom::before{
+    position: absolute;
+    top: -.075rem;
+    left: -.075rem;
+    bottom: -.075rem;
+    z-index: 6;
+    display: block;
+    content: "...";
+    height: 3.5rem;
+    padding: .5rem 1rem;
+    line-height: 1.5;
+    color: #555;
+    background-color: #3983ba;
+    border: .075rem solid #3983ba;
+    border-radius: .25rem 0 0 .25rem;
+}
+.wrap-file{
+    width: 100%;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    height: 2.5rem;
+}
+
+#custom-button {
+    padding: 5px;
+    color: white;
+    background-color: #3983ba;
+    border: 1px solid #3983ba;
+    border-radius: 5px;
+    cursor: pointer;
+    float: left;
+  }
+  
+  #custom-button:hover {
+    background-color: #00b28f;
+  }
+  
+  #custom-text {
+    margin-left: 2px;
+    font-family: sans-serif;
+    color: #aaa;
+    border: 1px #555 solid;
+    padding:5px;
+    float: left;
+    display: block;
+    width: 60%;
+  }
+
+  .custom-buttom-file{
+    background-color: #3983ba;
+    cursor: pointer;
+  }
+
+  .filaMargenBajo{
+      margin-bottom: 35px;
+  }
+
+  .lblWarning{
+   color: #ED5565;
+  }

@@ -1,0 +1,46 @@
+{
+  "listaEncuestas": [
+    {
+      "codigo":"C001",
+      "nombre": "Análisis de tratamiento de agua",
+      "codigoP": "P001",
+      "pregunta": "Desarrolla todos los contenidos del programa presentado",
+      "disponible": "SI"
+
+    },
+    {
+      "codigo":"C001",
+      "nombre": "Análisis de tratamiento de agua",
+      "codigoP": "P002",
+      "pregunta": "Observa puntualidad al llegar e irse",
+      "disponible": "SI"
+    },
+    {
+      "codigo":"C001",
+      "nombre": "Análisis de tratamiento de agua",
+      "codigoP": "P003",
+      "pregunta": "Explica los temas de forma clara y compensible",
+      "disponible": "SI"
+    },
+    {
+      "codigo":"C001",
+      "nombre": "Análisis de tratamiento de agua",
+      "codigoP": "P003",
+      "pregunta": "Explica los temas de forma clara y compensible",
+      "disponible": "SI"
+    },
+    {
+      "codigo":"C001",
+      "nombre": "Análisis de tratamiento de agua",
+      "codigoP": "P003",
+      "pregunta": "Explica los temas de forma clara y compensible",
+      "disponible": "SI"
+    }, {
+      "codigo":"C001",
+      "nombre": "Análisis de tratamiento de agua",
+      "codigoP": "P003",
+      "pregunta": "Explica los temas de forma clara y compensible",
+      "disponible": "SI"
+    }
+  ]
+}

@@ -1,0 +1,207 @@
+<br>
+<div class="row">
+        <div class="col-sm-2">
+                <div class="form-group">
+                        <label class="control-label" for="tipo_copia">Tipo de Copia (*):</label>
+                        <select *ngIf="activar" name="tipo-copia" id="tipo-copia" class="form-control" [(ngModel)]="tipoCopia" [disabled]="habilitaenviar"
+                                [ngClass]="{'ng-dirty ng-invalid':errors?.tipoCopia}" [tooltip]="errors?.tipoCopia">
+                                <option value="">Seleccione</option>
+                                <option *ngFor="let item of listaTiposCopia" [value]="item.idconstante">{{ item.v_abrecons }}</option>
+                        </select>
+                        <select *ngIf="!activar" name="tipo-copia" id="tipo-copia" class="form-control" [(ngModel)]="tipoCopia" disabled="disabled">
+                                <!--<option value="0" selected="0">Seleccione</option>-->
+                                <option *ngFor="let item of listaTiposCopia" [value]="item.idconstante">{{ item.v_abrecons }}</option>
+                        </select>
+                </div>
+        </div>
+        <div class="col-sm-3">
+                <div class="form-group">
+                        <label class="control-label" for="motivo">Motivo (*):</label>
+                        <select *ngIf="activar" name="motivoR" id="motivoR" class="form-control" [(ngModel)]="idmotivo" [disabled]="habilitaenviar"
+                                [ngClass]="{'ng-dirty ng-invalid':errors?.motivoR}" [tooltip]="errors?.motivoR">
+                                <option value="">Seleccione</option>
+                                <option *ngFor="let item of listaMotivoImpresion" [value]="item.idconstante">{{ item.v_valcons }}</option>
+                        </select>
+                        <select *ngIf="!activar" name="tipo-motivo" id="tipo-motivo" class="form-control" [(ngModel)]="idmotivo" disabled="disabled">
+                                <option *ngFor="let item of listaMotivoImpresion" [value]="item.idconstante">{{ item.v_valcons }}</option>
+                        </select>
+                </div>
+        </div>
+
+        <div class="col-sm-7">
+                <div *ngIf="activar" class="form-group">
+                        <label class="control-label" for="observacion">Sustento (*):</label>
+                        <input max="3" type="text" id="sustento" name="sustento" value="" placeholder="Observación" class="form-control" [(ngModel)]="sustento"
+                                [disabled]="habilitaenviar" [ngClass]="{'ng-dirty ng-invalid':errors?.sustento}" [tooltip]="errors?.sustento">
+                        <!-- [ngClass]="{'ng-dirty ng-invalid':errors?.sustento}"  (ngModelChange)="Validar(sustento)"     [tooltip]="errors?.sustento">-->
+                </div>
+                <div *ngIf="!activar" class="form-group">
+                        <label class="control-label" for="observacion">Sustento (*):</label>
+                        <input max="3" type="text" id="observacion" name="observacion" value="" placeholder="Observación" class="form-control" [(ngModel)]="sustento"
+                                disabled="disabled">
+                </div>
+        </div>
+</div>
+
+<div class="row">
+        <div class="col-sm-3">
+                <div *ngIf="activar" class="input-group">
+                        <label class="control-label" for="codigo">Buscar Código Documento (*):</label>
+                        <input type="text" id="codigo" name="codigo" placeholder="Ej: CGPO0010" class="form-control" disabled="disabled" [(ngModel)]="objDocumento.codigo"
+                                [ngClass]="{'ng-dirty ng-invalid':errors?.codigo}" [tooltip]="errors?.codigo">
+                        <span class="input-group-btn" dropdown>
+                                <button [disabled]="habilitaenviar" type="button" style="top:12px" class="btn btn-info" (click)="OnBuscar()" [ngClass]="{'ng-dirty ng-invalid':errors?.codigo}"
+                                        [tooltip]="errors?.codigo">
+                                        <i class="fa fa-search"></i>
+                                </button>
+                        </span>
+                </div>
+                <div *ngIf="!activar" class="input-group">
+                        <label class="control-label" for="revision"> Buscar Código Documento:</label>
+                        <input type="text" id="codigo" name="codigo" placeholder="Ej: CGPO0010" class="form-control" disabled="disabled" [(ngModel)]="objDocumento.codigo">
+                        <span class="input-group-btn" dropdown>
+                                <button type="button" style="top:12px" class="btn btn-info" (click)="OnNuevo()" disabled="disabled">
+                                        <i class="fa fa-search"></i>
+                                </button>
+                        </span>
+                </div>
+        </div>
+        <div class="col-sm-2">
+                <div class="form-group">
+                        <label class="control-label" for="revision">N° Revisión:</label>
+                        <div *ngIf="activar">
+                                <input type="text" id="revision" name="revision" placeholder="Ej: 2" class="form-control" disabled="disabled" [(ngModel)]="objDocumento.numeroderevision">
+                        </div>
+                        <div *ngIf="!activar">
+                                <input type="text" id="revision" name="revision" placeholder="Ej: 2" class="form-control" disabled="disabled" [(ngModel)]="objDocumento.numeroderevision">
+                        </div>
+                </div>
+        </div>
+        <div class="col-sm-2">
+                <div class="form-group">
+                        <label class="control-label" for="fecha">Fecha de Aprobación:</label>
+                        <div *ngIf="activar" class="input-group">
+                                <input bsDatepicker #dp2="bsDatepicker" type="text" class="form-control" placeholder="Ej: 01/01/2019" [(ngModel)]="objDocumento.fecha"
+                                        disabled="disabled" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue' }">
+                        </div>
+                        <div *ngIf="!activar" class="input-group">
+                                <input bsDatepicker #dp2="bsDatepicker" type="text" class="form-control" placeholder="Ej: 01/01/2019" [(ngModel)]="objDocumento.fecha"
+                                        disabled="disabled" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', containerClass: 'theme-dark-blue' }">
+                        </div>
+                </div>
+        </div>
+        <div class="col-sm-5">
+                <div class="form-group">
+                        <label class="control-label" for="revision">Título del Documento:</label>
+                        <div *ngIf="activar">
+                                <input type="text" id="revision" name="revision" placeholder="Ej: Criterios de Aceptacion de Materiales" class="form-control"
+                                        disabled="disabled" [(ngModel)]="objDocumento.descripcion">
+                        </div>
+                        <div *ngIf="!activar">
+                                <input type="text" id="revision" name="revision" placeholder="Ej: Criterios de Aceptacion de Materiales" class="form-control"
+                                        disabled="disabled" [(ngModel)]="objDocumento.descripcion">
+                        </div>
+                </div>
+        </div>
+</div>
+<div class="row">
+        <div class="col-sm-6">
+                <div class="form-group">
+                        <label class="control-label" for="ferencia">Gerencia:</label>
+                        <input type="text" id="revision" name="revision" placeholder="Ej: \Gerencia General" class="form-control" disabled="disabled"
+                                [(ngModel)]="objDocumento.jgerencia.descripcion">
+                </div>
+        </div>
+        <div class="col-sm-6">
+                <div class="form-group">
+                        <label class="control-label" for="alcance">Alcance SGI:</label>
+                        <input type="text" id="revision" name="revision" placeholder="Ej: \ISO 9001" class="form-control" disabled="disabled" [(ngModel)]="objDocumento.jalcanceSGI.descripcion">
+                </div>
+        </div>
+</div>
+<div class="row">
+
+        <div class="col-sm-6">
+                <div class="form-group">
+                        <label class="control-label" for="proceso">Proceso:</label>
+                        <input type="text" id="revision" name="revision" placeholder="Ej: \Gestión Estratégica" class="form-control" disabled="disabled"
+                                [(ngModel)]="objDocumento.jproceso.descripcion">
+                </div>
+                <h4>Destinatario (*): </h4>
+        </div>
+</div>
+
+
+<div class="row">
+        <div class="col-sm-12">
+                <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+                        <!--<sk-three-bounce></sk-three-bounce>-->
+                        <div class="table-responsive">
+                                <ng-template [authIf]="session.ACL.ID_SOL_SolicitudCopiasImpresas_Detalle_CREAR">
+                                        <button [disabled]="habilitaenviar" *ngIf="activar" class="btn btn-primary" style="top:12px" (click)="OnAgregar()">
+                                                <i class="fa fa-plus"></i> Añadir</button>
+                                </ng-template>
+                                <!--
+                                <ng-template [authIf]="session.ACL.ID_TAR_Aprobacion_Copia_Impresa_Detalle_CREAR">
+                                        <a *ngIf="!activar" class="btn btn-primary" style="top:12px" disabled="disabled">
+                                                <i class="fa fa-plus"></i> Añadir</a>
+                                </ng-template>-->
+                                <!--Segurity-->
+                                <div>
+                                        <br>
+                                        <table class="table table-bordered table-stripped table-hover issue-tracker">
+                                                <thead>
+                                                        <tr>
+                                                                <th class="text-center">Item</th>
+                                                                <th class="text-center">Destinatario</th>
+                                                                <th class="text-center">Equipo</th>
+                                                                <th class="text-center">Estado de la Solicitud</th>
+                                                                <th *ngIf="activar" class="text-center" style="width:30px;">Acción</th>
+                                                        </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <tr *ngFor="let item of listaParticipantes; let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow">
+                                                                <td class="text-center" data-col="item">{{item.item}}</td>
+                                                                <td class="text-center" data-col="responsable">{{item.responsable}}</td>
+                                                                <td class="text-center" data-col="equipoColaborador">{{item.equipoColaborador}}</td>
+                                                                <td class="text-center" style="vertical-align: middle;" [ngSwitch]="item.estadoSoli">
+                                                                        <h3>
+                                                                                <span *ngSwitchCase="'Aprobado'" class="label label-primary">&nbsp;Aprobado&nbsp;&nbsp;</span>
+                                                                        </h3>
+                                                                        <h3>
+                                                                                <span *ngSwitchCase="'Rechazado'" class="label label-danger">&nbsp;Rechazado&nbsp;</span>
+                                                                        </h3>
+                                                                        <h3>
+                                                                                <span *ngSwitchCase="'En Revision'" class="label label-warning">Pendiente</span>
+                                                                        </h3>
+                                                                </td>
+                                                                <td *ngIf="activar" class="text-center">
+                                                                        <ng-template [authIf]="session.ACL.ID_SOL_SolicitudCopiasImpresas_Detalle_ELIMINAR">
+                                                                                <td *ngIf="activar" class="text-center">
+                                                                                        <button [disabled]="'Aprobado'==item.estadoSoli||'En Revision'==item.estadoSoli" title="Eliminar" class="btn btn-danger btn-sm"
+                                                                                                [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText:'Sí, eliminar', cancelButtonText:'No gracias' }"
+                                                                                                (confirm)="OnEliminar(i, item)">
+                                                                                                <i class="fa fa-trash"></i>
+                                                                                        </button>
+                                                                                </td>
+                                                                        </ng-template>
+                                                                </td>
+                                                                <!--
+                                                                <ng-template [authIf]="session.ACL.ID_TAR_Aprobacion_Copia_Impresa_Detalle_ELIMINAR">
+                                                                <td *ngIf="!activar" class="text-center">
+                                                                        <button [disabled]="'Aprobado'==item.estadoSoli||'En Revision'==item.estadoSoli" title="Eliminar" class="btn btn-danger btn-sm"
+                                                                                [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText:'Sí, eliminar', cancelButtonText:'No gracias' }"
+                                                                                (confirm)="OnEliminar(i, item)">
+                                                                                <i class="fa fa-trash"></i>
+                                                                        </button>
+                                                                </td>
+                                                                </ng-template>-->
+                                                        </tr>
+                                                </tbody>
+                                        </table>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</div>
+

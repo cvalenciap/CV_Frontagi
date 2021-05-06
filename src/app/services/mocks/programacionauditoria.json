@@ -1,0 +1,26 @@
+{
+    "listaProgramacion": [
+      {
+        "idPrograma":"1",
+        "descripcion":"Programación Anual 2017",
+        "fechaPrograma": "15/12/2016",
+        "usuarioCreacion": "Mirian Gallardo"
+  
+      },
+      {
+        "idPrograma":"2",
+        "descripcion":"Programación Anual 2018",
+        "fechaPrograma": "28/12/2017",
+        "usuarioCreacion": "Rosa Velazquez"
+  
+      },
+      {
+        "idPrograma":"3",
+        "descripcion":"Programación Anual 2019",
+        "fechaPrograma": "20/12/2018",
+        "usuarioCreacion": "Martin Guerrero"
+  
+      }
+  
+    ]
+  }

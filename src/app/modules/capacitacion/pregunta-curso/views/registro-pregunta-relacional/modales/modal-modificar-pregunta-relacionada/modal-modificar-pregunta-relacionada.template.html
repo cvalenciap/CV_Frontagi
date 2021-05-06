@@ -1,0 +1,57 @@
+<div class="modal-header modal-cabecera-color">
+        <h4 class="modal-title pull-left">Modificar Opción Relacional</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+            <span aria-hidden="true" class="cerrar">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row center">
+            <div class="col-lg-12 center" >  
+                <div class="row center">
+                    <div class="form-group col-lg-6 center">
+                        <label class="col-sm-4 control-label">N°:</label>
+                        <div class="col-sm-8">
+                            <input  type="text" placeholder="Código curso." class="form-control" name="numFicha" disabled="true" value="1">
+                        </div>
+                    </div>        
+                </div>                 
+                <div class="row center">
+                <div class="form-group col-lg-6 center">
+                    <label class="col-sm-4 control-label">Opción:</label>
+                    <div class="col-sm-8">
+                        <input  type="text" placeholder="Pregunta relacional." class="form-control" name="numFicha" value="¿Tu color favorito es?">
+                    </div>
+                </div>        
+                </div>        
+                <div class="row center">
+                <div class="form-group col-lg-6 center">
+                        <label class="col-sm-4 control-label">Respuesta :</label> 
+                        <div class="col-sm-8">
+                            <input  type="text" placeholder="Respuesta relacional." class="form-control" name="numFicha" value="Azul">
+                        </div>                                              
+                </div>     
+                </div>      
+                
+                <div class="row center">
+                <div class="form-group col-lg-6">
+                    <label class="col-sm-4 control-label">Disponible :</label> 
+                    <div class="col-sm-8">
+                            <ng-select 
+                             bindLabel="tipo"
+                             bindValue="tipo"
+                             placeholder="Seleccione respuesta."
+                             [clearable]="false"
+                             name="tipo">
+                            </ng-select>
+                    </div>
+                </div>    
+                </div>
+
+            </div>
+        </div>
+    </div>    
+    <div class="modal-footer">
+            <button type="button" class="btn btn-success" (click)="buscar()" >Guardar</button>
+            <button type="button" class="btn btn-default" (click)="cancelar()">Cancelar</button>
+    </div>
+           

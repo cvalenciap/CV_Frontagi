@@ -1,0 +1,112 @@
+<div class="modal-header modal-cabecera-color">
+        <h4 class="modal-title pull-left">Añadir Copia</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+          <span aria-hidden="true" class="cerrar">&times;</span>
+        </button>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">   
+        <div class="row">
+            <div class="col-sm-2">
+            <div class="form-group">
+                <label class="control-label" for="nroProtocolo">Nro. de Solicitud:</label>
+                <input type="text" id="nroProtocolo" name="nroProtocolo" value="1234" placeholder="" class="form-control" disabled="disabled">
+            </div>
+            </div>
+            <div class="col-sm-2">
+            <div class="form-group">
+                <label class="control-label" for="fecha">Fecha:</label>
+                <input type="text" id="fecha" name="fecha" value="12/06/2018" placeholder="" class="form-control" disabled="disabled">
+            </div>
+            </div>
+            <div class="col-sm-2">              
+            <div class="form-group">
+                <label class="control-label" for="tipo_copia">Tipo de Copia (*):</label>                        
+                <select name="tipoCopia" id="tipoCopia" class="form-control">
+                    <option value="0" selected="">Seleccionar</option>
+                    <option value="1">Copia 01</option>
+                    <option value="2">Copia 02</option>
+                </select>
+            </div>
+            </div>
+            <div class="col-sm-2">              
+            <div class="form-group">
+                <label class="control-label" for="motivo">Motivo (*):</label>
+                <select name="motivo" id="motivo" class="form-control">
+                    <option value="0" selected="">Seleccionar</option>
+                    <option value="1">Motivo 01</option>
+                    <option value="2">Motivo 02</option>
+                </select>
+            </div>
+            </div>
+        </div>
+    
+        <div class="row">
+        <div class="col-sm-11">
+        <div class="form-group">
+            <label class="control-label" for="observacion">Sustento (*):</label>
+            <input type="text" id="observacion" name="observacion" value="Según la Le 787233se tiene que actualizar el documento XX para la Norma ISO-9001" placeholder="Observación" class="form-control">
+        </div>
+        </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-sm-12">
+            <div class="form-group">
+                <label class="control-label" style="color: rgb(104, 10, 10)" for="equipo">Documento:</label>                
+            </div>
+            </div>
+            <div class="col-sm-3">
+            <div class="form-group">
+                <label class="control-label" for="documento">Código (*):</label>
+                <input type="text" id="documento" name="documento" value="GCPR005" placeholder="" class="form-control" disabled="disabled">
+            </div>
+            </div>
+            <div class="col-sm-3">
+            <div class="form-group">
+                <label class="control-label" for="documentoTitulo">Título:</label>
+                <input type="text" id="documentoTitulo" name="documentoTitulo" placeholder="" class="form-control"
+                value="Procedimiento de Control de Fugas" disabled="disabled">
+            </div>
+            </div>
+            <div class="col-sm-3">
+            <div class="input-group">
+                <label class="control-label" for="revision">Revisión:</label>
+                <input type="text" id="revision" name="revision" value="02" placeholder="" class="form-control" disabled="disabled">
+                <span class="input-group-btn" dropdown>
+                    <button type="button" style="top:12px" class="btn btn-info" ><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+            </div>
+            <div class="col-sm-3">
+            <div class="input-group">
+                <label class="control-label" for="nroCopias">Número de Copias (*):</label>
+                <input type="text" id="nroCopias" name="nroCopias" value="5" placeholder="" class="form-control">
+                </div>
+            </div>
+        </div>
+    
+        <div class="row">            
+            <div class="col-sm-3">              
+            <div class="form-group">
+                <label class="control-label" for="ferencia">Gerencia:</label>
+                <input type="text" name="ferencia" id="ferencia" class="form-control" disabled="disabled" value="Gerencia 01">
+            </div>
+            </div>
+            <div class="col-sm-3">              
+            <div class="form-group">
+                <label class="control-label" for="alcance">Alcance SGI:</label>
+                <input type="text" name="alcance" id="alcance" class="form-control" disabled="disabled" value="Alcance 01">
+            </div>
+            </div>
+            <div class="col-sm-3">              
+            <div class="form-group">
+                <label class="control-label" for="proceso">Proceso:</label>
+                <input type="text" name="proceso" id="proceso" class="form-control" disabled="disabled" value="Proceso 01">
+            </div>
+            </div>
+        </div> 
+    </div>
+    <div class="modal-footer">
+            <button type="button" class="btn btn-success"  >Seleccionar</button>
+            <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Cancelar</button>
+          </div>    

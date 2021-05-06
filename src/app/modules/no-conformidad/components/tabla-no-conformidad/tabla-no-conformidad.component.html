@@ -1,0 +1,95 @@
+<div class="wrapper wrapper-content animated fadeInRight" style="padding-left: 0px;padding-right: 0px;">
+<div class="table-responsive" style="overflow-x:hidden">
+<!-- <div class="table-responsive"> -->
+  <table class="table table-bordered table-stripped table-hover issue-tracker">
+    <thead>
+      <tr>
+        <th class="text-center">N°</th>
+        <th class="text-center">Tipo</th>
+        <th class="text-center">Norma</th>
+        <th class="text-center">Alcance</th>
+        <th class="text-center">Requisito</th>
+        <th class="text-center">Ambito</th>
+        <th class="text-center">Origen</th>
+        <th class="text-center">Área</th>
+        <th class="text-center">Responsable</th>
+        <th class="text-center">Descripción Problema</th>
+        <th class="text-center">Etapa</th>
+        <th class="text-center">Estado</th>
+        <th class="text-center">Alerta</th>
+        <th class="text-center">Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>SAC</td>
+        <td>ISO 9001:2015</td>
+        <td>ISO 9001:2015</td>
+        <td>4.1 - Politicas y Legalidades</td>
+        <td>Dentro del SGI</td>
+        <td>Auditoria Interna</td>
+        <td>ESHO</td>
+        <td>MARTIN HIDALGO ROJAS</td>
+        <td>Problemas de prueba</td>
+        <td>Ejecución</td>
+        <td>Abierto</td>
+        <td class="text-center">
+          <p style="padding: 0;margin: 0;">
+            <label class="circleBase" style="background-color: green;"></label>
+        </p>
+        </td>
+        <td class="text-center">
+          <button class="btn btn-sm btn-success" (click)="editar()" title="Editar" style="margin-right: 10px;"><i
+              class="fa fa-edit"></i></button>
+          <button class="btn btn-sm btn-danger" (confirm)="eliminar()" title="Eliminar" [swal]="{ title: '¿Está seguro de eliminar el registro seleccionado?', showCancelButton: true,
+                              confirmButtonText: 'Sí, seguro', cancelButtonText: 'No gracias', focusConfirm: false, type:'question',
+                              focusCancel: true }">
+            <i class="fa fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+      <!-- <tr *ngFor="let item of listaItemsGrilla; let indice = index">
+        <td class="col-lg-1 text-center">{{item.id}}</td>
+        <td class="col-lg-7 text-left">{{item.descripcion}}</td>
+        <td class="col-lg-2 text-center" [ngSwitch]="item.estado">
+          <span *ngSwitchCase="'A'" class="label label-primary">Activo</span>
+          <span *ngSwitchCase="'I'" class="label label-default">Inactivo</span>
+        </td>
+        <td class="text-center" width="90px">
+          <button class="btn btn-sm btn-success margin-right-10" (click)="editarItem(item)" title="Editar"><i
+              class="fa fa-edit"></i></button>
+          <span *ngIf="item.estado=='A'">
+            <button class="btn btn-sm btn-danger" (confirm)="eliminarItem(item, indice)" title="Eliminar" [swal]="{ title: '¿Está seguro de eliminar el item seleccionado?', showCancelButton: true,
+                              confirmButtonText: 'Sí, seguro', cancelButtonText: 'No gracias', focusConfirm: false,
+                              focusCancel: true, imageUrl: 'assets/images/advertencia.png', imageWidth: 50 }">
+              <i class="fa fa-trash"></i>
+            </button>
+            <button class="btn btn-sm btn-warning" style="margin-left: 1em;" (click)="registrarOficina(item)"
+              title="Registrar Oficina"><i class="fa fa-building"></i></button>
+          </span>
+        </td>
+      </tr> -->
+    </tbody>
+  </table>
+  <div class="row margin-top-20">
+    <div class="col-md-4 col-sm-12 col-xs-12">
+      <pagination [(ngModel)]="paginacion.pagina" (pageChanged)="cambiarPagina($event)"
+        [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [boundaryLinks]="true"
+        [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+      </pagination>
+    </div>
+    <div class="col-md-4 col-sm-6 col-xs-12">
+      <div class="text-center m-a-sm">
+        <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros"
+          [page]="paginacion.pagina"></pagination-info>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-6 col-xs-12">
+      <div class="text-right m-a-sm">
+        <pagination-set (optionChanged)="cambiarRegistrosPorPagina($event)"></pagination-set>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

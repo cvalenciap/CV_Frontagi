@@ -1,0 +1,160 @@
+{
+    "listaDatosAuditoria":[
+        {
+            "idAuditoria":"1",
+            "tipoAuditoria":"1",
+            "idPrograma":"1",
+            "textoFechaInicio":"02/03/2017",
+            "textoFechaFin":"09/03/2017",
+            "descripcionAuditoria":"Auditoria de Gestion Ambiental",
+            "objetivo":"Verificar el grado de cumplimiento de tecnicas de gestión ambiental",
+            "alcance":"El alcance comprende la ISO 9001",
+            "idColaborador":"1",
+            "idObservador":"2",
+            "listaCriterios":[
+                {
+                    "id":"1",
+                    "descripcionCriterio":"No conforme"
+                },
+                {
+                    "id":"3",
+                    "descripcionCriterio":"Oportunidad de Mejora"
+                }
+            ]
+        },
+        {
+            "idAuditoria":"2",
+            "tipoAuditoria":"2",
+            "idPrograma":"1",
+            "textoFechaInicio":"06/04/2017",
+            "textoFechaFin":"14/04/2017",
+            "descripcionAuditoria":"Auditoria de Sistemas de Seguridad",
+            "objetivo":"Verificar el grado de cumplimiento del manual de seguridad",
+            "alcance":"El alcance comprende la ISO 14001",
+            "idColaborador":"1",
+            "idObservador":"1",
+            "listaCriterios":[
+                {
+                    "id":"1",
+                    "descripcionCriterio":"No conforme"
+                },
+                {
+                    "id":"2",
+                    "descripcionCriterio":"Conforme"
+                },
+                {
+                    "id":"3",
+                    "descripcionCriterio":"Oportunidad de Mejora"
+                }
+            ]
+        },
+        {
+            "idAuditoria":"3",
+            "tipoAuditoria":"1",
+            "idPrograma":"2",
+            "textoFechaInicio":"01/03/2018",
+            "textoFechaFin":"10/03/2018",
+            "descripcionAuditoria":"Auditoria de Gestion Ambiental",
+            "objetivo":"Verificar el grado de cumplimiento de tecnicas de gestión ambiental",
+            "alcance":"El alcance comprende la ISO 9001",
+            "idColaborador":"1",
+            "idObservador":"1",
+            "listaCriterios":[
+                {
+                    "id":"1",
+                    "descripcionCriterio":"No conforme"
+                },
+                {
+                    "id":"2",
+                    "descripcionCriterio":"Conforme"
+                },
+                {
+                    "id":"3",
+                    "descripcionCriterio":"Oportunidad de Mejora"
+                },
+                {
+                    "id":"4",
+                    "descripcionCriterio":"Fortaleza"
+                }
+            ]
+        },
+        {
+            "idAuditoria":"4",
+            "tipoAuditoria":"1",
+            "idPrograma":"2",
+            "textoFechaInicio":"06/03/2018",
+            "textoFechaFin":"14/03/2018",
+            "descripcionAuditoria":"Auditoria de Sistemas de Seguridad",
+            "objetivo":"Verificar el grado de cumplimiento del manual de seguridad",
+            "alcance":"El alcance comprende la ISO 14001",
+            "idColaborador":"1",
+            "idObservador":"2",
+            "listaCriterios":[
+                {
+                    "id":"2",
+                    "descripcionCriterio":"Conforme"
+                },
+                {
+                    "id":"3",
+                    "descripcionCriterio":"Oportunidad de Mejora"
+                }
+            ]
+        },
+        {
+            "idAuditoria":"5",
+            "tipoAuditoria":"2",
+            "idPrograma":"3",
+            "textoFechaInicio":"14/03/2019",
+            "textoFechaFin":"22/03/2019",
+            "descripcionAuditoria":"Auditoria de Gestion Ambiental",
+            "objetivo":"Verificar el grado de cumplimiento de tecnicas de gestión ambiental",
+            "alcance":"El alcance comprende la ISO 9001",
+            "idColaborador":"2",
+            "idObservador":"1",
+            "listaCriterios":[
+                {
+                    "id":"1",
+                    "descripcionCriterio":"No conforme"
+                },
+                {
+                    "id":"2",
+                    "descripcionCriterio":"Conforme"
+                },
+                {
+                    "id":"4",
+                    "descripcionCriterio":"Fortaleza"
+                }
+            ]
+        },
+        {
+            "idAuditoria":"6",
+            "tipoAuditoria":"1",
+            "idPrograma":"3",
+            "textoFechaInicio":"06/03/2019",
+            "textoFechaFin":"14/03/2019",
+            "descripcionAuditoria":"Auditoria de Sistemas de Seguridad",
+            "objetivo":"Verificar el grado de cumplimiento del manual de seguridad",
+            "alcance":"El alcance comprende la ISO 14001",
+            "idColaborador":"2",
+            "idObservador":"2",
+            "listaCriterios":[
+                {
+                    "id":"1",
+                    "descripcionCriterio":"No conforme"
+                },
+                {
+                    "id":"2",
+                    "descripcionCriterio":"Conforme"
+                },
+                {
+                    "id":"3",
+                    "descripcionCriterio":"Oportunidad de Mejora"
+                },
+                {
+                    "id":"4",
+                    "descripcionCriterio":"Fortaleza"
+                }
+            ]
+        }
+    ]
+}

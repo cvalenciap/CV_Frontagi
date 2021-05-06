@@ -1,0 +1,83 @@
+    <div class="modal-header modal-cabecera-color">
+        <h4 class="modal-title pull-left">Añadir Instructor</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+            <span aria-hidden="true" class="cerrar">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+                <div class="col-lg-2">
+                        <button type="button" class="btn btn-success" [disabled]="selectedRow<0" (click)="agregar()">Seleccionar</button>
+                </div>
+                <div class="col-lg-4">
+                    <div class="input-group">                               
+                        <input type="text" placeholder="Buscar" class="form-control" [(ngModel)]="textoBusqueda" >
+                            <span class="input-group-btn" dropdown>
+                                      <button type="button" class="btn btn-info" (click)="OnBuscar()"><i class="fa fa-search"></i></button>
+                                      <button dropdownToggle type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split"><i class="fa fa-caret-down"></i></button>
+                                      <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
+                                            <li role="menuitem" [class.active]="parametroBusqueda == 'ficha'"><a (click)="parametroBusqueda = 'ficha'">Ficha</a></li>
+                                            <li role="menuitem" [class.active]="parametroBusqueda == 'avanzada'"><a (click)="abrirBusquedaAvanzada(); parametroBusqueda='avanzada';mostrarAlerta=false;mensajeAlerta=null;textoBusqueda=null;deshabilitarTextoBuscar=true">Búsqueda avanzada</a></li>                                                
+                                      </ul>
+                                  </span>                                                               
+                    </div> 
+                </div>
+                <div class="col-sm-2"> 
+                    <button type="button" class="btn btn-default pull-right" (click)="cancelar()">Regresar</button>
+                </div>
+        </div>       
+        <br>
+        <div class="row">
+            <div class="col-lg-12">
+                    <div *ngIf="mostrarAlerta">
+                            <alert type="info" ><span [innerHtml]="mensajeAlerta"></span></alert>
+                        </div>
+                <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+                    <sk-three-bounce></sk-three-bounce>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-stripped table-hover issue-tracker">
+                            <thead>
+                            <tr>
+                                <th class="text-center">Tipo</th>
+                                <th class="text-center">Nro. de Ficha</th>
+                                <th class="text-center">Nombre y Apellidos</th>
+                                <th class="text-center">Tipo de Doc. de Ident.</th>
+                                <th class="text-center">Num. de Doc. de Ident.</th>
+                                <th class="text-center">Disponible</th>
+                            </tr>
+                            </thead>
+                            <tbody *ngFor="let item of items; let indice = index">
+                                <tr id="{{item.n_idinst}}"   (click)="seleccionarInstructor(indice, item)" [class.info]="indice == filaSeleccionada">
+                                    <td class="text-center" data-col="Tipo">{{item.v_tipinst}}</td>
+                                    <td class="text-center" data-col="nroficha">{{item.v_codinst}}</td>
+                                    <td class="text-center" data-col="Nombre y Apellido">{{item.v_nomcomp}}</td>
+                                    <td class="text-center" data-col="Tipo de Documento">{{item.v_tipdocinst}}</td>
+                                    <td class="text-center" data-col="Número de Documento">{{item.v_numdocinst}}</td>
+                                    <td class="text-center" [ngSwitch]="item.n_disinst">
+                                        <span *ngSwitchCase= "0"  class="text-center">No</span>
+                                        <span *ngSwitchCase= "1"  class="text-center" >Si</span>
+                                        </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+                            <pagination [(ngModel)]="paginacion.pagina" (pageChanged)="OnPageChanged($event)" [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="text-center m-a-sm">
+                                <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="text-right m-a-sm">
+                                <pagination-set (optionChanged)="OnPageOptionChanged($event)"></pagination-set>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>         
+    </div>
+    </div>   
+   

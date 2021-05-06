@@ -1,0 +1,22 @@
+{
+    "listaDetalleEvaluaciones": [
+        {
+            "nroFicha":"P0001",
+            "nombresApellidos":"Juan Gonzales Naveda",
+            "equipo":"EGI",
+            "estado":"Programado",
+            "tipo":"Manual",
+            "nota":"16",
+            "sustento":""
+        },
+        {
+            "nroFicha":"P0002",
+            "nombresApellidos":"Marleni Flores Osorio",
+            "equipo":"ISOTEC",
+            "estado":"No Programado",
+            "tipo":"Automático",
+            "nota":"",
+            "sustento":""
+        }
+    ]
+}

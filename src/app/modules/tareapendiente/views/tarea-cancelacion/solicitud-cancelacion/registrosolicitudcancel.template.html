@@ -1,0 +1,48 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="row wrapper border-bottom white-bg page-heading"style="margin: 0px 2px;">
+    <div class="col-lg-12">
+      <h4 style="margin-top: 10px;" >Inicio / Solicitud de Cancelación / <strong>Registro de Solicitud de Cancelación</strong>
+      </h4>
+    </div>
+  </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row m-b-sm">
+    <div class="col-lg-6">
+      <div class="btn-group">
+        <!--Segurity-->
+        <ng-template [authIf]="session.ACL.ID_SOL_SolicitudCancelacion_Detalle_CREAR">
+            <button class="btn btn-primary m-r" 
+            [swal]="{ title: '¿Está seguro que desea enviar la Solicitud de Cancelación?', type: 'question', showCancelButton: true,
+            confirmButtonText: 'Sí, enviar', cancelButtonText: 'No gracias' }" 
+            (confirm)="OnEnviar()"><i class="fa fa-check"></i> Enviar</button>
+        </ng-template>
+        <ng-template [authIf]="session.ACL.ID_SOL_SolicitudCancelacion_Detalle_CREAR">
+            <a class="btn btn-primary m-r" (click)="OnGuardar()"><i class="fa fa-save"></i> Guardar</a>
+        </ng-template>
+        <ng-template [authIf]="session.ACL.ID_SOL_SolicitudCancelacion_Detalle_VISUALIZAR">
+            <a class="btn btn-success m-r" (click)="buscarRutaDocumento(visorPdfSwal,$event)"
+            ><i class="fa fa-file-o"></i> Ver documento</a>
+        </ng-template>
+        <!--Segurity-->
+        <a class="btn btn-default m-r" (click)="OnRegresar()"><i class="fa fa-arrow-left"></i> Regresar</a>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="ibox-content" [ngClass]="{'loading': loading}">
+        <app-tab-grupo-solicitud #tabs></app-tab-grupo-solicitud>
+      </div>
+    </div>
+  </div>
+</div>
+<swal 
+#visorPdfSwal
+[showConfirmButton]="false"
+[showCloseButton]="true"
+customClass="pdf-swal">
+<form *swalPartial class="ajuste">
+  <visor-pdf id="02" [url]="urlPDF"></visor-pdf>
+</form>
+</swal>

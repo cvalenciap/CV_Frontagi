@@ -1,0 +1,64 @@
+{
+    "listaProgramarCapacitacion": [
+        {
+            "codigo":"C001",
+            "capacitacion":"SGI-Modulo Ambiental",
+            "fechaInicio":"28/02/2018",
+            "fechaFin":"28/08/2018",
+            "instructor":"Lutecio Argon",
+            "equipoContratista":"ESCP",
+            "cantidadParticipantes":"15",
+            "anioPlanificacion":"2017",
+            "trimestre":"1ER Trimestre",
+            "estado":"En Plazo"
+        },
+        {
+            "codigo":"C002",
+            "capacitacion":"SGI-Modulo Ambiental",
+            "fechaInicio":"20/01/2018",
+            "fechaFin":"28/07/2018",
+            "instructor":"Luis Hidrilio",
+            "equipoContratista":"EPOF",
+            "cantidadParticipantes":"20",
+            "anioPlanificacion":"2017",
+            "trimestre":"1ER Trimestre",
+            "estado":"En Plazo"
+        },
+        {
+            "codigo":"C003",
+            "capacitacion":"SGI-Continuidad del Negocio",
+            "fechaInicio":"28/10/2017",
+            "fechaFin":"28/08/2018",
+            "instructor":"Aldo  Galli",
+            "equipoContratista":"EAC",
+            "cantidadParticipantes":"20",
+            "anioPlanificacion":"2018",
+            "trimestre":"2DO Trimestre",
+            "estado":"Ejecutado"
+        },
+        {
+            "codigo":"C004",
+            "capacitacion":"SGI-Seguridad y Salud en el Trabajo",
+            "fechaInicio":"28/02/2018",
+            "fechaFin":"28/08/2018",
+            "instructor":"Cesio Bromo",
+            "equipoContratista":"EC-Comas",
+            "cantidadParticipantes":"10",
+            "anioPlanificacion":"2018",
+            "trimestre":"3ER Trimestre",
+            "estado":"En Plazo"
+        },
+        {
+            "codigo":"C005",
+            "capacitacion":"SGI-Seguridad y Salud en el Trabajo",
+            "fechaInicio":"28/03/2018",
+            "fechaFin":"28/08/2018",
+            "instructor":"Gian Asbesto",
+            "equipoContratista":"ESCE",
+            "cantidadParticipantes":"5",
+            "anioPlanificacion":"2018",
+            "trimestre":"4TO Trimestre",
+            "estado":"Ejecutado"
+        }
+    ]
+}

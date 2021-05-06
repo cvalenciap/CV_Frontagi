@@ -1,0 +1,349 @@
+<div class="wrapper wrapper-content animated fadeInRight contenedor-principal" style="padding-top:0px; padding-bottom:0px; background-color:rgb(255, 255, 255);">
+  <section id="one" class="wrapper special" style="padding-top:0px; padding-bottom:0px">
+  <div class="container">
+    <br>
+    <header class="major">
+      <h2 style="color:#1a237e">Bienvenido(a), {{session.User.nombUsuario}}</h2>
+      <p style="color:#1a237e; margin-bottom: 0px"><b>{{nombre}} - SEDAPAL </b></p>
+    </header>
+    <div class="row">
+      <div class="col-sm-3" style="padding-right: 0px;" title="Acceda al Módulo: Información Documentada">            
+        <a class="animated-widget" (click)="OnID(1)"> 
+        <div class="widget style1" style="background-color: #7e57c2;">
+          <div class="row">
+          <div class="col-xs-4" style="padding-right:5px;padding-left:5px;width:75px;color:white;">
+            <i class="fa fa-file-text-o fa-5x infinite wobble"></i>
+          </div>
+          <div class="col-xs-8 align-center"
+          style="color:white;font-size:24px;padding-right:0px;padding-left:0px;position:relative;
+                height:68px;">
+            <p style="margin:0;position:absolute;top:50%;left:50%;-ms-transform:translate(-50%,-50%);
+            transform:translate(-50%,-50%);width:170px;"><b>Información Documentada</b></p>
+          </div>
+          </div>
+        </div>
+        </a>
+      </div>
+
+      <div class="col-sm-3" style="padding-right: 0px;" title="Acceda al Módulo: Auditoría">
+        <a class="animated-widget" (click)="OnID(2)">
+        <div class="widget style1" style="background-color: #3f51b5;">
+          <div class="row">
+          <div class="col-xs-4" style="padding-right:5px;padding-left:5px;width:75px;color:white;">
+            <i class="fa fa-search-plus fa-5x infinite bounceIn"></i>
+          </div>
+          <div class="col-xs-8 align-center"
+          style="color:white;font-size:24px;padding-right:0px;padding-left:0px;position:relative;
+                height:68px;">
+            <p style="margin:0;position:absolute;top:50%;left:50%;-ms-transform:translate(-50%,-50%);
+            transform:translate(-50%,-50%);width:170px;"><b>Auditoría</b></p>
+          </div>
+          </div>
+        </div>
+        </a>
+      </div>
+
+      <div class="col-sm-3" style="padding-right: 0px;" title="Acceda al Módulo: No Conformidad">
+        <a class="animated-widget" (click)="OnID(5)">
+        <div class="widget style1" style="background-color: #1565c0;">
+          <div class="row">
+          <div class="col-xs-4" style="padding-right:5px;padding-left:5px;width:75px;color:white;">
+            <i class="fa fa-signal fa-5x infinite bounce"></i>
+          </div>
+          <div class="col-xs-8 align-center"
+          style="color:white;font-size:24px;padding-right:0px;padding-left:0px;position:relative;
+                height:68px;">
+            <p style="margin:0;position:absolute;top:50%;left:50%;-ms-transform:translate(-50%,-50%);
+            transform:translate(-50%,-50%);width:170px;"><b>No Conformidad</b></p>
+          </div>
+          </div>
+        </div>             
+        </a>    
+      </div>
+
+      <div class="col-sm-3">
+        <a class="animated-widget" (click)="OnID(4)" title="Acceda al Módulo: Capacitación">
+        <div class="widget style1" style="background-color: #039be5;">
+          <div class="row">
+          <div class="col-xs-4" style="padding-right:5px;padding-left:5px;width:75px;color:white;">
+            <i class="fa fa-desktop fa-5x infinite bounceIn"></i>
+          </div>
+          <div class="col-xs-8 align-center"
+          style="color:white;font-size:24px;padding-right:0px;padding-left:0px;position:relative;
+                height:68px;">
+            <p style="margin:0;position:absolute;top:50%;left:50%;-ms-transform:translate(-50%,-50%);
+            transform:translate(-50%,-50%);width:170px;"><b>Capacitación</b></p>
+          </div>
+          </div>
+        </div>
+        </a>
+      </div>
+
+    </div>
+    <div class="row">
+        
+      <div class="col-sm-3" style="padding-right: 0px;" title="Acceda al Módulo: Mantenimiento">
+        <a class="animated-widget" (click)="OnID(3)">
+        <div class="widget style1" style="background-color: #00acc1;">
+          <div class="row">
+          <div class="col-xs-4" style="padding-right:5px;padding-left:5px;width:75px;color:white;">
+            <i class="fa fa-wrench fa-5x infinite bounce"></i>
+          </div>
+          <div class="col-xs-8 align-center"
+          style="color:white;font-size:24px;padding-right:0px;padding-left:0px;position:relative;
+                height:68px;">
+            <p style="margin:0;position:absolute;top:50%;left:50%;-ms-transform:translate(-50%,-50%);
+            transform:translate(-50%,-50%);width:170px;"><b>Mantenimiento</b></p>
+          </div>
+          </div>
+        </div>
+        </a>
+      </div>
+      
+      <div class="col-sm-3" style="padding-right: 0px;" title="No tiene acceso a este modulo">
+        <!--<a class="animated-widget" >-->
+        <div class="widget style1" style="background-color: #00897b;">
+          <div class="row">
+          <div class="col-xs-4" style="padding-right:5px;padding-left:5px;width:75px;color:white;">
+            <i class="fa fa-sitemap fa-5x infinite bounce"></i>
+          </div>
+          <div class="col-xs-8 align-center"
+          style="color:white;font-size:24px;padding-right:0px;padding-left:0px;position:relative;
+                height:68px;">
+            <p style="margin:0;position:absolute;top:50%;left:50%;-ms-transform:translate(-50%,-50%);
+            transform:translate(-50%,-50%);width:170px;"><b>Gestión de Proceso</b></p>
+          </div>
+          </div>
+        </div>             
+        <!--</a>-->
+      </div>
+        
+      <div class="col-sm-3" style="padding-right: 0px;" title="No tiene acceso a este modulo">
+        <!--<a class="animated-widget">-->
+        <div class="widget style1" style="background-color: #43a047;">
+          <div class="row">
+          <div class="col-xs-4" style="padding-right:5px;padding-left:5px;width:75px;color:white;">
+            <i class="fa fa-tachometer fa-5x infinite bounce"></i>
+          </div>
+          <div class="col-xs-8 align-center"
+          style="color:white;font-size:24px;padding-right:0px;padding-left:0px;position:relative;
+                height:68px;">
+            <p style="margin:0;position:absolute;top:50%;left:50%;-ms-transform:translate(-50%,-50%);
+            transform:translate(-50%,-50%);width:170px;"><b>Gestión de Riesgo</b></p>
+          </div>
+          </div>
+        </div>
+        <!--</a>-->
+      </div>
+       
+    </div>
+
+      <!-- First -->
+      <!--
+      <div class="row 150%" style="padding-left:160px; width:1430px;">
+        <div class="col-md-2">
+          <div class="thumb-img">
+          <a href="http://localhost:4200/#/starterview" title="Gestión de Documentos" style="background-color: #0065a4">
+            <i class="icon big rounded color1 fa-book" style="margin-top:5px"></i>
+          </a>
+          </div>
+          <h3 style="color:white; padding-top: 0px">Gestión de Documentos</h3>
+        </div>
+
+        <div class="col-md-2">
+          <div class="thumb-img">
+          <a (click)="OnID(2)" title="Auditoría" style="background-color: #0065a4">
+            <i class="icon big rounded color2 fa-desktop" style="margin-top:5px"></i>
+          </a>
+          </div>
+          <h3 style="color:white; padding-top: 0px">Auditoría</h3>
+        </div>
+
+        <div class="col-md-2">
+          <div class="thumb-img">
+          <a (click)="OnID(5)" title="No Conformidad" style="background-color: #0065a4">
+            <i class="icon big rounded color3 fa-thumbs-o-down" style="margin-top:5px"></i>
+          </a>
+          </div>
+          <h3 style="color:white; padding-top: 0px">No Conformidad</h3>
+        </div>
+
+        <div class="col-md-2">
+          <div class="thumb-img">
+          <a (click)="OnID(3)" title="Mantenimiento" style="background-color: #0065a4">
+            <i class="icon big rounded color9 fa-gears" style="margin-top:5px"></i>
+          </a>
+          </div>
+          <h3 style="color:white; padding-top: 0px">Mantenimiento</h3>
+        </div>
+      </div>
+      <div class="row 150%" style="padding-left:160px; width:1430px;">        
+        <div class="col-md-2">
+          <div class="thumb-img">
+          <a (click)="OnID(4)" title="Capacitación" style="background-color: #0065a4">
+            <i class="icon big rounded color5 fa-slideshare" style="margin-top:5px"></i>
+          </a>
+          </div>
+          <h3 style="color:white; padding-top: 0px">Capacitación</h3>
+        </div>
+
+        <div class="col-md-2">
+          <i class="icon big rounded color11 fa-spinner" style="margin-top:5px" title="Proceso"></i>
+          <h3 style="color:white; padding-top: 0px">Proceso</h3>
+        </div>
+
+        <div class="col-md-2">
+          <i class="icon big rounded color11 fa-dashboard" style="margin-top:5px" title="Riesgo"></i>
+          <h3 style="color:white; padding-top: 0px">Riesgo</h3>
+        </div>
+      </div>
+      -->
+
+      <!-- Second -->
+      <!--
+			<div class="col-lg-12" style="
+          width: 1230px;
+          height: 210px;
+          padding-right: 0px;
+          padding-left: 180px;">
+
+        <div class="col-md-2">
+          <section>
+          <div class="thumb-img" style="padding-top:10px; padding-left:32.5px">
+            <a href="http://localhost:4200/#/starterview" title="Gestión" style="
+              height: 90px;
+              width: 0px;">
+            <i class="icon big rounded color1 fa-book" style="
+              height:60px;
+              width:80px;
+              margin-left:4px;"></i>
+            </a> 
+          </div>  
+					<h3 style="width:160px; align-content: center;color:white">Gestión de Documentos</h3>
+          </section>
+        </div>
+
+        <div class="col-md-2">
+          <section style="
+            padding-bottom:10px;
+            padding-right:20px;
+            height:180px">
+          <div class="thumb-img" style="padding-top:10px; padding-left:32.5px">
+            <a (click)="OnID(2)" title="Auditoria" style="
+              height: 90px;
+              width: 0px;">
+            <i class="icon big rounded color2 fa-desktop " style="
+              height:80px;
+              width:80px;
+              margin-left:4px;"></i>
+            </a> 
+          </div>  
+          <h3 style="width:160px; align-content: center;color:white">Auditoría</h3>
+          </section>
+        </div>-->
+  
+              <!--<div class="col-md-2">
+                  <section class="box" style="padding-bottom: 15px; padding-right: 20px; padding-top: 25px;border-bottom-width: 1px;" >
+                  <div class="thumb-img" style="                padding-top: 4px;">                 
+                      <img  src="assets/images/sedapal-gota-full.png" style="width: 100px;">   
+                  </div>                     
+                  </section>
+                </div>-->
+<!--
+        <div class="col-md-2">
+          <section style="
+            padding-bottom:10px;
+            padding-right:20px;
+            height:180px">
+          <div class="thumb-img" style="padding-top:10px; padding-left:32.5px">
+            <a (click)="OnID(5)" title="No Conformidad" style="
+              height: 90px;
+              width: 0px;">
+            <i class="icon big rounded color3 fa-thumbs-o-down" style="
+              height:80px;
+              width:80px;
+              margin-left:4px;"></i>
+            </a> 
+          </div>  
+          <h3 style="width:160px; align-content: center;color:white">No Conformidad</h3>
+          </section>
+        </div>
+
+        <div class="col-md-2">
+          <section style="
+            padding-bottom:10px;
+            padding-right:20px;
+            height:180px">
+          <div class="thumb-img" style="padding-top:10px; padding-left:32.5px">
+            <a (click)="OnID(3)" title="Mantenimiento" style="
+              height: 90px;
+              width: 0px;">
+            <i class="icon big rounded color9 fa-gears" style="
+              height:80px;
+              width:80px;
+              margin-left:4px;"></i>
+            </a> 
+          </div>  
+          <h3 style="width:160px; align-content: center;color:white">Mantenimiento</h3>
+          </section>
+        </div>
+            
+      </div>  
+      <div class="col-lg-12" style="
+        width: 1230px;
+        height: 210px;
+        padding-right: 0px;
+        padding-left: 180px; ">
+
+                  <div class="col-md-2">
+                      <section class="box" style="padding-bottom: 25px; padding-right: 20px" >
+                      <div class="thumb-img" style="                padding-top: 4px;">                 
+                        <a  (click)="OnID(4)" title="Capacitación" style="
+                          height: 110px;
+                          width: 0px;  ">
+                        <i class="icon big rounded color5 fa-slideshare" style="
+                        height: 80px;
+                        width: 80px; 
+                        margin-left: 4px " ></i>
+                      </a> 
+                      </div>  
+                        <h5 style="width: 90px">Capacitación</h5>								
+                      </section>
+                    </div>
+
+                    <div class="col-md-2">
+                        <section class="box" style="padding-bottom: 25px; padding-right: 20px" >
+                        <div class="thumb-img" style="                padding-top: 4px;">                 
+                          <a href="http://localhost:4200/#/starterview" title="Proceso" style="
+                            height: 110px;
+                            width: 0px;  ">
+                          <i class="icon big rounded color6 fa-spinner" style="
+                          height: 80px;
+                          width: 80px; 
+                          margin-left: 4px " ></i>
+                        </a> 
+                        </div>  
+                          <h5 style="width: 90px">Proceso</h5>								
+                        </section>
+                      </div>
+
+                      <div class="col-md-2">
+                          <section class="box" style="padding-bottom: 25px; padding-right: 20px" >
+                          <div class="thumb-img" style="                padding-top: 4px;">                 
+                            <a href="http://localhost:4200/#/starterview" title="Riesgo" style="
+                              height: 110px;
+                              width: 0px;  ">
+                            <i class="icon big rounded color8 fa-dashboard" style="
+                            height: 80px;
+                            width: 80px; 
+                            margin-left: 4px " ></i>
+                          </a> 
+                          </div>  
+                            <h5 style="width: 90px">Riesgo</h5>								
+                          </section>
+                        </div>
+                  </div>  -->
+
+  </div>
+  </section>
+</div>

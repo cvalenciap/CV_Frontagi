@@ -1,0 +1,33 @@
+{
+  "listaRutaReponsable": [
+    {
+      "descripcion":"Ruta para ISO9001",
+      "estado": "Archivo",
+      "fcreacion": "17/05/2018",
+      "ucreacion": "Fabiola Gonzales"
+
+    },
+    {
+      "descripcion":"Ruta para ISO8001",
+      "estado": "Archivo",
+      "fcreacion": "05/10/2018",
+      "ucreacion": "Micaela Fernandez"
+
+    },
+    {
+      "descripcion":"Ruta para ISO27001",
+      "estado": "Archivo",
+      "fcreacion": "20/10/2018",
+      "ucreacion": "Pedro Albites"
+
+    },
+    {
+      "descripcion":"Ruta para ISO14001",
+      "estado": "Archivo",
+      "fcreacion": "12/12/2018",
+      "ucreacion": "Hugo Lopéz"
+
+    }
+
+  ]
+}

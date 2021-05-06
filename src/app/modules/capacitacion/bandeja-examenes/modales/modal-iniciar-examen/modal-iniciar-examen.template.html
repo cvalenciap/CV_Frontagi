@@ -1,0 +1,64 @@
+<div class="modal-header modal-cabecera-color">
+        <div class="row">
+                <div class="col-lg-4">
+                    <img class="image" src="assets/images/sedapal-logo.png">
+                </div>
+                <div class="col-lg-8" style="color: darkblue">
+                    <h2><strong>{{ title }}</strong></h2>
+                </div>
+            </div>
+    </div>
+
+<div class="modal-body">
+    <div class="row"> 
+            <div class="form-group">
+        <div class="col-lg-3">
+            Código de Capacitación :
+        </div>
+        <div class="col-lg-4">
+            <input type="text" id="codigo" disabled="disabled" name="tipo" value="000045" class="form-control">                  
+        </div>
+            </div>
+    </div>
+    <br>
+    <div class="row"> 
+        <div class="col-lg-3">            
+            Nombre del Capacitación :
+        </div>
+        <div class="col-lg-4">
+            <input type="text" id="nombre-capacita" disabled="disabled" name="tipo" value="Analisis  Microbiologico" class="form-control">                  
+        </div>
+    </div>
+    <br>
+    <div class="row"> 
+        <div class="col-lg-3">
+            Instructor de la Capacitación :
+        </div>
+        <div class="col-lg-4">
+            <input type="text" id="instructor" disabled="disabled" name="tipo" value="Belgica Garagatti Castillo" class="form-control">                  
+        </div>
+    </div>
+    <br>
+    <div class="row"> 
+        <div class="col-lg-3">
+            Fecha de Examen :
+        </div>
+        <div class="col-lg-4">
+            <input type="text" id="fecha-examen" disabled="disabled" name="tipo" value="31 de Octubre del 2018" class="form-control">                  
+        </div>
+    </div>
+    <br>
+    <div class="row"> 
+        <div class="col-lg-3">
+            Tiempo de Duración :
+        </div>
+        <div class="col-lg-4">
+            <input type="text" id="tiempo-duracion" disabled="disabled" name="tipo" value="1 hora" class="form-control">                  
+        </div>
+    </div>    
+</div> 
+<div class="modal-footer">    
+    <div class="pull-left" style="font-size: 1.7em; color: red"><strong>Tiempo: 01:00:00 hora</strong></div>
+    <button type="button" class="btn btn-default" (click)="cancelar()">Cancelar</button>
+    <button type="button" class="btn btn-success" (click)="OnIniciarExamen()">Iniciar Examen</button>
+</div>

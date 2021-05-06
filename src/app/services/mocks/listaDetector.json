@@ -1,0 +1,25 @@
+{
+    "listaDetector": [
+      {
+        "valorDetector":"1",
+        "descripcionDetector":"Detector 1"
+      },
+      {
+        "valorDetector":"2",
+        "descripcionDetector":"Detector 2"
+      },
+      {
+        "valorDetector":"3",
+        "descripcionDetector":"Detector 3"
+      },
+      {
+        "valorDetector":"4",
+        "descripcionDetector":"Detector 4"
+      },
+      {
+        "valorDetector":"5",
+        "descripcionDetector":"Detector 5"
+      }
+  
+    ]
+  }

@@ -1,0 +1,101 @@
+
+    <div class="modal-header">
+        <h4 class="modal-title pull-left"> Detalle de Detecciones</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+  <div class="container" > 
+
+   <div class="row">
+      <h2> Selección de Origen de Detección</h2>
+  
+          <div class="ibox-content">
+              <form class="form-horizontal">
+                <div class="container">                                  
+                    <div class="col-md-6">
+                        
+
+                        <div class="col-md-6">
+                        <label>
+                        <input name="radioFormato" (click)="obtenerClick($event)" type="radio" 
+                         value="1" >
+                         Dentro del SGI </label>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label>
+                            <input name="radioFormato" (click)="obtenerClick($event)" type="radio"
+                             value="2">
+                        Fuera del SGI </label>
+                        </div>
+                        
+
+                     
+                   </div>
+
+                <div class="col-md-6">
+                </div>
+
+                </div>
+
+                   <br/>
+
+
+                <div class="container">                                  
+                    <div class="col-md-6">
+                             <div class="col-md-4">Origen Detección</div>
+                             <div  class="col-md-8">
+                                    <!--<select class="form-control" name="normaRequisito" [(ngModel)]="origenDet">
+                                            <option value="" selected>Seleccionar</option>
+                                            <option value="1">Hallazgo Personal</option>
+                                            <option value="2">Incumplimiento Legal</option>
+                                            <option value="3">Queja de Cliente</option>
+                                            <option value="4">Producto No Conforme</option>
+                                            <option value="5">Trabajo de Ensayo no Conforme</option>
+                                            <option value="6">Otros</option>                                             
+                                        </select>-->
+
+                                        <select class="form-control" name="origenDet1" [(ngModel)] = "origenDet">
+                                                <option value="" selected>Seleccionar</option>
+                                                <option *ngFor="let item of listaIncidenciasCombo" [value]="item.idconstante">{{ item.v_valcons }}</option>
+                                          </select>
+
+
+                             </div>
+                     </div>
+
+                     <div class="col-md-6">
+                     </div>
+                 </div>  
+                 
+                 
+
+               
+
+
+
+
+
+              </form>
+          </div>
+       
+       
+  
+  </div>
+
+
+  <div class="row m-b-md">
+        <div class="col-lg-12">                 
+            <button class="btn btn-success m-r"  (click)="nuevaDeteccion()"><i class="fa fa-edit"></i>Nuevo</button>                     
+          
+            <a class="btn btn-default m-r" (click)="OnRegresar()"><i class="fa fa-arrow-left"></i> Regresar</a>
+              
+          </div>   
+    </div>
+
+  <br/>
+  <br/>      
+
+</div>

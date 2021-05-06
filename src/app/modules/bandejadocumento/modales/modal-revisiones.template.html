@@ -1,0 +1,14 @@
+<div class="modal-header modal-cabecera-color">
+    <h4 class="modal-title pull-left">Bitacora</h4>
+    <!--Button Cerra Modal-->
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="cerrar">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <!-- Components de Revision -->
+    <bandeja-documento-revision></bandeja-documento-revision>       
+</div>
+<div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="cancelar()">Cancelar</button>
+</div>

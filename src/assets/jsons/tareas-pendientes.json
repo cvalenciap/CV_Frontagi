@@ -1,0 +1,13 @@
+{
+    "responseCode": "0",
+    "responseData": [
+      { "titulo": "Aprobar Solicitud de Revisión", "cantidad": "2","ruta":"./AprobarSolicitud","backgroundColor":"lazur-bg"},
+      { "titulo": "Elaboración de Revisión", "cantidad": "1","ruta":"./ElaborarRevision","backgroundColor":"lazur-bg"},
+      { "titulo": "Consenso de Revisión", "cantidad": "4","ruta":"./ConsensuarRevision","backgroundColor":"lazur-bg"},
+      { "titulo": "Aprobación de Revisión", "cantidad": "3","ruta":"./AprobarRevision","backgroundColor":"lazur-bg"},
+      { "titulo": "Homologación de Revisión", "cantidad": "5","ruta":"./HomologarRevision","backgroundColor":"lazur-bg"},
+      { "titulo": "Copias Impresas", "cantidad": "","ruta":"./CopiaImpresion","backgroundColor":"lazur-bg"},
+      { "titulo": "Cancelación de Documentos", "cantidad": "","ruta":"./cancelaciones","backgroundColor":"lazur-bg"},
+      { "titulo": "Conocimiento de Revisión", "cantidad": "","ruta":"./ConocimientoRevision","backgroundColor":"lazur-bg"}
+    ]
+  }

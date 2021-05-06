@@ -1,0 +1,40 @@
+<!-- Wrapper-->
+<div id="wrapper">
+
+  <!-- Left navigation bar -->
+  <div *ngIf="idModulo == '1'">
+      <navigation></navigation>
+  </div>
+  <div *ngIf="idModulo == '2'">
+      <navigation-auditoria></navigation-auditoria>
+  </div>
+  <div *ngIf="idModulo == '3'">
+    <navigation-mantenmiento></navigation-mantenmiento>      
+  </div>
+  <div *ngIf="idModulo == '4'">      
+          <navigation-capacitacion></navigation-capacitacion>            
+  </div>
+  <div *ngIf="idModulo == '5'">      
+      <navigation-noconformidad></navigation-noconformidad>            
+</div>
+  
+  
+
+  <!-- Main page wrapper -->
+  <div id="page-wrapper" class="gray-bg">
+
+    <!-- Top navigation -->
+    <topnavbar #top></topnavbar>
+
+    <!-- Main view/routes wrapper-->
+    <router-outlet></router-outlet>
+
+
+    <!-- Footer -->
+    <footer></footer>
+
+  </div>
+  <!-- End page wrapper-->
+
+</div>
+<!-- End wrapper-->

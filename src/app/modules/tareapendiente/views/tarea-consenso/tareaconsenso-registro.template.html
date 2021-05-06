@@ -1,0 +1,65 @@
+<div class="row wrapper border-bottom white-bg page-heading" style="padding-bottom: 0px;padding-left: 0px;">
+    <!-- Titulo -->
+    <div class="col-lg-12">
+        <h4>Tareas / Consenso /
+            <strong>Registro Consenso</strong>
+        </h4>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Controles Aprobar / Guardar / Regresar -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <ng-template [authIf]="session.ACL.ID_TAR_Consenso_Detalle_VISUALIZAR">
+                    <button *ngIf="tab.general.checkDigital==0" (click)="OnDocNvoGoogleDocs()" class="btn m-r btn-info">
+                        <i class="fa fa-file-word-o"></i> Ver Documento</button>                
+                        <!--Carga Digital Inicio-->
+                        <button *ngIf="tab.general.checkDigital==1" class="btn m-r btn-info btn-info"
+                        (click)="OnValidaRuta(rutaDocumentoObsoleto,visorPdfSwal)"  style="margin-right:5px;">
+                            <i class="fa fa-file-word-o"></i> Ver Documento</button>
+               </ng-template>
+                        <!--Carga Digital Fin-->
+                <ng-template [authIf]="session.ACL.ID_TAR_Consenso_Detalle_CREAR">
+                    <button class="btn m-r btn-success" [swal]="{title:'¿Está seguro que desea aprobar el registro del documento?',type:'question',showCancelButton:true,confirmButtonText:'Sí, Grabar',cancelButtonText:'No gracias'}"
+                        (confirm)="OnAprobar()">
+                        <i class="fa fa-check"></i> Liberar</button>
+                </ng-template>
+                <ng-template [authIf]="session.ACL.ID_TAR_Consenso_Detalle_MODIFICAR">
+                    <button class="btn m-r btn-danger" [swal]="{title:'¿Está seguro que desea rechazar el registro del documento?',type:'question',showCancelButton:true,confirmButtonText:'Sí, Grabar',cancelButtonText:'No gracias'}"
+                        (confirm)="OnRechazar()">
+                        <i class="fa fa-close"></i> Rechazar</button>
+                </ng-template>
+                <ng-template [authIf]="session.ACL.ID_TAR_Consenso_Detalle_CREAR">
+                    <button class="btn m-r btn-primary" [swal]="{title:'¿Está seguro que desea Guardar el registro?',type:'question',showCancelButton:true,confirmButtonText:'Sí, Grabar',cancelButtonText:'No gracias'}"
+                        (confirm)="OnGuardar()">
+                        <i class="fa fa-save"></i> Guardar</button>
+                </ng-template>
+                <button class="btn m-r btn-default" (click)="OnRegresar()">
+                    <i class="fa fa-arrow-left"></i> Regresar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content" >
+                <tab-group-animations-example #tab [activar]="activar" [consulta]="consulta" [idFase]="idFase"></tab-group-animations-example>
+            </div>
+        </div>
+    </div>   
+</div>
+
+
+
+<swal #visorPdfSwal [showConfirmButton]="false" [showCloseButton]="true" customClass="pdf-swal">
+        <form *swalPartial class="ajuste">
+            <div *ngIf="urlPDF">
+                <visor-pdf id="02" [url]="urlPDF"></visor-pdf>
+            </div>
+            <div *ngIf="objetoBlob">
+                <visor-pdf id="02" [file]="objetoBlob"></visor-pdf>
+            </div>
+        </form>
+    </swal>

@@ -1,0 +1,28 @@
+{
+    "listaReprogramacion": [
+      {
+        "idPlanAccion":"00001",
+        "tipoNoConformidad":"SAC",
+        "gerenciaResponsable": "GPO",
+        "norma": "ISO 9001",
+        "alcance": "ISO 9001 - GPO",
+        "requisito" : "7.5.1 Control de la Producción y Control de Servicio"
+      },
+      {
+        "idPlanAccion":"00002",
+        "tipoNoConformidad":"SAC",
+        "gerenciaResponsable": "GSC",
+        "norma": "ISO 14001",
+        "alcance": "ISO 9001 - GPO",
+        "requisito" : "7.5.1 Control de la Producción y Control de Servicio"
+      },
+      {
+        "idPlanAccion":"00003",
+        "tipoNoConformidad":"SAP",
+        "gerenciaResponsable": "GSC",
+        "norma": "ISO 9001",
+        "alcance": "ISO 14001 - GSC",
+        "requisito" : "7.5.3 Prestación de Servicio"
+      }
+    ]
+  }

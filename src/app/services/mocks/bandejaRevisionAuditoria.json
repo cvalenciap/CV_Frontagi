@@ -1,0 +1,68 @@
+{
+  "listaBandejaRevisionAuditoria": [
+    {  
+      "idBandejaRevisionAuditoria" :"01",
+      "fechaIngreso": "11/02/2018",
+      "numeroAuditoria":"01",    
+      "numListaVerificacion": "123123",
+      "estadoListaVerificacion": "Cerrada",
+      "numInformeAuditoria": "342342",
+      "estadoInformeAuditoria": "Emitido",
+      "auditor": "Juan Sanchez",
+      "equipo": "EGIP",
+      "gerencia": "Gerencia1",
+      "actividades": "Actividad1", 
+      "cargoAAuditar": "Cargo1",
+      "responsable": "Ruth"
+    },
+
+    {
+      "idBandejaRevisionAuditoria" :"02",
+      "fechaIngreso": "11/02/2018",
+      "numeroAuditoria":"02",    
+      "numListaVerificacion": "123123",
+      "estadoListaVerificacion": "Cerrada",
+      "numInformeAuditoria": "342342",
+      "estadoInformeAuditoria": "Emitido",
+      "auditor": "Juan Sanchez",
+      "equipo": "EGIP",
+      "gerencia": "Gerencia1",
+      "actividades": "Actividad1",
+      "cargoAAuditar": "Cargo1",
+      "responsable": "Ruth"
+     
+    },
+    {
+      "idBandejaRevisionAuditoria" :"03",
+      "fechaIngreso": "11/02/2018",
+      "numeroAuditoria":"03",    
+      "numeroLV": "123123",
+      "estadoListaVerificacion": "Cerrada",
+      "numInformeAuditoria": "342342",
+      "estadoInformeAuditoria": "Emitido",
+      "auditor": "Juan Sanchez",
+      "equipo": "EGIP",
+      "gerencia": "Gerencia1",
+      "actividades": "Actividad1",
+      "cargoAAuditar": "Cargo1",
+      "responsable": "Ruth"
+     
+    },
+    {
+      "idBandejaRevisionAuditoria" :"04",
+      "fechaIngreso": "11/02/2018",
+      "numeroAuditoria":"04",    
+      "numeroLV": "123123",
+      "estadoListaVerificacion": "Cerrada",
+      "numInformeAuditoria": "342342",
+      "estadoInformeAuditoria": "Emitido",
+      "auditor": "Juan Sanchez",
+      "equipo": "EGIP",
+      "gerencia": "Gerencia1",
+      "actividades": "Actividad1",
+      "cargoAAuditar": "Cargo1",
+      "responsable": "Ruth"
+    }
+
+  ]
+}

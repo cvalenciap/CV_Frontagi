@@ -1,0 +1,185 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <h4>
+            <ol class="breadcrumb">
+                <li>
+                    <a routerLink="starterview">Inicio</a>
+                </li>
+                <li>
+                    <a>Auditoría</a>
+                </li>
+                <li class="active">
+                    <strong>Evaluación del Auditor</strong>
+                </li>
+            </ol>
+        </h4>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight div-principal">
+    <div class="row m-b-sm div-botones-superiores">
+        <div class="col-lg-1">
+            <a (click)="OnEvaluar()" class="btn  btn-primary botones-superiores"><i class="fa fa-plus"></i>Nuevo</a>
+        </div>
+        <div class="col-lg-4">
+            <div class="input-group">
+                <div *ngIf="selectedFilter == 'numeroFicha' || selectedFilter == 'avanzada'">
+                    <input #buscar type="text" placeholder="Ejm: 98678" class="form-control cajas-texto"
+                        name="valorNumeroFicha" [(ngModel)]="valorNumeroFicha">
+                </div>
+                <div *ngIf="selectedFilter == 'apellidoPaterno'">
+                    <input #buscar type="text" placeholder="Ejem: Díaz" class="form-control cajas-texto"
+                        name="valorApellidoPat" [(ngModel)]="valorApellidoPat">
+                </div>
+
+                <div *ngIf="selectedFilter == 'apellidoMaterno'">
+                    <input #buscar type="text" placeholder="Ejem: Perez" class="form-control cajas-texto"
+                        name="valorApellidoMat" [(ngModel)]="valorApellidoMat">
+                </div>
+
+                <div *ngIf="selectedFilter == 'nombre'">
+                    <input #buscar type="text" placeholder="Ejm: Juan" class="form-control cajas-texto"
+                        name="valorNombre" [(ngModel)]="valorNombre">
+                </div>
+
+                <span class="input-group-btn" dropdown>
+                    <button type="button" class="btn btn-info botones-buscador" (click)="OnBuscar()"><i
+                            class="fa fa-search"></i></button>
+                    <button dropdownToggle type="button"
+                        class="btn btn-info dropdown-toggle dropdown-toggle-split  botones-buscador"><i
+                            class="fa fa-caret-down"></i></button>
+                    <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
+                        <li role="menuitem" [class.active]="selectedFilter == 'numeroFicha'"><a
+                                (click)="setFilter('numeroFicha')">Número Ficha</a></li>
+                        <li role="menuitem" [class.active]="selectedFilter == 'apellidoPaterno'"><a
+                                (click)="setFilter('apellidoPaterno')">Apellido Paterno</a></li>
+                        <li role="menuitem" [class.active]="selectedFilter == 'apellidoMaterno'"><a
+                                (click)="setFilter('apellidoMaterno')">Apellido Materno</a></li>
+                        <li role="menuitem" [class.active]="selectedFilter == 'nombre'"><a
+                                (click)="setFilter('nombre')">Nombre</a></li>
+                        <li role="menuitem"><a (click)="abrirBusqueda()">Búsqueda avanzada...</a></li>
+                    </ul>
+                </span>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <button class="btn btn-light botones-superiores" (click)="limpiar()"><i class="fa fa-eraser"></i>
+                Limpiar</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div *ngIf="mostrarAlerta">
+                <alert type="info"><span [innerHtml]="mensajeAlerta"></span></alert>
+            </div>
+
+            <div class="ibox-content div-secundario" [ngClass]="{'sk-loading': loading}">
+                <sk-three-bounce></sk-three-bounce>
+                <div class="table-responsive tabla-detalle">
+
+                    <table class="table table-bordered table-stripped table-hover issue-tracker "
+                        >
+                        <thead>
+                            <tr>
+                                <!--<th class="text-center">Ítem</th>-->
+                                <th class="text-center" data-col="rol">Nombre Auditoría</th>
+                                <th class="text-center" data-col="rol">Año</th>
+                                <th class="text-center" data-col="rol">Fecha Evaluación</th>
+                                <th class="text-center" data-col="rol">Auditor Evaluado</th>
+                                <th class="text-center" data-col="rol">Rol Evaluado</th>
+                                <th class="text-center" data-col="rol">Acción</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td class="text-left" data-col="rol">Auditoría Interna XX</td>
+                                <td class="text-center" data-col="rol">2019</td>
+                                <td class="text-center" data-col="rol">12/12/2019</td>
+                                <td class="text-left" data-col="rol">LUCAS TORRES HERRERA</td>
+                                <td class="text-center" data-col="rol">LIDER INTERNO</td>
+                                <td class="text-center" data-col="rol">Acción</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-left" data-col="rol">Auditoría Interna XX</td>
+                                <td class="text-center" data-col="rol">2019</td>
+                                <td class="text-center" data-col="rol">12/12/2019</td>
+                                <td class="text-left" data-col="rol">JOSE PULGAR HERRERA</td>
+                                <td class="text-center" data-col="rol">AUDITOR LIDER</td>
+                                <td class="text-center" data-col="rol">Acción</td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-left" data-col="rol">Auditoría Interna XX</td>
+                                <td class="text-center" data-col="rol">2020</td>
+                                <td class="text-center" data-col="rol">12/12/2019</td>
+                                <td class="text-left" data-col="rol">PEDRO GARCIA HERRERA</td>
+                                <td class="text-center" data-col="rol">AUDITOR LIDER DE GRUPO</td>
+                                <td class="text-center" data-col="rol">Acción</td>
+                            </tr>
+
+                        </tbody>
+
+                        <!-- </tbody> -->
+
+                        <!--   <tr *ngFor="let item of items;  let i = index" (click)="OnRowClick(i, item)"      [class.info]="i == selectedRow">
+                          -->
+                        <!-- <td class="text-center"  data-col="Codigo">{{item.idEvaluacionAuditor}}</td> -->
+
+                        <!--   <td class="text-center"  data-col="v_numero_auditoria">{{item.auditoria.idAuditoria? item.auditoria.idAuditoria: ''}}</td>
+                               <td class="text-center"  data-col="fechaInicio">{{item.auditoria.fechaInicio | date:'dd/MM/yyyy'}}</td>
+ -->
+                        <!--<td class="text-center" data-col="fechaprograma">{{item.fechaPrograma | date:'dd/MM/yyyy'}}</td>-->
+
+
+                        <!-- <td class="text-center"  data-col="rol">{{item.requisito? item.requisito.descripcionNorma: '' }}</td>-->
+                        <!-- 
+                              <td class="text-center"  data-col="numeroFicha">{{item.colaborador.numeroFicha? item.colaborador.numeroFicha: ''}}</td>
+                              <td class="text-center"  data-col="apellidoPat">{{item.colaborador.apellidoPaterno}} {{item.colaborador.apellidoMaterno}} {{item.colaborador.nombre}}</td>
+                              
+    
+                              <td class="text-center"  data-col="idRolAuditor">{{item.colaborador.idRolAuditor}}</td>
+                           
+           
+                              <td class="text-center" data-col="accion">
+                                <button title="Actualizar" class="btn btn-success btn-sm m-r" (click)="OnModificar(item)" ><i class="fa fa-edit"></i></button>
+                               -->
+                        <!--   <button title="Eliminar" class="btn btn-danger btn-sm m-r"
+                                [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                                (confirm)="onEliminar(item)">
+                                   <i class="fa fa-trash"></i> 
+                               </button>
+ -->
+                        <!-- 
+                            </td> -->
+
+
+                        <!-- </tr> -->
+                        <!--  </tbody> -->
+
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <pagination [(ngModel)]="paginacion.pagina" (pageChanged)="OnPageChanged($event)"
+                            [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros"
+                            [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;"
+                            firstText="&laquo;" lastText="&raquo;"></pagination>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-center m-a-sm">
+                            <pagination-info [totalItems]="paginacion.totalRegistros"
+                                [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="text-right m-a-sm">
+                            <pagination-set (optionChanged)="OnPageOptionChanged($event)"></pagination-set>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

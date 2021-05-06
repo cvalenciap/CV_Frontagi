@@ -1,0 +1,44 @@
+{
+    "listaVerificacion":[
+        {
+            "idListaVerificacion":"1",
+            "norma":"14000",
+            "tipoListaVerificacion":"Regular",
+            "descripcionAuditoria":"Auditoria de Gestión Ambiental",
+            "estadoListaVerificacion":"1",
+            "auditorLider":"Alejandro Moreno",
+            "auditor":"Juan Sanchez",
+            "descripcionEntidad":"EGIP - Equipo Gestión Integral de Plantas"
+        },
+        {
+            "idListaVerificacion":"2",
+            "norma":"14000",
+            "tipoListaVerificacion":"Regular",
+            "descripcionAuditoria":"Auditoria de Gestión Ambiental",
+            "estadoListaVerificacion":"2",
+            "auditorLider":"Alejandro Moreno",
+            "auditor":"Maria Pastor / Angel Lopez",
+            "descripcionEntidad":"GPO- Gerencia de Proyectos y Obras"
+        },
+        {
+            "idListaVerificacion":"3",
+            "norma":"9001",
+            "tipoListaVerificacion":"Trazabilidad",
+            "descripcionAuditoria":"Auditoria de Sistemas Seguridad",
+            "estadoListaVerificacion":"4",
+            "auditorLider":"Rosa Torres",
+            "auditor":"Juan Sanchez",
+            "descripcionEntidad":"GPO- Gerencia de Proyectos y Obras"
+        },
+        {
+            "idListaVerificacion":"4",
+            "norma":"14000",
+            "tipoListaVerificacion":"Trazabilidad",
+            "descripcionAuditoria":"Auditoria de Sistemas Seguridad",
+            "estadoListaVerificacion":"3",
+            "auditorLider":"Rosa Torres",
+            "auditor":"Ricardo Vidal / Jesus Peña",
+            "descripcionEntidad":"EQUIPO GESTION AMBIENTAL Y SERVICIOS ECOSISTEMICOS"
+        }
+    ]
+}

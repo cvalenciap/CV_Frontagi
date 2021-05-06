@@ -1,0 +1,23 @@
+.listaTareasPendientes {
+    padding-left: 20px;
+    & li{
+padding-bottom: 5px;
+cursor: pointer;
+list-style-type: none;
+& span{
+    margin-left: 5px;
+}
+& i{
+    color:green;
+}
+    }
+}
+
+.activeTarea{
+    font-weight: bold;
+}
+
+.flexBox{
+    display: flex;
+    flex-wrap: wrap;
+}

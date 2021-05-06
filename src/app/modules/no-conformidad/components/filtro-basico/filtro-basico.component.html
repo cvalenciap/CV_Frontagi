@@ -1,0 +1,48 @@
+<div class="input-group">
+  <!-- <select *ngIf="opcionSeleccionada.tipoOpcion === getTipoOpcion().COMBO"
+          class="form-control"
+          [(ngModel)]="valorCombo"
+          (change)="onChangeCombo()">
+    <option [value]="null" disabled>Seleccione</option>
+    <option *ngFor="let item of opcionSeleccionada.data" [value]="item.codigo">{{item.descripcion}}</option>
+  </select> -->
+  <select *ngIf="opcionFiltro === 'TIPO'" class="form-control" (change)="changeCombo()">
+    <option [value]="null" disabled>Seleccione Tipo</option>
+    <option [value]="1">TIPO 1</option>
+    <option [value]="2">TIPO 2</option>
+    <option [value]="3">TIPO 3</option>
+  </select>
+  <select *ngIf="opcionFiltro === 'AMBITO'" class="form-control" (change)="changeCombo()">
+    <option [value]="null" disabled>Seleccione Ambito</option>
+    <option [value]="1">AMBITO 1</option>
+    <option [value]="2">AMBITO 2</option>
+    <option [value]="3">AMBITO 3</option>
+  </select>
+  <select *ngIf="opcionFiltro === 'ORIGEN'" class="form-control" (change)="changeCombo()">
+    <option [value]="null" disabled>Seleccione Origen</option>
+    <option [value]="1">ORIGEN 1</option>
+    <option [value]="2">ORIGEN 2</option>
+    <option [value]="3">ORIGEN 3</option>
+  </select>
+  <span class="input-group-btn" dropdown>
+    <button type="button" class="btn btn-info" (click)="buscar()">
+      <i class="fa fa-search" title="Buscar"></i></button>
+    <button dropdownToggle type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split">
+      <i class="fa fa-caret-down"></i></button>
+    <!-- Lista de Opciones -->
+    <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
+      <li class="menu-item" [class.active]="opcionFiltro === 'TIPO'" role="list">
+        <a class="dropdown-item" (click)="seleccionarOpcion('TIPO')">Tipo</a>
+      </li>
+      <li class="menu-item" [class.active]="opcionFiltro === 'AMBITO'" role="list">
+        <a class="dropdown-item" (click)="seleccionarOpcion('AMBITO')">Ambito</a>
+      </li>
+      <li class="menu-item" [class.active]="opcionFiltro === 'ORIGEN'" role="list">
+        <a class="dropdown-item" (click)="seleccionarOpcion('ORIGEN')">Origen</a>
+      </li>
+      <li class="menu-item" role="menuitem">
+        <a class="dropdown-item" (click)="mostrarBusquedaAvanzada()">Busqueda Avanzada</a>
+      </li>
+    </ul>
+  </span>
+</div>

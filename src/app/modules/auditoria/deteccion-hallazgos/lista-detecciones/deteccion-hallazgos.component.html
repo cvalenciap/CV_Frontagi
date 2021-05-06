@@ -1,0 +1,162 @@
+
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-12">
+      <!-- <h2>Bandeja de Detecciones </h2> -->
+      <h4>
+      <ol class="breadcrumb">
+          <li>
+              <a routerLink="starterview">Inicio</a>
+          </li>
+          <li>
+              <a>Auditoría</a>
+          </li>
+          <li class="active">
+              <strong>Detección de Hallazgos</strong>
+          </li>
+      </ol>
+      </h4>
+  </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row m-b-sm">
+      <div class="col-lg-1">
+        
+          <button class="btn btn-primary"  (click)="nuevoModal()"><i class="fa fa-plus"></i>Nuevo</button>
+
+      </div>
+ 
+      <div class="col-lg-3">
+            <div class="input-group">
+                    <div *ngIf="parametroBusqueda == 'tipo' || parametroBusqueda == 'avanzada'" >
+                        <select class="form-control" name="valorTipo" [(ngModel)] = "valorTipo">
+                            <option value="" selected>Seleccionar</option>
+                            <option *ngFor="let item of listaTipos" [value]="item.idconstante">{{ item.v_valcons }}</option>
+                        </select>
+                    </div>                    
+                    
+                    <div *ngIf="parametroBusqueda == 'origenDet'" >
+                        <select class="form-control" name="valorOrigenDet" [(ngModel)] = "valorOrigenDet">
+                            <option value="" selected>Seleccionar</option>
+                            <option *ngFor="let item of listaOrigenDetectado" [value]="item.idconstante">{{ item.v_valcons }}</option>
+                      </select>
+                    </div>                    
+
+                    <div *ngIf="parametroBusqueda == 'estado'">
+                        <select class="form-control" name="valorEstado" [(ngModel)] = "valorEstado">
+                            <option value="" selected>Seleccionar</option>
+                            <option *ngFor="let item of listaEstado" [value]="item.v_campcons1">{{ item.v_valcons }}</option>
+                        </select>
+                    </div>
+                   
+              
+                    <span class="input-group-btn" dropdown>
+                        <button type="button" class="btn btn-info" (click)="OnBuscar()"><i class="fa fa-search"></i></button>
+                        <button dropdownToggle type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split"><i class="fa fa-caret-down"></i></button>
+                            <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
+                            <li role="menuitem" [class.active]="parametroBusqueda == 'tipo'"><a (click)="activarOpcion(1)">Tipo</a></li>
+                            <li role="menuitem" [class.active]="parametroBusqueda == 'origenDet'"><a (click)="activarOpcion(2)">Origen Deteccion</a></li>
+                            <!-- <li role="menuitem" [class.active]="parametroBusqueda == 'detector'"><a (click)="activarOpcion(3)">Detector</a></li> -->
+                            <li role="menuitem" [class.active]="parametroBusqueda == 'estado'"><a (click)="activarOpcion(4)">Estado</a></li>
+
+                            <li class="divider dropdown-divider"></li>
+
+                            <li role="menuitem"><a (click)="abrirBusqueda()">Busqueda Avanzada</a></li>
+                          </ul>
+                    </span>
+          </div>
+      </div>
+
+      <div class="col-lg-5">
+          <div class="btn-group">
+              <!--
+              <button class="btn btn-warning" [disabled]="selectedRow<0" (click)="onModificar()"><i class="fa fa-edit"></i> Actualizar</button>
+              <button class="btn btn-danger" [disabled]="selectedRow<0"
+                      [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                      (confirm)="onEliminar()" >
+                  <i class="fa fa-trash"></i> Eliminar
+              </button>
+              --> 
+          </div>
+       
+          <!--<button class="btn btn-default m-l-sm" (click)="OnLimpiar()"><i class="fa fa-refresh"></i> Limpiar</button>-->
+    </div>
+
+  </div>
+  <div class="row">
+      <div class="col-lg-12">
+
+            <div *ngIf="mostrarAlerta">
+                    <alert type="info" ><span [innerHtml]="mensajeAlerta"></span></alert>
+            </div>
+            
+          <div class="ibox-content" [ngClass]="{'sk-loading': loading}">
+              <sk-three-bounce></sk-three-bounce>
+              <div class="table-responsive">
+                  <table class="table table-bordered table-stripped table-hover issue-tracker custom-td" >
+                      <thead>
+                      <tr>
+                          <th class="text-center">Ambito</th>
+                          <!-- <th class="text-center">Código Detección</th>-->                                                    
+                          <th class="text-center">Origen Detección</th>
+                          <th class="text-center">Tipo</th>  
+                          <th class="text-center">Fecha Ingreso</th>
+                          <th class="text-center">Descripción </th>
+                          <th class="text-center">Detector</th>    
+                          <th class="text-center">Estado</th>        
+                          <!-- <th class="text-center">Fecha Inicio Plan</th>  
+                          <th class="text-center">Fecha Fin Plan</th>   -->
+                          <th class="text-center">Acción</th>                                 
+                      </tr>
+                      </thead>
+
+                      <tbody>
+                        <tr *ngFor="let item of items;   let i = index" (click)="OnRowClick(i, item)"   [class.info]="i == selectedRow">                            
+                            <td class="text-center"  data-col="ambito">{{item.ambito}}</td>                                                      
+                            <!-- <td class="text-center"  data-col="codigoDeteccion">{{item.idorigenDeteccion}}</td> -->
+                            <td class="text-center"  data-col="origenDeteccion">{{item.origenDeteccion}}</td> 
+                            <td class="text-center"  data-col="tipo">{{item.tipoNoConformidad}}</td>
+                            <td class="text-center"  data-col="fechaDeteccion">{{item.fechaDeteccion | date:'dd/MM/yyyy'}}</td>
+                            <td class="text-center"  data-col="descripcionAuditoria">{{item.descripHallazgo}}</td>
+                            <td class="text-center"  data-col="detector">{{item.detector.nombreTrabajador}}</td>
+                            <td class="text-center"  data-col="estado">{{item.estado}}</td>
+                            <!-- 
+                            <td class="text-center"  data-col="fechaInicioPlan">{{item.fechaInicioPlan}}</td>
+                            <td class="text-center"  data-col="fechaFinPlan">{{item.fechaFinPlan}}</td> 
+                            -->                                                                                   
+                            <td class="text-center" width="8%" data-col="accion">
+
+                                
+                            <button title="Actualizar" class="btn btn-success btn-sm m-r button-custom-act" (click)="OnModificar(item)" ><i class="fa fa-edit"></i></button>
+
+                            <button title="Eliminar" class="btn btn-danger btn-sm m-r button-custom"
+                            [swal]="{ title: '¿Está seguro que desea eliminar el registro?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                            (confirm)="onEliminar()">
+                               <i class="fa fa-trash"></i> 
+                           </button>
+
+                        </td>
+                        
+                        </tr>
+                        </tbody>
+
+                  </table>
+              </div>
+              <div class="row">
+                  <div class="col-md-4 col-sm-12 col-xs-12">
+                      <pagination [(ngModel)]="paginacion.pagina" (pageChanged)="OnPageChanged($event)" [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+                  </div>
+                  <div class="col-md-4 col-sm-6 col-xs-12">
+                      <div class="text-center m-a-sm">
+                          <pagination-info [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                      </div>
+                  </div>
+                  <div class="col-md-4 col-sm-6 col-xs-12">
+                      <div class="text-right m-a-sm">
+                          <pagination-set (optionChanged)="OnPageOptionChanged($event)"></pagination-set>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

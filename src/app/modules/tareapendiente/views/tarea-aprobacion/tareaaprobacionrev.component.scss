@@ -1,0 +1,21 @@
+.circleBase{
+  border-radius: 50%;
+  border: 1px solid #fff;
+  box-shadow: 0 0 0 1px;
+  width: 33px;
+  height: 33px;
+  margin: 0;
+  padding: 0;
+}
+
+.greenCircle{
+  background: #008000;
+}
+
+.yellowCircle{
+  background: #f1dd38;
+}
+
+.redCircle{
+  background: #ff0000;
+}

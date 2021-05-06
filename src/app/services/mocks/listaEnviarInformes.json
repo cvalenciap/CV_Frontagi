@@ -1,0 +1,31 @@
+{
+  "listaEnviarInformes": [
+    {  
+      "id" :"01",
+      "categoria": "SAC",
+      "fecha":"01/05/2018",    
+      "descripcionHallazgo": "Descripcion Hallazgo 1"
+    },
+
+    {
+      "id" :"02",
+      "categoria": "SAC",
+      "fecha":"01/05/2018",    
+      "descripcionHallazgo": "Descripcion Hallazgo 2"
+    },
+    {
+      "id" :"03",
+      "categoria": "SAP",
+      "fecha":"01/05/2018",    
+      "descripcionHallazgo": "Descripcion Hallazgo 3"
+
+    },
+    {
+      "id" :"04",
+      "categoria": "SAP",
+      "fecha":"01/05/2018",    
+      "descripcionHallazgo": "Descripcion Hallazgo 4"
+    }
+   
+  ]
+}

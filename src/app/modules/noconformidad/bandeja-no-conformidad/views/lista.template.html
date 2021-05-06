@@ -1,0 +1,135 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-12">
+        <h4>Inicio / No Conformidades /<strong> Bandeja de No Conformidades</strong></h4>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight div-principal">
+    <div class="row m-b-md div-botones-superiores">
+        <div class="col-lg-1" style="width: 115px;">
+            <a [routerLink]="['registrar']" class="btn btn-primary botones-superiores"><i class="fa fa-plus"></i> Nuevo</a>
+        </div>
+        <div class="col-md-4">
+            <div class="row input-group">
+                <div class="col-6">
+                    <input type="text" placeholder="Buscar por" class="form-control cajas-texto"
+                        >
+                </div>
+                <span class="col-6 input-group-btn" dropdown>
+                    <button type="button" class="btn btn-info botones-buscador" (click)="OnBuscar()"><i
+                            class="fa fa-search"></i></button>
+                    <button dropdownToggle type="button"
+                        class="btn btn-info dropdown-toggle dropdown-toggle-split botones-buscador"><i
+                            class="fa fa-caret-down"></i></button>
+                    <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
+                        <li role="menuitem" [class.active]="parametroBusqueda == 'numFicha'"><a
+                                (click)="parametroBusqueda = 'numFicha'">Tipo</a></li>
+                        <li role="menuitem" [class.active]="parametroBusqueda == 'numFicha'"><a
+                                (click)="parametroBusqueda = 'numFicha'">Ambito</a></li>
+                        <li role="menuitem" [class.active]="parametroBusqueda == 'numFicha'"><a
+                                (click)="parametroBusqueda = 'numFicha'">Origen</a></li>
+                        <li role="menuitem" [class.active]="parametroBusqueda == 'nombreAuditor'"><a
+                                (click)="parametroBusqueda = 'nombreAuditor'">Busqueda Avanzada</a></li>
+                    </ul>
+                </span>
+    
+            </div>
+        </div>
+    
+        <div class="col-lg-6">
+            <button class="btn btn-light btn-colores botones-superiores" ><i class="fa fa-eraser"></i> Limpiar</button>
+            <button class="btn btn-success botones-superiores" ><i class="fa fa-file-excel-o"></i> Reporte</button>
+            <button class="btn btn-warning botones-superiores" ><i class="fa fa-download"></i> Graficos</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+<!--                 <div *ngIf="mostrarAlerta">
+                    <alert type="info">
+                        <span [innerHtml]="mensajeAlerta"></span>
+                    </alert>
+                </div> -->
+                        <div class="ibox-content div-secundario" [ngClass]="{'sk-loading': loading}">
+                                <sk-three-bounce></sk-three-bounce>
+                                <div class="table-responsive" style="height: 30rem;">
+                                    <table class="table table-bordered table-stripped table-hover issue-tracker">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center" data-col="item">N°</th>
+                                            <th class="text-center" data-col="tipo">Tipo</th>
+                                            <th class="text-center" data-col="rol">Norma</th>
+                                            <th class="text-center" data-col="rol">Alcance</th>
+                                            <th class="text-center" data-col="accion">Requisito</th>
+                                            <th class="text-center" data-col="accion">Ámbito</th>
+                                            <th class="text-center" data-col="accion">Origen</th>
+                                            <th class="text-center" data-col="accion">Área</th>
+                                            <th class="text-center" data-col="accion">Responsable</th>
+                                            <th class="text-center" data-col="accion">Descripción Problema</th>
+                                            <th class="text-center" data-col="accion">Etapa</th>
+                                            <th class="text-center" data-col="accion">Estado</th>
+                                            <th class="text-center" data-col="accion">Alerta</th>
+                                            <th class="text-center" data-col="accion">Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center" data-col="item">1</td>
+                                            <td class="text-center" data-col="tipo">SAC</td>
+                                            <td class="text-center" data-col="rol">
+                                                <div>
+                                                    <span class="label label-default">ISO 9001:2015</span><br>
+                                                    <span class="label label-default">ISO 14001:2015</span>
+                                                </div>
+                                            </td>
+                                            <td class="text-center" data-col="rol">
+                                                <div>
+                                                    <span class="label label-default">ISO 9001:2015</span><br>
+                                                    <span class="label label-default">ISO 14001:2015</span>
+                                                </div>
+                                            </td>
+                                            <td class="text-center" data-col="rol">4.1 - Politicas y Legalidades</td>
+                                            <td class="text-center" data-col="rol">Dentrol del SIG</td>
+                                            <td class="text-center" data-col="rol">Auditoría Interna</td>
+                                            <td class="text-center" data-col="rol">ESHO</td>
+                                            <td class="text-center" data-col="rol">MARTIN HIDALGO ROJAS</td>
+                                            <td class="text-center" data-col="rol">PRUEBAS 1</td>
+                                            <td class="text-center" data-col="rol">Ejecución</td>
+                                            <td class="text-center" data-col="rol">Abierto</td>
+                                            <td class="text-center" data-col="rol"><div class="alertaCirculoDefault"></div></td>
+                                            <td class="text-center" data-col="accion">
+                                                <button title="Actualizar" class="btn btn-success btn-sm m-r botones-detalle"
+                                                    (click)="OnModificar()"><i class="fa fa-edit"></i></button>
+                                                <button title="Eliminar" class="btn btn-danger btn-sm m-r botones-detalle"
+                                                    [swal]="{ title: '¿Está seguro que desea eliminar la pregunta?', type: 'question', showCancelButton: true, confirmButtonText: 'Sí, eliminar', cancelButtonText: 'No gracias' }"
+                                                    ><i class="fa fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+            
+                            <div class="row" style="margin-top: 10px;">
+                                <div class="col-md-4 col-sm-12 col-xs-12">
+                                    <pagination [(ngModel)]="paginacion.pagina" (pageChanged)="OnPageChanged($event)"
+                                        [totalItems]="paginacion.totalRegistros" [itemsPerPage]="paginacion.registros"
+                                        [boundaryLinks]="true" [maxSize]="5" previousText="&lsaquo;" nextText="&rsaquo;"
+                                        firstText="&laquo;" lastText="&raquo;"></pagination>
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <div class="text-center m-a-sm">
+                                        <pagination-info [totalItems]="paginacion.totalRegistros"
+                                            [itemsPerPage]="paginacion.registros" [page]="paginacion.pagina"></pagination-info>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <div class="text-right m-a-sm">
+                                        <pagination-set class="texto-pie-pag" (optionChanged)="OnPageOptionChanged($event)" #pageOption>
+                                        </pagination-set>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        </div>
+    </div>
+</div> 

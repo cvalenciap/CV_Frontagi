@@ -1,0 +1,473 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-12">
+    <h4>Inicio / Auditoría / Lista de Auditores / <strong>Ficha de Auditor</strong></h4>
+  </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight div-principal">
+
+  <div class="row m-b-md div-botones-superiores">
+    <div class="col-lg-6">
+      <button class="btn btn-primary botones-superiores" (click)="mostrarModalGuardar()">
+        <i class="fa fa-floppy-o"></i> Guardar</button>
+      <a class="btn btn-default btn-colores m-r botones-superiores" (click)="OnRegresar()"><i
+        class="fa fa-arrow-left"></i> Regresar</a>
+    </div>
+    <div class="col-lg-6"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox-content div-secundario" [ngClass]="{'sk-loading': loading}" style=" height: 500px;">
+        <sk-three-bounce></sk-three-bounce>
+        <div class="row">
+          <div class="ib  ox-content div-secundario"
+               style=" height: 35px; padding-bottom: 0px; padding-top: 5px; margin-left: 20px; margin-right: 20px; margin-bottom: 10px">
+            <label class="col-sm-2 titulos-texto" style="padding-left: 40px; padding-top: 4px;">Tipo Auditoría:</label>
+            <fieldset class="col-sm-4" *ngFor="let item of tiposAuditoria">
+              <label class="titulos-texto" control-label style="padding-right: 20px;">
+                <input type="radio"
+                       name="tipoauditoria"
+                       [value]="item.codigo"
+                       [(ngModel)]="tipoAuditoria"
+                       (ngModelChange)="onChangeTipoAuditoria($event)"> {{item.descripcion}} </label>
+              <!--<label class="titulos-texto" style="padding-right: 20px;">
+              <input type="radio" name="tipoauditoria" value="externa" (change)="valorRadio=2;"> Auditoría Externa </label>-->
+            </fieldset>
+          </div>
+        </div>
+        <mat-tab-group *ngIf="tipoAuditoria === '2'"
+                       class="ibox-content div-secundario"
+                       style="margin-left: 6px; margin-right: 6px; margin-bottom: 10px; height: 420px;">
+          <mat-tab label="Información del Auditor" class="texto-pie-pag">
+            <br/>
+            <div class="col-lg-12">
+              <div class="row">
+                <label class="col-sm-6 control-label titulos-texto">Empresa:</label>
+              </div>
+              <div class="row">
+                <div class="col-sm-5" style="padding-right: 5px;">
+                  <input class="form-control cajas-texto"
+                         type="text"
+                         name="empresa"
+                         [(ngModel)]="this.fichaAudiRequest.nomEmpre">
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-sm-6 control-label titulos-texto">Nombres:</label>
+              </div>
+              <div class="row">
+                <div class="col-sm-5" style="padding-right: 5px;">
+                  <input class="form-control cajas-texto"
+                         type="text"
+                         name="nombre"
+                         [(ngModel)]="fichaAudiRequest.nomAudi">
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-sm-6 control-label titulos-texto">Apellido Paterno:</label>
+              </div>
+              <div class="row">
+                <div class="col-sm-5" style="padding-right: 5px;">
+                  <input class="form-control cajas-texto"
+                         type="text"
+                         name="apePaterno"
+                         [(ngModel)]="fichaAudiRequest.apePaterno">
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-sm-6 control-label titulos-texto">Apellido Materno:</label>
+              </div>
+              <div class="row">
+                <div class="col-sm-5" style="padding-right: 5px;">
+                  <input class="form-control cajas-texto"
+                         type="text"
+                         name="apeMaterno"
+                         [(ngModel)]="fichaAudiRequest.apeMaterno">
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+        <mat-tab-group *ngIf="tipoAuditoria === '1'"
+                       class="ibox-content div-secundario"
+                       style="margin-left: 6px; margin-right: 6px; margin-bottom: 10px">
+          <mat-tab label="Información del Auditor" class="texto-pie-pag">
+            <br/>
+            <div class="col-lg-12">
+              <div class="row">
+                <label class="col-sm-6 control-label titulos-texto">Nombres y Apellidos:</label>
+                <label class="col-sm-2 control-label titulos-texto">Número Ficha:</label>
+                <label class="col-sm-2 control-label titulos-texto">Fecha de Ingreso:</label>
+                <label class="col-sm-2 control-label titulos-texto">Tiempo de Experiencia:</label>
+              </div>
+              <div class="row">
+                <div class="col-sm-5" style="padding-right: 5px;">
+                  <input type="text"
+                         class="form-control cajas-texto"
+                         [disabled]="true"
+                         [(ngModel)]="infoAuditor.auditor">
+                </div>
+                <div class="col-sm-1 left" style="padding-left: 0px;">
+                  <a class="btn btn-primary m-r botones-buscador" (click)="BusquedaAuditores()">
+                    <i class="fa fa-search-plus"></i></a>
+                </div>
+                <div class="col-sm-2">
+                  <input type="text"
+                         class="form-control cajas-texto"
+                         style="width: 148px;"
+                         [disabled]="true"
+                         [(ngModel)]="infoAuditor.ficha">
+                </div>
+                <div class="col-sm-2">
+                  <input type="text"
+                         class="form-control cajas-texto"
+                         style="width: 148px;"
+                         [disabled]="true"
+                         [(ngModel)]="infoAuditor.fecIngreso">
+                </div>
+                <div class="col-sm-2">
+                  <input type="text"
+                         class="form-control cajas-texto"
+                         style="width: 148px;"
+                         [disabled]="true"
+                         [(ngModel)]="infoAuditor.annoExp">
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-sm-4 control-label titulos-texto">Cargo:</label>
+                <label class="col-sm-4 control-label titulos-texto">Equipo:</label>
+                <label class="col-sm-4 control-label titulos-texto">Gerencia:</label>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <input class="form-control cajas-texto"
+                         type="text"
+                         name="cargo"
+                         [disabled]="true"
+                         [(ngModel)]="infoAuditor.nomCargo">
+                </div>
+                <div class="col-sm-4">
+                  <input class="form-control cajas-texto"
+                         type="text"
+                         name="equipo"
+                         disabled="true"
+                         [(ngModel)]="infoAuditor.equipo.descripcion">
+                </div>
+                <div class="col-sm-4">
+                  <input class="form-control cajas-texto"
+                         type="text"
+                         name="gerencia"
+                         [disabled]="true"
+                         [(ngModel)]="infoAuditor.gerencia.descripcion">
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-sm-4 control-label titulos-texto">Rol:</label>
+                <label class="col-sm-4 control-label titulos-texto">Educación:</label>
+                <label class="col-sm-4 control-label titulos-texto"></label>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <ng-select placeholder="Seleccionar"
+                             [items]="listaRol"
+                             bindLabel="descripcion"
+                             [(ngModel)]="rolAux"></ng-select>
+                </div>
+                <div class="col-sm-4">
+                  <ng-select placeholder="Seleccionar"
+                             [items]="listaEducacion"
+                             bindLabel="descripcion"
+                             [(ngModel)]="tipoEducacionAux"></ng-select>
+                </div>
+                <div class="col-sm-4"></div>
+              </div>
+              <div class="row">
+                <label class="col-sm-4 control-label titulos-texto">Desempeño en Auditorías Internas:</label>
+              </div>
+              <div class="row">
+                <div class=" col-sm-12">
+                  <div class="ibox-content"
+                       style="padding-left: 5px; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; margin-bottom: 5px; height: 120px;">
+                    <div class="form-group">
+                      <div class="table-responsive" style="height: 127px;">
+                        <table class="table table-bordered table-stripped table-hover issue-tracker">
+                          <thead>
+                          <tr>
+                            <th class="text-center" data-col="auditoria">Auditoría</th>
+                            <th class="text-center" data-col="fechaInicio">Fecha Aprobación Plan</th>
+                            <th class="text-center" data-col="Rol">Rol</th>
+                            <th class="text-center" data-col="Rol">Área</th>
+                            <th class="text-center" data-col="resultado">Resultado de Desempeño</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <!-- TODO: Tabla de desempeño -->
+                          <!-- <tr *ngFor="let item of items;  let i = index" (click)="OnRowClick(i, item)" [class.info]="i == selectedRow"> -->
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-sm-2 control-label titulos-texto" style="padding-right: 0px; width: 120px;">Evaluación
+                  del Sistema:</label>
+                <div class="col-sm-4" style="padding-left: 0px;">
+                  <input class="form-control cajas-texto"
+                         type="text"
+                         [(ngModel)]="fichaAudiRequest.evalAudi"
+                         [disabled]="true">
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+
+          <mat-tab label="Cursos" class="texto-pie-pag">
+            <br/>
+            <div class="col-lg-12">
+              <div class="row">
+                <label class="col-sm-4 control-label titulos-texto">NORMAS</label>
+                <label class="col-sm-4 control-label titulos-texto">CURSO LLEVADOS</label>
+                <label class="col-sm-4 control-label titulos-texto">CURSOS POR LLEVAR</label>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="ibox-content" style="height: 320px;">
+                    <div class="col-sm-12" style="padding-left: 0px; padding-right: 0px;">
+                      <div class="row form-group">
+                        <label class="col-sm-3 control-label"
+                               style="text-align: right;padding-right: 0px;padding-left: 40px;">Norma:</label>
+                        <div class="col-sm-9">
+                          <ng-select placeholder="Seleccione"
+                                     [items]="listaNormas"
+                                     bindLabel="descripcion"
+                                     [(ngModel)]="cursoNormaAux"></ng-select>
+                        </div>
+                      </div>
+                      <div class="row form-group">
+                        <label class="col-sm-3 control-label" style="text-align: right;">Obligatorio:</label>
+                        <div class="col-sm-9">
+                          <select class="form-control cajas-texto" name="valorTipo" [(ngModel)]="indObliCursoNorma">
+                            <option [value]="null" selected disabled>Seleccionar</option>
+                            <option [value]="1">Si</option>
+                            <option [value]="2">No</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="row form-group">
+                        <div class="col-sm-1">
+                          <div class="row">
+                            <button class="btn btn-primary m-r botones-detalle"
+                                    (click)="onAgregarCursoNorma()">
+                              <i class="fa fa-plus"></i></button>
+                          </div>
+                          <br/>
+                          <div class="row">
+                            <button class="btn btn-danger m-r botones-detalle"
+                                    (click)="mostrarModalEliminarCursoNorma()">
+                              <i class="fa fa-minus"></i></button>
+                          </div>
+                        </div>
+                        <div class="col-sm-10" style="padding-left: 0px; padding-right: 0px;">
+                          <div class="table-responsive" style="height: 258px;">
+                            <table class="table table-bordered table-stripped table-hover issue-tracker">
+                              <thead>
+                              <tr>
+                                <th class="text-center" data-col="normaCurso">Norma</th>
+                                <th class="text-center" data-col="obligatorio">Obligatorio</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              <tr *ngFor="let norma of cursosNorma; let i = index"
+                                  (click)="onCursoNormaSelected(i, norma)" [class.info]="i === selectedRowCursoNorma">
+                                <td>{{norma.nomNorma}}</td>
+                                <td>{{norma.indObli === "1" ? "Si" : "No"}}</td>
+                              </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="ibox-content" style="height: 320px;">
+                    <div class="col-sm-12" style="padding-left: 0px; padding-right: 0px;">
+                      <div class="row form-group">
+                        <label class="col-sm-3 control-label"
+                               style="text-align: right;padding-right: 0px;padding-left: 40px;">Curso:</label>
+                        <div class="col-sm-9">
+                          <input class="form-control cajas-texto"
+                                 type="text"
+                                 placeholder="Ej: Liderazgo de Grupo"
+                                 [(ngModel)]="cursoCompletadoAux">
+                        </div>
+                      </div>
+                      <div class="row form-group">
+                        <label class="col-sm-3 control-label" style="text-align: right;">Obligatorio:</label>
+                        <div class="col-sm-9">
+                          <select class="form-control cajas-texto"
+                                  name="valorTipo"
+                                  [(ngModel)]="indObliCursoComp">
+                            <option [value]="null" selected disabled>Seleccionar</option>
+                            <option [value]="1">Si</option>
+                            <option [value]="2">No</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="row form-group">
+                        <div class="col-sm-1">
+                          <div class="row">
+                            <button class="btn btn-primary m-r botones-detalle"
+                                    (click)="onAgregarCursoComp()">
+                              <i class="fa fa-plus"></i></button>
+                          </div>
+                          <br/>
+                          <div class="row">
+                            <button class="btn btn-danger m-r botones-detalle"
+                                    (click)="mostrarModalEliminarCursoComp()">
+                              <i class="fa fa-minus"></i></button>
+                          </div>
+                        </div>
+                        <div class="col-sm-10" style="padding-left: 0px; padding-right: 0px;">
+                          <div class="table-responsive" style="height: 258px;">
+                            <table class="table table-bordered table-stripped table-hover issue-tracker">
+                              <thead>
+                              <tr>
+                                <th class="text-center" data-col="normaCurso">Curso</th>
+                                <th class="text-center" data-col="obligatorio">Obligatorio</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let curso of cursosCompletados; let i = index"
+                                    (click)="onCursoCompSelected(i, curso)"
+                                    [class.info]="i === selectedRowCursoComp">
+                                  <td>{{curso.nomCurso}}</td>
+                                  <td>{{curso.indObli === "1" ? "Si" : "No"}}</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="ibox-content" style="height: 320px;">
+                    <div class="col-sm-12" style="padding-left: 0px; padding-right: 0px;">
+                      <div class="row form-group">
+                        <label class="col-sm-3 control-label"
+                               style="text-align: right;padding-right: 0px;padding-left: 40px;">Curso:</label>
+                        <div class="col-sm-9">
+                          <input class="form-control cajas-texto"
+                                 type="text"
+                                 placeholder="Ej: Liderazgo de Grupo"
+                                 [(ngModel)]="cursoPendienteAux">
+                        </div>
+                      </div>
+                      <div class="row form-group">
+                        <label class="col-sm-3 control-label" style="text-align: right;">Obligatorio:</label>
+                        <div class="col-sm-9">
+                          <select class="form-control cajas-texto"
+                                  name="valorTipo"
+                                  [(ngModel)]="indObliCursoPend">
+                            <option [value]="null" selected disabled>Seleccionar</option>
+                            <option [value]="1">Si</option>
+                            <option [value]="2">No</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="row form-group">
+                        <div class="col-sm-1">
+                          <div class="row">
+                            <button class="btn btn-primary m-r botones-detalle"
+                                    (click)="onAgregarCursoPend()">
+                              <i class="fa fa-plus"></i></button>
+                          </div>
+                          <br/>
+                          <div class="row">
+                            <button class="btn btn-danger m-r botones-detalle"
+                                    (click)="mostrarModalEliminarCursoPend()">
+                              <i class="fa fa-minus"></i></button>
+                          </div>
+                        </div>
+                        <div class="col-sm-10" style="padding-left: 0px; padding-right: 0px;">
+                          <div class="table-responsive" style="height: 258px;">
+                            <table class="table table-bordered table-stripped table-hover issue-tracker">
+                              <thead>
+                              <tr>
+                                <th class="text-center" data-col="normaCurso">Curso</th>
+                                <th class="text-center" data-col="obligatorio">Obligatario</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let curso of cursosPendientes; let i = index"
+                                    (click)="onCursoPendSelected(i, curso)"
+                                    [class.info]="i === selectedRowCursoPend">
+                                  <td>{{curso.nomCurso}}</td>
+                                  <td>{{curso.indObli === "1" ? "Si" : "No"}}</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<swal #swalEliminarCursoNorma
+      [title]="'¿Está seguro de eliminar el registro?'"
+      [showCancelButton]="true"
+      [showConfirmButton]="true"
+      [cancelButtonText]="'No, gracias'"
+      [confirmButtonText]="'Sí, eliminar'"
+      [allowOutsideClick]="false"
+      (confirm)="onEliminarCursoNorma()">
+</swal>
+
+<swal #swalEliminarCursoComp
+      [title]="'¿Está seguro de eliminar el registro?'"
+      [showCancelButton]="true"
+      [showConfirmButton]="true"
+      [cancelButtonText]="'No, gracias'"
+      [confirmButtonText]="'Sí, eliminar'"
+      [allowOutsideClick]="false"
+      (confirm)="onEliminarCursoComp()">
+</swal>
+
+<swal #swalEliminarCursoPend
+      [title]="'¿Está seguro de eliminar el registro?'"
+      [showCancelButton]="true"
+      [showConfirmButton]="true"
+      [cancelButtonText]="'No, gracias'"
+      [confirmButtonText]="'Sí, eliminar'"
+      [allowOutsideClick]="false"
+      (confirm)="onEliminarCursoPend()">
+</swal>
+
+<swal #swalGuardarFichaAudi
+      [title]="'¿Está seguro que desea guardar la ficha de Auditor?'"
+      [showCancelButton]="true"
+      [showConfirmButton]="true"
+      [cancelButtonText]="'No, gracias'"
+      [confirmButtonText]="'Sí, grabar'"
+      [allowOutsideClick]="false"
+      (confirm)="onGuardar()">
+</swal>

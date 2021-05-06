@@ -1,0 +1,66 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+  <div class="sidebar-collapse" style="color:white;">
+    <ul class="nav metismenu" id="side-menu">
+      <li class="nav-header">
+        <div class="profile-element text-center">
+          <img src="assets/images/sedapal-logo-2.png">
+        </div>
+        <div class="logo-element">
+          <img src="assets/images/sedapal-gota.png">
+        </div>
+      </li>
+      <li [ngClass]="{active: activeRoute('inicial')}">
+        <a [routerLink]="['/starterview']"><i class="fa fa fa-home"></i> <span class="nav-label">Inicio</span></a>
+      </li>
+      <li *authIf="session.ACL.ID_DOC" [ngClass]="{active: activeRoute('general')}">
+        <a href="#"><i class="fa fa-folder"></i> <span class="nav-label">Documentos</span> <span class="fa arrow"></span> </a>
+        <ul class="nav nav-second-level collapse" [ngClass]="{in: activeRoute('general')}">
+          <li *authIf="session.ACL.ID_DOC_ConsultaGeneral" [ngClass]="{active: activeRoute('general')}"><a (click)="OnClickBusqGral()" [routerLink]="['/documento/general/revisardocumentos/']">Consulta General<span class="label label-danger pull-right"></span></a></li>
+          <li *authIf="session.ACL.ID_DOC_ConsultaJerarquia" [ngClass]="{active: activeRoute('general')}"><a (click)="OnClick()" [routerLink]="['/documento/general/bandejadocumento/']">Consulta por Jerarquía<span class="label label-danger pull-right"></span></a></li>
+        </ul>
+      </li>
+      <li *authIf="session.ACL.ID_SOL" [ngClass]="{active: activeRoute('solicitudes')}">
+        <a href="#"><i class="fa fa fa-list-ol"></i> <span class="nav-label">Solicitudes</span> <span class="fa arrow"></span> </a>
+        <ul class="nav nav-second-level collapse"  [ngClass]="{in: activeRoute('solicitudes')}" >
+          <li *authIf="session.ACL.ID_SOL_SolicitudRevision" [ngClass]="{active: activeRoute('solicitudes')}"><a (click)="OnClick()" [routerLink]="['/documento/solicitudes/revisiondocumento']">Solicitud de Revisión de Documentos<span class="label label-danger pull-right"></span></a></li>
+          <li *authIf="session.ACL.ID_SOL_SolicitudCopiasImpresas" [ngClass]="{active: activeRoute('solicitudes')}"><a (click)="OnClick()" [routerLink]="['/documento/solicitudes/copiaimpresa']">Solicitud de Copia<span class="label label-danger pull-right"></span></a></li>
+          <li *authIf="session.ACL.ID_SOL_SolicitudCancelacion" [ngClass]="{active: activeRoute('solicitudes')}"><a (click)="OnClick()" [routerLink]="['/documento/solicitudes/cancelaciones/SolicitudCancel']">Solicitud de Cancelación<span class="label label-danger pull-right"></span></a></li>
+        </ul>
+      </li>
+        <li *authIf="session.ACL.ID_TAR" [ngClass]="{active: activeRoute('tareapendiente')}">
+          <a href="#"><i class="fa fa-book"></i> <span class="nav-label">Tareas</span> <span class="fa arrow"></span> </a>
+          <ul class="nav nav-second-level collapse" [ngClass]="{in: activeRoute('tareapendiente')}">
+            <li *authIf="session.ACL.ID_TAR_AprobacionSolicitudRevision" [ngClass]="{active: activeRoute('tareapendiente')}"><a (click)="OnClick()" [routerLink]="['/documento/tareapendiente/AprobarSolicitud']">Aprobación de Solicitud de Revisión<span class="label label-danger pull-right"></span></a></li>              
+            <li *authIf="session.ACL.ID_TAR_Elaboracion" [ngClass]="{active: activeRoute('tareapendiente')}"><a (click)="OnClick()" [routerLink]="['/documento/tareapendiente/ElaborarRevision']">Elaboración<span class="label label-danger pull-right"></span></a></li>              
+            <li *authIf="session.ACL.ID_TAR_Consenso" [ngClass]="{active: activeRoute('tareapendiente')}"><a (click)="OnClick()" [routerLink]="['/documento/tareapendiente/ConsensuarRevision']">Consenso<span class="label label-danger pull-right"></span></a></li>              
+            <li *authIf="session.ACL.ID_TAR_Aprobacion" [ngClass]="{active: activeRoute('tareapendiente')}"><a (click)="OnClick()" [routerLink]="['/documento/tareapendiente/AprobarRevision']">Aprobación<span class="label label-danger pull-right"></span></a></li>              
+            <li *authIf="session.ACL.ID_TAR_Homologacion" [ngClass]="{active: activeRoute('tareapendiente')}"><a (click)="OnClick()" [routerLink]="['/documento/tareapendiente/HomologarRevision']">Homologación<span class="label label-danger pull-right"></span></a></li>              
+            <li *authIf="session.ACL.ID_TAR_AprobacionCopiasImpresas" [ngClass]="{active: activeRoute('tareapendiente')}"><a (click)="OnClick()" [routerLink]="['/documento/tareapendiente/CopiaImpresion']">Copias Impresas<span class="label label-danger pull-right"></span></a></li>
+            <li *authIf="session.ACL.ID_TAR_AprobacionCancelacion" [ngClass]="{active: activeRoute('tareapendiente')}"><a (click)="OnClick()" [routerLink]="['/documento/tareapendiente/cancelaciones/AprobacionCancel']">Aprobación de Cancelación<span class="label label-danger pull-right"></span></a></li>
+            <li *authIf="session.ACL.ID_TAR_CancelacionDocumentos" [ngClass]="{active: activeRoute('tareapendiente')}"><a (click)="OnClick()" [routerLink]="['/documento/tareapendiente/cancelaciones/CancelaSolicitud']">Cancelación de Documentos<span class="label label-danger pull-right"></span></a></li>
+            <li *authIf="session.ACL.ID_TAR_ConocimientoRevision" [ngClass]="{active: activeRoute('tareapendiente')}"><a (click)="OnClick()" [routerLink]="['/documento/tareapendiente/ConocimientoRevision']">Bandeja de Conocimiento de Revisión de Documentos<span class="label label-danger pull-right"></span></a></li>              
+          </ul>
+        </li>
+      <li *authIf="session.ACL.ID_REV" [ngClass]="{active: activeRoute('programacion')}">
+        <a href="#"><i class="fa fa-archive"></i> <span class="nav-label">Revisión y/o Actualización de Documentos</span> <span class="fa arrow"></span> </a>
+        <ul class="nav nav-second-level collapse" [ngClass]="{in: activeRoute('programacion')}">
+          <li *authIf="session.ACL.ID_REV_Programacion" [ngClass]="{active: activeRoute('programacion')}"><a (click)="OnClick()" [routerLink]="['/documento/programacion/programacion']">Programa<span class="label label-danger pull-right"></span></a></li>                              
+          <li *authIf="session.ACL.ID_REV_DistribucionEjecucion" [ngClass]="{active: activeRoute('programacion')}"><a (click)="OnClick()" [routerLink]="['/documento/programacion/distribucion']">Distribución y Ejecución<span class="label label-danger pull-right"></span></a></li>
+          <li *authIf="session.ACL.ID_REV_BandejaEjecucion" [ngClass]="{active: activeRoute('programacion')}"><a (click)="OnClick()" [routerLink]="['/documento/programacion/ejecucion']">Bandeja de Seguimiento de Ejecución<span class="label label-danger pull-right"></span></a></li>
+        </ul>
+      </li>
+      <li *authIf="session.ACL.ID_CON" [ngClass]="{active: activeRoute('descarga')}">
+        <a href="#"><i class="fa fa-pencil-square"></i> <span class="nav-label">Seguimiento </span> <span class="fa arrow"></span> </a>
+        <ul class="nav nav-second-level collapse" [ngClass]="{in: activeRoute('descarga')}">
+          <li *authIf="session.ACL.ID_CON_SeguimientoDocumento" [ngClass]="{active: activeRoute('descarga')}"><a (click)="OnClick()" [routerLink]="['/consulta/descarga/seguimientoDocumento']">Bandeja de Seguimiento de Documentos<span class="label label-danger pull-right"></span></a></li>
+          <li *authIf="session.ACL.ID_CON_ReporteConocimientoRevision" [ngClass]="{active: activeRoute('descarga')}"><a (click)="OnClick()" [routerLink]="['/consulta/descarga/reporteConocimientoRevision']">Reporte de Conocimiento de Revisión<span class="label label-danger pull-right"></span></a></li>
+          <li *authIf="session.ACL.ID_CON_ConocimientoRevisionDocumento" [ngClass]="{active: activeRoute('descarga')}"><a (click)="OnClick()" [routerLink]="['/consulta/descarga/reporteConocimientoRevision']">Revisión de Documentos<span class="label label-danger pull-right"></span></a></li>
+          <li *authIf="session.ACL.ID_CON_ReporteDocumentosCancelados" [ngClass]="{active: activeRoute('descarga')}"><a (click)="OnClick()" [routerLink]="['/consulta/descarga/reporteDocumentoCancelados']">Reporte de Documentos de Altas y Cancelados<span class="label label-danger pull-right"></span></a></li>
+          <li *authIf="session.ACL.ID_CON_ReporteTransaccionDocumentos" [ngClass]="{active: activeRoute('descarga')}"><a (click)="OnClick()" [routerLink]="['/consulta/descarga/reporteTransaccionDocumentos']">Reporte de Transacción de Documentos<span class="label label-danger pull-right"></span></a></li>
+          <li *authIf="session.ACL.ID_CON_DescargaVideosPlantillas" [ngClass]="{active: activeRoute('descarga')}"><a (click)="OnClick()" [routerLink]="['/consulta/descarga/bajarVideosPlantillas']">Descarga de Videos y Plantillas del Sistema<span class="label label-danger pull-right"></span></a></li>
+          <li *authIf="session.ACL.ID_CON_DescargaMasivaDocumentos" [ngClass]="{active: activeRoute('descarga')}"><a (click)="OnClick()" [routerLink]="['/consulta/descarga/descargaMasivaDocumentos']">Bandeja de Descarga Masiva de Documentos<span class="label label-danger pull-right"></span></a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>

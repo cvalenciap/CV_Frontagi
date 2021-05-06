@@ -1,0 +1,119 @@
+<div class="modal-header modal-cabecera-color">
+        <div class="row col-lg-12">
+            <div class="col-lg-12 text-center">
+                <!-- <h3 style="color: darkblue"><strong>CU001 - Análisis de tratamiento de agua</strong></h3> -->
+                <span style="color: darkblue; font-size: 2em"><strong>EXAMEN</strong></span>
+            </div>
+            <div class="col-lg-12 text-center">
+                    <!-- <h3 style="color: darkblue"><strong>CU001 - Análisis de tratamiento de agua</strong></h3> -->
+                    <span style="color: darkblue; font-size: 2em"><strong>CU001 - Comunicaciones</strong></span>
+                </div>
+        </div>
+    </div>    
+    <div class="modal-body">
+        <div class="row col-lg-12">
+            <label class="control-label">P001 - ¿ La caida del Imperio Romano fue en el Año 1670?</label>
+            &nbsp;<label><i>(1 pto)</i></label>
+        </div>
+        <div class="row ">
+            <div class="col-lg-12">
+                <div class="radio">
+                    <input type="radio" id="radio1" name="optradio" disabled>
+                    <label for="radio1">Verdadero</label>
+                </div>
+                <div class="radio">
+                    <input type="radio" id="radio2" name="optradio" value="option1" checked disabled>
+                    <label for="radio2">Falso</label>      
+                    &nbsp;<i class="fa fa-check" style="color: green"></i>      
+                </div>
+            </div>
+        </div>    
+        <div class="row col-lg-12">
+            <label class="control-label">P002 - ¿ La  Batalla  de Waterloo se libro en  que  fecha  ?</label>
+            &nbsp;<label><i>(1 pto)</i></label>
+        </div>
+        <div class="row ">
+            <div class="col-lg-12">
+                <div class="radio">
+                    <input type="radio" id="radio3" name="optradio1" disabled>
+                    <label for="radio3">13  de mayo de 1815</label>
+                </div>
+                <div class="radio">
+                    <input type="radio" id="radio4" name="optradio1" value="option1" checked disabled>
+                    <label for="radio4">18  de junio de 1815</label>            
+                    &nbsp;<i class="fa fa-times" style="color: red"></i>
+                </div>
+                <div class="radio">
+                    <input type="radio" id="radio5" name="optradio1" disabled>
+                    <label for="radio5">10  de julio de 1815</label>
+                </div>
+                <div class="radio">
+                    <input type="radio" id="radio6" name="optradio1" disabled>
+                    <label for="radio6">20  de junio de 1715</label>
+                </div>
+            </div>
+        </div>
+        <div class="row col-lg-12">
+            <label class="control-label">P003 - Relacionar las siguientes preguntas:</label>
+            &nbsp;<label><i>(4 ptos)</i></label>
+        </div>
+        <div class="row">
+            <div class="row col-lg-12 m-b-md">
+                <div class="col-lg-7">
+                    <label>A.&nbsp;</label>Elimina filas duplicadas del resultado de un SELECT
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-inline">
+                        <select name="tipo" id="answer1" class="form-control" disabled>
+                            <option value="2" selected>Drop</option>
+                        </select>        
+                        &nbsp;<i class="fa fa-times" style="color:red"></i> 
+                    </div>
+                </div>
+            </div>
+            <div class="row col-lg-12 m-b-md">
+                <div class="col-lg-7">
+                    <label>B.&nbsp;</label>Eliminación definitiva, de índice o una tabla o una base de datos.
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-inline">
+                        <select name="tipo" id="answer1" class="form-control" disabled>
+                            <option value="1" selected>DELETE</option>
+                        </select>        
+                        &nbsp;<i class="fa fa-check" style="color:green"></i> 
+                    </div>
+                </div>
+            </div>
+            <div class="row col-lg-12 m-b-md">
+                <div class="col-lg-7">
+                    <label>C.&nbsp;</label>No es una función de agregación
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-inline">
+                        <select name="tipo" id="answer2" class="form-control" disabled>
+                            <option value="3" selected>AVG</option>
+                        </select>        
+                        &nbsp;<i class="fa fa-check" style="color:green"></i> 
+                    </div>
+                </div>
+            </div>
+            <div class="row col-lg-12">
+                <div class="col-lg-7">
+                    <label>D.&nbsp;</label>Permite borrar 0 o mas registros de una tabla
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-inline">
+                        <select name="tipo" id="answer3" class="form-control" disabled>
+                            <option value="4" selected>UNIQUE</option>
+                        </select>        
+                        &nbsp;<i class="fa fa-times" style="color:red"></i> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <div class="modal-footer">    
+        <button type="button" class="btn btn-default" (click)="cancelar()">Cancelar</button>
+        <button type="button" class="btn btn-success" (click)="buscar()">Imprimir</button>
+    </div>
+                
